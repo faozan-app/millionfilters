@@ -10,8 +10,8 @@
 
 <!-- Cloudflare Web Analytics -->
 <script type="module"
-src="https://static.cloudflareinsights.com/beacon.min.js"
-data-cf-beacon='{"token":"3b9b1e3003164f9a9bd0b36838333860"}'>
+ src="https://static.cloudflareinsights.com/beacon.min.js"
+ data-cf-beacon='{"token":"3b9b1e3003164f9a9bd0b36838333860"}'>
 </script>
 
 <!-- Google Analytics 4 -->
@@ -39,15 +39,16 @@ html,body{
  color:var(--ink);
  font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
-button,input{font:inherit}
-button{cursor:pointer;touch-action:manipulation}
-button:disabled{opacity:.38;cursor:not-allowed}
 body{
  background:
  radial-gradient(ellipse at 50% 0,rgba(132,79,119,.19),transparent 48%),
  radial-gradient(ellipse at 100% 70%,rgba(145,106,62,.13),transparent 42%),
  var(--bg);
 }
+button,input{font:inherit}
+button{cursor:pointer;touch-action:manipulation}
+button:disabled{opacity:.38;cursor:not-allowed}
+
 .shell{
  max-width:700px;
  margin:auto;
@@ -97,7 +98,9 @@ body{
  border-radius:26px;
  overflow:hidden;
  background:linear-gradient(145deg,#26202b,#12111a);
- box-shadow:0 22px 65px rgba(0,0,0,.43),inset 0 0 0 1px rgba(255,255,255,.07);
+ box-shadow:
+ 0 22px 65px rgba(0,0,0,.43),
+ inset 0 0 0 1px rgba(255,255,255,.07);
 }
 .camera video,.camera img{
  width:100%;
@@ -109,12 +112,16 @@ body{
 .camera video{transform:scaleX(-1)}
 .camera video.rear{transform:none}
 .camera img{display:none}
-.camera .tint,.camera .vignette,.camera .grain,.camera .shine{
+.camera .tint,
+.camera .warmOverlay,
+.camera .vignette,
+.camera .grain,
+.camera .shine{
  position:absolute;
  inset:0;
  pointer-events:none;
 }
-.tint{mix-blend-mode:soft-light}
+.tint,.warmOverlay{mix-blend-mode:soft-light}
 .vignette{
  background:radial-gradient(ellipse at center,transparent 34%,rgba(4,2,10,.9) 100%);
  opacity:0;
@@ -160,33 +167,27 @@ body{
  justify-content:center;
  align-items:center;
  text-align:center;
- padding:20px;
+ padding:24px;
  background:radial-gradient(circle at 50% 30%,#594259,#17151f 75%);
 }
-.empty .symbol{
- font-size:35px;
- color:#ecd0ae;
- line-height:1;
-}
 .empty h2{
- font-size:clamp(19px,5vw,24px);
- font-weight:550;
+ font-size:22px;
+ font-weight:500;
  margin:12px 0 7px;
 }
 .empty p{
  font-size:13px;
  color:#e0d2da;
  line-height:1.6;
- max-width:275px;
- margin:0 0 8px;
+ max-width:255px;
 }
 .camera-start-icon{
- width:120px;
- height:100px;
- margin:15px auto 10px;
+ width:108px;
+ height:90px;
+ margin:18px auto 14px;
  display:grid;
  place-items:center;
- filter:drop-shadow(0 0 13px rgba(239,180,130,.42));
+ filter:drop-shadow(0 0 13px rgba(239,180,130,.35));
  flex-shrink:0;
 }
 .camera-start-icon svg{
@@ -196,20 +197,19 @@ body{
 .empty button#openCamera{
  display:grid;
  place-items:center;
- width:104px;
- height:104px;
- min-width:104px;
- min-height:104px;
+ width:96px;
+ height:96px;
+ min-width:96px;
+ min-height:96px;
  padding:0;
- margin:8px auto 0;
+ margin:12px auto 0;
  border-radius:50%;
- border:3px solid #ff8888;
- background:linear-gradient(145deg,#ff6767,#f00019 60%,#ae0012);
+ border:3px solid #ff7777;
+ background:linear-gradient(145deg,#ff5252,#e60012 65%,#b90012);
  box-shadow:
- inset 0 4px 6px rgba(255,255,255,.4),
- inset 0 -6px 14px rgba(120,0,0,.24),
- 0 9px 24px rgba(230,0,18,.38),
- 0 0 30px rgba(255,50,65,.3);
+ inset 0 3px 5px rgba(255,255,255,.35),
+ 0 9px 24px rgba(230,0,18,.36),
+ 0 0 30px rgba(255,50,65,.27);
  transition:transform .18s,filter .18s;
  -webkit-tap-highlight-color:transparent;
  flex-shrink:0;
@@ -219,60 +219,12 @@ body{
  filter:brightness(1.12);
 }
 .empty button#openCamera svg{
- width:44px;
- height:44px;
+ width:42px;
+ height:42px;
  fill:#fff;
  margin-left:5px;
- filter:drop-shadow(0 2px 2px rgba(0,0,0,.22));
+ filter:drop-shadow(0 2px 2px rgba(0,0,0,.2));
 }
-
-/* Retake appears inside camera only after a photo */
-.retake{
- position:absolute;
- z-index:5;
- bottom:12px;
- left:12px;
- display:none;
- align-items:center;
- gap:7px;
- padding:10px 13px;
- border-radius:999px;
- border:1px solid rgba(234,201,165,.55);
- background:rgba(18,15,25,.77);
- color:#f5d6b4;
- backdrop-filter:blur(14px);
- -webkit-backdrop-filter:blur(14px);
- font-size:12px;
- font-weight:650;
- box-shadow:0 5px 22px rgba(0,0,0,.28);
-}
-.retake.visible{display:flex}
-.retake svg{
- width:17px;
- height:17px;
- stroke:currentColor;
- fill:none;
- stroke-width:2;
- stroke-linecap:round;
- stroke-linejoin:round;
-}
-
-@media(max-width:390px){
- .camera-start-icon{
-  width:92px;
-  height:75px;
-  margin:8px auto;
- }
- .empty button#openCamera{
-  width:82px;
-  height:82px;
-  min-width:82px;
-  min-height:82px;
- }
- .empty h2{font-size:19px}
- .empty p{font-size:12px}
-}
-
 .toolbar{
  display:flex;
  align-items:center;
@@ -326,38 +278,16 @@ body{
  font-size:11px;
  color:#c6b7bd;
 }
-.tabs{
- display:flex;
- gap:7px;
- overflow-x:auto;
- scrollbar-width:none;
- padding:2px 0 11px;
-}
-.tabs::-webkit-scrollbar,
-.filters::-webkit-scrollbar{display:none}
-.tab{
- white-space:nowrap;
- padding:9px 13px;
- border:1px solid var(--border);
- background:rgba(255,255,255,.045);
- border-radius:999px;
- color:#d3c8cc;
- font-size:12px;
-}
-.tab.on{
- background:#e7c29b;
- color:#2e2027;
- border-color:#e7c29b;
- font-weight:750;
-}
 .filters{
  display:flex;
  gap:10px;
  overflow-x:auto;
  scrollbar-width:none;
- padding:1px 1px 10px;
+ padding:3px 2px 12px;
  min-height:111px;
+ -webkit-overflow-scrolling:touch;
 }
+.filters::-webkit-scrollbar{display:none}
 .filterItem{
  flex:0 0 82px;
  min-width:82px;
@@ -397,12 +327,32 @@ body{
 }
 .filterItem.selected small{color:var(--gold)}
 .controls{
- background:rgba(255,255,255,.043);
+ margin-top:13px;
  border:1px solid var(--border);
- border-radius:20px;
- padding:16px;
- margin-top:16px;
+ border-radius:18px;
+ background:rgba(255,255,255,.043);
+ overflow:hidden;
 }
+.controls summary{
+ list-style:none;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:15px 17px;
+ cursor:pointer;
+ font-size:13px;
+ font-weight:650;
+ color:#f2e0cf;
+}
+.controls summary::-webkit-details-marker{display:none}
+.controls summary:after{
+ content:'+';
+ font-size:23px;
+ line-height:1;
+ color:#e6c098;
+}
+.controls[open] summary:after{content:'−'}
+.controlsBody{padding:0 16px 15px}
 .range{
  display:grid;
  grid-template-columns:84px 1fr 40px;
@@ -421,25 +371,17 @@ input[type=range]{
  width:100%;
  accent-color:#dfb98d;
 }
-.tools{
- display:flex;
- gap:8px;
- flex-wrap:wrap;
- margin-top:10px;
-}
-.tools button{
- min-height:38px;
+.liveBtn{
+ display:block;
+ margin:12px auto 0;
+ padding:10px 15px;
  border:1px solid var(--border);
  border-radius:12px;
- padding:0 11px;
  background:rgba(255,255,255,.07);
  color:#eee1e5;
  font-size:12px;
 }
-.tools .favorited{
- color:#f4b2bf;
- border-color:#e8a8b4;
-}
+.liveBtn[hidden]{display:none}
 .note{
  font-size:11px;
  color:#b6a8b3;
@@ -513,27 +455,51 @@ input[type=range]{
  display:block;
  font-size:15px;
  font-weight:720;
+ letter-spacing:.02em;
 }
 .whatsapp small{
  display:block;
  margin-top:4px;
  color:#cbd4cc;
  font-size:11px;
+ letter-spacing:.01em;
 }
 .wa-arrow{
  margin-left:auto;
  font-size:23px;
  color:#c3eacb;
 }
-.footer p{
+.credit{
+ margin:12px 0 0;
+ color:#e8c39c;
+ font-size:11px;
+ letter-spacing:1px;
+}
+.footer .copyright{
  font-size:10px;
  letter-spacing:.1em;
  color:#9c8f9c;
  margin:18px 0 0;
 }
-button:focus-visible,input:focus-visible{
+button:focus-visible,
+input:focus-visible,
+summary:focus-visible{
  outline:2px solid #edc9a4;
  outline-offset:3px;
+}
+@media(max-width:390px){
+ .camera-start-icon{
+  width:90px;
+  height:74px;
+  margin:8px auto;
+ }
+ .empty button#openCamera{
+  width:82px;
+  height:82px;
+  min-width:82px;
+  min-height:82px;
+ }
+ .empty h2{font-size:19px}
 }
 @media(min-width:600px){
  .camera{
@@ -543,16 +509,6 @@ button:focus-visible,input:focus-visible{
  .shell{
   padding-left:24px;
   padding-right:24px;
- }
-}
-@media(max-height:650px){
- .empty h2{margin:5px 0}
- .camera-start-icon{height:65px;width:85px;margin:5px}
- .empty button#openCamera{
-  width:72px;
-  height:72px;
-  min-width:72px;
-  min-height:72px;
  }
 }
 </style>
@@ -576,6 +532,7 @@ button:focus-visible,input:focus-visible{
  <img id="photo" alt="Selected photo preview">
 
  <div class="tint" id="tint"></div>
+ <div class="warmOverlay" id="warmOverlay"></div>
  <div class="vignette" id="vignette"></div>
  <div class="grain" id="grain"></div>
  <div class="shine" id="shine"></div>
@@ -583,27 +540,15 @@ button:focus-visible,input:focus-visible{
  <div class="cameraBadge" id="effectName">ORIGINAL</div>
  <div class="watermark">MILLION FILTERS</div>
 
- <!-- Retake is positioned inside the camera -->
- <button class="retake" id="retake" type="button"
- aria-label="Retake photo">
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-   <path d="M3 11a9 9 0 1 1 2.4 6.1"/>
-   <path d="M3 4v7h7"/>
-  </svg>
-  Retake Photo
- </button>
-
  <div class="empty" id="empty">
-  <div class="symbol">✧</div>
   <h2>Every moment, elevated.</h2>
-  <p>Use your camera or photo to glow.</p>
+  <p>Use your camera or choose a photo to discover your perfect glow.</p>
 
   <div class="camera-start-icon" aria-hidden="true">
    <svg viewBox="0 0 120 100" fill="none"
     xmlns="http://www.w3.org/2000/svg">
     <defs>
-     <linearGradient id="cameraGold" x1="0" y1="0"
-      x2="120" y2="100">
+     <linearGradient id="cameraGold" x1="0" y1="0" x2="120" y2="100">
       <stop stop-color="#FFE8BA"/>
       <stop offset=".5" stop-color="#E7B58B"/>
       <stop offset="1" stop-color="#B87B72"/>
@@ -614,19 +559,13 @@ button:focus-visible,input:focus-visible{
       <stop offset="1" stop-color="#241B32"/>
      </radialGradient>
     </defs>
-    <path
-     d="M15 29H32L42 16H78L88 29H105 Q114 29 114 39V82 Q114 91 105 91H15 Q6 91 6 82V39 Q6 29 15 29Z"
-     stroke="url(#cameraGold)"
-     stroke-width="5"
-     stroke-linejoin="round"/>
+    <path d="M15 29H32L42 16H78L88 29H105 Q114 29 114 39V82 Q114 91 105 91H15 Q6 91 6 82V39 Q6 29 15 29Z"
+     stroke="url(#cameraGold)" stroke-width="5" stroke-linejoin="round"/>
     <circle cx="60" cy="59" r="24"
      fill="url(#cameraLens)"
-     stroke="url(#cameraGold)"
-     stroke-width="5"/>
+     stroke="url(#cameraGold)" stroke-width="5"/>
     <circle cx="60" cy="59" r="15"
-     stroke="#F5D1B7"
-     stroke-opacity=".55"
-     stroke-width="2"/>
+     stroke="#F5D1B7" stroke-opacity=".55" stroke-width="2"/>
    </svg>
   </div>
 
@@ -640,90 +579,62 @@ button:focus-visible,input:focus-visible{
 </section>
 
 <div class="toolbar">
- <button class="action" id="uploadButton" type="button">
-  ▧ &nbsp; Photo
- </button>
+ <button class="action" id="uploadButton" type="button">▧ &nbsp; Photo</button>
  <button class="action main" id="capture" type="button"
-  aria-label="Capture photo" disabled>
-  Capture
- </button>
- <button class="action" id="save" type="button" disabled>
-  ↓ Save
- </button>
- <button class="action primary" id="share" type="button" disabled>
-  ↗ Share
- </button>
+  aria-label="Capture photo" disabled>Capture</button>
+ <button class="action" id="save" type="button" disabled>↓ Save</button>
+ <button class="action primary" id="share" type="button" disabled>↗ Share</button>
 </div>
 
-<input class="hiddenInput" type="file"
- id="upload" accept="image/*">
+<input class="hiddenInput" type="file" id="upload" accept="image/*">
 
 <div class="sectionhead">
  <h2>Signature looks</h2>
- <span>20 curated filters</span>
+ <span>20 curated filters · Swipe →</span>
 </div>
 
-<div class="tabs" id="tabs" aria-label="Filter categories"></div>
-<div class="filters" id="filters"
- aria-label="Available photo filters"></div>
+<div class="filters" id="filters" aria-label="Available photo filters"></div>
 
-<div class="controls">
- <div class="sectionhead" style="margin:0 0 5px">
-  <h2>Fine tune your glow</h2>
-  <span id="selectedName">Original</span>
+<details class="controls" id="adjustPanel">
+ <summary>
+  ✦ Adjust
+  <span style="font-size:11px;color:#bfb0b7;font-weight:400;margin-left:auto;margin-right:10px">Optional</span>
+ </summary>
+ <div class="controlsBody">
+  <div class="range">
+   <label for="strength">Intensity</label>
+   <input id="strength" type="range" min="0" max="100" value="85">
+   <output id="strengthOut">85%</output>
+  </div>
+  <div class="range">
+   <label for="bright">Brightness</label>
+   <input id="bright" type="range" min="-35" max="35" value="0">
+   <output id="brightOut">0</output>
+  </div>
+  <div class="range">
+   <label for="warm">Warmth</label>
+   <input id="warm" type="range" min="-50" max="50" value="0">
+   <output id="warmOut">0</output>
+  </div>
+  <div class="range">
+   <label for="soft">Softness</label>
+   <input id="soft" type="range" min="0" max="40" value="0">
+   <output id="softOut">0</output>
+  </div>
+  <div class="range">
+   <label for="vignetteControl">Vignette</label>
+   <input id="vignetteControl" type="range" min="0" max="80" value="15">
+   <output id="vignetteControlOut">15</output>
+  </div>
+  <div class="range">
+   <label for="grainControl">Grain</label>
+   <input id="grainControl" type="range" min="0" max="50" value="8">
+   <output id="grainControlOut">8</output>
+  </div>
  </div>
+</details>
 
- <div class="range">
-  <label for="strength">Intensity</label>
-  <input id="strength" type="range"
-   min="0" max="100" value="85">
-  <output id="strengthOut">85%</output>
- </div>
-
- <div class="range">
-  <label for="bright">Brightness</label>
-  <input id="bright" type="range"
-   min="-35" max="35" value="0">
-  <output id="brightOut">0</output>
- </div>
-
- <div class="range">
-  <label for="warm">Warmth</label>
-  <input id="warm" type="range"
-   min="-50" max="50" value="0">
-  <output id="warmOut">0</output>
- </div>
-
- <div class="range">
-  <label for="soft">Softness</label>
-  <input id="soft" type="range"
-   min="0" max="40" value="0">
-  <output id="softOut">0</output>
- </div>
-
- <div class="range">
-  <label for="vignetteControl">Vignette</label>
-  <input id="vignetteControl" type="range"
-   min="0" max="80" value="15">
-  <output id="vignetteControlOut">15</output>
- </div>
-
- <div class="range">
-  <label for="grainControl">Grain</label>
-  <input id="grainControl" type="range"
-   min="0" max="50" value="8">
-  <output id="grainControlOut">8</output>
- </div>
-
- <div class="tools">
-  <button id="before" type="button">Hold to compare</button>
-  <button id="favorite" type="button">♡ Favorite</button>
-  <button id="favoritesOnly" type="button">
-   Favorites only: Off
-  </button>
-  <button id="reset" type="button">Reset edits</button>
- </div>
-</div>
+<button class="liveBtn" id="live" type="button" hidden>↺ Live camera</button>
 
 <p class="note">
  Filters transform the entire image — no face stickers or disguises.
@@ -743,7 +654,9 @@ button:focus-visible,input:focus-visible{
   </span>
   <span class="wa-arrow" aria-hidden="true">↗</span>
  </a>
- <p>© 2026 MILLION FILTERS · CREATE YOUR GLOW</p>
+
+ <p class="credit">FAOZAN - GHADEER</p>
+ <p class="copyright">© 2026 MILLION FILTERS · CREATE YOUR GLOW</p>
 </footer>
 
 </main>
@@ -752,8 +665,6 @@ button:focus-visible,input:focus-visible{
 
 <script>
 'use strict';
-
-/* All original looks retained */
 
 const looks=[
  ['Original','All',100,100,100,0,0,'transparent',0,0,0,'#8a818e','#382e42'],
@@ -787,44 +698,24 @@ let stream=null;
 let mode='none';
 let front=true;
 let chosen=0;
-let category='All';
-let favoritesOnly=false;
-let compare=false;
 let uploadedURL=null;
 let toastTimer;
-let cameraRequest=0;
 
-let savedFavorites=[];
-
-try{
- savedFavorites=JSON.parse(
-  localStorage.getItem('faozan-glow-favorites')||'[]'
- );
- if(!Array.isArray(savedFavorites))savedFavorites=[];
-}catch(e){
- savedFavorites=[];
-}
-
-const favs=new Set(savedFavorites);
 const clamp=(v,min,max)=>Math.min(max,Math.max(min,v));
 
-function trackEvent(name,params={}){
- if(typeof gtag==='function'){
-  gtag('event',name,params);
- }
+function track(name){
+ if(typeof gtag==='function')gtag('event',name);
 }
 
 function notify(msg){
  $('toast').textContent=msg;
  $('toast').classList.add('show');
  clearTimeout(toastTimer);
- toastTimer=setTimeout(
-  ()=>$('toast').classList.remove('show'),3200
- );
+ toastTimer=setTimeout(()=>$('toast').classList.remove('show'),3200);
 }
 
 function settings(){
- return {
+ return{
   strength:+$('strength').value/100,
   bright:+$('bright').value,
   warm:+$('warm').value,
@@ -837,19 +728,11 @@ function settings(){
 function styleData(){
  const x=looks[chosen];
  const s=settings();
- const k=compare?0:s.strength;
+ const k=s.strength;
  const blend=(a,b)=>a+(b-a)*k;
 
- const css=`
- brightness(${Math.max(.1,blend(100,x[2])+s.bright)/100})
- contrast(${blend(100,x[3])/100})
- saturate(${blend(100,x[4])/100})
- sepia(${blend(0,x[5])/100})
- hue-rotate(${blend(0,x[6])}deg)
- blur(${s.soft/22}px)`;
-
- return {
-  css,
+ return{
+  css:`brightness(${Math.max(.1,blend(100,x[2])+s.bright)/100}) contrast(${blend(100,x[3])/100}) saturate(${blend(100,x[4])/100}) sepia(${blend(0,x[5])/100}) hue-rotate(${blend(0,x[6])}deg) blur(${s.soft/22}px)`,
   tint:x[7],
   tintOpacity:x[7]==='transparent'?0:x[8]*k,
   vignette:clamp(x[9]/100*k+s.vig*.55,0,.9),
@@ -865,41 +748,23 @@ function apply(){
  video.style.filter=d.css;
  photo.style.filter=d.css;
 
- const tint=$('tint');
- tint.style.background=d.tint;
- tint.style.opacity=d.tintOpacity;
+ $('tint').style.background=d.tint;
+ $('tint').style.opacity=d.tintOpacity;
 
- if(d.warm!==0){
-  const color=d.warm>0?'255,164,65':'80,153,255';
-  const alpha=Math.abs(d.warm)*.32;
-  tint.style.backgroundImage=
-   `linear-gradient(rgba(${color},${alpha}),rgba(${color},${alpha}))`;
- }else{
-  tint.style.backgroundImage='none';
- }
+ $('warmOverlay').style.background=d.warm>0?'#ffa441':'#5099ff';
+ $('warmOverlay').style.opacity=Math.abs(d.warm)*.32;
 
  $('vignette').style.opacity=d.vignette;
  $('grain').style.opacity=d.grain;
  $('shine').style.opacity=d.shine;
 
- $('effectName').textContent=
-  compare?'ORIGINAL':looks[chosen][0].toUpperCase();
-
- $('selectedName').textContent=looks[chosen][0];
-
- $('favorite').textContent=
-  (favs.has(chosen)?'♥':'♡')+' Favorite';
-
- $('favorite').classList.toggle(
-  'favorited',favs.has(chosen)
- );
+ $('effectName').textContent=looks[chosen][0].toUpperCase();
 
  for(const id of [
   'strength','bright','warm','soft',
   'vignetteControl','grainControl'
  ]){
-  $(id+'Out').textContent=
-   $(id).value+(id==='strength'?'%':'');
+  $(id+'Out').textContent=$(id).value+(id==='strength'?'%':'');
  }
 }
 
@@ -908,13 +773,9 @@ function drawFilters(){
  box.replaceChildren();
 
  looks.forEach((x,i)=>{
-  if(category!=='All'&&x[1]!==category)return;
-  if(favoritesOnly&&!favs.has(i))return;
-
   const b=document.createElement('button');
   b.type='button';
-  b.className='filterItem'+
-   (chosen===i?' selected':'');
+  b.className='filterItem'+(chosen===i?' selected':'');
 
   b.setAttribute('aria-label',x[0]);
   b.setAttribute('aria-pressed',String(chosen===i));
@@ -924,77 +785,45 @@ function drawFilters(){
   sw.style.setProperty('--c1',x[11]);
   sw.style.setProperty('--c2',x[12]);
 
-  const txt=document.createElement('small');
-  txt.textContent=x[0];
+  const label=document.createElement('small');
+  label.textContent=x[0];
 
-  b.append(sw,txt);
+  b.append(sw,label);
 
   b.onclick=()=>{
    chosen=i;
    drawFilters();
    apply();
-   trackEvent('filter_select',{filter_name:x[0]});
+   track('filter_select');
   };
 
   box.append(b);
  });
 }
 
-function drawTabs(){
- const cats=['All','Soft','Romance','Luxury','Earth'];
- $('tabs').replaceChildren();
-
- cats.forEach(c=>{
-  const b=document.createElement('button');
-  b.type='button';
-  b.className='tab'+(category===c?' on':'');
-  b.textContent=c;
-
-  b.onclick=()=>{
-   category=c;
-   drawTabs();
-   drawFilters();
-  };
-
-  $('tabs').append(b);
- });
+function active(on){
+ $('empty').style.display=on?'none':'flex';
+ $('capture').disabled=!on;
+ $('save').disabled=!on;
+ $('share').disabled=!on;
+ $('live').hidden=mode!=='photo';
 }
 
-/* Camera/photo UI state */
-
-function active(){
- const hasImage=mode==='photo'||mode==='live';
-
- $('empty').style.display=
-  mode==='none'?'flex':'none';
-
- $('capture').disabled=mode!=='live';
- $('save').disabled=!hasImage;
- $('share').disabled=!hasImage;
-
- $('retake').classList.toggle(
-  'visible',mode==='photo'
- );
-}
-
-function stopCamera(){
+async function stopCamera(){
  if(stream){
   stream.getTracks().forEach(t=>t.stop());
   stream=null;
  }
- video.srcObject=null;
 }
 
 async function startCamera(){
- const request=++cameraRequest;
-
  if(!navigator.mediaDevices?.getUserMedia){
   notify('Camera requires HTTPS and a supported browser. Use Photo instead.');
   return;
  }
 
  try{
-  stopCamera();
+  await stopCamera();
 
   const newStream=await navigator.mediaDevices.getUserMedia({
    audio:false,
@@ -1005,40 +834,23 @@ async function startCamera(){
    }
   });
 
-  if(request!==cameraRequest){
-   newStream.getTracks().forEach(t=>t.stop());
-   return;
-  }
-
   stream=newStream;
   video.srcObject=stream;
-
   await video.play();
-
-  if(request!==cameraRequest){
-   if(stream===newStream)stopCamera();
-   return;
-  }
 
   video.classList.toggle('rear',!front);
   video.style.display='block';
   photo.style.display='none';
 
   mode='live';
-  active();
+  active(true);
   apply();
-
-  trackEvent('camera_open');
+  track('camera_open');
   notify('Camera ready');
 
  }catch(err){
-  if(request!==cameraRequest)return;
-
-  stopCamera();
-
   notify('Camera unavailable. Allow camera access or choose Photo.');
-
-  active();
+  active(mode==='photo');
  }
 }
 
@@ -1049,10 +861,7 @@ $('flip').onclick=()=>{
  startCamera();
 };
 
-$('retake').onclick=()=>{
- trackEvent('photo_retake');
- startCamera();
-};
+$('live').onclick=startCamera;
 
 $('uploadButton').onclick=()=>$('upload').click();
 
@@ -1062,7 +871,6 @@ $('upload').onchange=e=>{
 
  if(!file.type.startsWith('image/')){
   notify('Select an image file');
-  e.target.value='';
   return;
  }
 
@@ -1070,21 +878,17 @@ $('upload').onchange=e=>{
  const img=new Image();
 
  img.onload=()=>{
-  cameraRequest++;
-  stopCamera();
-
   if(uploadedURL)URL.revokeObjectURL(uploadedURL);
   uploadedURL=u;
-
   photo.src=u;
   photo.style.display='block';
   video.style.display='none';
-
   mode='photo';
-  active();
-  apply();
 
-  trackEvent('photo_upload');
+  active(true);
+  stopCamera();
+  apply();
+  track('photo_upload');
   notify('Photo ready for editing');
  };
 
@@ -1097,8 +901,6 @@ $('upload').onchange=e=>{
  e.target.value='';
 };
 
-/* Image rendering and exporting */
-
 function photoCanvas(){
  if(mode==='none'){
   throw Error('Choose a photo or enable camera');
@@ -1106,8 +908,7 @@ function photoCanvas(){
 
  const src=mode==='photo'?photo:video;
 
- if(mode==='photo'&&
-  (!photo.complete||!photo.naturalWidth)){
+ if(mode==='photo'&&!photo.complete){
   throw Error('Photo is still loading');
  }
 
@@ -1115,16 +916,14 @@ function photoCanvas(){
   throw Error('Camera not ready');
  }
 
- const w0=mode==='photo'?
-  photo.naturalWidth:video.videoWidth;
+ const w0=mode==='photo'?photo.naturalWidth:video.videoWidth;
+ const h0=mode==='photo'?photo.naturalHeight:video.videoHeight;
 
- const h0=mode==='photo'?
-  photo.naturalHeight:video.videoHeight;
+ if(!w0||!h0){
+  throw Error('Image unavailable');
+ }
 
- if(!w0||!h0)throw Error('Image unavailable');
-
- const max=2200;
- const scale=Math.min(1,max/Math.max(w0,h0));
+ const scale=Math.min(1,2200/Math.max(w0,h0));
  const w=Math.max(1,Math.round(w0*scale));
  const h=Math.max(1,Math.round(h0*scale));
 
@@ -1178,7 +977,6 @@ function photoCanvas(){
 
   g.addColorStop(0,'#ffeed0');
   g.addColorStop(1,'transparent');
-
   ctx.fillStyle=g;
   ctx.fillRect(0,0,w,h);
   ctx.restore();
@@ -1186,7 +984,6 @@ function photoCanvas(){
 
  if(d.vignette){
   ctx.save();
-
   const r=Math.max(w,h)*.77;
 
   const g=ctx.createRadialGradient(
@@ -1195,10 +992,7 @@ function photoCanvas(){
   );
 
   g.addColorStop(0,'rgba(4,2,10,0)');
-  g.addColorStop(
-   1,
-   `rgba(4,2,10,${Math.min(.92,d.vignette)})`
-  );
+  g.addColorStop(1,`rgba(4,2,10,${Math.min(.92,d.vignette)})`);
 
   ctx.fillStyle=g;
   ctx.fillRect(0,0,w,h);
@@ -1232,17 +1026,16 @@ function photoCanvas(){
 }
 
 function blobFromCanvas(c){
- return new Promise((resolve,reject)=>{
+ return new Promise((resolve,reject)=>
   c.toBlob(
    b=>b?resolve(b):reject(Error('Image export failed')),
    'image/jpeg',
    .94
-  );
- });
+  )
+ );
 }
 
-const makeName=()=>
- `MILLION-FILTERS-${new Date().toISOString().replace(/[:.]/g,'-')}.jpg`;
+const makeName=()=>`FAOZAN-Glow-${new Date().toISOString().replace(/[:.]/g,'-')}.jpg`;
 
 async function makeFile(){
  return new File(
@@ -1252,351 +1045,116 @@ async function makeFile(){
  );
 }
 
-/*
- Synchronous file generation lets mobile browsers
- open the native share sheet during the button tap.
- This is important for iPhone Safari.
-*/
-function makeFileForShare(){
- const dataURL=photoCanvas().toDataURL('image/jpeg',.94);
- const base64=dataURL.split(',')[1];
- const binary=atob(base64);
-
- const bytes=new Uint8Array(binary.length);
-
- for(let i=0;i<binary.length;i++){
-  bytes[i]=binary.charCodeAt(i);
- }
-
- return new File(
-  [bytes],
-  makeName(),
-  {type:'image/jpeg'}
- );
-}
-
-/* Download fallback */
-
-async function downloadFile(existingFile){
+async function download(){
  try{
-  const file=existingFile||await makeFile();
+  const file=await makeFile();
   const url=URL.createObjectURL(file);
 
   const a=document.createElement('a');
   a.href=url;
   a.download=file.name;
-
   document.body.append(a);
   a.click();
   a.remove();
 
-  setTimeout(()=>URL.revokeObjectURL(url),30000);
+  setTimeout(()=>URL.revokeObjectURL(url),10000);
 
-  trackEvent('photo_download');
-  notify('Photo downloaded. Check your Downloads.');
-
+  track('photo_save');
+  notify('Image saved or ready in Downloads');
  }catch(err){
-  notify(err.message||'Cannot download photo');
+  notify(err.message||'Cannot save photo');
  }
 }
 
-/*
- Save on iPhone:
- Use the native share sheet when supported.
- The user can select "Save Image".
- If unsupported, fall back to a download.
-*/
+$('save').onclick=download;
 
-function savePhoto(){
- let file;
-
+$('share').onclick=async()=>{
  try{
-  file=makeFileForShare();
- }catch(err){
-  notify(err.message||'Cannot prepare photo');
-  return;
- }
+  const file=await makeFile();
 
- if(
-  typeof navigator.share==='function' &&
-  typeof navigator.canShare==='function' &&
-  navigator.canShare({files:[file]})
- ){
-  let sharing;
-
-  try{
-   sharing=navigator.share({
+  if(navigator.canShare?.({files:[file]})&&navigator.share){
+   await navigator.share({
     files:[file],
     title:'MILLION FILTERS'
    });
-  }catch(err){
-   downloadFile(file);
+   track('photo_share');
    return;
   }
 
-  trackEvent('photo_save_sheet_open');
-
-  Promise.resolve(sharing).then(()=>{
-   trackEvent('photo_save_sheet_completed');
-  }).catch(err=>{
-   if(err.name==='AbortError'){
-    return;
-   }
-
-   if(err.name==='NotAllowedError'){
-    notify('Use Share or try downloading the photo.');
-    return;
-   }
-
-   downloadFile(file);
-  });
-
- }else{
-  downloadFile(file);
- }
-}
-
-$('save').onclick=savePhoto;
-
-/* Share photo */
-
-function sharePhoto(){
- let file;
-
- try{
-  file=makeFileForShare();
+  await download();
+  notify('Sharing unavailable here. Image saved for sharing.');
  }catch(err){
-  notify(err.message||'Cannot prepare photo');
-  return;
- }
-
- if(
-  typeof navigator.share==='function' &&
-  typeof navigator.canShare==='function' &&
-  navigator.canShare({files:[file]})
- ){
-  let sharing;
-
-  try{
-   sharing=navigator.share({
-    files:[file],
-    title:'MILLION FILTERS'
-   });
-  }catch(err){
-   downloadFile(file);
-   return;
+  if(err.name!=='AbortError'){
+   notify('Unable to share. Try Save.');
   }
-
-  Promise.resolve(sharing).then(()=>{
-   trackEvent('photo_share');
-  }).catch(err=>{
-   if(err.name!=='AbortError'){
-    notify('Unable to share. Try Save.');
-   }
-  });
-
- }else{
-  downloadFile(file);
-  notify('Sharing unavailable. Download started.');
  }
-}
-
-$('share').onclick=sharePhoto;
-
-/*
- Capture the original camera frame,
- rather than baking the current filter into it.
- This allows changing filters after taking a photo.
-*/
-
-function rawCameraCanvas(){
- if(mode!=='live'||video.readyState<2){
-  throw Error('Camera not ready');
- }
-
- const w0=video.videoWidth;
- const h0=video.videoHeight;
-
- if(!w0||!h0)throw Error('Camera not ready');
-
- const max=2200;
- const scale=Math.min(1,max/Math.max(w0,h0));
-
- const c=document.createElement('canvas');
- c.width=Math.max(1,Math.round(w0*scale));
- c.height=Math.max(1,Math.round(h0*scale));
-
- const ctx=c.getContext('2d');
- if(!ctx)throw Error('Canvas unavailable');
-
- if(front){
-  ctx.translate(c.width,0);
-  ctx.scale(-1,1);
- }
-
- ctx.drawImage(video,0,0,c.width,c.height);
-
- return c;
-}
+};
 
 $('capture').onclick=async()=>{
- if(mode!=='live')return;
-
- const request=++cameraRequest;
- $('capture').disabled=true;
+ if(mode==='photo'){
+  await download();
+  return;
+ }
 
  try{
-  const c=rawCameraCanvas();
-  const blob=await blobFromCanvas(c);
-
-  if(request!==cameraRequest)return;
-
-  const url=URL.createObjectURL(blob);
+  const file=await makeFile();
+  const url=URL.createObjectURL(file);
   const img=new Image();
 
   img.onload=()=>{
-   if(request!==cameraRequest){
-    URL.revokeObjectURL(url);
-    return;
-   }
-
-   stopCamera();
-
    if(uploadedURL)URL.revokeObjectURL(uploadedURL);
    uploadedURL=url;
 
    photo.src=url;
    photo.style.display='block';
    video.style.display='none';
-
    mode='photo';
 
-   active();
+   stopCamera();
+   chosen=0;
+
+   for(const [id,v] of Object.entries({
+    strength:85,
+    bright:0,
+    warm:0,
+    soft:0,
+    vignetteControl:0,
+    grainControl:0
+   })){
+    $(id).value=v;
+   }
+
    drawFilters();
    apply();
-
-   trackEvent('photo_capture');
-   notify('Captured! Apply a filter, then Save.');
+   active(true);
+   track('photo_capture');
+   notify('Captured! Save or share your photo.');
   };
 
   img.onerror=()=>{
    URL.revokeObjectURL(url);
-   $('capture').disabled=false;
    notify('Capture failed. Please try again.');
   };
 
   img.src=url;
-
  }catch(err){
-  if(request!==cameraRequest)return;
-  $('capture').disabled=false;
   notify('Capture failed. Please try again.');
  }
 };
 
-/* Favorites */
-
-$('favorite').onclick=()=>{
- if(favs.has(chosen)){
-  favs.delete(chosen);
- }else{
-  favs.add(chosen);
- }
-
- try{
-  localStorage.setItem(
-   'faozan-glow-favorites',
-   JSON.stringify([...favs])
-  );
- }catch(e){}
-
- drawFilters();
- apply();
-};
-
-$('favoritesOnly').onclick=()=>{
- favoritesOnly=!favoritesOnly;
-
- $('favoritesOnly').textContent=
-  'Favorites only: '+(favoritesOnly?'On':'Off');
-
- drawFilters();
-};
-
-/* Reset */
-
-$('reset').onclick=()=>{
- chosen=0;
-
- for(const [id,val] of Object.entries({
-  strength:85,
-  bright:0,
-  warm:0,
-  soft:0,
-  vignetteControl:15,
-  grainControl:8
- })){
-  $(id).value=val;
- }
-
- drawFilters();
- apply();
- notify('Edits reset');
-};
-
-/* Sliders */
-
 for(const id of [
- 'strength','bright','warm',
- 'soft','vignetteControl','grainControl'
+ 'strength','bright','warm','soft',
+ 'vignetteControl','grainControl'
 ]){
  $(id).addEventListener('input',apply);
 }
 
-/* Compare */
+window.addEventListener('pagehide',()=>stopCamera());
 
-const before=$('before');
-
-function setCompare(v){
- compare=v;
- before.textContent=v?'Original preview':'Hold to compare';
- apply();
-}
-
-before.addEventListener('pointerdown',e=>{
- before.setPointerCapture?.(e.pointerId);
- setCompare(true);
-});
-
-for(const event of [
- 'pointerup','pointercancel','lostpointercapture'
-]){
- before.addEventListener(
-  event,()=>setCompare(false)
- );
-}
-
-before.addEventListener('keydown',e=>{
- if(e.code==='Space'||e.code==='Enter'){
-  e.preventDefault();
-  setCompare(true);
- }
-});
-
-before.addEventListener('keyup',()=>setCompare(false));
-
-window.addEventListener('pagehide',()=>{
- cameraRequest++;
- stopCamera();
-});
-
-/* Initialize */
-
-drawTabs();
 drawFilters();
 apply();
-active();
-
+active(false);
 </script>
+
 </body>
 </html>
