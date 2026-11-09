@@ -180,8 +180,6 @@ body{
  max-width:275px;
  margin:0 0 8px;
 }
-
-/* Luxury golden camera */
 .camera-start-icon{
  width:120px;
  height:100px;
@@ -195,8 +193,6 @@ body{
  width:100%;
  height:100%;
 }
-
-/* Red glass play button */
 .empty button#openCamera{
  display:grid;
  place-items:center;
@@ -229,6 +225,38 @@ body{
  margin-left:5px;
  filter:drop-shadow(0 2px 2px rgba(0,0,0,.22));
 }
+
+/* Retake appears inside camera only after a photo */
+.retake{
+ position:absolute;
+ z-index:5;
+ bottom:12px;
+ left:12px;
+ display:none;
+ align-items:center;
+ gap:7px;
+ padding:10px 13px;
+ border-radius:999px;
+ border:1px solid rgba(234,201,165,.55);
+ background:rgba(18,15,25,.77);
+ color:#f5d6b4;
+ backdrop-filter:blur(14px);
+ -webkit-backdrop-filter:blur(14px);
+ font-size:12px;
+ font-weight:650;
+ box-shadow:0 5px 22px rgba(0,0,0,.28);
+}
+.retake.visible{display:flex}
+.retake svg{
+ width:17px;
+ height:17px;
+ stroke:currentColor;
+ fill:none;
+ stroke-width:2;
+ stroke-linecap:round;
+ stroke-linejoin:round;
+}
+
 @media(max-width:390px){
  .camera-start-icon{
   width:92px;
@@ -245,7 +273,6 @@ body{
  .empty p{font-size:12px}
 }
 
-/* Main toolbar */
 .toolbar{
  display:flex;
  align-items:center;
@@ -306,7 +333,8 @@ body{
  scrollbar-width:none;
  padding:2px 0 11px;
 }
-.tabs::-webkit-scrollbar,.filters::-webkit-scrollbar{display:none}
+.tabs::-webkit-scrollbar,
+.filters::-webkit-scrollbar{display:none}
 .tab{
  white-space:nowrap;
  padding:9px 13px;
@@ -521,7 +549,10 @@ button:focus-visible,input:focus-visible{
  .empty h2{margin:5px 0}
  .camera-start-icon{height:65px;width:85px;margin:5px}
  .empty button#openCamera{
-  width:72px;height:72px;min-width:72px;min-height:72px
+  width:72px;
+  height:72px;
+  min-width:72px;
+  min-height:72px;
  }
 }
 </style>
@@ -536,7 +567,8 @@ button:focus-visible,input:focus-visible{
   <h1>Glow Camera <span style="color:#e9c39e">✦</span></h1>
   <p class="byline">Your light. Your mood. Your moment.</p>
  </div>
- <button class="iconBtn" id="flip" type="button" title="Switch camera" aria-label="Switch camera">↺</button>
+ <button class="iconBtn" id="flip" type="button"
+ title="Switch camera" aria-label="Switch camera">↺</button>
 </header>
 
 <section class="camera" id="frame" aria-label="Camera preview">
@@ -551,15 +583,27 @@ button:focus-visible,input:focus-visible{
  <div class="cameraBadge" id="effectName">ORIGINAL</div>
  <div class="watermark">MILLION FILTERS</div>
 
+ <!-- Retake is positioned inside the camera -->
+ <button class="retake" id="retake" type="button"
+ aria-label="Retake photo">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+   <path d="M3 11a9 9 0 1 1 2.4 6.1"/>
+   <path d="M3 4v7h7"/>
+  </svg>
+  Retake Photo
+ </button>
+
  <div class="empty" id="empty">
   <div class="symbol">✧</div>
   <h2>Every moment, elevated.</h2>
   <p>Use your camera or photo to glow.</p>
 
   <div class="camera-start-icon" aria-hidden="true">
-   <svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <svg viewBox="0 0 120 100" fill="none"
+    xmlns="http://www.w3.org/2000/svg">
     <defs>
-     <linearGradient id="cameraGold" x1="0" y1="0" x2="120" y2="100">
+     <linearGradient id="cameraGold" x1="0" y1="0"
+      x2="120" y2="100">
       <stop stop-color="#FFE8BA"/>
       <stop offset=".5" stop-color="#E7B58B"/>
       <stop offset="1" stop-color="#B87B72"/>
@@ -570,7 +614,8 @@ button:focus-visible,input:focus-visible{
       <stop offset="1" stop-color="#241B32"/>
      </radialGradient>
     </defs>
-    <path d="M15 29H32L42 16H78L88 29H105 Q114 29 114 39V82 Q114 91 105 91H15 Q6 91 6 82V39 Q6 29 15 29Z"
+    <path
+     d="M15 29H32L42 16H78L88 29H105 Q114 29 114 39V82 Q114 91 105 91H15 Q6 91 6 82V39 Q6 29 15 29Z"
      stroke="url(#cameraGold)"
      stroke-width="5"
      stroke-linejoin="round"/>
@@ -585,7 +630,8 @@ button:focus-visible,input:focus-visible{
    </svg>
   </div>
 
-  <button id="openCamera" type="button" aria-label="Open camera" title="Open camera">
+  <button id="openCamera" type="button"
+   aria-label="Open camera" title="Open camera">
    <svg viewBox="0 0 24 24" aria-hidden="true">
     <path d="M7 3.8c0-.8.9-1.2 1.6-.8l12 7.7c1 .6 1 2 0 2.6l-12 7.7c-.7.4-1.6 0-1.6-.8V3.8z"/>
    </svg>
@@ -594,13 +640,23 @@ button:focus-visible,input:focus-visible{
 </section>
 
 <div class="toolbar">
- <button class="action" id="uploadButton" type="button">▧ &nbsp; Photo</button>
- <button class="action main" id="capture" type="button" aria-label="Capture photo" disabled>Capture</button>
- <button class="action" id="save" type="button" disabled>↓ Save</button>
- <button class="action primary" id="share" type="button" disabled>↗ Share</button>
+ <button class="action" id="uploadButton" type="button">
+  ▧ &nbsp; Photo
+ </button>
+ <button class="action main" id="capture" type="button"
+  aria-label="Capture photo" disabled>
+  Capture
+ </button>
+ <button class="action" id="save" type="button" disabled>
+  ↓ Save
+ </button>
+ <button class="action primary" id="share" type="button" disabled>
+  ↗ Share
+ </button>
 </div>
 
-<input class="hiddenInput" type="file" id="upload" accept="image/*">
+<input class="hiddenInput" type="file"
+ id="upload" accept="image/*">
 
 <div class="sectionhead">
  <h2>Signature looks</h2>
@@ -608,7 +664,8 @@ button:focus-visible,input:focus-visible{
 </div>
 
 <div class="tabs" id="tabs" aria-label="Filter categories"></div>
-<div class="filters" id="filters" aria-label="Available photo filters"></div>
+<div class="filters" id="filters"
+ aria-label="Available photo filters"></div>
 
 <div class="controls">
  <div class="sectionhead" style="margin:0 0 5px">
@@ -618,41 +675,53 @@ button:focus-visible,input:focus-visible{
 
  <div class="range">
   <label for="strength">Intensity</label>
-  <input id="strength" type="range" min="0" max="100" value="85">
+  <input id="strength" type="range"
+   min="0" max="100" value="85">
   <output id="strengthOut">85%</output>
  </div>
+
  <div class="range">
   <label for="bright">Brightness</label>
-  <input id="bright" type="range" min="-35" max="35" value="0">
+  <input id="bright" type="range"
+   min="-35" max="35" value="0">
   <output id="brightOut">0</output>
  </div>
+
  <div class="range">
   <label for="warm">Warmth</label>
-  <input id="warm" type="range" min="-50" max="50" value="0">
+  <input id="warm" type="range"
+   min="-50" max="50" value="0">
   <output id="warmOut">0</output>
  </div>
+
  <div class="range">
   <label for="soft">Softness</label>
-  <input id="soft" type="range" min="0" max="40" value="0">
+  <input id="soft" type="range"
+   min="0" max="40" value="0">
   <output id="softOut">0</output>
  </div>
+
  <div class="range">
   <label for="vignetteControl">Vignette</label>
-  <input id="vignetteControl" type="range" min="0" max="80" value="15">
+  <input id="vignetteControl" type="range"
+   min="0" max="80" value="15">
   <output id="vignetteControlOut">15</output>
  </div>
+
  <div class="range">
   <label for="grainControl">Grain</label>
-  <input id="grainControl" type="range" min="0" max="50" value="8">
+  <input id="grainControl" type="range"
+   min="0" max="50" value="8">
   <output id="grainControlOut">8</output>
  </div>
 
  <div class="tools">
-  <button id="before">Hold to compare</button>
-  <button id="favorite">♡ Favorite</button>
-  <button id="favoritesOnly">Favorites only: Off</button>
-  <button id="reset">Reset edits</button>
-  <button id="live">↺ Live camera</button>
+  <button id="before" type="button">Hold to compare</button>
+  <button id="favorite" type="button">♡ Favorite</button>
+  <button id="favoritesOnly" type="button">
+   Favorites only: Off
+  </button>
+  <button id="reset" type="button">Reset edits</button>
  </div>
 </div>
 
@@ -683,6 +752,8 @@ button:focus-visible,input:focus-visible{
 
 <script>
 'use strict';
+
+/* All original looks retained */
 
 const looks=[
  ['Original','All',100,100,100,0,0,'transparent',0,0,0,'#8a818e','#382e42'],
@@ -724,8 +795,11 @@ let toastTimer;
 let cameraRequest=0;
 
 let savedFavorites=[];
+
 try{
- savedFavorites=JSON.parse(localStorage.getItem('faozan-glow-favorites')||'[]');
+ savedFavorites=JSON.parse(
+  localStorage.getItem('faozan-glow-favorites')||'[]'
+ );
  if(!Array.isArray(savedFavorites))savedFavorites=[];
 }catch(e){
  savedFavorites=[];
@@ -744,7 +818,9 @@ function notify(msg){
  $('toast').textContent=msg;
  $('toast').classList.add('show');
  clearTimeout(toastTimer);
- toastTimer=setTimeout(()=>$('toast').classList.remove('show'),3200);
+ toastTimer=setTimeout(
+  ()=>$('toast').classList.remove('show'),3200
+ );
 }
 
 function settings(){
@@ -796,7 +872,8 @@ function apply(){
  if(d.warm!==0){
   const color=d.warm>0?'255,164,65':'80,153,255';
   const alpha=Math.abs(d.warm)*.32;
-  tint.style.backgroundImage=`linear-gradient(rgba(${color},${alpha}),rgba(${color},${alpha}))`;
+  tint.style.backgroundImage=
+   `linear-gradient(rgba(${color},${alpha}),rgba(${color},${alpha}))`;
  }else{
   tint.style.backgroundImage='none';
  }
@@ -805,14 +882,24 @@ function apply(){
  $('grain').style.opacity=d.grain;
  $('shine').style.opacity=d.shine;
 
- $('effectName').textContent=compare?'ORIGINAL':looks[chosen][0].toUpperCase();
+ $('effectName').textContent=
+  compare?'ORIGINAL':looks[chosen][0].toUpperCase();
+
  $('selectedName').textContent=looks[chosen][0];
 
- $('favorite').textContent=(favs.has(chosen)?'♥':'♡')+' Favorite';
- $('favorite').classList.toggle('favorited',favs.has(chosen));
+ $('favorite').textContent=
+  (favs.has(chosen)?'♥':'♡')+' Favorite';
 
- for(const id of ['strength','bright','warm','soft','vignetteControl','grainControl']){
-  $(id+'Out').textContent=$(id).value+(id==='strength'?'%':'');
+ $('favorite').classList.toggle(
+  'favorited',favs.has(chosen)
+ );
+
+ for(const id of [
+  'strength','bright','warm','soft',
+  'vignetteControl','grainControl'
+ ]){
+  $(id+'Out').textContent=
+   $(id).value+(id==='strength'?'%':'');
  }
 }
 
@@ -826,7 +913,9 @@ function drawFilters(){
 
   const b=document.createElement('button');
   b.type='button';
-  b.className='filterItem'+(chosen===i?' selected':'');
+  b.className='filterItem'+
+   (chosen===i?' selected':'');
+
   b.setAttribute('aria-label',x[0]);
   b.setAttribute('aria-pressed',String(chosen===i));
 
@@ -871,18 +960,29 @@ function drawTabs(){
  });
 }
 
-function active(value){
- $('empty').style.display=value?'none':'flex';
- $('capture').disabled=!value;
- $('save').disabled=!value;
- $('share').disabled=!value;
+/* Camera/photo UI state */
+
+function active(){
+ const hasImage=mode==='photo'||mode==='live';
+
+ $('empty').style.display=
+  mode==='none'?'flex':'none';
+
+ $('capture').disabled=mode!=='live';
+ $('save').disabled=!hasImage;
+ $('share').disabled=!hasImage;
+
+ $('retake').classList.toggle(
+  'visible',mode==='photo'
+ );
 }
 
-async function stopCamera(){
+function stopCamera(){
  if(stream){
   stream.getTracks().forEach(t=>t.stop());
   stream=null;
  }
+ video.srcObject=null;
 }
 
 async function startCamera(){
@@ -894,7 +994,7 @@ async function startCamera(){
  }
 
  try{
-  await stopCamera();
+  stopCamera();
 
   const newStream=await navigator.mediaDevices.getUserMedia({
    audio:false,
@@ -915,23 +1015,30 @@ async function startCamera(){
 
   await video.play();
 
-  if(request!==cameraRequest)return;
+  if(request!==cameraRequest){
+   if(stream===newStream)stopCamera();
+   return;
+  }
 
   video.classList.toggle('rear',!front);
   video.style.display='block';
   photo.style.display='none';
-  mode='live';
 
-  active(true);
+  mode='live';
+  active();
   apply();
+
   trackEvent('camera_open');
   notify('Camera ready');
 
  }catch(err){
   if(request!==cameraRequest)return;
 
+  stopCamera();
+
   notify('Camera unavailable. Allow camera access or choose Photo.');
-  active(mode==='photo');
+
+  active();
  }
 }
 
@@ -942,7 +1049,10 @@ $('flip').onclick=()=>{
  startCamera();
 };
 
-$('live').onclick=startCamera;
+$('retake').onclick=()=>{
+ trackEvent('photo_retake');
+ startCamera();
+};
 
 $('uploadButton').onclick=()=>$('upload').click();
 
@@ -952,6 +1062,7 @@ $('upload').onchange=e=>{
 
  if(!file.type.startsWith('image/')){
   notify('Select an image file');
+  e.target.value='';
   return;
  }
 
@@ -960,6 +1071,7 @@ $('upload').onchange=e=>{
 
  img.onload=()=>{
   cameraRequest++;
+  stopCamera();
 
   if(uploadedURL)URL.revokeObjectURL(uploadedURL);
   uploadedURL=u;
@@ -969,8 +1081,7 @@ $('upload').onchange=e=>{
   video.style.display='none';
 
   mode='photo';
-  active(true);
-  stopCamera();
+  active();
   apply();
 
   trackEvent('photo_upload');
@@ -986,12 +1097,17 @@ $('upload').onchange=e=>{
  e.target.value='';
 };
 
+/* Image rendering and exporting */
+
 function photoCanvas(){
- if(mode==='none')throw Error('Choose a photo or enable camera');
+ if(mode==='none'){
+  throw Error('Choose a photo or enable camera');
+ }
 
  const src=mode==='photo'?photo:video;
 
- if(mode==='photo'&&(!photo.complete||!photo.naturalWidth)){
+ if(mode==='photo'&&
+  (!photo.complete||!photo.naturalWidth)){
   throw Error('Photo is still loading');
  }
 
@@ -999,8 +1115,11 @@ function photoCanvas(){
   throw Error('Camera not ready');
  }
 
- const w0=mode==='photo'?photo.naturalWidth:video.videoWidth;
- const h0=mode==='photo'?photo.naturalHeight:video.videoHeight;
+ const w0=mode==='photo'?
+  photo.naturalWidth:video.videoWidth;
+
+ const h0=mode==='photo'?
+  photo.naturalHeight:video.videoHeight;
 
  if(!w0||!h0)throw Error('Image unavailable');
 
@@ -1067,6 +1186,7 @@ function photoCanvas(){
 
  if(d.vignette){
   ctx.save();
+
   const r=Math.max(w,h)*.77;
 
   const g=ctx.createRadialGradient(
@@ -1075,7 +1195,10 @@ function photoCanvas(){
   );
 
   g.addColorStop(0,'rgba(4,2,10,0)');
-  g.addColorStop(1,`rgba(4,2,10,${Math.min(.92,d.vignette)})`);
+  g.addColorStop(
+   1,
+   `rgba(4,2,10,${Math.min(.92,d.vignette)})`
+  );
 
   ctx.fillStyle=g;
   ctx.fillRect(0,0,w,h);
@@ -1118,7 +1241,8 @@ function blobFromCanvas(c){
  });
 }
 
-const makeName=()=>`MILLION-FILTERS-${new Date().toISOString().replace(/[:.]/g,'-')}.jpg`;
+const makeName=()=>
+ `MILLION-FILTERS-${new Date().toISOString().replace(/[:.]/g,'-')}.jpg`;
 
 async function makeFile(){
  return new File(
@@ -1128,9 +1252,34 @@ async function makeFile(){
  );
 }
 
-async function download(){
+/*
+ Synchronous file generation lets mobile browsers
+ open the native share sheet during the button tap.
+ This is important for iPhone Safari.
+*/
+function makeFileForShare(){
+ const dataURL=photoCanvas().toDataURL('image/jpeg',.94);
+ const base64=dataURL.split(',')[1];
+ const binary=atob(base64);
+
+ const bytes=new Uint8Array(binary.length);
+
+ for(let i=0;i<binary.length;i++){
+  bytes[i]=binary.charCodeAt(i);
+ }
+
+ return new File(
+  [bytes],
+  makeName(),
+  {type:'image/jpeg'}
+ );
+}
+
+/* Download fallback */
+
+async function downloadFile(existingFile){
  try{
-  const file=await makeFile();
+  const file=existingFile||await makeFile();
   const url=URL.createObjectURL(file);
 
   const a=document.createElement('a');
@@ -1141,56 +1290,177 @@ async function download(){
   a.click();
   a.remove();
 
-  setTimeout(()=>URL.revokeObjectURL(url),10000);
+  setTimeout(()=>URL.revokeObjectURL(url),30000);
 
-  trackEvent('photo_save');
-  notify('Image saved or ready in Downloads');
+  trackEvent('photo_download');
+  notify('Photo downloaded. Check your Downloads.');
 
  }catch(err){
-  notify(err.message||'Cannot save photo');
+  notify(err.message||'Cannot download photo');
  }
 }
 
-$('save').onclick=download;
+/*
+ Save on iPhone:
+ Use the native share sheet when supported.
+ The user can select "Save Image".
+ If unsupported, fall back to a download.
+*/
 
-$('share').onclick=async()=>{
+function savePhoto(){
+ let file;
+
  try{
-  const file=await makeFile();
-
-  if(navigator.canShare?.({files:[file]})&&navigator.share){
-   await navigator.share({
-    files:[file],
-    title:'MILLION FILTERS'
-   });
-
-   trackEvent('photo_share');
-   return;
-  }
-
-  await download();
-  notify('Sharing unavailable here. Image saved for sharing.');
-
+  file=makeFileForShare();
  }catch(err){
-  if(err.name!=='AbortError'){
-   notify('Unable to share. Try Save.');
-  }
- }
-};
-
-$('capture').onclick=async()=>{
- if(mode==='photo'){
-  await download();
+  notify(err.message||'Cannot prepare photo');
   return;
  }
 
- try{
-  const file=await makeFile();
-  const url=URL.createObjectURL(file);
+ if(
+  typeof navigator.share==='function' &&
+  typeof navigator.canShare==='function' &&
+  navigator.canShare({files:[file]})
+ ){
+  let sharing;
 
+  try{
+   sharing=navigator.share({
+    files:[file],
+    title:'MILLION FILTERS'
+   });
+  }catch(err){
+   downloadFile(file);
+   return;
+  }
+
+  trackEvent('photo_save_sheet_open');
+
+  Promise.resolve(sharing).then(()=>{
+   trackEvent('photo_save_sheet_completed');
+  }).catch(err=>{
+   if(err.name==='AbortError'){
+    return;
+   }
+
+   if(err.name==='NotAllowedError'){
+    notify('Use Share or try downloading the photo.');
+    return;
+   }
+
+   downloadFile(file);
+  });
+
+ }else{
+  downloadFile(file);
+ }
+}
+
+$('save').onclick=savePhoto;
+
+/* Share photo */
+
+function sharePhoto(){
+ let file;
+
+ try{
+  file=makeFileForShare();
+ }catch(err){
+  notify(err.message||'Cannot prepare photo');
+  return;
+ }
+
+ if(
+  typeof navigator.share==='function' &&
+  typeof navigator.canShare==='function' &&
+  navigator.canShare({files:[file]})
+ ){
+  let sharing;
+
+  try{
+   sharing=navigator.share({
+    files:[file],
+    title:'MILLION FILTERS'
+   });
+  }catch(err){
+   downloadFile(file);
+   return;
+  }
+
+  Promise.resolve(sharing).then(()=>{
+   trackEvent('photo_share');
+  }).catch(err=>{
+   if(err.name!=='AbortError'){
+    notify('Unable to share. Try Save.');
+   }
+  });
+
+ }else{
+  downloadFile(file);
+  notify('Sharing unavailable. Download started.');
+ }
+}
+
+$('share').onclick=sharePhoto;
+
+/*
+ Capture the original camera frame,
+ rather than baking the current filter into it.
+ This allows changing filters after taking a photo.
+*/
+
+function rawCameraCanvas(){
+ if(mode!=='live'||video.readyState<2){
+  throw Error('Camera not ready');
+ }
+
+ const w0=video.videoWidth;
+ const h0=video.videoHeight;
+
+ if(!w0||!h0)throw Error('Camera not ready');
+
+ const max=2200;
+ const scale=Math.min(1,max/Math.max(w0,h0));
+
+ const c=document.createElement('canvas');
+ c.width=Math.max(1,Math.round(w0*scale));
+ c.height=Math.max(1,Math.round(h0*scale));
+
+ const ctx=c.getContext('2d');
+ if(!ctx)throw Error('Canvas unavailable');
+
+ if(front){
+  ctx.translate(c.width,0);
+  ctx.scale(-1,1);
+ }
+
+ ctx.drawImage(video,0,0,c.width,c.height);
+
+ return c;
+}
+
+$('capture').onclick=async()=>{
+ if(mode!=='live')return;
+
+ const request=++cameraRequest;
+ $('capture').disabled=true;
+
+ try{
+  const c=rawCameraCanvas();
+  const blob=await blobFromCanvas(c);
+
+  if(request!==cameraRequest)return;
+
+  const url=URL.createObjectURL(blob);
   const img=new Image();
 
   img.onload=()=>{
-   cameraRequest++;
+   if(request!==cameraRequest){
+    URL.revokeObjectURL(url);
+    return;
+   }
+
+   stopCamera();
 
    if(uploadedURL)URL.revokeObjectURL(uploadedURL);
    uploadedURL=url;
@@ -1200,38 +1470,31 @@ $('capture').onclick=async()=>{
    video.style.display='none';
 
    mode='photo';
-   stopCamera();
-   chosen=0;
 
-   for(const [id,v] of Object.entries({
-    strength:85,
-    bright:0,
-    warm:0,
-    soft:0,
-    vignetteControl:0,
-    grainControl:0
-   })){
-    $(id).value=v;
-   }
-
+   active();
    drawFilters();
    apply();
 
    trackEvent('photo_capture');
-   notify('Captured! Save or share your photo.');
+   notify('Captured! Apply a filter, then Save.');
   };
 
   img.onerror=()=>{
    URL.revokeObjectURL(url);
+   $('capture').disabled=false;
    notify('Capture failed. Please try again.');
   };
 
   img.src=url;
 
  }catch(err){
+  if(request!==cameraRequest)return;
+  $('capture').disabled=false;
   notify('Capture failed. Please try again.');
  }
 };
+
+/* Favorites */
 
 $('favorite').onclick=()=>{
  if(favs.has(chosen)){
@@ -1260,6 +1523,8 @@ $('favoritesOnly').onclick=()=>{
  drawFilters();
 };
 
+/* Reset */
+
 $('reset').onclick=()=>{
  chosen=0;
 
@@ -1279,12 +1544,16 @@ $('reset').onclick=()=>{
  notify('Edits reset');
 };
 
+/* Sliders */
+
 for(const id of [
  'strength','bright','warm',
  'soft','vignetteControl','grainControl'
 ]){
  $(id).addEventListener('input',apply);
 }
+
+/* Compare */
 
 const before=$('before');
 
@@ -1302,7 +1571,9 @@ before.addEventListener('pointerdown',e=>{
 for(const event of [
  'pointerup','pointercancel','lostpointercapture'
 ]){
- before.addEventListener(event,()=>setCompare(false));
+ before.addEventListener(
+  event,()=>setCompare(false)
+ );
 }
 
 before.addEventListener('keydown',e=>{
@@ -1319,10 +1590,13 @@ window.addEventListener('pagehide',()=>{
  stopCamera();
 });
 
+/* Initialize */
+
 drawTabs();
 drawFilters();
 apply();
-active(false);
+active();
+
 </script>
 </body>
 </html>
