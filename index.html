@@ -225,13 +225,15 @@ button:disabled{opacity:.38;cursor:not-allowed}
  margin-left:5px;
  filter:drop-shadow(0 2px 2px rgba(0,0,0,.2));
 }
+
+/* Four compact camera controls */
 .toolbar{
  display:flex;
  align-items:center;
  justify-content:center;
- gap:12px;
+ gap:10px;
  margin:15px 0 18px;
- flex-wrap:wrap;
+ flex-wrap:nowrap;
 }
 .action{
  border:1px solid var(--border);
@@ -239,22 +241,32 @@ button:disabled{opacity:.38;cursor:not-allowed}
  background:rgba(255,255,255,.06);
  color:white;
  min-height:48px;
- padding:0 15px;
+ padding:0 12px;
  display:flex;
  align-items:center;
  justify-content:center;
- gap:8px;
+ gap:5px;
  font-weight:600;
  font-size:13px;
+ white-space:nowrap;
 }
 .action.main{
- min-width:76px;
+ flex:0 0 62px;
+ width:62px;
+ height:62px;
  min-height:62px;
+ padding:0;
  border:3px solid #eac9a5;
  background:radial-gradient(circle,#fcf4ea 0 36%,#dcae82 38% 52%,#2b242f 54%);
  color:transparent;
  border-radius:100px;
  box-shadow:0 0 0 4px rgba(234,201,165,.1);
+}
+.action.retake{
+ min-width:46px;
+ padding:0 10px;
+ color:#eac9a5;
+ font-size:25px;
 }
 .action.primary{
  background:linear-gradient(120deg,#e7c6a1,#bc8c94);
@@ -371,17 +383,6 @@ input[type=range]{
  width:100%;
  accent-color:#dfb98d;
 }
-.liveBtn{
- display:block;
- margin:12px auto 0;
- padding:10px 15px;
- border:1px solid var(--border);
- border-radius:12px;
- background:rgba(255,255,255,.07);
- color:#eee1e5;
- font-size:12px;
-}
-.liveBtn[hidden]{display:none}
 .note{
  font-size:11px;
  color:#b6a8b3;
@@ -500,6 +501,15 @@ summary:focus-visible{
   min-height:82px;
  }
  .empty h2{font-size:19px}
+ .toolbar{gap:7px}
+ .action{padding:0 9px;font-size:12px}
+ .action.main{
+  flex-basis:56px;
+  width:56px;
+  height:56px;
+  min-height:56px;
+ }
+ .action.retake{min-width:42px}
 }
 @media(min-width:600px){
  .camera{
@@ -578,12 +588,14 @@ summary:focus-visible{
  </div>
 </section>
 
+<!-- Updated camera actions -->
 <div class="toolbar">
- <button class="action" id="uploadButton" type="button">▧ &nbsp; Photo</button>
+ <button class="action" id="uploadButton" type="button">▧ Photo</button>
  <button class="action main" id="capture" type="button"
-  aria-label="Capture photo" disabled>Capture</button>
- <button class="action" id="save" type="button" disabled>↓ Save</button>
- <button class="action primary" id="share" type="button" disabled>↗ Share</button>
+  aria-label="Capture photo" title="Capture" disabled></button>
+ <button class="action retake" id="retake" type="button"
+  aria-label="Retake photo" title="Retake photo" disabled>↻</button>
+ <button class="action primary" id="save" type="button" disabled>↓ Save</button>
 </div>
 
 <input class="hiddenInput" type="file" id="upload" accept="image/*">
@@ -633,8 +645,6 @@ summary:focus-visible{
   </div>
  </div>
 </details>
-
-<button class="liveBtn" id="live" type="button" hidden>↺ Live camera</button>
 
 <p class="note">
  Filters transform the entire image — no face stickers or disguises.
@@ -700,6 +710,7 @@ let front=true;
 let chosen=0;
 let uploadedURL=null;
 let toastTimer;
+let cameraRequest=0;
 
 const clamp=(v,min,max)=>Math.min(max,Math.max(min,v));
 
@@ -803,10 +814,9 @@ function drawFilters(){
 
 function active(on){
  $('empty').style.display=on?'none':'flex';
- $('capture').disabled=!on;
+ $('capture').disabled=!on||mode!=='live';
  $('save').disabled=!on;
- $('share').disabled=!on;
- $('live').hidden=mode!=='photo';
+ $('retake').disabled=!on;
 }
 
 async function stopCamera(){
@@ -814,6 +824,7 @@ async function stopCamera(){
   stream.getTracks().forEach(t=>t.stop());
   stream=null;
  }
+ video.srcObject=null;
 }
 
 async function startCamera(){
@@ -821,6 +832,8 @@ async function startCamera(){
   notify('Camera requires HTTPS and a supported browser. Use Photo instead.');
   return;
  }
+
+ const request=++cameraRequest;
 
  try{
   await stopCamera();
@@ -833,6 +846,11 @@ async function startCamera(){
     height:{ideal:1706}
    }
   });
+
+  if(request!==cameraRequest){
+   newStream.getTracks().forEach(t=>t.stop());
+   return;
+  }
 
   stream=newStream;
   video.srcObject=stream;
@@ -849,6 +867,7 @@ async function startCamera(){
   notify('Camera ready');
 
  }catch(err){
+  if(request!==cameraRequest)return;
   notify('Camera unavailable. Allow camera access or choose Photo.');
   active(mode==='photo');
  }
@@ -861,7 +880,10 @@ $('flip').onclick=()=>{
  startCamera();
 };
 
-$('live').onclick=startCamera;
+$('retake').onclick=()=>{
+ track('photo_retake');
+ startCamera();
+};
 
 $('uploadButton').onclick=()=>$('upload').click();
 
@@ -878,15 +900,18 @@ $('upload').onchange=e=>{
  const img=new Image();
 
  img.onload=()=>{
+  cameraRequest++;
+  stopCamera();
+
   if(uploadedURL)URL.revokeObjectURL(uploadedURL);
   uploadedURL=u;
+
   photo.src=u;
   photo.style.display='block';
   video.style.display='none';
   mode='photo';
 
   active(true);
-  stopCamera();
   apply();
   track('photo_upload');
   notify('Photo ready for editing');
@@ -1045,56 +1070,49 @@ async function makeFile(){
  );
 }
 
-async function download(){
- try{
-  const file=await makeFile();
-  const url=URL.createObjectURL(file);
-
-  const a=document.createElement('a');
-  a.href=url;
-  a.download=file.name;
-  document.body.append(a);
-  a.click();
-  a.remove();
-
-  setTimeout(()=>URL.revokeObjectURL(url),10000);
-
-  track('photo_save');
-  notify('Image saved or ready in Downloads');
- }catch(err){
-  notify(err.message||'Cannot save photo');
- }
+function downloadFile(file){
+ const url=URL.createObjectURL(file);
+ const a=document.createElement('a');
+ a.href=url;
+ a.download=file.name;
+ document.body.append(a);
+ a.click();
+ a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),10000);
 }
 
-$('save').onclick=download;
-
-$('share').onclick=async()=>{
+$('save').onclick=async()=>{
  try{
   const file=await makeFile();
 
-  if(navigator.canShare?.({files:[file]})&&navigator.share){
-   await navigator.share({
-    files:[file],
-    title:'MILLION FILTERS'
-   });
-   track('photo_share');
-   return;
+  if(navigator.share&&navigator.canShare?.({files:[file]})){
+   try{
+    await navigator.share({
+     files:[file],
+     title:'MILLION FILTERS'
+    });
+    track('photo_share');
+    return;
+   }catch(err){
+    if(err.name==='AbortError')return;
+    downloadFile(file);
+    track('photo_save');
+    notify('Image ready in Downloads');
+    return;
+   }
   }
 
-  await download();
-  notify('Sharing unavailable here. Image saved for sharing.');
+  downloadFile(file);
+  track('photo_save');
+  notify('Image ready in Downloads');
+
  }catch(err){
-  if(err.name!=='AbortError'){
-   notify('Unable to share. Try Save.');
-  }
+  notify(err.message||'Unable to save image');
  }
 };
 
 $('capture').onclick=async()=>{
- if(mode==='photo'){
-  await download();
-  return;
- }
+ if(mode!=='live')return;
 
  try{
   const file=await makeFile();
@@ -1128,7 +1146,7 @@ $('capture').onclick=async()=>{
    apply();
    active(true);
    track('photo_capture');
-   notify('Captured! Save or share your photo.');
+   notify('Captured! Tap Save to save or share.');
   };
 
   img.onerror=()=>{
@@ -1149,7 +1167,10 @@ for(const id of [
  $(id).addEventListener('input',apply);
 }
 
-window.addEventListener('pagehide',()=>stopCamera());
+window.addEventListener('pagehide',()=>{
+ cameraRequest++;
+ stopCamera();
+});
 
 drawFilters();
 apply();
