@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f7eefa">
-<meta name="description" content="Send a beautiful smile to someone you love. Free greeting cards to share around the world.">
+<meta name="description" content="Send a beautiful smile to someone you love. Free greeting cards with personal messages to share around the world.">
 <meta name="robots" content="index,follow">
 <title>SEND A SMILE | Share Happiness</title>
 
@@ -22,7 +22,7 @@ body{
   margin:0;
   min-height:100vh;
   font-family:-apple-system,BlinkMacSystemFont,
-  "Segoe UI",Arial,sans-serif;
+    "Segoe UI",Arial,sans-serif;
   color:var(--ink);
   background:
     radial-gradient(circle at 10% 12%,#ffd6e9 0%,transparent 38%),
@@ -37,7 +37,8 @@ button{
   cursor:pointer;
   -webkit-tap-highlight-color:transparent;
 }
-button:focus-visible{
+button:focus-visible,
+textarea:focus-visible{
   outline:3px solid #7656c9;
   outline-offset:3px;
 }
@@ -54,8 +55,7 @@ button:focus-visible{
   border-radius:22px;
   font-size:36px;
   background:linear-gradient(135deg,#fff,#ffd4ec);
-  box-shadow:
-    0 10px 30px #db91b754,
+  box-shadow:0 10px 30px #db91b754,
     inset 0 2px 3px #fff;
 }
 h1{
@@ -71,8 +71,7 @@ h1{
 .glass{
   background:var(--glass);
   border:1px solid rgba(255,255,255,.95);
-  box-shadow:
-    0 14px 40px rgba(112,73,143,.12),
+  box-shadow:0 14px 40px rgba(112,73,143,.12),
     inset 0 1px 2px white;
   backdrop-filter:blur(18px);
   -webkit-backdrop-filter:blur(18px);
@@ -97,8 +96,7 @@ h1{
   border:1px solid #ffffffd9;
   border-radius:19px;
   background:linear-gradient(145deg,#ffffffea,#ffffff75);
-  box-shadow:
-    0 5px 13px #b484a71b,
+  box-shadow:0 5px 13px #b484a71b,
     inset 0 1px 2px white;
   display:flex;
   flex-direction:column;
@@ -139,8 +137,7 @@ h1{
 .preview:before{
   content:"";
   position:absolute;
-  width:210px;
-  height:210px;
+  width:210px;height:210px;
   border-radius:50%;
   background:#fff7;
   filter:blur(22px);
@@ -148,6 +145,7 @@ h1{
 .preview-content{
   position:relative;
   z-index:1;
+  width:100%;
 }
 .big-emoji{
   font-size:86px;
@@ -185,6 +183,68 @@ h1{
 @keyframes twinkle{
   0%,100%{opacity:.3;transform:scale(.75)}
   50%{opacity:1;transform:scale(1.2)}
+}
+
+/* Optional personal message */
+.personal-message{
+  margin:19px auto 0;
+  max-width:340px;
+  padding:12px 14px;
+  border-radius:16px;
+  background:linear-gradient(140deg,#fffafde6,#ffffff96);
+  border:1px solid #fff;
+  box-shadow:0 5px 16px #a87a9c1c;
+  color:#9b477e;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:17px;
+  font-weight:600;
+  line-height:1.55;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  unicode-bidi:plaintext;
+}
+.personal-entry{
+  margin-top:16px;
+  padding:14px;
+  border:1px solid #fff;
+  background:linear-gradient(145deg,#ffffffdc,#fff1f9ad);
+  border-radius:19px;
+  text-align:left;
+  box-shadow:inset 0 1px 2px #fff;
+}
+.entry-label{
+  display:block;
+  margin:0 0 8px 3px;
+  font-size:12px;
+  font-weight:750;
+  color:#735586;
+}
+.personal-entry textarea{
+  display:block;
+  width:100%;
+  min-height:65px;
+  max-height:145px;
+  resize:vertical;
+  padding:13px;
+  font-family:inherit;
+  font-size:15px;
+  line-height:1.5;
+  color:#583f65;
+  background:#ffffffcc;
+  border:1px solid #ebd9ed;
+  border-radius:13px;
+}
+.personal-entry textarea::placeholder{
+  color:#ae99b4;
+}
+.entry-footer{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:8px;
+  padding:0 3px;
+  font-size:11px;
+  color:#9a84a2;
 }
 .actions{
   display:grid;
@@ -293,6 +353,23 @@ h1{
           <div class="small-message" id="previewText">
             Someone is thinking of you.
           </div>
+          <div class="personal-message hidden"
+               id="previewPersonal"></div>
+        </div>
+      </div>
+
+      <div class="personal-entry">
+        <label class="entry-label" for="personalInput">
+          ✨ Add Your Own Message (Optional)
+        </label>
+        <textarea id="personalInput"
+          maxlength="160"
+          rows="2"
+          dir="auto"
+          placeholder="Write something special..."></textarea>
+        <div class="entry-footer">
+          <span>Your words, your gift 💕</span>
+          <span id="charCount">0 / 160</span>
         </div>
       </div>
 
@@ -300,7 +377,6 @@ h1{
         <button class="btn primary" id="shareBtn">
           💌 SHARE YOUR GIFT
         </button>
-
         <button class="btn secondary" id="copyBtn">
           🔗 COPY GIFT LINK
         </button>
@@ -322,6 +398,8 @@ h1{
           <div class="big-emoji" id="receivedEmoji"></div>
           <div class="message" id="receivedTitle"></div>
           <div class="small-message" id="receivedText"></div>
+          <div class="personal-message hidden"
+               id="receivedPersonal"></div>
         </div>
       </div>
 
@@ -329,7 +407,6 @@ h1{
         <button class="btn primary" id="createOwnBtn">
           💝 SEND A GIFT BACK
         </button>
-
         <button class="btn secondary" id="receivedShareBtn">
           💌 SHARE THIS GIFT
         </button>
@@ -340,7 +417,6 @@ h1{
   <footer class="footer">
     Made to Share Happiness 🌍
     <div>© SEND A SMILE</div>
-
     <div class="contact">
       Contact & Advertising
       <div>
@@ -349,7 +425,6 @@ h1{
       </div>
     </div>
   </footer>
-
 </main>
 
 <div id="toast" class="hidden" role="status"></div>
@@ -357,7 +432,7 @@ h1{
 <script>
 "use strict";
 
-const gifts = [
+const gifts=[
   {
     emoji:"❤️",
     name:"Love",
@@ -432,20 +507,39 @@ const gifts = [
   }
 ];
 
-const $ = id => document.getElementById(id);
-
+const $=id=>document.getElementById(id);
 let selected=0;
 let receivedIndex=null;
+let receivedMessage="";
 let toastTimer;
+
+function cleanMessage(value){
+  return String(value||"").trim().slice(0,160);
+}
+
+function ownMessage(){
+  return cleanMessage($("personalInput").value);
+}
 
 function showToast(message){
   clearTimeout(toastTimer);
   $("toast").textContent=message;
   $("toast").classList.remove("hidden");
-
   toastTimer=setTimeout(()=>{
     $("toast").classList.add("hidden");
   },2500);
+}
+
+function displayPersonal(element,message){
+  element.textContent=message;
+  element.classList.toggle("hidden",!message);
+}
+
+function updatePersonal(){
+  const message=ownMessage();
+  displayPersonal($("previewPersonal"),message);
+  $("charCount").textContent=
+    $("personalInput").value.length+" / 160";
 }
 
 function buildChoices(){
@@ -471,7 +565,6 @@ function buildChoices(){
     btn.addEventListener("click",()=>choose(index));
     grid.appendChild(btn);
   });
-
   choose(0);
 }
 
@@ -486,51 +579,57 @@ function choose(index){
   document.querySelectorAll(".choice")
     .forEach((btn,i)=>{
       btn.classList.toggle("active",i===index);
-      btn.setAttribute(
-        "aria-pressed",
-        String(i===index)
-      );
+      btn.setAttribute("aria-pressed",String(i===index));
     });
 }
 
-function giftURL(index){
+function giftURL(index,message=""){
   const url=new URL(window.location.href);
   url.search="";
   url.hash="";
   url.searchParams.set("gift",String(index+1));
+
+  const personal=cleanMessage(message);
+  if(personal){
+    url.searchParams.set("msg",personal);
+  }
   return url.toString();
 }
 
-function giftText(index){
+function giftText(index,message=""){
   const gift=gifts[index];
+  const personal=cleanMessage(message);
 
   return (
     gift.emoji+" "+gift.title+"\n"+
-    gift.text+"\n\n"+
-    "Open your gift 💝\n"+
-    giftURL(index)
+    gift.text+
+    (personal?"\n\n💌 "+personal:"")+
+    "\n\nOpen your gift 💝\n"+
+    giftURL(index,personal)
   );
 }
 
-async function shareGift(index){
+async function shareGift(index,message=""){
   const gift=gifts[index];
-  const url=giftURL(index);
+  const personal=cleanMessage(message);
+  const url=giftURL(index,personal);
 
   if(navigator.share){
     try{
       await navigator.share({
         title:"SEND A SMILE",
         text:gift.emoji+" "+gift.title+
-          "\n"+gift.text,
+          "\n"+gift.text+
+          (personal?"\n💌 "+personal:""),
         url:url
       });
       return;
     }catch(error){
-      if(error.name==="AbortError") return;
+      if(error.name==="AbortError")return;
     }
   }
 
-  await copyText(giftText(index));
+  await copyText(giftText(index,personal));
 }
 
 async function copyText(text){
@@ -550,7 +649,6 @@ async function copyText(text){
     try{
       success=document.execCommand("copy");
     }catch(e){}
-
     field.remove();
 
     if(success){
@@ -561,28 +659,35 @@ async function copyText(text){
   }
 }
 
-function openReceived(index){
+function openReceived(index,message=""){
   const gift=gifts[index];
   receivedIndex=index;
+  receivedMessage=cleanMessage(message);
 
   $("receivedEmoji").textContent=gift.emoji;
   $("receivedTitle").textContent=gift.title;
   $("receivedText").textContent=gift.text;
 
+  displayPersonal(
+    $("receivedPersonal"),
+    receivedMessage
+  );
+
   $("createScreen").classList.add("hidden");
   $("receivedScreen").classList.remove("hidden");
-
   window.scrollTo(0,0);
 }
 
 function openCreate(){
   receivedIndex=null;
+  receivedMessage="";
 
   $("receivedScreen").classList.add("hidden");
   $("createScreen").classList.remove("hidden");
 
   const url=new URL(window.location.href);
   url.searchParams.delete("gift");
+  url.searchParams.delete("msg");
   url.hash="";
   history.replaceState(null,"",url.toString());
 
@@ -592,12 +697,16 @@ function openCreate(){
 function initialize(){
   buildChoices();
 
+  $("personalInput").addEventListener(
+    "input",updatePersonal
+  );
+
   $("shareBtn").addEventListener("click",()=>{
-    shareGift(selected);
+    shareGift(selected,ownMessage());
   });
 
   $("copyBtn").addEventListener("click",()=>{
-    copyText(giftURL(selected));
+    copyText(giftURL(selected,ownMessage()));
   });
 
   $("createOwnBtn").addEventListener("click",()=>{
@@ -606,23 +715,24 @@ function initialize(){
 
   $("receivedShareBtn").addEventListener("click",()=>{
     if(receivedIndex!==null){
-      shareGift(receivedIndex);
+      shareGift(receivedIndex,receivedMessage);
     }
   });
 
   const params=new URLSearchParams(
     window.location.search
   );
-
   const raw=params.get("gift");
 
   if(raw!==null && /^[1-9][0-9]*$/.test(raw)){
     const index=Number(raw)-1;
-
     if(Number.isSafeInteger(index) &&
        index>=0 &&
        index<gifts.length){
-      openReceived(index);
+      openReceived(
+        index,
+        cleanMessage(params.get("msg"))
+      );
     }
   }
 }
