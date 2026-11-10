@@ -2,1195 +2,597 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b0b12">
-<meta name="format-detection" content="telephone=no">
-
-<!-- Google Search Optimization -->
-<title>MILLION FILTERS | Free Online Camera & Photo Filters</title>
-<meta name="description" content="MILLION FILTERS offers 20 elegant camera and photo filters. Capture, edit, enhance, save and share your photos online for free.">
-<meta name="keywords" content="Filter, Filters, Camera, Photo, Beauty, Selfie, Glow, Edit, Effects, Luxury, Portrait, Capture, Image, Online, Free, Makeup, Soft, Light, Smooth, Color, Share">
+<meta name="theme-color" content="#f7eefa">
+<meta name="description" content="Send a beautiful smile to someone you love. Free greeting cards to share around the world.">
 <meta name="robots" content="index,follow">
-<link rel="canonical" href="https://millionfilters.com/">
-
-<!-- Cloudflare Web Analytics -->
-<script type="module"
- src="https://static.cloudflareinsights.com/beacon.min.js"
- data-cf-beacon='{"token":"3b9b1e3003164f9a9bd0b36838333860"}'>
-</script>
-
-<!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5RWJ4Q8L8X"></script>
-<script>
-window.dataLayer=window.dataLayer||[];
-function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());
-gtag('config','G-5RWJ4Q8L8X');
-</script>
+<title>SEND A SMILE | Share Happiness</title>
 
 <style>
 :root{
- color-scheme:dark;
- --bg:#0b0b12;
- --ink:#f9f4ef;
- --gold:#e4bc85;
- --border:rgba(255,255,255,.14);
+  --ink:#4a345a;
+  --pink:#ef63ab;
+  --purple:#9274e5;
+  --glass:rgba(255,255,255,.58);
 }
 *{box-sizing:border-box}
-html,body{
- margin:0;
- min-height:100%;
- background:var(--bg);
- color:var(--ink);
- font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-}
+html{min-height:100%;scroll-behavior:smooth}
 body{
- background:
- radial-gradient(ellipse at 50% 0,rgba(132,79,119,.19),transparent 48%),
- radial-gradient(ellipse at 100% 70%,rgba(145,106,62,.13),transparent 42%),
- var(--bg);
+  margin:0;
+  min-height:100vh;
+  font-family:-apple-system,BlinkMacSystemFont,
+  "Segoe UI",Arial,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 10% 12%,#ffd6e9 0%,transparent 38%),
+    radial-gradient(circle at 85% 30%,#d9d0ff 0%,transparent 40%),
+    radial-gradient(circle at 48% 90%,#c5f5ef 0%,transparent 42%),
+    #f8f2ff;
+  background-attachment:fixed;
+  text-align:center;
 }
-button,input{font:inherit}
-button{cursor:pointer;touch-action:manipulation}
-button:disabled{opacity:.38;cursor:not-allowed}
-
-.shell{
- max-width:700px;
- margin:auto;
- min-height:100svh;
- padding:calc(env(safe-area-inset-top) + 16px) 16px calc(env(safe-area-inset-bottom) + 26px);
+button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+button:focus-visible{outline:3px solid #7656c9;outline-offset:3px}
+.container{
+  width:min(100% - 28px,510px);
+  margin:auto;
+  padding:30px 0 45px;
 }
-.top{
- display:flex;
- align-items:center;
- justify-content:space-between;
- gap:12px;
- padding:0 2px 18px;
+.logo{
+  width:68px;height:68px;
+  margin:0 auto 12px;
+  display:grid;place-items:center;
+  border-radius:22px;
+  font-size:36px;
+  background:linear-gradient(135deg,#fff,#ffd4ec);
+  box-shadow:0 10px 30px #db91b754,
+             inset 0 2px 3px #fff;
 }
-.brand{
- font-size:10px;
- letter-spacing:.33em;
- color:var(--gold);
- font-weight:800;
+h1{font-size:29px;letter-spacing:1px;margin:9px 0}
+.subtitle{font-size:14px;opacity:.75;margin:0 0 25px}
+.glass{
+  background:var(--glass);
+  border:1px solid rgba(255,255,255,.95);
+  box-shadow:0 14px 40px rgba(112,73,143,.12),
+             inset 0 1px 2px white;
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-radius:28px;
 }
-.top h1{
- font-size:clamp(23px,6vw,34px);
- font-weight:550;
- letter-spacing:-.035em;
- margin:4px 0 0;
+.panel{padding:21px 16px;margin-bottom:18px}
+.section-title{font-weight:750;font-size:16px;margin:0 0 17px}
+.choices{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
 }
-.byline{
- color:#b9aab7;
- font-size:11px;
- margin:5px 0 0;
+.choice{
+  min-height:83px;
+  border:1px solid #ffffffd9;
+  border-radius:19px;
+  background:linear-gradient(145deg,#ffffffda,#ffffff68);
+  box-shadow:0 5px 13px #b484a71b;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:6px;
+  color:#5d4867;
+  transition:transform .15s,background .15s;
 }
-.iconBtn{
- border:1px solid var(--border);
- background:rgba(255,255,255,.07);
- color:var(--ink);
- border-radius:14px;
- min-height:42px;
- padding:0 12px;
- font-size:20px;
+.choice:active{transform:scale(.94)}
+.choice.active{
+  background:linear-gradient(145deg,#ffe3f2,#e5dbff);
+  border:2px solid #d77bc5;
 }
-.camera{
- position:relative;
- isolation:isolate;
- width:100%;
- aspect-ratio:3/4;
- max-height:64svh;
- border:1px solid rgba(234,195,148,.28);
- border-radius:26px;
- overflow:hidden;
- background:linear-gradient(145deg,#26202b,#12111a);
- box-shadow:
- 0 22px 65px rgba(0,0,0,.43),
- inset 0 0 0 1px rgba(255,255,255,.07);
+.choice .emoji{font-size:31px;line-height:1.15}
+.choice .name{font-size:10px;font-weight:650}
+.preview{
+  min-height:315px;
+  padding:26px 15px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 20% 15%,#ffffffea,transparent 45%),
+    linear-gradient(145deg,#ffe7f3,#e9e1ff 55%,#d7faf4);
 }
-.camera video,.camera img{
- width:100%;
- height:100%;
- object-fit:cover;
- position:absolute;
- inset:0;
+.preview:before{
+  content:"";
+  position:absolute;
+  width:210px;height:210px;
+  border-radius:50%;
+  background:#fff7;
+  filter:blur(22px);
 }
-.camera video{transform:scaleX(-1)}
-.camera video.rear{transform:none}
-.camera img{display:none}
-.camera .tint,
-.camera .warmOverlay,
-.camera .vignette,
-.camera .grain,
-.camera .shine{
- position:absolute;
- inset:0;
- pointer-events:none;
+.preview-content{position:relative;z-index:1}
+.big-emoji{
+  font-size:86px;
+  line-height:1.35;
+  filter:drop-shadow(0 12px 10px #95668a25);
+  animation:float 3.2s ease-in-out infinite;
 }
-.tint,.warmOverlay{mix-blend-mode:soft-light}
-.vignette{
- background:radial-gradient(ellipse at center,transparent 34%,rgba(4,2,10,.9) 100%);
- opacity:0;
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
 }
-.grain{
- opacity:0;
- background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.33'/%3E%3C/svg%3E");
- mix-blend-mode:screen;
+.message{
+  margin:10px auto;
+  font-size:25px;
+  font-weight:850;
+  max-width:350px;
 }
-.shine{
- background:radial-gradient(circle at 20% 12%,rgba(255,238,207,.6),transparent 65%);
- opacity:0;
- mix-blend-mode:screen;
+.small-message{
+  font-size:14px;
+  line-height:1.6;
+  opacity:.7;
+  max-width:310px;
+  margin:auto;
 }
-.cameraBadge{
- position:absolute;
- z-index:3;
- top:15px;
- left:15px;
- padding:8px 12px;
- border:1px solid rgba(255,255,255,.22);
- border-radius:100px;
- background:rgba(13,13,22,.4);
- backdrop-filter:blur(12px);
- font-size:11px;
- letter-spacing:.13em;
+.sparkle{
+  position:absolute;
+  font-size:24px;
+  animation:twinkle 2.4s ease-in-out infinite;
+  pointer-events:none;
 }
-.watermark{
- position:absolute;
- z-index:3;
- bottom:15px;
- right:17px;
- color:rgba(255,255,255,.68);
- font-size:10px;
- letter-spacing:.18em;
+.s1{left:12%;top:17%}
+.s2{right:13%;top:27%;animation-delay:.6s}
+.s3{left:20%;bottom:15%;animation-delay:1.2s}
+.s4{right:20%;bottom:16%;animation-delay:1.7s}
+@keyframes twinkle{
+  0%,100%{opacity:.3;transform:scale(.75)}
+  50%{opacity:1;transform:scale(1.2)}
 }
-.empty{
- position:absolute;
- inset:0;
- z-index:2;
- display:flex;
- flex-direction:column;
- justify-content:center;
- align-items:center;
- text-align:center;
- padding:24px;
- background:radial-gradient(circle at 50% 30%,#594259,#17151f 75%);
+.actions{display:grid;gap:10px;margin-top:18px}
+.btn{
+  width:100%;
+  border:0;
+  border-radius:17px;
+  padding:16px 14px;
+  font-size:15px;
+  font-weight:800;
+  min-height:53px;
+  box-shadow:0 7px 18px #ae82bf28;
 }
-.empty h2{
- font-size:22px;
- font-weight:500;
- margin:12px 0 7px;
+.primary{
+  color:white;
+  background:linear-gradient(110deg,#f164ac,#9676e9);
 }
-.empty p{
- font-size:13px;
- color:#e0d2da;
- line-height:1.6;
- max-width:255px;
+.whatsapp{
+  color:white;
+  background:#20bd70;
 }
-.camera-start-icon{
- width:108px;
- height:90px;
- margin:18px auto 14px;
- display:grid;
- place-items:center;
- filter:drop-shadow(0 0 13px rgba(239,180,130,.35));
- flex-shrink:0;
+.secondary{
+  background:#ffffffc9;
+  color:#735586;
+  border:1px solid white;
 }
-.camera-start-icon svg{
- width:100%;
- height:100%;
-}
-.empty button#openCamera{
- display:grid;
- place-items:center;
- width:96px;
- height:96px;
- min-width:96px;
- min-height:96px;
- padding:0;
- margin:12px auto 0;
- border-radius:50%;
- border:3px solid #ff7777;
- background:linear-gradient(145deg,#ff5252,#e60012 65%,#b90012);
- box-shadow:
- inset 0 3px 5px rgba(255,255,255,.35),
- 0 9px 24px rgba(230,0,18,.36),
- 0 0 30px rgba(255,50,65,.27);
- transition:transform .18s,filter .18s;
- -webkit-tap-highlight-color:transparent;
- flex-shrink:0;
-}
-.empty button#openCamera:active{
- transform:scale(.94);
- filter:brightness(1.12);
-}
-.empty button#openCamera svg{
- width:42px;
- height:42px;
- fill:#fff;
- margin-left:5px;
- filter:drop-shadow(0 2px 2px rgba(0,0,0,.2));
-}
-
-/* Camera controls */
-.toolbar{
- display:flex;
- align-items:center;
- justify-content:center;
- gap:10px;
- margin:15px 0 18px;
- flex-wrap:nowrap;
-}
-.action{
- border:1px solid var(--border);
- border-radius:16px;
- background:rgba(255,255,255,.06);
- color:white;
- min-height:48px;
- padding:0 12px;
- display:flex;
- align-items:center;
- justify-content:center;
- gap:5px;
- font-weight:600;
- font-size:13px;
- white-space:nowrap;
-}
-.action.main{
- flex:0 0 62px;
- width:62px;
- height:62px;
- min-height:62px;
- padding:0;
- border:3px solid #eac9a5;
- background:radial-gradient(circle,#fcf4ea 0 36%,#dcae82 38% 52%,#2b242f 54%);
- color:transparent;
- border-radius:100px;
- box-shadow:0 0 0 4px rgba(234,201,165,.1);
-}
-.action.retake{
- min-width:46px;
- padding:0 10px;
- color:#eac9a5;
- font-size:25px;
-}
-.action.primary{
- background:linear-gradient(120deg,#e7c6a1,#bc8c94);
- color:#241c23;
- border-color:transparent;
-}
-.sectionhead{
- display:flex;
- align-items:center;
- justify-content:space-between;
- margin:20px 0 10px;
- gap:8px;
-}
-.sectionhead h2{
- font-size:15px;
- letter-spacing:.02em;
- margin:0;
- font-weight:650;
-}
-.sectionhead span{
- font-size:11px;
- color:#c6b7bd;
-}
-.filters{
- display:flex;
- gap:10px;
- overflow-x:auto;
- scrollbar-width:none;
- padding:3px 2px 12px;
- min-height:111px;
- -webkit-overflow-scrolling:touch;
-}
-.filters::-webkit-scrollbar{display:none}
-.filterItem{
- flex:0 0 82px;
- min-width:82px;
- border:0;
- background:transparent;
- color:#dfd4db;
- padding:0;
- text-align:center;
-}
-.swatch{
- display:block;
- position:relative;
- height:82px;
- border-radius:16px;
- border:2px solid transparent;
- background:linear-gradient(145deg,var(--c1),var(--c2));
- overflow:hidden;
- box-shadow:inset 0 0 25px rgba(255,255,255,.1);
-}
-.swatch:after{
- content:'';
- position:absolute;
- inset:0;
- background:radial-gradient(circle at 36% 29%,rgba(255,255,255,.63),transparent 55%);
-}
-.filterItem.selected .swatch{
- border-color:#f2d2a6;
- box-shadow:0 0 0 2px rgba(228,188,133,.28);
-}
-.filterItem small{
- display:block;
- margin-top:7px;
- font-size:11px;
- white-space:nowrap;
- overflow:hidden;
- text-overflow:ellipsis;
-}
-.filterItem.selected small{color:var(--gold)}
-.controls{
- margin-top:13px;
- border:1px solid var(--border);
- border-radius:18px;
- background:rgba(255,255,255,.043);
- overflow:hidden;
-}
-.controls summary{
- list-style:none;
- display:flex;
- align-items:center;
- justify-content:space-between;
- padding:15px 17px;
- cursor:pointer;
- font-size:13px;
- font-weight:650;
- color:#f2e0cf;
-}
-.controls summary::-webkit-details-marker{display:none}
-.controls summary:after{
- content:'+';
- font-size:23px;
- line-height:1;
- color:#e6c098;
-}
-.controls[open] summary:after{content:'−'}
-.controlsBody{padding:0 16px 15px}
-.range{
- display:grid;
- grid-template-columns:84px 1fr 40px;
- align-items:center;
- gap:10px;
- padding:9px 0;
- font-size:12px;
- color:#dccfd6;
-}
-.range output{
- text-align:right;
- color:#edc99d;
- font-variant-numeric:tabular-nums;
-}
-input[type=range]{
- width:100%;
- accent-color:#dfb98d;
-}
-.note{
- font-size:11px;
- color:#b6a8b3;
- line-height:1.7;
- text-align:center;
- margin:18px 4px 0;
-}
-.toast{
- position:fixed;
- z-index:99;
- left:50%;
- bottom:calc(env(safe-area-inset-bottom) + 25px);
- transform:translate(-50%,12px);
- max-width:88vw;
- padding:12px 18px;
- border-radius:14px;
- background:#f0d3b1;
- color:#261923;
- text-align:center;
- font-size:13px;
- box-shadow:0 8px 45px #0008;
- opacity:0;
- transition:.25s;
- pointer-events:none;
-}
-.toast.show{
- opacity:1;
- transform:translate(-50%,0);
-}
-.hiddenInput{
- position:absolute;
- width:1px;
- height:1px;
- opacity:0;
- pointer-events:none;
-}
+.btn:active{transform:scale(.98)}
+.hidden{display:none!important}
 .footer{
- text-align:center;
- font-size:10px;
- color:#877b87;
- margin-top:28px;
- padding-bottom:4px;
+  margin:27px 0 5px;
+  font-size:12px;
+  opacity:.6;
+  line-height:1.8;
 }
-
-/* BUSINESS CONTACT - NO LINK */
-.businessContact{
- direction:ltr;
- text-align:left;
- width:100%;
- padding:19px 20px;
- border-radius:18px;
- border:1px solid rgba(119,188,145,.38);
- background:linear-gradient(135deg,#103d2b,#174b38);
- box-shadow:
-  0 10px 28px rgba(0,0,0,.2),
-  inset 0 1px 0 rgba(255,255,255,.07);
+#toast{
+  position:fixed;
+  bottom:26px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:12px 22px;
+  border-radius:30px;
+  color:white;
+  background:#604a76;
+  box-shadow:0 10px 30px #0002;
+  font-size:13px;
+  z-index:50;
+  max-width:90%;
 }
-.businessTitle{
- display:flex;
- align-items:center;
- gap:9px;
- font-size:15px;
- color:#fff;
- font-weight:700;
- letter-spacing:.01em;
+@media(max-width:360px){
+  .choices{gap:7px}
+  .choice{min-height:73px}
+  .choice .emoji{font-size:27px}
+  h1{font-size:25px}
 }
-.businessSymbol{
- width:25px;
- height:25px;
- display:grid;
- place-items:center;
- border-radius:8px;
- background:rgba(67,188,112,.26);
- color:#c9f0d5;
- font-size:17px;
- flex-shrink:0;
-}
-.businessNumber{
- display:block;
- direction:ltr;
- unicode-bidi:isolate;
- text-align:left;
- margin:13px 0 8px;
- font-family:Arial,Helvetica,sans-serif;
- font-size:clamp(19px,5vw,25px);
- font-weight:750;
- letter-spacing:.02em;
- color:#fff;
- white-space:nowrap;
- user-select:text;
- -webkit-user-select:text;
-}
-.businessNote{
- display:block;
- font-size:11px;
- color:#c4dbcb;
- letter-spacing:.015em;
-}
-/* END BUSINESS CONTACT */
-
-.credit{
- margin:12px 0 0;
- color:#e8c39c;
- font-size:11px;
- letter-spacing:1px;
-}
-.footer .copyright{
- font-size:10px;
- letter-spacing:.1em;
- color:#9c8f9c;
- margin:18px 0 0;
-}
-button:focus-visible,
-input:focus-visible,
-summary:focus-visible{
- outline:2px solid #edc9a4;
- outline-offset:3px;
-}
-@media(max-width:390px){
- .camera-start-icon{
-  width:90px;
-  height:74px;
-  margin:8px auto;
- }
- .empty button#openCamera{
-  width:82px;
-  height:82px;
-  min-width:82px;
-  min-height:82px;
- }
- .empty h2{font-size:19px}
- .toolbar{gap:7px}
- .action{padding:0 9px;font-size:12px}
- .action.main{
-  flex-basis:56px;
-  width:56px;
-  height:56px;
-  min-height:56px;
- }
- .action.retake{min-width:42px}
-}
-@media(min-width:600px){
- .camera{
-  max-height:620px;
-  aspect-ratio:4/3;
- }
- .shell{
-  padding-left:24px;
-  padding-right:24px;
- }
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{
+    animation:none!important;
+    transition:none!important;
+  }
 }
 </style>
 </head>
 
 <body>
-<main class="shell">
 
-<header class="top">
- <div>
-  <div class="brand">MILLION FILTERS</div>
-  <h1>Glow Camera <span style="color:#e9c39e">✦</span></h1>
-  <p class="byline">Your light. Your mood. Your moment.</p>
- </div>
- <button class="iconBtn" id="flip" type="button"
- title="Switch camera" aria-label="Switch camera">↺</button>
-</header>
+<main class="container">
 
-<section class="camera" id="frame" aria-label="Camera preview">
- <video id="video" autoplay playsinline muted></video>
- <img id="photo" alt="Selected photo preview">
+  <div class="logo">💝</div>
+  <h1>SEND A SMILE</h1>
+  <p class="subtitle">One Smile. One World. ❤️</p>
 
- <div class="tint" id="tint"></div>
- <div class="warmOverlay" id="warmOverlay"></div>
- <div class="vignette" id="vignette"></div>
- <div class="grain" id="grain"></div>
- <div class="shine" id="shine"></div>
+  <!-- CREATE SCREEN -->
+  <section id="createScreen">
 
- <div class="cameraBadge" id="effectName">ORIGINAL</div>
- <div class="watermark">MILLION FILTERS</div>
+    <div class="glass panel">
+      <h2 class="section-title">Choose a Smile ✨</h2>
+      <div class="choices" id="choices"></div>
+    </div>
 
- <div class="empty" id="empty">
-  <h2>Every moment, elevated.</h2>
-  <p>Use your camera or choose a photo to discover your perfect glow.</p>
+    <div class="glass panel">
+      <h2 class="section-title">Your Gift 💝</h2>
 
-  <div class="camera-start-icon" aria-hidden="true">
-   <svg viewBox="0 0 120 100" fill="none"
-    xmlns="http://www.w3.org/2000/svg">
-    <defs>
-     <linearGradient id="cameraGold" x1="0" y1="0" x2="120" y2="100">
-      <stop stop-color="#FFE8BA"/>
-      <stop offset=".5" stop-color="#E7B58B"/>
-      <stop offset="1" stop-color="#B87B72"/>
-     </linearGradient>
-     <radialGradient id="cameraLens">
-      <stop stop-color="#99819A"/>
-      <stop offset=".65" stop-color="#49384F"/>
-      <stop offset="1" stop-color="#241B32"/>
-     </radialGradient>
-    </defs>
-    <path d="M15 29H32L42 16H78L88 29H105 Q114 29 114 39V82 Q114 91 105 91H15 Q6 91 6 82V39 Q6 29 15 29Z"
-     stroke="url(#cameraGold)" stroke-width="5" stroke-linejoin="round"/>
-    <circle cx="60" cy="59" r="24"
-     fill="url(#cameraLens)"
-     stroke="url(#cameraGold)" stroke-width="5"/>
-    <circle cx="60" cy="59" r="15"
-     stroke="#F5D1B7" stroke-opacity=".55" stroke-width="2"/>
-   </svg>
+      <div class="glass preview">
+        <span class="sparkle s1">✨</span>
+        <span class="sparkle s2">💫</span>
+        <span class="sparkle s3">✨</span>
+        <span class="sparkle s4">⭐</span>
+
+        <div class="preview-content">
+          <div class="big-emoji" id="previewEmoji">❤️</div>
+          <div class="message" id="previewTitle">
+            Just For You!
+          </div>
+          <div class="small-message" id="previewText">
+            Someone is thinking of you.
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn primary" id="shareBtn">
+          💌 SHARE YOUR SMILE
+        </button>
+
+        <button class="btn whatsapp" id="waBtn">
+          🟢 SEND VIA WHATSAPP
+        </button>
+
+        <button class="btn secondary" id="copyBtn">
+          🔗 COPY GIFT LINK
+        </button>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- RECEIVED GIFT SCREEN -->
+  <section id="receivedScreen" class="hidden">
+
+    <div class="glass panel">
+      <h2 class="section-title">A Smile For You 💌</h2>
+
+      <div class="glass preview">
+        <span class="sparkle s1">✨</span>
+        <span class="sparkle s2">💫</span>
+        <span class="sparkle s3">✨</span>
+        <span class="sparkle s4">⭐</span>
+
+        <div class="preview-content">
+          <div class="big-emoji" id="receivedEmoji"></div>
+          <div class="message" id="receivedTitle"></div>
+          <div class="small-message" id="receivedText"></div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn primary" id="createOwnBtn">
+          💝 SEND A SMILE BACK
+        </button>
+
+        <button class="btn secondary" id="receivedShareBtn">
+          💌 SHARE THIS GIFT
+        </button>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="footer">
+    Made to Share Happiness 🌍
+    <div>© SEND A SMILE</div>
   </div>
-
-  <button id="openCamera" type="button"
-   aria-label="Open camera" title="Open camera">
-   <svg viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M7 3.8c0-.8.9-1.2 1.6-.8l12 7.7c1 .6 1 2 0 2.6l-12 7.7c-.7.4-1.6 0-1.6-.8V3.8z"/>
-   </svg>
-  </button>
- </div>
-</section>
-
-<div class="toolbar">
- <button class="action" id="uploadButton" type="button">▧ Photo</button>
- <button class="action main" id="capture" type="button"
-  aria-label="Capture photo" title="Capture" disabled></button>
- <button class="action retake" id="retake" type="button"
-  aria-label="Retake photo" title="Retake photo" disabled>↻</button>
- <button class="action primary" id="save" type="button" disabled>↓ Save</button>
-</div>
-
-<input class="hiddenInput" type="file" id="upload" accept="image/*">
-
-<div class="sectionhead">
- <h2>Signature looks</h2>
- <span>20 curated filters · Swipe →</span>
-</div>
-
-<div class="filters" id="filters" aria-label="Available photo filters"></div>
-
-<details class="controls" id="adjustPanel">
- <summary>
-  ✦ Adjust
-  <span style="font-size:11px;color:#bfb0b7;font-weight:400;margin-left:auto;margin-right:10px">Optional</span>
- </summary>
- <div class="controlsBody">
-  <div class="range">
-   <label for="strength">Intensity</label>
-   <input id="strength" type="range" min="0" max="100" value="85">
-   <output id="strengthOut">85%</output>
-  </div>
-  <div class="range">
-   <label for="bright">Brightness</label>
-   <input id="bright" type="range" min="-35" max="35" value="0">
-   <output id="brightOut">0</output>
-  </div>
-  <div class="range">
-   <label for="warm">Warmth</label>
-   <input id="warm" type="range" min="-50" max="50" value="0">
-   <output id="warmOut">0</output>
-  </div>
-  <div class="range">
-   <label for="soft">Softness</label>
-   <input id="soft" type="range" min="0" max="40" value="0">
-   <output id="softOut">0</output>
-  </div>
-  <div class="range">
-   <label for="vignetteControl">Vignette</label>
-   <input id="vignetteControl" type="range" min="0" max="80" value="15">
-   <output id="vignetteControlOut">15</output>
-  </div>
-  <div class="range">
-   <label for="grainControl">Grain</label>
-   <input id="grainControl" type="range" min="0" max="50" value="8">
-   <output id="grainControlOut">8</output>
-  </div>
- </div>
-</details>
-
-<p class="note">
- Filters transform the entire image — no face stickers or disguises.
- Photos are processed in your browser and are not uploaded to our server.
-</p>
-
-<footer class="footer">
-
- <!-- Business number, text only, no WhatsApp link -->
- <div class="businessContact" aria-label="Business contact">
-  <div class="businessTitle">
-   <span class="businessSymbol" aria-hidden="true">✉</span>
-   <span>Contact &amp; Advertising</span>
-  </div>
-  <bdi class="businessNumber" dir="ltr">+966553989766</bdi>
-  <span class="businessNote">Business inquiries only</span>
- </div>
-
- <p class="credit">FAOZAN - GHADEER</p>
- <p class="copyright">© 2026 MILLION FILTERS · CREATE YOUR GLOW</p>
-</footer>
 
 </main>
 
-<div class="toast" id="toast" role="status"></div>
+<div id="toast" class="hidden" role="status"></div>
 
 <script>
-'use strict';
+"use strict";
 
-const looks=[
- ['Original','All',100,100,100,0,0,'transparent',0,0,0,'#8a818e','#382e42'],
- ['Silk Glow','Soft',108,93,107,5,0,'#f2c7db',.28,18,5,'#f5d8e1','#b788a5'],
- ['Soft Rose','Soft',106,99,113,10,-5,'#f6b2ce',.27,15,5,'#f4adba','#a76a91'],
- ['Cream Light','Soft',110,91,91,13,-7,'#ffe5bc',.24,8,3,'#ffe1bf','#b48d80'],
- ['Pearl Light','Soft',111,90,95,0,4,'#d9e5ff',.2,9,4,'#f1e5f6','#8999bc'],
- ['Velvet Touch','Soft',101,91,102,10,2,'#ddc3ec',.23,27,9,'#d3b4d0','#5f4a72'],
- ['Golden Hour','Romance',108,108,121,23,-9,'#ffc46c',.27,22,8,'#f9cf77','#ae673f'],
- ['Honey Mood','Romance',106,104,113,30,-10,'#e4ac6a',.27,25,9,'#e5bd81','#785339'],
- ['Sun Kiss','Romance',110,107,122,17,-8,'#ffe3a3',.26,11,5,'#fbd69d','#bb7b54'],
- ['Romantic Blush','Romance',106,95,110,7,-6,'#ffafc9',.37,15,4,'#f5b6d4','#9c6485'],
- ['Warm Love','Romance',104,100,109,21,-8,'#e9ad98',.24,26,7,'#f1b59f','#a55766'],
- ['Luxury Noir','Luxury',94,135,6,0,0,'#8793b6',.12,42,12,'#8a899b','#171925'],
- ['Champagne','Luxury',108,105,100,18,-10,'#f1d2ac',.23,22,7,'#eacb9e','#8c696a'],
- ['Urban Chic','Luxury',96,119,82,5,8,'#9eb2cc',.23,37,15,'#98abb9','#3c3c54'],
- ['Diamond Tone','Luxury',111,112,75,0,3,'#bde9ff',.15,15,6,'#e0eefa','#829fb3'],
- ['Elite Mood','Luxury',99,117,73,8,-5,'#cab2a1',.25,39,12,'#c5a998','#47404d'],
- ['Clay Soft','Earth',102,94,77,34,-7,'#c49072',.28,25,10,'#cf9b84','#785d51'],
- ['Mocha Dust','Earth',94,107,74,32,-10,'#966c5d',.27,38,18,'#a98172','#47332e'],
- ['Earth Bloom','Earth',105,95,88,26,-6,'#b39c75',.24,20,12,'#c1ab87','#66604c'],
- ['Desert Rose','Earth',105,100,95,23,-9,'#d9a197',.27,25,10,'#daaa9c','#90696b'],
- ['Sand Velvet','Earth',106,95,80,30,-10,'#cfb18c',.21,22,9,'#d6bf9e','#796b56']
+const gifts = [
+  {
+    emoji:"❤️",
+    name:"Love",
+    title:"Just For You!",
+    text:"Someone is thinking of you."
+  },
+  {
+    emoji:"😊",
+    name:"Smile",
+    title:"Keep Smiling!",
+    text:"Your smile makes the world brighter."
+  },
+  {
+    emoji:"🌹",
+    name:"Rose",
+    title:"A Rose For You!",
+    text:"A little beauty for your day."
+  },
+  {
+    emoji:"🎂",
+    name:"Birthday",
+    title:"Happy Birthday!",
+    text:"Wishing you a beautiful day!"
+  },
+  {
+    emoji:"🎉",
+    name:"Celebrate",
+    title:"Let's Celebrate!",
+    text:"Wonderful moments are worth sharing."
+  },
+  {
+    emoji:"💐",
+    name:"Flowers",
+    title:"Beautiful Wishes!",
+    text:"Sending flowers and happiness."
+  },
+  {
+    emoji:"🤗",
+    name:"Hug",
+    title:"A Big Hug!",
+    text:"Sending you a warm virtual hug."
+  },
+  {
+    emoji:"💖",
+    name:"Heart",
+    title:"You Are Special!",
+    text:"Never forget how wonderful you are."
+  },
+  {
+    emoji:"🌞",
+    name:"Sunshine",
+    title:"Shine Bright!",
+    text:"May your day be full of sunshine."
+  },
+  {
+    emoji:"⭐",
+    name:"Star",
+    title:"You're A Star!",
+    text:"Keep shining in your own way."
+  },
+  {
+    emoji:"🍀",
+    name:"Luck",
+    title:"Good Luck!",
+    text:"Wishing you wonderful things ahead."
+  },
+  {
+    emoji:"🕊️",
+    name:"Peace",
+    title:"Peace For You!",
+    text:"Wishing you peace and beautiful moments."
+  }
 ];
 
-const $=id=>document.getElementById(id);
-const video=$('video');
-const photo=$('photo');
+const $ = id => document.getElementById(id);
 
-let stream=null;
-let mode='none';
-let front=true;
-let chosen=0;
-let uploadedURL=null;
+let selected = 0;
+let receivedIndex = null;
 let toastTimer;
-let cameraRequest=0;
 
-const clamp=(v,min,max)=>Math.min(max,Math.max(min,v));
+function showToast(message){
+  clearTimeout(toastTimer);
+  $("toast").textContent = message;
+  $("toast").classList.remove("hidden");
 
-function track(name){
- if(typeof gtag==='function')gtag('event',name);
+  toastTimer = setTimeout(()=>{
+    $("toast").classList.add("hidden");
+  },2500);
 }
 
-function notify(msg){
- $('toast').textContent=msg;
- $('toast').classList.add('show');
- clearTimeout(toastTimer);
- toastTimer=setTimeout(()=>$('toast').classList.remove('show'),3200);
-}
+function buildChoices(){
+  const grid = $("choices");
+  grid.replaceChildren();
 
-function settings(){
- return{
-  strength:+$('strength').value/100,
-  bright:+$('bright').value,
-  warm:+$('warm').value,
-  soft:+$('soft').value,
-  vig:+$('vignetteControl').value/100,
-  grain:+$('grainControl').value/100
- };
-}
+  gifts.forEach((gift,index)=>{
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "choice";
+    btn.setAttribute("aria-label",gift.name);
+    btn.setAttribute("aria-pressed","false");
 
-function styleData(){
- const x=looks[chosen];
- const s=settings();
- const k=s.strength;
- const blend=(a,b)=>a+(b-a)*k;
+    const emoji = document.createElement("span");
+    emoji.className = "emoji";
+    emoji.textContent = gift.emoji;
 
- return{
-  css:`brightness(${Math.max(.1,blend(100,x[2])+s.bright)/100}) contrast(${blend(100,x[3])/100}) saturate(${blend(100,x[4])/100}) sepia(${blend(0,x[5])/100}) hue-rotate(${blend(0,x[6])}deg) blur(${s.soft/22}px)`,
-  tint:x[7],
-  tintOpacity:x[7]==='transparent'?0:x[8]*k,
-  vignette:clamp(x[9]/100*k+s.vig*.55,0,.9),
-  grain:clamp(x[10]/100*k+s.grain*.26,0,.55),
-  shine:chosen===0?0:clamp((x[2]-100)/100*k*.65,0,.15),
-  warm:s.warm/100
- };
-}
+    const name = document.createElement("span");
+    name.className = "name";
+    name.textContent = gift.name;
 
-function apply(){
- const d=styleData();
-
- video.style.filter=d.css;
- photo.style.filter=d.css;
-
- $('tint').style.background=d.tint;
- $('tint').style.opacity=d.tintOpacity;
-
- $('warmOverlay').style.background=d.warm>0?'#ffa441':'#5099ff';
- $('warmOverlay').style.opacity=Math.abs(d.warm)*.32;
-
- $('vignette').style.opacity=d.vignette;
- $('grain').style.opacity=d.grain;
- $('shine').style.opacity=d.shine;
-
- $('effectName').textContent=looks[chosen][0].toUpperCase();
-
- for(const id of [
-  'strength','bright','warm','soft',
-  'vignetteControl','grainControl'
- ]){
-  $(id+'Out').textContent=$(id).value+(id==='strength'?'%':'');
- }
-}
-
-function drawFilters(){
- const box=$('filters');
- box.replaceChildren();
-
- looks.forEach((x,i)=>{
-  const b=document.createElement('button');
-  b.type='button';
-  b.className='filterItem'+(chosen===i?' selected':'');
-
-  b.setAttribute('aria-label',x[0]);
-  b.setAttribute('aria-pressed',String(chosen===i));
-
-  const sw=document.createElement('span');
-  sw.className='swatch';
-  sw.style.setProperty('--c1',x[11]);
-  sw.style.setProperty('--c2',x[12]);
-
-  const label=document.createElement('small');
-  label.textContent=x[0];
-
-  b.append(sw,label);
-
-  b.onclick=()=>{
-   chosen=i;
-   drawFilters();
-   apply();
-   track('filter_select');
-  };
-
-  box.append(b);
- });
-}
-
-function active(on){
- $('empty').style.display=on?'none':'flex';
- $('capture').disabled=!on||mode!=='live';
- $('save').disabled=!on;
- $('retake').disabled=!on;
-}
-
-async function stopCamera(){
- if(stream){
-  stream.getTracks().forEach(t=>t.stop());
-  stream=null;
- }
- video.srcObject=null;
-}
-
-async function startCamera(){
- if(!navigator.mediaDevices?.getUserMedia){
-  notify('Camera requires HTTPS and a supported browser. Use Photo instead.');
-  return;
- }
-
- const request=++cameraRequest;
-
- try{
-  await stopCamera();
-
-  const newStream=await navigator.mediaDevices.getUserMedia({
-   audio:false,
-   video:{
-    facingMode:{ideal:front?'user':'environment'},
-    width:{ideal:1280},
-    height:{ideal:1706}
-   }
+    btn.append(emoji,name);
+    btn.addEventListener("click",()=>choose(index));
+    grid.appendChild(btn);
   });
 
-  if(request!==cameraRequest){
-   newStream.getTracks().forEach(t=>t.stop());
-   return;
-  }
-
-  stream=newStream;
-  video.srcObject=stream;
-  await video.play();
-
-  video.classList.toggle('rear',!front);
-  video.style.display='block';
-  photo.style.display='none';
-
-  mode='live';
-  active(true);
-  apply();
-  track('camera_open');
-  notify('Camera ready');
-
- }catch(err){
-  if(request!==cameraRequest)return;
-  notify('Camera unavailable. Allow camera access or choose Photo.');
-  active(mode==='photo');
- }
+  choose(0);
 }
 
-$('openCamera').onclick=startCamera;
+function choose(index){
+  selected=index;
+  const gift=gifts[index];
 
-$('flip').onclick=()=>{
- front=!front;
- startCamera();
-};
+  $("previewEmoji").textContent=gift.emoji;
+  $("previewTitle").textContent=gift.title;
+  $("previewText").textContent=gift.text;
 
-$('retake').onclick=()=>{
- track('photo_retake');
- startCamera();
-};
-
-$('uploadButton').onclick=()=>$('upload').click();
-
-$('upload').onchange=e=>{
- const file=e.target.files?.[0];
- if(!file)return;
-
- if(!file.type.startsWith('image/')){
-  notify('Select an image file');
-  return;
- }
-
- const u=URL.createObjectURL(file);
- const img=new Image();
-
- img.onload=()=>{
-  cameraRequest++;
-  stopCamera();
-
-  if(uploadedURL)URL.revokeObjectURL(uploadedURL);
-  uploadedURL=u;
-
-  photo.src=u;
-  photo.style.display='block';
-  video.style.display='none';
-  mode='photo';
-
-  active(true);
-  apply();
-  track('photo_upload');
-  notify('Photo ready for editing');
- };
-
- img.onerror=()=>{
-  URL.revokeObjectURL(u);
-  notify('Unable to open this image');
- };
-
- img.src=u;
- e.target.value='';
-};
-
-function photoCanvas(){
- if(mode==='none'){
-  throw Error('Choose a photo or enable camera');
- }
-
- const src=mode==='photo'?photo:video;
-
- if(mode==='photo'&&!photo.complete){
-  throw Error('Photo is still loading');
- }
-
- if(mode==='live'&&video.readyState<2){
-  throw Error('Camera not ready');
- }
-
- const w0=mode==='photo'?photo.naturalWidth:video.videoWidth;
- const h0=mode==='photo'?photo.naturalHeight:video.videoHeight;
-
- if(!w0||!h0){
-  throw Error('Image unavailable');
- }
-
- const scale=Math.min(1,2200/Math.max(w0,h0));
- const w=Math.max(1,Math.round(w0*scale));
- const h=Math.max(1,Math.round(h0*scale));
-
- const c=document.createElement('canvas');
- c.width=w;
- c.height=h;
-
- const ctx=c.getContext('2d');
- if(!ctx)throw Error('Canvas is unavailable');
-
- const d=styleData();
-
- ctx.save();
-
- if(mode==='live'&&front){
-  ctx.translate(w,0);
-  ctx.scale(-1,1);
- }
-
- ctx.filter=d.css;
- ctx.drawImage(src,0,0,w,h);
- ctx.restore();
- ctx.filter='none';
-
- if(d.tintOpacity){
-  ctx.save();
-  ctx.globalCompositeOperation='soft-light';
-  ctx.globalAlpha=d.tintOpacity;
-  ctx.fillStyle=d.tint;
-  ctx.fillRect(0,0,w,h);
-  ctx.restore();
- }
-
- if(d.warm){
-  ctx.save();
-  ctx.globalCompositeOperation='soft-light';
-  ctx.globalAlpha=Math.abs(d.warm)*.32;
-  ctx.fillStyle=d.warm>0?'#ffa441':'#5099ff';
-  ctx.fillRect(0,0,w,h);
-  ctx.restore();
- }
-
- if(d.shine){
-  ctx.save();
-  ctx.globalAlpha=d.shine;
-
-  const g=ctx.createRadialGradient(
-   w*.2,h*.12,0,
-   w*.2,h*.12,Math.max(w,h)*.8
-  );
-
-  g.addColorStop(0,'#ffeed0');
-  g.addColorStop(1,'transparent');
-  ctx.fillStyle=g;
-  ctx.fillRect(0,0,w,h);
-  ctx.restore();
- }
-
- if(d.vignette){
-  ctx.save();
-  const r=Math.max(w,h)*.77;
-
-  const g=ctx.createRadialGradient(
-   w/2,h/2,r*.2,
-   w/2,h/2,r
-  );
-
-  g.addColorStop(0,'rgba(4,2,10,0)');
-  g.addColorStop(1,`rgba(4,2,10,${Math.min(.92,d.vignette)})`);
-
-  ctx.fillStyle=g;
-  ctx.fillRect(0,0,w,h);
-  ctx.restore();
- }
-
- if(d.grain){
-  const noise=document.createElement('canvas');
-  noise.width=160;
-  noise.height=160;
-
-  const nc=noise.getContext('2d');
-  const pixels=nc.createImageData(160,160);
-
-  for(let i=0;i<pixels.data.length;i+=4){
-   const val=Math.random()*255;
-   pixels.data[i]=pixels.data[i+1]=pixels.data[i+2]=val;
-   pixels.data[i+3]=Math.round(d.grain*75);
-  }
-
-  nc.putImageData(pixels,0,0);
-
-  ctx.save();
-  ctx.globalCompositeOperation='screen';
-  ctx.fillStyle=ctx.createPattern(noise,'repeat');
-  ctx.fillRect(0,0,w,h);
-  ctx.restore();
- }
-
- return c;
-}
-
-function blobFromCanvas(c){
- return new Promise((resolve,reject)=>
-  c.toBlob(
-   b=>b?resolve(b):reject(Error('Image export failed')),
-   'image/jpeg',
-   .94
-  )
- );
-}
-
-const makeName=()=>`FAOZAN-Glow-${new Date().toISOString().replace(/[:.]/g,'-')}.jpg`;
-
-async function makeFile(){
- return new File(
-  [await blobFromCanvas(photoCanvas())],
-  makeName(),
-  {type:'image/jpeg'}
- );
-}
-
-function downloadFile(file){
- const url=URL.createObjectURL(file);
- const a=document.createElement('a');
- a.href=url;
- a.download=file.name;
- document.body.append(a);
- a.click();
- a.remove();
- setTimeout(()=>URL.revokeObjectURL(url),10000);
-}
-
-$('save').onclick=async()=>{
- try{
-  const file=await makeFile();
-
-  if(navigator.share&&navigator.canShare?.({files:[file]})){
-   try{
-    await navigator.share({
-     files:[file],
-     title:'MILLION FILTERS'
+  document.querySelectorAll(".choice")
+    .forEach((btn,i)=>{
+      btn.classList.toggle("active",i===index);
+      btn.setAttribute("aria-pressed",
+        String(i===index));
     });
-    track('photo_share');
-    return;
-   }catch(err){
-    if(err.name==='AbortError')return;
-    downloadFile(file);
-    track('photo_save');
-    notify('Image ready in Downloads');
-    return;
-   }
-  }
-
-  downloadFile(file);
-  track('photo_save');
-  notify('Image ready in Downloads');
-
- }catch(err){
-  notify(err.message||'Unable to save image');
- }
-};
-
-$('capture').onclick=async()=>{
- if(mode!=='live')return;
-
- try{
-  const file=await makeFile();
-  const url=URL.createObjectURL(file);
-  const img=new Image();
-
-  img.onload=()=>{
-   if(uploadedURL)URL.revokeObjectURL(uploadedURL);
-   uploadedURL=url;
-
-   photo.src=url;
-   photo.style.display='block';
-   video.style.display='none';
-   mode='photo';
-
-   stopCamera();
-   chosen=0;
-
-   for(const [id,v] of Object.entries({
-    strength:85,
-    bright:0,
-    warm:0,
-    soft:0,
-    vignetteControl:0,
-    grainControl:0
-   })){
-    $(id).value=v;
-   }
-
-   drawFilters();
-   apply();
-   active(true);
-   track('photo_capture');
-   notify('Captured! Tap Save to save or share.');
-  };
-
-  img.onerror=()=>{
-   URL.revokeObjectURL(url);
-   notify('Capture failed. Please try again.');
-  };
-
-  img.src=url;
- }catch(err){
-  notify('Capture failed. Please try again.');
- }
-};
-
-for(const id of [
- 'strength','bright','warm','soft',
- 'vignetteControl','grainControl'
-]){
- $(id).addEventListener('input',apply);
 }
 
-window.addEventListener('pagehide',()=>{
- cameraRequest++;
- stopCamera();
-});
+function giftURL(index){
+  const url = new URL(window.location.href);
 
-drawFilters();
-apply();
-active(false);
+  // Keep the current hosted page.
+  // Only the predefined gift number is shared.
+  url.search = "";
+  url.hash = "";
+  url.searchParams.set("gift",String(index+1));
+
+  return url.toString();
+}
+
+function giftText(index){
+  const gift=gifts[index];
+
+  return (
+    gift.emoji+" "+gift.title+"\n"+
+    gift.text+"\n\n"+
+    "Open your gift 💝\n"+
+    giftURL(index)
+  );
+}
+
+async function shareGift(index){
+  const gift=gifts[index];
+  const url=giftURL(index);
+
+  if(navigator.share){
+    try{
+      await navigator.share({
+        title:"SEND A SMILE",
+        text:gift.emoji+" "+gift.title+
+          "\n"+gift.text,
+        url:url
+      });
+      return;
+    }catch(error){
+      if(error.name==="AbortError") return;
+    }
+  }
+
+  // Browser fallback
+  await copyText(giftText(index));
+}
+
+function whatsapp(index){
+  const message=giftText(index);
+  const link="https://wa.me/?text="+
+    encodeURIComponent(message);
+
+  window.location.href=link;
+}
+
+async function copyText(text){
+  try{
+    await navigator.clipboard.writeText(text);
+    showToast("Gift link copied! 💝");
+  }catch(error){
+    // Fallback for older browsers.
+    const field=document.createElement("textarea");
+    field.value=text;
+    field.style.position="fixed";
+    field.style.opacity="0";
+    field.setAttribute("readonly","");
+    document.body.appendChild(field);
+    field.select();
+
+    let success=false;
+    try{
+      success=document.execCommand("copy");
+    }catch(e){}
+
+    field.remove();
+
+    if(success){
+      showToast("Gift link copied! 💝");
+    }else{
+      showToast("Please use the Share button.");
+    }
+  }
+}
+
+function openReceived(index){
+  const gift=gifts[index];
+  receivedIndex=index;
+
+  $("receivedEmoji").textContent=gift.emoji;
+  $("receivedTitle").textContent=gift.title;
+  $("receivedText").textContent=gift.text;
+
+  $("createScreen").classList.add("hidden");
+  $("receivedScreen").classList.remove("hidden");
+
+  window.scrollTo(0,0);
+}
+
+function openCreate(){
+  receivedIndex=null;
+
+  $("receivedScreen").classList.add("hidden");
+  $("createScreen").classList.remove("hidden");
+
+  // Remove the gift parameter without reloading.
+  const url=new URL(window.location.href);
+  url.searchParams.delete("gift");
+  url.hash="";
+  history.replaceState(null,"",url.toString());
+
+  window.scrollTo(0,0);
+}
+
+function initialize(){
+  buildChoices();
+
+  $("shareBtn").addEventListener("click",()=>{
+    shareGift(selected);
+  });
+
+  $("waBtn").addEventListener("click",()=>{
+    whatsapp(selected);
+  });
+
+  $("copyBtn").addEventListener("click",()=>{
+    copyText(giftURL(selected));
+  });
+
+  $("createOwnBtn").addEventListener("click",()=>{
+    openCreate();
+  });
+
+  $("receivedShareBtn").addEventListener("click",()=>{
+    if(receivedIndex!==null){
+      shareGift(receivedIndex);
+    }
+  });
+
+  const params=new URLSearchParams(
+    window.location.search
+  );
+
+  const raw=params.get("gift");
+
+  if(raw!==null && /^[1-9][0-9]*$/.test(raw)){
+    const index=Number(raw)-1;
+
+    if(Number.isSafeInteger(index) &&
+       index>=0 &&
+       index<gifts.length){
+      openReceived(index);
+    }
+  }
+}
+
+initialize();
 </script>
 
 </body>
