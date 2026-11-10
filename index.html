@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0b0b12">
+<meta name="format-detection" content="telephone=no">
 
 <!-- Google Search Optimization -->
 <title>MILLION FILTERS | Free Online Camera & Photo Filters</title>
@@ -432,31 +433,61 @@ input[type=range]{
  padding-bottom:4px;
 }
 
-/* VERY SMALL WHATSAPP BUTTON - RIGHT SIDE */
-.whatsappSquare{
+/* BUSINESS CONTACT - NO LINK */
+.businessContact{
+ direction:ltr;
+ text-align:left;
+ width:100%;
+ padding:19px 20px;
+ border-radius:18px;
+ border:1px solid rgba(119,188,145,.38);
+ background:linear-gradient(135deg,#103d2b,#174b38);
+ box-shadow:
+  0 10px 28px rgba(0,0,0,.2),
+  inset 0 1px 0 rgba(255,255,255,.07);
+}
+.businessTitle{
+ display:flex;
+ align-items:center;
+ gap:9px;
+ font-size:15px;
+ color:#fff;
+ font-weight:700;
+ letter-spacing:.01em;
+}
+.businessSymbol{
+ width:25px;
+ height:25px;
  display:grid;
  place-items:center;
- width:32px;
- height:32px;
- margin:0 0 0 auto;
- padding:0;
- text-decoration:none;
+ border-radius:8px;
+ background:rgba(67,188,112,.26);
+ color:#c9f0d5;
+ font-size:17px;
+ flex-shrink:0;
+}
+.businessNumber{
+ display:block;
+ direction:ltr;
+ unicode-bidi:isolate;
+ text-align:left;
+ margin:13px 0 8px;
+ font-family:Arial,Helvetica,sans-serif;
+ font-size:clamp(19px,5vw,25px);
+ font-weight:750;
+ letter-spacing:.02em;
  color:#fff;
- border:1px solid rgba(255,255,255,.15);
- border-radius:9px;
- background:linear-gradient(145deg,#32d878,#159a59);
- box-shadow:0 4px 12px rgba(0,0,0,.2);
- transition:transform .16s ease;
- -webkit-tap-highlight-color:transparent;
+ white-space:nowrap;
+ user-select:text;
+ -webkit-user-select:text;
 }
-.whatsappSquare svg{
- width:19px;
- height:19px;
- fill:currentColor;
+.businessNote{
+ display:block;
+ font-size:11px;
+ color:#c4dbcb;
+ letter-spacing:.015em;
 }
-.whatsappSquare:active{
- transform:scale(.95);
-}
+/* END BUSINESS CONTACT */
 
 .credit{
  margin:12px 0 0;
@@ -472,8 +503,7 @@ input[type=range]{
 }
 button:focus-visible,
 input:focus-visible,
-summary:focus-visible,
-a:focus-visible{
+summary:focus-visible{
  outline:2px solid #edc9a4;
  outline-offset:3px;
 }
@@ -641,17 +671,15 @@ a:focus-visible{
 
 <footer class="footer">
 
- <a class="whatsappSquare"
-  href="https://wa.me/966553989766?text=Hello%20MILLION%20FILTERS%2C%20I%20would%20like%20to%20contact%20you."
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="Contact MILLION FILTERS on WhatsApp"
-  title="WhatsApp">
-  <svg viewBox="0 0 32 32" aria-hidden="true"
-   xmlns="http://www.w3.org/2000/svg">
-   <path d="M16 .8A15.1 15.1 0 0 0 3 23.5L.9 31l7.7-2a15.1 15.1 0 1 0 7.4-28.2Zm0 27.4c-2.5 0-4.9-.7-7-2l-.5-.3-4.5 1.2 1.2-4.4-.3-.5A12.3 12.3 0 1 1 16 28.2Zm6.8-9.1c-.4-.2-2.2-1.1-2.5-1.2-.3-.1-.6-.2-.8.2-.2.3-1 1.2-1.2 1.4-.2.2-.4.2-.8 0-.4-.2-1.6-.6-3-1.9-1.1-1-1.9-2.3-2.1-2.7-.2-.4 0-.6.2-.8l.6-.7c.2-.2.3-.4.4-.7.1-.3 0-.5 0-.7l-1.1-2.6c-.3-.7-.6-.6-.8-.6h-.7c-.3 0-.7.1-1 .5-.4.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.9c.2.2 2.5 3.8 6 5.3 1.2.5 2.1.8 2.8 1 1.2.4 2.3.3 3.1.2.9-.1 2.2-.9 2.5-1.8.3-.9.3-1.7.2-1.8-.1-.2-.3-.3-.7-.5Z"/>
-  </svg>
- </a>
+ <!-- Business number, text only, no WhatsApp link -->
+ <div class="businessContact" aria-label="Business contact">
+  <div class="businessTitle">
+   <span class="businessSymbol" aria-hidden="true">✉</span>
+   <span>Contact &amp; Advertising</span>
+  </div>
+  <bdi class="businessNumber" dir="ltr">966553989766+</bdi>
+  <span class="businessNote">Business inquiries only</span>
+ </div>
 
  <p class="credit">FAOZAN - GHADEER</p>
  <p class="copyright">© 2026 MILLION FILTERS · CREATE YOUR GLOW</p>
