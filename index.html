@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -5,8 +6,20 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f7eefa">
 <meta name="description" content="Send a beautiful smile to someone you love. Free greeting cards with personal messages to share around the world.">
+<meta name="keywords" content="send a smile, free gifts, virtual gifts, greeting cards, digital greeting cards, love messages, birthday wishes, romantic gifts, online gifts, share happiness, friendship, special messages">
 <meta name="robots" content="index,follow">
+<link rel="canonical" href="https://millionfilters.com/">
 <title>SEND A SMILE | Share Happiness</title>
+
+<!-- WhatsApp & Social Preview -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SEND A SMILE">
+<meta property="og:title" content="💌 A Special Gift For You!">
+<meta property="og:description" content="Someone is thinking of you. ❤️ A little surprise is waiting for you.">
+<meta property="og:url" content="https://millionfilters.com/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="💌 A Special Gift For You!">
+<meta name="twitter:description" content="Someone is thinking of you. ❤️ A little surprise is waiting for you.">
 
 <style>
 :root{
@@ -99,7 +112,7 @@ h1{
   align-items:center;
   gap:7px;
   color:#5d4867;
-  transition:transform .15s,background .15s, box-shadow .15s;
+  transition:transform .15s,background .15s,box-shadow .15s;
   padding:8px 4px;
 }
 .choice:active{transform:scale(.94)}
@@ -184,7 +197,6 @@ h1{
   50%{opacity:1;transform:scale(1.2)}
 }
 
-/* Optional personal message */
 .personal-message{
   margin:19px auto 0;
   max-width:340px;
@@ -1003,9 +1015,9 @@ function updatePersonal(){
     $("personalInput").value.length+" / 160";
 }
 
-function renderGiftVisual(imgElement, gift){
-  imgElement.src = createGiftSVG(gift.type);
-  imgElement.alt = gift.name;
+function renderGiftVisual(imgElement,gift){
+  imgElement.src=createGiftSVG(gift.type);
+  imgElement.alt=gift.name;
 }
 
 function buildChoices(){
@@ -1040,7 +1052,7 @@ function choose(index){
   selected=index;
   const gift=gifts[index];
 
-  renderGiftVisual($("previewImage"), gift);
+  renderGiftVisual($("previewImage"),gift);
   $("previewTitle").textContent=gift.title;
   $("previewText").textContent=gift.text;
 
@@ -1052,6 +1064,7 @@ function choose(index){
 
 function giftURL(index,message=""){
   const url=new URL(window.location.href);
+  url.pathname="/";
   url.search="";
   url.hash="";
   url.searchParams.set("gift",String(index+1));
@@ -1063,30 +1076,37 @@ function giftURL(index,message=""){
   return url.toString();
 }
 
+/*
+  NEW: Elegant sharing message.
+  One link only.
+  Personal message is optional.
+  Gift details remain visible after opening.
+*/
 function giftText(index,message=""){
-  const gift=gifts[index];
   const personal=cleanMessage(message);
 
   return (
-    gift.name+" - "+gift.title+"\n"+
-    gift.text+
-    (personal?"\n\n💌 "+personal:"")+
-    "\n\nOpen your gift 💝\n"+
+    "💌 Just For You!\n\n"+
+    "Someone is thinking of you. ❤️\n"+
+    "A little surprise is waiting for you.\n"+
+    (personal?"\n💗 "+personal+"\n":"")+
+    "\n🎁 Open your gift:\n"+
     giftURL(index,personal)
   );
 }
 
+/*
+  NEW: Share a single formatted text payload.
+  Avoid sending the URL in two separate fields.
+*/
 async function shareGift(index,message=""){
-  const gift=gifts[index];
   const personal=cleanMessage(message);
-  const url=giftURL(index,personal);
+  const shareMessage=giftText(index,personal);
 
   if(navigator.share){
     try{
       await navigator.share({
-        title:"SEND A SMILE",
-        text:gift.title+"\n"+gift.text+(personal?"\n💌 "+personal:""),
-        url:url
+        text:shareMessage
       });
       return;
     }catch(error){
@@ -1094,13 +1114,13 @@ async function shareGift(index,message=""){
     }
   }
 
-  await copyText(giftText(index,personal));
+  await copyText(shareMessage);
 }
 
 async function copyText(text){
   try{
     await navigator.clipboard.writeText(text);
-    showToast("Gift link copied! 💝");
+    showToast("Copied successfully! 💝");
   }catch(error){
     const field=document.createElement("textarea");
     field.value=text;
@@ -1118,7 +1138,7 @@ async function copyText(text){
     field.remove();
 
     if(success){
-      showToast("Gift link copied! 💝");
+      showToast("Copied successfully! 💝");
     }else{
       showToast("Please use the Share button.");
     }
@@ -1130,11 +1150,11 @@ function openReceived(index,message=""){
   receivedIndex=index;
   receivedMessage=cleanMessage(message);
 
-  renderGiftVisual($("receivedImage"), gift);
+  renderGiftVisual($("receivedImage"),gift);
   $("receivedTitle").textContent=gift.title;
   $("receivedText").textContent=gift.text;
 
-  displayPersonal($("receivedPersonal"), receivedMessage);
+  displayPersonal($("receivedPersonal"),receivedMessage);
 
   $("createScreen").classList.add("hidden");
   $("receivedScreen").classList.remove("hidden");
@@ -1160,8 +1180,9 @@ function openCreate(){
 
 function initialize(){
   buildChoices();
-  $("waImage").src = createPhoneSVG(WHATSAPP_NUMBER);
-  $("waImage").alt = "WhatsApp " + WHATSAPP_NUMBER;
+
+  $("waImage").src=createPhoneSVG(WHATSAPP_NUMBER);
+  $("waImage").alt="WhatsApp "+WHATSAPP_NUMBER;
 
   $("personalInput").addEventListener("input",updatePersonal);
 
@@ -1192,7 +1213,7 @@ function initialize(){
     if(Number.isSafeInteger(index) &&
        index>=0 &&
        index<gifts.length){
-      openReceived(index, cleanMessage(params.get("msg")));
+      openReceived(index,cleanMessage(params.get("msg")));
     }
   }
 }
