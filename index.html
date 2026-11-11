@@ -11,6 +11,22 @@
 <link rel="canonical" href="https://millionfilters.com/">
 <title>SEND A SMILE | Share Happiness</title>
 
+<!-- Cloudflare Web Analytics -->
+<script
+  defer
+  src="https://static.cloudflareinsights.com/beacon.min.js"
+  data-cf-beacon='{"token":"3b9b1e3003164f9a9bd0b36838333860"}'>
+</script>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5RWJ4Q8L8X"></script>
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());
+gtag('config','G-5RWJ4Q8L8X');
+</script>
+
 <!-- WhatsApp & Social Preview -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SEND A SMILE">
@@ -196,7 +212,6 @@ h1{
   0%,100%{opacity:.3;transform:scale(.75)}
   50%{opacity:1;transform:scale(1.2)}
 }
-
 .personal-message{
   margin:19px auto 0;
   max-width:340px;
@@ -1077,7 +1092,7 @@ function giftURL(index,message=""){
 }
 
 /*
-  NEW: Elegant sharing message.
+  Elegant sharing message.
   One link only.
   Personal message is optional.
   Gift details remain visible after opening.
@@ -1096,7 +1111,7 @@ function giftText(index,message=""){
 }
 
 /*
-  NEW: Share a single formatted text payload.
+  Share a single formatted text payload.
   Avoid sending the URL in two separate fields.
 */
 async function shareGift(index,message=""){
