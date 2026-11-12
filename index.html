@@ -1,296 +1,476 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>متجر مميز</title>
-  <meta name="description" content="منتج مميز بتصميم مشرق ولمسة طبيعية جذابة." />
-  <style>
-    :root{
-      --bg1:#fffdf3;
-      --bg2:#fff6d8;
-      --card:#ffffff;
-      --text:#213547;
-      --muted:#5f6f7b;
-      --accent:#ff9f1c;
-      --accent2:#ffbf69;
-      --green:#46a758;
-      --green2:#86d98c;
-      --line:#e9ecef;
-      --shadow:0 20px 45px rgba(0,0,0,.10);
-      --radius:28px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fff9e8">
 
-    *{box-sizing:border-box}
+<title>MILLION DEALS | تسوق بذكاء</title>
 
-    body{
-      margin:0;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(circle at top right, rgba(134,217,140,.25), transparent 22%),
-        radial-gradient(circle at top left, rgba(255,191,105,.25), transparent 22%),
-        linear-gradient(180deg, var(--bg1), var(--bg2));
-      min-height:100vh;
-      overflow-x:hidden;
-    }
+<meta name="description" content="MILLION DEALS - اكتشف منتجات مختارة من أمازون السعودية. تسوق مستلزمات السيارات والإلكترونيات والمنزل والمزيد.">
 
-    .wrap{
-      width:min(92%, 760px);
-      margin:0 auto;
-      padding:28px 0 50px;
-      position:relative;
-    }
+<meta name="keywords" content="عروض, تسوق, أمازون السعودية, منتجات, منفاخ إطارات, مستلزمات سيارات, إلكترونيات, منزل, shopping, deals, amazon saudi">
 
-    /* لمسة شجر زخرفية */
-    .leaf{
-      position:fixed;
-      z-index:0;
-      opacity:.14;
-      pointer-events:none;
-      font-size:90px;
-      filter:blur(.3px);
-    }
-    .leaf.l1{top:30px; right:18px; transform:rotate(18deg)}
-    .leaf.l2{top:180px; left:12px; transform:rotate(-22deg)}
-    .leaf.l3{bottom:120px; right:8px; transform:rotate(10deg)}
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://millionfilters.com/">
 
-    .hero{
-      position:relative;
-      z-index:1;
-      text-align:center;
-      padding:18px 14px 8px;
-    }
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MILLION DEALS">
+<meta property="og:title" content="MILLION DEALS | تسوق بذكاء">
+<meta property="og:description" content="اختيارات مميزة من أمازون السعودية">
+<meta property="og:url" content="https://millionfilters.com/">
 
-    .badge{
-      display:inline-block;
-      background:linear-gradient(135deg,var(--green),var(--green2));
-      color:#fff;
-      padding:10px 18px;
-      border-radius:999px;
-      font-size:14px;
-      font-weight:700;
-      box-shadow:0 10px 22px rgba(70,167,88,.22);
-      margin-bottom:18px;
-    }
+<!-- Cloudflare Analytics -->
+<script defer
+src="https://static.cloudflareinsights.com/beacon.min.js"
+data-cf-beacon='{"token":"3b9b1e3003164f9a9bd0b36838333860"}'>
+</script>
 
-    h1{
-      margin:0 0 10px;
-      font-size:clamp(30px,5vw,48px);
-      line-height:1.2;
-      font-weight:800;
-      color:#17324a;
-    }
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5RWJ4Q8L8X"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
 
-    .sub{
-      margin:0 auto;
-      max-width:560px;
-      color:var(--muted);
-      font-size:18px;
-      line-height:1.8;
-    }
+function gtag(){
+  dataLayer.push(arguments);
+}
 
-    .card{
-      position:relative;
-      z-index:1;
-      margin-top:28px;
-      background:rgba(255,255,255,.88);
-      backdrop-filter:blur(10px);
-      border:1px solid rgba(255,255,255,.75);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      overflow:hidden;
-    }
+gtag('js', new Date());
+gtag('config', 'G-5RWJ4Q8L8X');
+</script>
 
-    .topGlow{
-      height:10px;
-      background:linear-gradient(90deg,var(--green),var(--accent),#ffd166,var(--green2));
-    }
+<style>
+:root{
+  --green:#41aa70;
+  --green-dark:#237b58;
+  --green-light:#dff6df;
+  --orange:#ff9a25;
+  --gold:#e9b85e;
+  --cream:#fff9e8;
+  --ink:#19334b;
+  --muted:#71808a;
+}
 
-    .product{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:28px;
-      padding:26px;
-      align-items:center;
-    }
+*{
+  box-sizing:border-box;
+}
 
-    .imageBox{
-      background:linear-gradient(180deg,#ffffff,#f8fff7);
-      border:1px solid #eef5ee;
-      border-radius:26px;
-      padding:18px;
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.6);
-    }
+html{
+  min-height:100%;
+  scroll-behavior:smooth;
+}
 
-    .imageBox img{
-      width:100%;
-      display:block;
-      border-radius:18px;
-      object-fit:contain;
-    }
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:-apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  Tahoma,
+  Arial,
+  sans-serif;
+  color:var(--ink);
 
-    .info h2{
-      margin:0 0 12px;
-      font-size:clamp(24px,4vw,34px);
-      line-height:1.35;
-      color:#152c3f;
-    }
+  background:
+    radial-gradient(
+      circle at 95% 10%,
+      #d9f7d9 0%,
+      transparent 36%
+    ),
+    radial-gradient(
+      circle at 5% 25%,
+      #fff0cf 0%,
+      transparent 40%
+    ),
+    linear-gradient(
+      160deg,
+      #fffdf5,
+      #f5ffe9,
+      #fff5d9
+    );
+}
 
-    .desc{
-      margin:0 0 18px;
-      color:var(--muted);
-      line-height:1.9;
-      font-size:17px;
-    }
+/* Decorations */
 
-    .priceWrap{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-bottom:18px;
-    }
+.leaf{
+  position:fixed;
+  font-size:80px;
+  opacity:.13;
+  pointer-events:none;
+  z-index:0;
+}
 
-    .priceTag{
-      font-size:34px;
-      font-weight:800;
-      color:#17324a;
-    }
+.leaf.one{
+  top:110px;
+  right:10px;
+  transform:rotate(20deg);
+}
 
-    .currency{
-      font-size:18px;
-      font-weight:700;
-      color:var(--green);
-      background:#eefaf0;
-      padding:7px 12px;
-      border-radius:999px;
-    }
+.leaf.two{
+  top:430px;
+  left:5px;
+  transform:rotate(-25deg);
+}
 
-    .mini{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      background:#fff7e8;
-      color:#9a5a00;
-      border:1px solid #ffe2ae;
-      padding:10px 14px;
-      border-radius:14px;
-      font-size:14px;
-      font-weight:700;
-      margin-bottom:20px;
-    }
+.leaf.three{
+  bottom:60px;
+  right:0;
+  transform:rotate(35deg);
+}
 
-    .btn{
-      display:inline-block;
-      width:100%;
-      text-align:center;
-      text-decoration:none;
-      background:linear-gradient(135deg,var(--accent),#ff7b00);
-      color:#fff;
-      font-size:21px;
-      font-weight:800;
-      padding:18px 22px;
-      border-radius:18px;
-      box-shadow:0 14px 30px rgba(255,123,0,.26);
-      transition:.2s ease;
-    }
+/* Header */
 
-    .btn:hover{
-      transform:translateY(-2px);
-      filter:brightness(1.03);
-    }
+header{
+  position:relative;
+  z-index:1;
+  text-align:center;
+  padding:26px 15px 18px;
+}
 
-    .disclosure{
-      margin-top:16px;
-      color:#6f7b84;
-      font-size:13px;
-      line-height:1.8;
-      text-align:center;
-    }
+.logo{
+  direction:ltr;
+  font-size:27px;
+  font-weight:900;
+  letter-spacing:1.5px;
+  color:var(--ink);
+}
 
-    .footerNote{
-      text-align:center;
-      margin-top:22px;
-      color:#7d8a94;
-      font-size:14px;
-    }
+.logo span{
+  color:var(--green);
+}
 
-    @media (max-width: 760px){
-      .product{
-        grid-template-columns:1fr;
-        padding:18px;
-        gap:18px;
-      }
+.tagline{
+  color:var(--green-dark);
+  font-size:13px;
+  margin-top:9px;
+  font-weight:600;
+}
 
-      .info{
-        text-align:center;
-      }
+/* Main */
 
-      .priceWrap{
-        justify-content:center;
-      }
+main{
+  position:relative;
+  z-index:1;
+  width:min(92%,520px);
+  margin:0 auto;
+  padding-bottom:35px;
+}
 
-      .btn{
-        font-size:20px;
-      }
-    }
-  </style>
+/* Heading */
+
+.intro{
+  text-align:center;
+  padding:12px 5px 25px;
+}
+
+.badge{
+  display:inline-block;
+  background:linear-gradient(
+    130deg,
+    #38a865,
+    #80d985
+  );
+  color:white;
+  border-radius:50px;
+  padding:11px 23px;
+  font-size:14px;
+  font-weight:800;
+  box-shadow:0 10px 25px #38a86529;
+}
+
+h1{
+  font-size:29px;
+  font-weight:900;
+  line-height:1.3;
+  margin:19px 0 8px;
+}
+
+.subtitle{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.8;
+  margin:0;
+}
+
+/* Product Card */
+
+.card{
+  background:white;
+  border-radius:29px;
+  overflow:hidden;
+  border:1px solid #ebefe6;
+  box-shadow:
+    0 18px 45px #3b65421a;
+}
+
+.color-line{
+  height:9px;
+  background:linear-gradient(
+    90deg,
+    #45b875,
+    #ffd075,
+    #ff9b29,
+    #87dba0
+  );
+}
+
+/* Image */
+
+.image-box{
+  background:linear-gradient(
+    150deg,
+    #ffffff,
+    #f5fff2
+  );
+  padding:15px;
+}
+
+.image-box img{
+  width:100%;
+  height:275px;
+  object-fit:contain;
+  display:block;
+  border-radius:18px;
+}
+
+/* Product Details */
+
+.details{
+  padding:22px;
+  text-align:center;
+}
+
+.category{
+  color:var(--green-dark);
+  font-size:13px;
+  font-weight:800;
+}
+
+h2{
+  font-size:23px;
+  line-height:1.5;
+  margin:12px 0;
+  font-weight:900;
+}
+
+.description{
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.9;
+  margin:0 auto 18px;
+  max-width:390px;
+}
+
+/* Price */
+
+.price{
+  font-size:35px;
+  font-weight:900;
+  color:var(--ink);
+  direction:rtl;
+}
+
+.currency{
+  display:inline-block;
+  font-size:16px;
+  color:var(--green-dark);
+  background:#eaf8ed;
+  padding:6px 12px;
+  border-radius:30px;
+  margin-right:7px;
+}
+
+.price-note{
+  color:#969e9b;
+  font-size:11px;
+  margin-top:7px;
+}
+
+/* Shop Button */
+
+.buy{
+  display:block;
+  margin-top:23px;
+  padding:17px;
+  border-radius:17px;
+
+  background:linear-gradient(
+    135deg,
+    #ffa928,
+    #ff8500
+  );
+
+  color:white;
+  text-decoration:none;
+  text-align:center;
+  font-size:20px;
+  font-weight:900;
+
+  box-shadow:
+    0 12px 25px #ff9c3540;
+
+  transition:.2s ease;
+}
+
+.buy:active{
+  transform:scale(.98);
+}
+
+/* Disclosure */
+
+.disclosure{
+  font-size:11px;
+  color:#7d8783;
+  text-align:center;
+  line-height:1.8;
+  margin:24px 7px 5px;
+}
+
+/* Footer */
+
+footer{
+  position:relative;
+  z-index:1;
+  text-align:center;
+  color:#8a9691;
+  font-size:12px;
+  padding:17px 10px 29px;
+}
+
+@media(max-width:390px){
+  h1{
+    font-size:26px;
+  }
+
+  .image-box img{
+    height:235px;
+  }
+
+  .details{
+    padding:18px;
+  }
+}
+
+</style>
 </head>
+
 <body>
 
-  <div class="leaf l1">🌿</div>
-  <div class="leaf l2">🍃</div>
-  <div class="leaf l3">🌿</div>
+<!-- Natural decorations -->
+<div class="leaf one">🌿</div>
+<div class="leaf two">🍃</div>
+<div class="leaf three">🌱</div>
 
-  <div class="wrap">
-    <section class="hero">
-      <div class="badge">اختيار مميز</div>
-      <h1>تسوق منتجًا رائعًا</h1>
-      <p class="sub">
-        تصميم مشرق وأنيق لعرض المنتج بشكل واضح وجذاب مع لمسة طبيعية مريحة.
-      </p>
-    </section>
+<header>
 
-    <section class="card">
-      <div class="topGlow"></div>
-
-      <div class="product">
-        <div class="imageBox">
-          <img src="product.png" alt="صورة المنتج">
-        </div>
-
-        <div class="info">
-          <h2>اسم المنتج هنا</h2>
-
-          <p class="desc">
-            وصف بسيط ومختصر للمنتج. يمكنك كتابة ميزة أو ميزتين فقط بشكل واضح وسهل
-            حتى تكون الواجهة نظيفة وفاخرة.
-          </p>
-
-          <div class="priceWrap">
-            <div class="priceTag">78.75</div>
-            <div class="currency">ر.س</div>
-          </div>
-
-          <div class="mini">🌱 جودة جميلة • عرض مميز</div>
-
-          <!-- ضع رابط العمولة هنا -->
-          <a class="btn" href="https://amzn.to/4F6kEid" target="_blank" rel="noopener noreferrer">
-            تسوق فقط
-          </a>
-
-          <div class="disclosure">
-            إفصاح: قد نحصل على عمولة من بعض الروابط المؤهلة.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="footerNote">
-      واجهة مشرقة بلمسة طبيعية
-    </div>
+  <div class="logo">
+    MILLION <span>DEALS</span>
   </div>
+
+  <div class="tagline">
+    اكتشف • اختر • تسوق
+  </div>
+
+</header>
+
+<main>
+
+  <div class="intro">
+
+    <div class="badge">
+      ✨ اختيار مميز
+    </div>
+
+    <h1>
+      تسوق بذكاء وأناقة
+    </h1>
+
+    <p class="subtitle">
+      منتجات مختارة من أمازون السعودية
+    </p>
+
+  </div>
+
+  <article class="card">
+
+    <div class="color-line"></div>
+
+    <div class="image-box">
+
+      <img
+        src="./product.png"
+        alt="منفاخ هواء لإطارات السيارات"
+        loading="eager"
+        onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/faozan-app/millionfilters/main/product.png';"
+      >
+
+    </div>
+
+    <div class="details">
+
+      <div class="category">
+        🚗 مستلزمات السيارات
+      </div>
+
+      <h2>
+        منفاخ إطارات السيارة 12 فولت
+      </h2>
+
+      <p class="description">
+        منفاخ هواء مزدوج الأسطوانات،
+        مع مقياس ضغط وخرطوم وحقيبة حمل.
+        عملي للسيارة والرحلات.
+      </p>
+
+      <div class="price">
+        66.21
+        <span class="currency">ر.س</span>
+      </div>
+
+      <div class="price-note">
+        السعر المعروض سابقًا، وقد يتغير لدى أمازون
+      </div>
+
+      <a
+        class="buy"
+        id="buy"
+        href="https://link.amazon/B0dXKzc5P"
+        target="_blank"
+        rel="nofollow sponsored noopener noreferrer"
+      >
+        تسوق
+      </a>
+
+    </div>
+
+  </article>
+
+  <p class="disclosure">
+    بصفتي شريكًا في أمازون،
+    أربح من المشتريات المؤهلة.
+  </p>
+
+</main>
+
+<footer>
+  MILLION DEALS © 2026
+</footer>
+
+<script>
+document.getElementById('buy')
+.addEventListener('click',function(){
+
+  if(typeof gtag === 'function'){
+    gtag('event','affiliate_click',{
+      product_id:'car_inflator',
+      affiliate:'amazon_sa',
+      outbound_url:this.href
+    });
+  }
+
+});
+</script>
 
 </body>
 </html>
