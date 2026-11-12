@@ -1,244 +1,296 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#19382f">
-<meta name="description" content="MILLION DEALS - منتجات مختارة من أمازون السعودية">
-<meta name="robots" content="index,follow">
-<link rel="canonical" href="https://millionfilters.com/">
-<title>MILLION DEALS | اختيارات أنيقة</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>متجر مميز</title>
+  <meta name="description" content="منتج مميز بتصميم مشرق ولمسة طبيعية جذابة." />
+  <style>
+    :root{
+      --bg1:#fffdf3;
+      --bg2:#fff6d8;
+      --card:#ffffff;
+      --text:#213547;
+      --muted:#5f6f7b;
+      --accent:#ff9f1c;
+      --accent2:#ffbf69;
+      --green:#46a758;
+      --green2:#86d98c;
+      --line:#e9ecef;
+      --shadow:0 20px 45px rgba(0,0,0,.10);
+      --radius:28px;
+    }
 
-<!-- Cloudflare -->
-<script defer
-src="https://static.cloudflareinsights.com/beacon.min.js"
-data-cf-beacon='{"token":"3b9b1e3003164f9a9bd0b36838333860"}'>
-</script>
+    *{box-sizing:border-box}
 
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5RWJ4Q8L8X"></script>
-<script>
-window.dataLayer=window.dataLayer||[];
-function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());
-gtag('config','G-5RWJ4Q8L8X');
-</script>
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(134,217,140,.25), transparent 22%),
+        radial-gradient(circle at top left, rgba(255,191,105,.25), transparent 22%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      min-height:100vh;
+      overflow-x:hidden;
+    }
 
-<style>
-:root{
---green:#19382f;
---gold:#b7955b;
---cream:#faf8f2;
---text:#263b34;
-}
+    .wrap{
+      width:min(92%, 760px);
+      margin:0 auto;
+      padding:28px 0 50px;
+      position:relative;
+    }
 
-*{box-sizing:border-box}
+    /* لمسة شجر زخرفية */
+    .leaf{
+      position:fixed;
+      z-index:0;
+      opacity:.14;
+      pointer-events:none;
+      font-size:90px;
+      filter:blur(.3px);
+    }
+    .leaf.l1{top:30px; right:18px; transform:rotate(18deg)}
+    .leaf.l2{top:180px; left:12px; transform:rotate(-22deg)}
+    .leaf.l3{bottom:120px; right:8px; transform:rotate(10deg)}
 
-body{
-margin:0;
-font-family:-apple-system,BlinkMacSystemFont,
-"Segoe UI",Tahoma,Arial,sans-serif;
-background:var(--cream);
-color:var(--text);
-}
+    .hero{
+      position:relative;
+      z-index:1;
+      text-align:center;
+      padding:18px 14px 8px;
+    }
 
-header{
-background:white;
-padding:23px 15px;
-text-align:center;
-border-bottom:1px solid #e9e5dd;
-}
+    .badge{
+      display:inline-block;
+      background:linear-gradient(135deg,var(--green),var(--green2));
+      color:#fff;
+      padding:10px 18px;
+      border-radius:999px;
+      font-size:14px;
+      font-weight:700;
+      box-shadow:0 10px 22px rgba(70,167,88,.22);
+      margin-bottom:18px;
+    }
 
-.logo{
-font-size:25px;
-font-weight:900;
-letter-spacing:2px;
-direction:ltr;
-color:var(--green);
-}
+    h1{
+      margin:0 0 10px;
+      font-size:clamp(30px,5vw,48px);
+      line-height:1.2;
+      font-weight:800;
+      color:#17324a;
+    }
 
-.logo span{color:var(--gold)}
+    .sub{
+      margin:0 auto;
+      max-width:560px;
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.8;
+    }
 
-main{
-max-width:520px;
-margin:auto;
-padding:30px 17px;
-}
+    .card{
+      position:relative;
+      z-index:1;
+      margin-top:28px;
+      background:rgba(255,255,255,.88);
+      backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,.75);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
 
-.intro{text-align:center;margin-bottom:25px}
+    .topGlow{
+      height:10px;
+      background:linear-gradient(90deg,var(--green),var(--accent),#ffd166,var(--green2));
+    }
 
-.intro small{
-color:var(--gold);
-font-weight:bold;
-}
+    .product{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:28px;
+      padding:26px;
+      align-items:center;
+    }
 
-h1{
-font-size:29px;
-margin:12px 0 8px;
-}
+    .imageBox{
+      background:linear-gradient(180deg,#ffffff,#f8fff7);
+      border:1px solid #eef5ee;
+      border-radius:26px;
+      padding:18px;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.6);
+    }
 
-.intro p{
-font-size:14px;
-color:#78847d;
-}
+    .imageBox img{
+      width:100%;
+      display:block;
+      border-radius:18px;
+      object-fit:contain;
+    }
 
-.product{
-background:white;
-border-radius:25px;
-overflow:hidden;
-box-shadow:0 15px 45px #19382f12;
-border:1px solid #ece9e1;
-}
+    .info h2{
+      margin:0 0 12px;
+      font-size:clamp(24px,4vw,34px);
+      line-height:1.35;
+      color:#152c3f;
+    }
 
-.product img{
-width:100%;
-height:290px;
-object-fit:contain;
-display:block;
-background:#f5f5f0;
-padding:20px;
-}
+    .desc{
+      margin:0 0 18px;
+      color:var(--muted);
+      line-height:1.9;
+      font-size:17px;
+    }
 
-.details{padding:25px}
+    .priceWrap{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
 
-.category{
-color:var(--gold);
-font-weight:bold;
-font-size:13px;
-}
+    .priceTag{
+      font-size:34px;
+      font-weight:800;
+      color:#17324a;
+    }
 
-h2{
-font-size:23px;
-margin:13px 0;
-}
+    .currency{
+      font-size:18px;
+      font-weight:700;
+      color:var(--green);
+      background:#eefaf0;
+      padding:7px 12px;
+      border-radius:999px;
+    }
 
-.description{
-color:#748078;
-line-height:1.9;
-font-size:14px;
-}
+    .mini{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:#fff7e8;
+      color:#9a5a00;
+      border:1px solid #ffe2ae;
+      padding:10px 14px;
+      border-radius:14px;
+      font-size:14px;
+      font-weight:700;
+      margin-bottom:20px;
+    }
 
-.price{
-font-size:32px;
-font-weight:900;
-color:var(--green);
-margin-top:19px;
-}
+    .btn{
+      display:inline-block;
+      width:100%;
+      text-align:center;
+      text-decoration:none;
+      background:linear-gradient(135deg,var(--accent),#ff7b00);
+      color:#fff;
+      font-size:21px;
+      font-weight:800;
+      padding:18px 22px;
+      border-radius:18px;
+      box-shadow:0 14px 30px rgba(255,123,0,.26);
+      transition:.2s ease;
+    }
 
-.price small{font-size:16px}
+    .btn:hover{
+      transform:translateY(-2px);
+      filter:brightness(1.03);
+    }
 
-.hint{
-font-size:11px;
-color:#8a9088;
-margin-top:6px;
-}
+    .disclosure{
+      margin-top:16px;
+      color:#6f7b84;
+      font-size:13px;
+      line-height:1.8;
+      text-align:center;
+    }
 
-.buy{
-display:block;
-text-align:center;
-background:var(--green);
-color:white;
-padding:18px;
-border-radius:15px;
-font-size:16px;
-font-weight:bold;
-text-decoration:none;
-margin-top:24px;
-}
+    .footerNote{
+      text-align:center;
+      margin-top:22px;
+      color:#7d8a94;
+      font-size:14px;
+    }
 
-.buy:active{background:#315a49}
+    @media (max-width: 760px){
+      .product{
+        grid-template-columns:1fr;
+        padding:18px;
+        gap:18px;
+      }
 
-.disclosure{
-font-size:12px;
-color:#858b84;
-text-align:center;
-line-height:1.9;
-margin:25px 5px;
-}
+      .info{
+        text-align:center;
+      }
 
-footer{
-text-align:center;
-font-size:12px;
-color:#89918b;
-padding:25px 12px;
-border-top:1px solid #e8e3da;
-}
-</style>
+      .priceWrap{
+        justify-content:center;
+      }
+
+      .btn{
+        font-size:20px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<header>
-<div class="logo">MILLION <span>DEALS</span></div>
-</header>
+  <div class="leaf l1">🌿</div>
+  <div class="leaf l2">🍃</div>
+  <div class="leaf l3">🌿</div>
 
-<main>
+  <div class="wrap">
+    <section class="hero">
+      <div class="badge">اختيار مميز</div>
+      <h1>تسوق منتجًا رائعًا</h1>
+      <p class="sub">
+        تصميم مشرق وأنيق لعرض المنتج بشكل واضح وجذاب مع لمسة طبيعية مريحة.
+      </p>
+    </section>
 
-<div class="intro">
-<small>✦ منتجات مختارة</small>
-<h1>تسوّق بذوق مختلف</h1>
-<p>اختيارات أنيقة وبسيطة من أمازون السعودية</p>
-</div>
+    <section class="card">
+      <div class="topGlow"></div>
 
-<article class="product">
+      <div class="product">
+        <div class="imageBox">
+          <img src="product.png" alt="صورة المنتج">
+        </div>
 
-<img src="product.png"
-alt="منفاخ إطارات السيارة 12 فولت">
+        <div class="info">
+          <h2>اسم المنتج هنا</h2>
 
-<div class="details">
+          <p class="desc">
+            وصف بسيط ومختصر للمنتج. يمكنك كتابة ميزة أو ميزتين فقط بشكل واضح وسهل
+            حتى تكون الواجهة نظيفة وفاخرة.
+          </p>
 
-<div class="category">🚗 مستلزمات السيارات</div>
+          <div class="priceWrap">
+            <div class="priceTag">78.75</div>
+            <div class="currency">ر.س</div>
+          </div>
 
-<h2>منفاخ إطارات السيارة 12 فولت</h2>
+          <div class="mini">🌱 جودة جميلة • عرض مميز</div>
 
-<p class="description">
-منفاخ هواء مزدوج الأسطوانات،
-مع خرطوم ومقياس ضغط وحقيبة حمل.
-مناسب للسيارة والرحلات.
-</p>
+          <!-- ضع رابط العمولة هنا -->
+          <a class="btn" href="https://amzn.to/4F6kEid" target="_blank" rel="noopener noreferrer">
+            تسوق فقط
+          </a>
 
-<div class="price">66.21 <small>ر.س</small></div>
+          <div class="disclosure">
+            إفصاح: قد نحصل على عمولة من بعض الروابط المؤهلة.
+          </div>
+        </div>
+      </div>
+    </section>
 
-<div class="hint">
-السعر المرصود سابقًا، وقد يتغير لدى أمازون.
-</div>
-
-<a class="buy"
-href="https://link.amazon/B0dXKzc5P"
-target="_blank"
-rel="nofollow sponsored noopener noreferrer"
-id="buy">
-تسوّق من أمازون ←
-</a>
-
-</div>
-</article>
-
-<p class="disclosure">
-بصفتي شريكًا في أمازون، أربح من عمليات
-الشراء المؤهلة. تتم عمليات الشراء والدفع
-مباشرة لدى أمازون.
-</p>
-
-</main>
-
-<footer>
-MILLION DEALS © 2026
-<br>
-Faozan – Ghadeer
-</footer>
-
-<script>
-document.getElementById('buy').addEventListener('click',function(){
-if(typeof gtag==='function'){
-gtag('event','affiliate_click',{
-product_id:'car_inflator',
-affiliate:'amazon_sa'
-});
-}
-});
-</script>
+    <div class="footerNote">
+      واجهة مشرقة بلمسة طبيعية
+    </div>
+  </div>
 
 </body>
 </html>
