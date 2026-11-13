@@ -8,9 +8,9 @@
 
 <title>MILLION DEALS | تسوق بذكاء</title>
 
-<meta name="description" content="MILLION DEALS - اكتشف منتجات مختارة من أمازون السعودية. تسوق مستلزمات السيارات والإلكترونيات والمنزل والمزيد.">
+<meta name="description" content="MILLION DEALS - اكتشف منتجات مختارة من أمازون السعودية. كرسي رحلات قابل للطي مع مظلة شمسية للتخييم والشاطئ والأنشطة الخارجية.">
 
-<meta name="keywords" content="عروض, تسوق, أمازون السعودية, منتجات, منفاخ إطارات, مستلزمات سيارات, إلكترونيات, منزل, shopping, deals, amazon saudi">
+<meta name="keywords" content="كرسي رحلات, كرسي تخييم, كرسي مظلة, كرسي قابل للطي, مستلزمات الرحلات, أمازون السعودية, تسوق, camping chair, beach chair, outdoor chair">
 
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://millionfilters.com/">
@@ -18,8 +18,9 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="MILLION DEALS">
 <meta property="og:title" content="MILLION DEALS | تسوق بذكاء">
-<meta property="og:description" content="اختيارات مميزة من أمازون السعودية">
+<meta property="og:description" content="كرسي رحلات قابل للطي مع مظلة شمسية - اكتشف المنتج على أمازون السعودية">
 <meta property="og:url" content="https://millionfilters.com/">
+<meta property="og:image" content="https://millionfilters.com/product.png">
 
 <!-- Cloudflare Analytics -->
 <script defer
@@ -91,7 +92,7 @@ body{
     );
 }
 
-/* Decorations */
+/* Natural decorations */
 
 .leaf{
   position:fixed;
@@ -200,8 +201,7 @@ h1{
   border-radius:29px;
   overflow:hidden;
   border:1px solid #ebefe6;
-  box-shadow:
-    0 18px 45px #3b65421a;
+  box-shadow:0 18px 45px #3b65421a;
 }
 
 .color-line{
@@ -215,7 +215,7 @@ h1{
   );
 }
 
-/* Image */
+/* Product Image */
 
 .image-box{
   background:linear-gradient(
@@ -228,7 +228,7 @@ h1{
 
 .image-box img{
   width:100%;
-  height:275px;
+  height:320px;
   object-fit:contain;
   display:block;
   border-radius:18px;
@@ -287,7 +287,7 @@ h2{
   margin-top:7px;
 }
 
-/* Shop Button */
+/* Shopping Button */
 
 .buy{
   display:block;
@@ -307,9 +307,7 @@ h2{
   font-size:20px;
   font-weight:900;
 
-  box-shadow:
-    0 12px 25px #ff9c3540;
-
+  box-shadow:0 12px 25px #ff9c3540;
   transition:.2s ease;
 }
 
@@ -317,7 +315,7 @@ h2{
   transform:scale(.98);
 }
 
-/* Disclosure */
+/* Affiliate Disclosure */
 
 .disclosure{
   font-size:11px;
@@ -344,7 +342,7 @@ footer{
   }
 
   .image-box img{
-    height:235px;
+    height:275px;
   }
 
   .details{
@@ -357,7 +355,6 @@ footer{
 
 <body>
 
-<!-- Natural decorations -->
 <div class="leaf one">🌿</div>
 <div class="leaf two">🍃</div>
 <div class="leaf three">🌱</div>
@@ -400,9 +397,8 @@ footer{
 
       <img
         src="./product.png"
-        alt="منفاخ هواء لإطارات السيارات"
+        alt="كرسي رحلات أسود قابل للطي مع مظلة شمسية"
         loading="eager"
-        onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/faozan-app/millionfilters/main/product.png';"
       >
 
     </div>
@@ -410,32 +406,32 @@ footer{
     <div class="details">
 
       <div class="category">
-        🚗 مستلزمات السيارات
+        🌿 الرحلات والتخييم
       </div>
 
       <h2>
-        منفاخ إطارات السيارة 12 فولت
+        كرسي رحلات قابل للطي مع مظلة شمسية
       </h2>
 
       <p class="description">
-        منفاخ هواء مزدوج الأسطوانات،
-        مع مقياس ضغط وخرطوم وحقيبة حمل.
-        عملي للسيارة والرحلات.
+        كرسي مريح للرحلات والتخييم والشاطئ،
+        مزود بمظلة للحماية من أشعة الشمس.
+        تصميم قابل للطي وسهل الحمل والتخزين.
       </p>
 
       <div class="price">
-        66.21
+        180
         <span class="currency">ر.س</span>
       </div>
 
       <div class="price-note">
-        السعر المعروض سابقًا، وقد يتغير لدى أمازون
+        السعر وقت الاختيار، وقد يتغير لدى أمازون
       </div>
 
       <a
         class="buy"
         id="buy"
-        href="https://link.amazon/B0dXKzc5P"
+        href="https://link.amazon/B041Eab8N"
         target="_blank"
         rel="nofollow sponsored noopener noreferrer"
       >
@@ -463,9 +459,11 @@ document.getElementById('buy')
 
   if(typeof gtag === 'function'){
     gtag('event','affiliate_click',{
-      product_id:'car_inflator',
+      product_id:'camping_chair_canopy',
       affiliate:'amazon_sa',
-      outbound_url:this.href
+      outbound_url:this.href,
+      currency:'SAR',
+      product_price:180
     });
   }
 
