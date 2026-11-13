@@ -315,6 +315,60 @@ h2{
   transform:scale(.98);
 }
 
+/* Purple WhatsApp Buttons */
+
+.social-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:11px;
+  margin-top:13px;
+}
+
+.social-button{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  min-height:54px;
+  padding:12px 8px;
+  border-radius:16px;
+  color:#ffffff;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:800;
+  white-space:nowrap;
+  background:linear-gradient(
+    135deg,
+    #7042d4,
+    #a05bec
+  );
+  box-shadow:0 9px 20px #8050d02f;
+  transition:transform .2s ease;
+}
+
+.social-button.share{
+  background:linear-gradient(
+    135deg,
+    #9850e9,
+    #6736c8
+  );
+}
+
+.social-button:active{
+  transform:scale(.97);
+}
+
+.social-button svg{
+  width:19px;
+  height:19px;
+  flex-shrink:0;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
 /* Affiliate Disclosure */
 
 .disclosure{
@@ -347,6 +401,11 @@ footer{
 
   .details{
     padding:18px;
+  }
+
+  .social-button{
+    font-size:12px;
+    gap:5px;
   }
 }
 
@@ -396,9 +455,7 @@ footer{
     <div class="image-box">
 
       <img
-        
-src="./chair.PNG"
-
+        src="./chair.PNG"
         alt="كرسي رحلات أسود قابل للطي مع مظلة شمسية"
         loading="eager"
       >
@@ -431,6 +488,44 @@ src="./chair.PNG"
         تسوق
       </a>
 
+      <!-- WhatsApp Save and Share -->
+
+      <div class="social-actions">
+
+        <a
+          class="social-button"
+          id="saveProduct"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="حفظ المنتج عبر واتساب"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 4h12v17l-6-4-6 4z"/>
+          </svg>
+          حفظ المنتج
+        </a>
+
+        <a
+          class="social-button share"
+          id="shareProduct"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="مشاركة المنتج عبر واتساب"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18 8a3 3 0 1 0-2.8-4"/>
+            <circle cx="18" cy="5" r="3"/>
+            <circle cx="6" cy="12" r="3"/>
+            <circle cx="18" cy="19" r="3"/>
+            <path d="M8.7 10.6l6.6-4.2M8.7 13.4l6.6 4.2"/>
+          </svg>
+          مشاركة المنتج
+        </a>
+
+      </div>
+
     </div>
 
   </article>
@@ -447,6 +542,28 @@ src="./chair.PNG"
 </footer>
 
 <script>
+const productUrl = 'https://millionfilters.com/';
+const productName = 'كرسي رحلات قابل للطي مع مظلة شمسية';
+
+const saveMessage =
+  '🔖 منتج أريد الاحتفاظ به\n\n' +
+  '🌿 ' + productName + '\n\n' +
+  '🔗 ' + productUrl;
+
+const shareMessage =
+  '🌿✨ شوف هذا المنتج المميز!\n\n' +
+  'كرسي رحلات مريح وقابل للطي مع مظلة شمسية، مناسب للتخييم والشاطئ والرحلات 🏕️☀️\n\n' +
+  '🛍️ اكتشف المنتج هنا:\n' +
+  productUrl;
+
+document.getElementById('saveProduct').href =
+  'https://api.whatsapp.com/send?text=' +
+  encodeURIComponent(saveMessage);
+
+document.getElementById('shareProduct').href =
+  'https://api.whatsapp.com/send?text=' +
+  encodeURIComponent(shareMessage);
+
 document.getElementById('buy')
 .addEventListener('click',function(){
 
@@ -455,10 +572,30 @@ document.getElementById('buy')
       product_id:'camping_chair_canopy',
       affiliate:'amazon_sa',
       outbound_url:this.href,
-      currency:'SAR',
-      product_price:180
+      currency:'SAR'
     });
   }
+
+});
+
+['saveProduct','shareProduct'].forEach(function(id){
+
+  document.getElementById(id)
+  .addEventListener('click',function(){
+
+    if(typeof gtag === 'function'){
+      gtag('event',
+        id === 'saveProduct'
+          ? 'product_save_whatsapp'
+          : 'product_share_whatsapp',
+        {
+          product_id:'camping_chair_canopy',
+          method:'whatsapp'
+        }
+      );
+    }
+
+  });
 
 });
 </script>
