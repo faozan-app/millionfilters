@@ -1,604 +1,541 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#fff9e8">
-
-<title>MILLION DEALS | تسوق بذكاء</title>
-
-<meta name="description" content="MILLION DEALS - اكتشف منتجات مختارة من أمازون السعودية. كرسي رحلات قابل للطي مع مظلة شمسية للتخييم والشاطئ والأنشطة الخارجية.">
-
-<meta name="keywords" content="كرسي رحلات, كرسي تخييم, كرسي مظلة, كرسي قابل للطي, مستلزمات الرحلات, أمازون السعودية, تسوق, camping chair, beach chair, outdoor chair">
-
-<meta name="robots" content="index,follow">
-<link rel="canonical" href="https://millionfilters.com/">
-
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="MILLION DEALS">
-<meta property="og:title" content="MILLION DEALS | تسوق بذكاء">
-<meta property="og:description" content="كرسي رحلات قابل للطي مع مظلة شمسية - اكتشف المنتج على أمازون السعودية">
-<meta property="og:url" content="https://millionfilters.com/">
-<meta property="og:image" content="https://millionfilters.com/product.png">
-
-<!-- Cloudflare Analytics -->
-<script defer
-src="https://static.cloudflareinsights.com/beacon.min.js"
-data-cf-beacon='{"token":"3b9b1e3003164f9a9bd0b36838333860"}'>
-</script>
-
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5RWJ4Q8L8X"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-
-function gtag(){
-  dataLayer.push(arguments);
-}
-
-gtag('js', new Date());
-gtag('config', 'G-5RWJ4Q8L8X');
-</script>
-
-<style>
-:root{
-  --green:#41aa70;
-  --green-dark:#237b58;
-  --green-light:#dff6df;
-  --orange:#ff9a25;
-  --gold:#e9b85e;
-  --cream:#fff9e8;
-  --ink:#19334b;
-  --muted:#71808a;
-}
-
-*{
-  box-sizing:border-box;
-}
-
-html{
-  min-height:100%;
-  scroll-behavior:smooth;
-}
-
-body{
-  margin:0;
-  min-height:100vh;
-  font-family:-apple-system,
-  BlinkMacSystemFont,
-  "Segoe UI",
-  Tahoma,
-  Arial,
-  sans-serif;
-  color:var(--ink);
-
-  background:
-    radial-gradient(
-      circle at 95% 10%,
-      #d9f7d9 0%,
-      transparent 36%
-    ),
-    radial-gradient(
-      circle at 5% 25%,
-      #fff0cf 0%,
-      transparent 40%
-    ),
-    linear-gradient(
-      160deg,
-      #fffdf5,
-      #f5ffe9,
-      #fff5d9
-    );
-}
-
-/* Natural decorations */
-
-.leaf{
-  position:fixed;
-  font-size:80px;
-  opacity:.13;
-  pointer-events:none;
-  z-index:0;
-}
-
-.leaf.one{
-  top:110px;
-  right:10px;
-  transform:rotate(20deg);
-}
-
-.leaf.two{
-  top:430px;
-  left:5px;
-  transform:rotate(-25deg);
-}
-
-.leaf.three{
-  bottom:60px;
-  right:0;
-  transform:rotate(35deg);
-}
-
-/* Header */
-
-header{
-  position:relative;
-  z-index:1;
-  text-align:center;
-  padding:26px 15px 18px;
-}
-
-.logo{
-  direction:ltr;
-  font-size:27px;
-  font-weight:900;
-  letter-spacing:1.5px;
-  color:var(--ink);
-}
-
-.logo span{
-  color:var(--green);
-}
-
-.tagline{
-  color:var(--green-dark);
-  font-size:13px;
-  margin-top:9px;
-  font-weight:600;
-}
-
-/* Main */
-
-main{
-  position:relative;
-  z-index:1;
-  width:min(92%,520px);
-  margin:0 auto;
-  padding-bottom:35px;
-}
-
-/* Heading */
-
-.intro{
-  text-align:center;
-  padding:12px 5px 25px;
-}
-
-.badge{
-  display:inline-block;
-  background:linear-gradient(
-    130deg,
-    #38a865,
-    #80d985
-  );
-  color:white;
-  border-radius:50px;
-  padding:11px 23px;
-  font-size:14px;
-  font-weight:800;
-  box-shadow:0 10px 25px #38a86529;
-}
-
-h1{
-  font-size:29px;
-  font-weight:900;
-  line-height:1.3;
-  margin:19px 0 8px;
-}
-
-.subtitle{
-  color:var(--muted);
-  font-size:14px;
-  line-height:1.8;
-  margin:0;
-}
-
-/* Product Card */
-
-.card{
-  background:white;
-  border-radius:29px;
-  overflow:hidden;
-  border:1px solid #ebefe6;
-  box-shadow:0 18px 45px #3b65421a;
-}
-
-.color-line{
-  height:9px;
-  background:linear-gradient(
-    90deg,
-    #45b875,
-    #ffd075,
-    #ff9b29,
-    #87dba0
-  );
-}
-
-/* Product Image */
-
-.image-box{
-  background:linear-gradient(
-    150deg,
-    #ffffff,
-    #f5fff2
-  );
-  padding:15px;
-}
-
-.image-box img{
-  width:100%;
-  height:320px;
-  object-fit:contain;
-  display:block;
-  border-radius:18px;
-}
-
-/* Product Details */
-
-.details{
-  padding:22px;
-  text-align:center;
-}
-
-.category{
-  color:var(--green-dark);
-  font-size:13px;
-  font-weight:800;
-}
-
-h2{
-  font-size:23px;
-  line-height:1.5;
-  margin:12px 0;
-  font-weight:900;
-}
-
-.description{
-  font-size:14px;
-  color:var(--muted);
-  line-height:1.9;
-  margin:0 auto 18px;
-  max-width:390px;
-}
-
-/* Price */
-
-.price{
-  font-size:35px;
-  font-weight:900;
-  color:var(--ink);
-  direction:rtl;
-}
-
-.currency{
-  display:inline-block;
-  font-size:16px;
-  color:var(--green-dark);
-  background:#eaf8ed;
-  padding:6px 12px;
-  border-radius:30px;
-  margin-right:7px;
-}
-
-.price-note{
-  color:#969e9b;
-  font-size:11px;
-  margin-top:7px;
-}
-
-/* Shopping Button */
-
-.buy{
-  display:block;
-  margin-top:23px;
-  padding:17px;
-  border-radius:17px;
-
-  background:linear-gradient(
-    135deg,
-    #ffa928,
-    #ff8500
-  );
-
-  color:white;
-  text-decoration:none;
-  text-align:center;
-  font-size:20px;
-  font-weight:900;
-
-  box-shadow:0 12px 25px #ff9c3540;
-  transition:.2s ease;
-}
-
-.buy:active{
-  transform:scale(.98);
-}
-
-/* Purple WhatsApp Buttons */
-
-.social-actions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:11px;
-  margin-top:13px;
-}
-
-.social-button{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:7px;
-  min-height:54px;
-  padding:12px 8px;
-  border-radius:16px;
-  color:#ffffff;
-  text-decoration:none;
-  font-size:14px;
-  font-weight:800;
-  white-space:nowrap;
-  background:linear-gradient(
-    135deg,
-    #7042d4,
-    #a05bec
-  );
-  box-shadow:0 9px 20px #8050d02f;
-  transition:transform .2s ease;
-}
-
-.social-button.share{
-  background:linear-gradient(
-    135deg,
-    #9850e9,
-    #6736c8
-  );
-}
-
-.social-button:active{
-  transform:scale(.97);
-}
-
-.social-button svg{
-  width:19px;
-  height:19px;
-  flex-shrink:0;
-  fill:none;
-  stroke:currentColor;
-  stroke-width:2;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-
-/* Affiliate Disclosure */
-
-.disclosure{
-  font-size:11px;
-  color:#7d8783;
-  text-align:center;
-  line-height:1.8;
-  margin:24px 7px 5px;
-}
-
-/* Footer */
-
-footer{
-  position:relative;
-  z-index:1;
-  text-align:center;
-  color:#8a9691;
-  font-size:12px;
-  padding:17px 10px 29px;
-}
-
-@media(max-width:390px){
-  h1{
-    font-size:26px;
-  }
-
-  .image-box img{
-    height:275px;
-  }
-
-  .details{
-    padding:18px;
-  }
-
-  .social-button{
-    font-size:12px;
-    gap:5px;
-  }
-}
-
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fff9e8">
+
+  <title>MILLION DEALS | تسوق بذكاء</title>
+  <meta name="description" content="اكتشف منتجات مختارة من أمازون السعودية على MILLION DEALS، منها كرسي الرحلات مع مظلة شمسية وشنطة FYY لتنظيم الشواحن والكيابل.">
+  <meta name="keywords" content="كرسي رحلات, كرسي تخييم, كرسي مظلة, كرسي قابل للطي, مستلزمات الرحلات, شنطة كيابل, منظم شواحن, شنطة سفر, أمازون السعودية, تسوق, camping chair, beach chair, outdoor chair, cable organizer, FYY">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://millionfilters.com/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MILLION DEALS">
+  <meta property="og:title" content="MILLION DEALS | تسوق بذكاء">
+  <meta property="og:description" content="كرسي رحلات مع مظلة شمسية وشنطة لتنظيم الشواحن والكيابل. اكتشف اختياراتنا من أمازون السعودية.">
+  <meta property="og:url" content="https://millionfilters.com/">
+  <meta property="og:image" content="https://millionfilters.com/chair.PNG">
+
+  <!-- Cloudflare Analytics -->
+  <script defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token":"3b9b1e3003164f9a9bd0b36838333860"}'>
+  </script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5RWJ4Q8L8X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-5RWJ4Q8L8X');
+  </script>
+
+  <style>
+    :root {
+      --green: #41aa70;
+      --green-dark: #237b58;
+      --ink: #19334b;
+      --muted: #71808a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 95% 10%, #d9f7d9 0%, transparent 36%),
+        radial-gradient(circle at 5% 25%, #fff0cf 0%, transparent 40%),
+        linear-gradient(160deg, #fffdf5, #f5ffe9, #fff5d9);
+    }
+
+    .leaf {
+      position: fixed;
+      font-size: 80px;
+      opacity: .13;
+      pointer-events: none;
+    }
+
+    .leaf.one {
+      top: 110px;
+      right: 10px;
+      transform: rotate(20deg);
+    }
+
+    .leaf.two {
+      top: 430px;
+      left: 5px;
+      transform: rotate(-25deg);
+    }
+
+    .leaf.three {
+      bottom: 60px;
+      right: 0;
+      transform: rotate(35deg);
+    }
+
+    header, main, footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      padding: 26px 15px 18px;
+      text-align: center;
+    }
+
+    .logo {
+      direction: ltr;
+      font-size: 27px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+    }
+
+    .logo span {
+      color: var(--green);
+    }
+
+    .tagline {
+      margin-top: 9px;
+      color: var(--green-dark);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    main {
+      width: min(92%, 1060px);
+      margin: 0 auto;
+      padding-bottom: 35px;
+    }
+
+    .intro {
+      padding: 12px 5px 25px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 11px 23px;
+      border-radius: 50px;
+      color: white;
+      background: linear-gradient(130deg, #38a865, #80d985);
+      font-size: 14px;
+      font-weight: 800;
+      box-shadow: 0 10px 25px #38a86529;
+    }
+
+    h1 {
+      margin: 19px 0 8px;
+      font-size: 29px;
+      font-weight: 900;
+      line-height: 1.3;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .product-nav {
+      display: none;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      overflow: hidden;
+      background: white;
+      border: 1px solid #ebefe6;
+      border-radius: 29px;
+      box-shadow: 0 18px 45px #3b65421a;
+    }
+
+    .color-line {
+      height: 9px;
+      background: linear-gradient(90deg, #45b875, #ffd075, #ff9b29, #87dba0);
+    }
+
+    .image-box {
+      padding: 15px;
+      background: linear-gradient(150deg, #fff, #f5fff2);
+    }
+
+    .image-box img {
+      display: block;
+      width: 100%;
+      height: 320px;
+      object-fit: contain;
+      border-radius: 18px;
+    }
+
+    .details {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding: 22px;
+      text-align: center;
+    }
+
+    .category {
+      color: var(--green-dark);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    h2 {
+      margin: 12px 0;
+      font-size: 23px;
+      font-weight: 900;
+      line-height: 1.5;
+    }
+
+    .description {
+      max-width: 390px;
+      margin: 0 auto 20px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .buy {
+      display: block;
+      margin-top: auto;
+      padding: 17px;
+      border-radius: 17px;
+      background: linear-gradient(135deg, #ffa928, #ff8500);
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 900;
+      box-shadow: 0 12px 25px #ff9c3540;
+    }
+
+    .social-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 11px;
+      margin-top: 13px;
+    }
+
+    .social-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 54px;
+      padding: 12px 8px;
+      border-radius: 16px;
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #7042d4, #a05bec);
+      box-shadow: 0 9px 20px #8050d02f;
+    }
+
+    .social-button.share {
+      background: linear-gradient(135deg, #9850e9, #6736c8);
+    }
+
+    .buy:active, .social-button:active {
+      transform: scale(.98);
+    }
+
+    .social-button svg {
+      width: 19px;
+      height: 19px;
+      flex-shrink: 0;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .disclosure {
+      margin: 24px 7px 5px;
+      color: #7d8783;
+      text-align: center;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    footer {
+      padding: 17px 10px 29px;
+      color: #8a9691;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    @media (max-width: 760px) {
+      main {
+        max-width: 520px;
+      }
+
+      .product-nav {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin: 0 0 12px;
+      }
+
+      .product-nav a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 8px 15px;
+        border: 1px solid #bddbc5;
+        border-radius: 30px;
+        background: white;
+        color: var(--green-dark);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .product-nav a[aria-current="true"] {
+        color: white;
+        background: var(--green-dark);
+        border-color: var(--green-dark);
+      }
+
+      .products {
+        display: flex;
+        gap: 14px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        padding-bottom: 12px;
+      }
+
+      .products::-webkit-scrollbar {
+        display: none;
+      }
+
+      .card {
+        flex: 0 0 100%;
+        scroll-snap-align: start;
+        box-shadow: 0 5px 12px #3b654218;
+      }
+    }
+
+    @media (max-width: 390px) {
+      h1 { font-size: 26px; }
+      .image-box img { height: 275px; }
+      .details { padding: 18px; }
+      .social-button { font-size: 12px; gap: 5px; }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="leaf one" aria-hidden="true">🌿</div>
+  <div class="leaf two" aria-hidden="true">🍃</div>
+  <div class="leaf three" aria-hidden="true">🌱</div>
 
-<div class="leaf one">🌿</div>
-<div class="leaf two">🍃</div>
-<div class="leaf three">🌱</div>
+  <header>
+    <div class="logo">MILLION <span>DEALS</span></div>
+    <div class="tagline">اكتشف • اختر • تسوق</div>
+  </header>
 
-<header>
-
-  <div class="logo">
-    MILLION <span>DEALS</span>
-  </div>
-
-  <div class="tagline">
-    اكتشف • اختر • تسوق
-  </div>
-
-</header>
-
-<main>
-
-  <div class="intro">
-
-    <div class="badge">
-      ✨ اختيار مميز
+  <main>
+    <div class="intro">
+      <div class="badge">✨ اختيار مميز</div>
+      <h1>تسوق بذكاء وأناقة</h1>
+      <p class="subtitle">منتجات مختارة من أمازون السعودية</p>
     </div>
 
-    <h1>
-      تسوق بذكاء وأناقة
-    </h1>
+    <nav class="product-nav" aria-label="اختيار المنتج">
+      <a href="#chair" aria-current="true">كرسي الرحلات</a>
+      <a href="#bag">شنطة الكيابل ←</a>
+    </nav>
 
-    <p class="subtitle">
-      منتجات مختارة من أمازون السعودية
+    <section class="products" aria-label="المنتجات">
+      <!-- المنتج الأول: الكرسي -->
+      <article class="card" id="chair" data-product-id="camping_chair_canopy">
+        <div class="color-line"></div>
+
+        <div class="image-box">
+          <img src="./chair.PNG"
+               alt="كرسي رحلات أسود قابل للطي مع مظلة شمسية">
+        </div>
+
+        <div class="details">
+          <div class="category">🌿 الرحلات والتخييم</div>
+          <h2>كرسي رحلات قابل للطي مع مظلة شمسية</h2>
+          <p class="description">
+            كرسي مريح للرحلات والتخييم والشاطئ، مزود بمظلة للحماية
+            من أشعة الشمس. تصميم قابل للطي وسهل الحمل والتخزين.
+          </p>
+          <a class="buy"
+             href="https://link.amazon/B041Eab8N"
+             target="_blank"
+             rel="nofollow sponsored noopener noreferrer"
+             aria-label="تسوق كرسي الرحلات على أمازون السعودية">تسوق</a>
+          <div class="social-actions"></div>
+        </div>
+      </article>
+
+      <!-- المنتج الثاني: الشنطة -->
+      <article class="card" id="bag" data-product-id="fyy_cable_bag">
+        <div class="color-line"></div>
+
+        <div class="image-box">
+          <img src="./cable-bag.PNG"
+               alt="شنطة FYY سوداء مفتوحة تظهر جيوب تنظيم الشواحن والكيابل">
+        </div>
+
+        <div class="details">
+          <div class="category">🧳 السفر والتنظيم</div>
+          <h2>شنطة FYY لتنظيم الشواحن والكيابل</h2>
+          <p class="description">
+            اجمع الشاحن والسماعات والكيابل في شنطة سوداء صغيرة.
+            طبقتان بجيوب شبكية تسهّلان ترتيب أغراضك والوصول إليها وقت السفر.
+          </p>
+          <a class="buy"
+             href="https://link.amazon/B08YaQpP2"
+             target="_blank"
+             rel="nofollow sponsored noopener noreferrer"
+             aria-label="تسوق شنطة FYY السوداء على أمازون السعودية">تسوق</a>
+          <div class="social-actions"></div>
+        </div>
+      </article>
+    </section>
+
+    <p class="disclosure">
+      بصفتي شريكًا في أمازون، أربح من المشتريات المؤهلة.
     </p>
+  </main>
 
-  </div>
+  <footer><bdi>MILLION DEALS © 2026</bdi></footer>
 
-  <article class="card">
+  <template id="whatsapp-buttons">
+    <a class="social-button save" target="_blank" rel="noopener noreferrer"
+       aria-label="حفظ المنتج عبر واتساب">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6 4h12v17l-6-4-6 4z"/>
+      </svg>
+      حفظ المنتج
+    </a>
+    <a class="social-button share" target="_blank" rel="noopener noreferrer"
+       aria-label="مشاركة المنتج عبر واتساب">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="18" cy="5" r="3"/>
+        <circle cx="6" cy="12" r="3"/>
+        <circle cx="18" cy="19" r="3"/>
+        <path d="M8.7 10.6l6.6-4.2M8.7 13.4l6.6 4.2"/>
+      </svg>
+      مشاركة المنتج
+    </a>
+  </template>
 
-    <div class="color-line"></div>
+  <script>
+    const products = document.querySelector('.products');
+    const cards = products.querySelectorAll('.card');
+    const navLinks = document.querySelectorAll('.product-nav a');
+    const socialTemplate = document.getElementById('whatsapp-buttons');
 
-    <div class="image-box">
+    cards.forEach(function (card) {
+      const productName = card.querySelector('h2').textContent.trim();
+      const productUrl = 'https://millionfilters.com/#' + card.id;
+      const productId = card.dataset.productId;
+      const buy = card.querySelector('.buy');
+      const actions = socialTemplate.content.cloneNode(true);
 
-      <img
-        src="./chair.PNG"
-        alt="كرسي رحلات أسود قابل للطي مع مظلة شمسية"
-        loading="eager"
-      >
+      const saveText = '🔖 منتج أريد الاحتفاظ به\n\n' + productName + '\n' + productUrl;
+      const shareText = productName + '\n\nاكتشف المنتج على MILLION DEALS\n' + productUrl;
 
-    </div>
+      const save = actions.querySelector('.save');
+      const share = actions.querySelector('.share');
+      const whatsappUrl = 'https://api.whatsapp.com/send?text=';
 
-    <div class="details">
+      save.href = whatsappUrl + encodeURIComponent(saveText);
+      share.href = whatsappUrl + encodeURIComponent(shareText);
 
-      <div class="category">
-        🌿 الرحلات والتخييم
-      </div>
+      save.addEventListener('click', function () {
+        gtag('event', 'product_save_whatsapp', {
+          product_id: productId,
+          method: 'whatsapp'
+        });
+      });
 
-      <h2>
-        كرسي رحلات قابل للطي مع مظلة شمسية
-      </h2>
+      share.addEventListener('click', function () {
+        gtag('event', 'product_share_whatsapp', {
+          product_id: productId,
+          method: 'whatsapp'
+        });
+      });
 
-      <p class="description">
-        كرسي مريح للرحلات والتخييم والشاطئ،
-        مزود بمظلة للحماية من أشعة الشمس.
-        تصميم قابل للطي وسهل الحمل والتخزين.
-      </p>
+      buy.addEventListener('click', function () {
+        gtag('event', 'affiliate_click', {
+          product_id: productId,
+          affiliate: 'amazon_sa',
+          outbound_url: buy.href,
+          currency: 'SAR'
+        });
+      });
 
-      <a
-        class="buy"
-        id="buy"
-        href="https://link.amazon/B041Eab8N"
-        target="_blank"
-        rel="nofollow sponsored noopener noreferrer"
-      >
-        تسوق
-      </a>
-
-      <!-- WhatsApp Save and Share -->
-
-      <div class="social-actions">
-
-        <a
-          class="social-button"
-          id="saveProduct"
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="حفظ المنتج عبر واتساب"
-        >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M6 4h12v17l-6-4-6 4z"/>
-          </svg>
-          حفظ المنتج
-        </a>
-
-        <a
-          class="social-button share"
-          id="shareProduct"
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="مشاركة المنتج عبر واتساب"
-        >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M18 8a3 3 0 1 0-2.8-4"/>
-            <circle cx="18" cy="5" r="3"/>
-            <circle cx="6" cy="12" r="3"/>
-            <circle cx="18" cy="19" r="3"/>
-            <path d="M8.7 10.6l6.6-4.2M8.7 13.4l6.6 4.2"/>
-          </svg>
-          مشاركة المنتج
-        </a>
-
-      </div>
-
-    </div>
-
-  </article>
-
-  <p class="disclosure">
-    بصفتي شريكًا في أمازون،
-    أربح من المشتريات المؤهلة.
-  </p>
-
-</main>
-
-<footer>
-  MILLION DEALS © 2026
-</footer>
-
-<script>
-const productUrl = 'https://millionfilters.com/';
-const productName = 'كرسي رحلات قابل للطي مع مظلة شمسية';
-
-const saveMessage =
-  '🔖 منتج أريد الاحتفاظ به\n\n' +
-  '🌿 ' + productName + '\n\n' +
-  '🔗 ' + productUrl;
-
-const shareMessage =
-  '🌿✨ شوف هذا المنتج المميز!\n\n' +
-  'كرسي رحلات مريح وقابل للطي مع مظلة شمسية، مناسب للتخييم والشاطئ والرحلات 🏕️☀️\n\n' +
-  '🛍️ اكتشف المنتج هنا:\n' +
-  productUrl;
-
-document.getElementById('saveProduct').href =
-  'https://api.whatsapp.com/send?text=' +
-  encodeURIComponent(saveMessage);
-
-document.getElementById('shareProduct').href =
-  'https://api.whatsapp.com/send?text=' +
-  encodeURIComponent(shareMessage);
-
-document.getElementById('buy')
-.addEventListener('click',function(){
-
-  if(typeof gtag === 'function'){
-    gtag('event','affiliate_click',{
-      product_id:'camping_chair_canopy',
-      affiliate:'amazon_sa',
-      outbound_url:this.href,
-      currency:'SAR'
+      card.querySelector('.social-actions').append(actions);
     });
-  }
 
-});
+    // تحديث زر المنتج المحدد عند السحب على الجوال.
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.intersectionRatio < 0.6) return;
 
-['saveProduct','shareProduct'].forEach(function(id){
+        navLinks.forEach(function (link) {
+          if (link.hash === '#' + entry.target.id) {
+            link.setAttribute('aria-current', 'true');
+          } else {
+            link.removeAttribute('aria-current');
+          }
+        });
+      });
+    }, {
+      root: products,
+      threshold: 0.6
+    });
 
-  document.getElementById(id)
-  .addEventListener('click',function(){
+    cards.forEach(function (card) {
+      observer.observe(card);
+    });
 
-    if(typeof gtag === 'function'){
-      gtag('event',
-        id === 'saveProduct'
-          ? 'product_save_whatsapp'
-          : 'product_share_whatsapp',
-        {
-          product_id:'camping_chair_canopy',
-          method:'whatsapp'
-        }
-      );
-    }
+    // تحريك البطاقات أفقيًا عند الضغط مع إبقاء زري التنقل ظاهرين.
+    navLinks.forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+        const card = document.getElementById(link.hash.slice(1));
+        const offset = card.getBoundingClientRect().right -
+                       products.getBoundingClientRect().right;
 
-  });
-
-});
-</script>
-
+        products.scrollBy({
+          left: offset,
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+            ? 'instant'
+            : 'smooth'
+        });
+        history.replaceState(null, '', link.hash);
+      });
+    });
+  </script>
 </body>
 </html>
