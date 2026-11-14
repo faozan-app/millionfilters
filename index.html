@@ -12,11 +12,13 @@
   <link rel="canonical" href="https://millionfilters.com/">
 
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="ar_SA">
   <meta property="og:site_name" content="MILLION DEALS">
   <meta property="og:title" content="MILLION DEALS | تسوق بذكاء">
   <meta property="og:description" content="كرسي رحلات مع مظلة شمسية وشنطة لتنظيم الشواحن والكيابل. اكتشف اختياراتنا من أمازون السعودية.">
   <meta property="og:url" content="https://millionfilters.com/">
   <meta property="og:image" content="https://millionfilters.com/chair.PNG">
+  <meta property="og:image:alt" content="كرسي رحلات أسود مع مظلة شمسية">
 
   <script defer
     src="https://static.cloudflareinsights.com/beacon.min.js"
@@ -260,7 +262,7 @@
     <section class="products" aria-label="منتجات المتجر">
       <article class="card" id="chair"
                data-product-id="camping_chair_canopy"
-               data-share-url="https://millionfilters.com/chair.html">
+               data-share-url="https://millionfilters.com/chair.html?v=2">
         <div class="image-box">
           <img src="./chair.PNG" alt="كرسي رحلات أسود قابل للطي مع مظلة شمسية">
         </div>
@@ -280,7 +282,7 @@
 
       <article class="card" id="bag"
                data-product-id="fyy_cable_bag"
-               data-share-url="https://millionfilters.com/bag.html">
+               data-share-url="https://millionfilters.com/bag.html?v=2">
         <div class="image-box">
           <img src="./cable-bag.PNG" alt="شنطة FYY سوداء مفتوحة لتنظيم الشواحن والكيابل">
         </div>
@@ -311,6 +313,7 @@
 
   <script>
     const template = document.getElementById('whatsapp-buttons');
+    const whatsapp = 'https://api.whatsapp.com/send?text=';
 
     document.querySelectorAll('.card').forEach(function (card) {
       const name = card.querySelector('h2').textContent.trim();
@@ -320,7 +323,6 @@
       const actions = template.content.cloneNode(true);
       const save = actions.querySelector('.save');
       const share = actions.querySelector('.share');
-      const whatsapp = 'https://api.whatsapp.com/send?text=';
 
       save.href = whatsapp + encodeURIComponent(
         '🔖 منتج أريد الاحتفاظ به\n\n' + name + '\n' + productUrl
