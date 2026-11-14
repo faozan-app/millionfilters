@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#fff9e8">
-
   <title>MILLION DEALS | تسوق بذكاء</title>
-  <meta name="description" content="اكتشف منتجات مختارة من أمازون السعودية على MILLION DEALS، منها كرسي الرحلات مع مظلة شمسية وشنطة FYY لتنظيم الشواحن والكيابل.">
+
+  <meta name="description" content="اكتشف منتجات مختارة من أمازون السعودية، منها كرسي رحلات مع مظلة شمسية وشنطة FYY لتنظيم الشواحن والكيابل.">
   <meta name="keywords" content="كرسي رحلات, كرسي تخييم, كرسي مظلة, كرسي قابل للطي, مستلزمات الرحلات, شنطة كيابل, منظم شواحن, شنطة سفر, أمازون السعودية, تسوق, camping chair, beach chair, outdoor chair, cable organizer, FYY">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://millionfilters.com/">
@@ -18,13 +18,11 @@
   <meta property="og:url" content="https://millionfilters.com/">
   <meta property="og:image" content="https://millionfilters.com/chair.PNG">
 
-  <!-- Cloudflare Analytics -->
   <script defer
     src="https://static.cloudflareinsights.com/beacon.min.js"
     data-cf-beacon='{"token":"3b9b1e3003164f9a9bd0b36838333860"}'>
   </script>
 
-  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-5RWJ4Q8L8X"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -37,60 +35,39 @@
 
   <style>
     :root {
-      --green: #41aa70;
-      --green-dark: #237b58;
       --ink: #19334b;
-      --muted: #71808a;
+      --green: #237b58;
+      --muted: #596972;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, Arial, sans-serif;
       color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, Arial, sans-serif;
       background:
-        radial-gradient(circle at 95% 10%, #d9f7d9 0%, transparent 36%),
-        radial-gradient(circle at 5% 25%, #fff0cf 0%, transparent 40%),
+        radial-gradient(circle at 95% 10%, #d9f7d9, transparent 36%),
+        radial-gradient(circle at 5% 25%, #fff0cf, transparent 40%),
         linear-gradient(160deg, #fffdf5, #f5ffe9, #fff5d9);
     }
 
     .leaf {
       position: fixed;
-      font-size: 80px;
-      opacity: .13;
+      opacity: .12;
+      font-size: 68px;
       pointer-events: none;
     }
 
-    .leaf.one {
-      top: 110px;
-      right: 10px;
-      transform: rotate(20deg);
-    }
+    .leaf.one { right: 0; top: 90px; }
+    .leaf.two { left: 0; bottom: 55px; }
 
-    .leaf.two {
-      top: 430px;
-      left: 5px;
-      transform: rotate(-25deg);
-    }
-
-    .leaf.three {
-      bottom: 60px;
-      right: 0;
-      transform: rotate(35deg);
-    }
-
-    header, main, footer {
-      position: relative;
-      z-index: 1;
-    }
+    header, main, footer { position: relative; }
 
     header {
-      padding: 26px 15px 18px;
       text-align: center;
+      padding: 24px 10px 12px;
     }
 
     .logo {
@@ -100,249 +77,166 @@
       letter-spacing: 1.5px;
     }
 
-    .logo span {
-      color: var(--green);
-    }
+    .logo span { color: #41aa70; }
 
     .tagline {
-      margin-top: 9px;
-      color: var(--green-dark);
+      margin-top: 5px;
+      color: var(--green);
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     main {
-      width: min(92%, 1060px);
-      margin: 0 auto;
-      padding-bottom: 35px;
+      width: min(94%, 880px);
+      margin: auto;
     }
 
     .intro {
-      padding: 12px 5px 25px;
       text-align: center;
+      padding: 8px 0 18px;
     }
 
     .badge {
       display: inline-block;
-      padding: 11px 23px;
-      border-radius: 50px;
+      padding: 6px 15px;
+      border-radius: 30px;
+      background: linear-gradient(130deg, #288453, #40985b);
       color: white;
-      background: linear-gradient(130deg, #38a865, #80d985);
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 800;
-      box-shadow: 0 10px 25px #38a86529;
     }
 
     h1 {
-      margin: 19px 0 8px;
-      font-size: 29px;
-      font-weight: 900;
-      line-height: 1.3;
+      margin: 10px 0 4px;
+      font-size: clamp(22px, 4vw, 29px);
     }
 
     .subtitle {
       margin: 0;
       color: var(--muted);
-      font-size: 14px;
-      line-height: 1.8;
-    }
-
-    .product-nav {
-      display: none;
+      font-size: 13px;
     }
 
     .products {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
+      gap: clamp(8px, 2vw, 18px);
     }
 
     .card {
+      min-width: 0;
       display: flex;
       flex-direction: column;
-      min-width: 0;
       overflow: hidden;
+      border: 1px solid #e4ebdf;
+      border-radius: 19px;
       background: white;
-      border: 1px solid #ebefe6;
-      border-radius: 29px;
-      box-shadow: 0 18px 45px #3b65421a;
+      box-shadow: 0 7px 20px #3b654217;
     }
 
-    .color-line {
-      height: 9px;
+    .card::before {
+      content: "";
+      height: 5px;
       background: linear-gradient(90deg, #45b875, #ffd075, #ff9b29, #87dba0);
     }
 
+    .card:target {
+      outline: 2px solid #45a070;
+      outline-offset: 1px;
+    }
+
     .image-box {
-      padding: 15px;
-      background: linear-gradient(150deg, #fff, #f5fff2);
+      padding: 7px;
+      background: linear-gradient(150deg, white, #f5fff2);
     }
 
     .image-box img {
       display: block;
       width: 100%;
-      height: 320px;
+      height: clamp(100px, 32vw, 190px);
       object-fit: contain;
-      border-radius: 18px;
     }
 
     .details {
-      display: flex;
       flex: 1;
+      display: flex;
       flex-direction: column;
-      padding: 22px;
+      padding: clamp(9px, 2vw, 18px);
       text-align: center;
     }
 
     .category {
-      color: var(--green-dark);
-      font-size: 13px;
-      font-weight: 800;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 700;
     }
 
     h2 {
-      margin: 12px 0;
-      font-size: 23px;
-      font-weight: 900;
+      margin: 7px 0;
+      font-size: clamp(15px, 2.5vw, 21px);
       line-height: 1.5;
     }
 
     .description {
-      max-width: 390px;
-      margin: 0 auto 20px;
+      margin: 0 0 13px;
       color: var(--muted);
-      font-size: 14px;
-      line-height: 1.9;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .buy, .social-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 7px;
+      border-radius: 12px;
+      color: white;
+      text-decoration: none;
+      font-weight: 800;
     }
 
     .buy {
-      display: block;
       margin-top: auto;
-      padding: 17px;
-      border-radius: 17px;
-      background: linear-gradient(135deg, #ffa928, #ff8500);
-      color: white;
-      text-decoration: none;
-      font-size: 20px;
-      font-weight: 900;
-      box-shadow: 0 12px 25px #ff9c3540;
+      background: linear-gradient(135deg, #ffa928, #f58200);
+      font-size: 17px;
     }
 
     .social-actions {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 11px;
-      margin-top: 13px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+      margin-top: 7px;
     }
 
     .social-button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      min-height: 54px;
-      padding: 12px 8px;
-      border-radius: 16px;
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 800;
-      background: linear-gradient(135deg, #7042d4, #a05bec);
-      box-shadow: 0 9px 20px #8050d02f;
+      background: linear-gradient(135deg, #7042d4, #8a4bd4);
+      font-size: 13px;
     }
 
     .social-button.share {
-      background: linear-gradient(135deg, #9850e9, #6736c8);
+      background: linear-gradient(135deg, #8945cd, #6736be);
     }
 
-    .buy:active, .social-button:active {
-      transform: scale(.98);
+    a:focus-visible {
+      outline: 3px solid var(--ink);
+      outline-offset: 2px;
     }
 
-    .social-button svg {
-      width: 19px;
-      height: 19px;
-      flex-shrink: 0;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .disclosure {
-      margin: 24px 7px 5px;
-      color: #7d8783;
+    .disclosure, footer {
       text-align: center;
-      font-size: 11px;
-      line-height: 1.8;
-    }
-
-    footer {
-      padding: 17px 10px 29px;
-      color: #8a9691;
-      text-align: center;
+      color: #66736d;
       font-size: 12px;
     }
 
-    @media (max-width: 760px) {
-      main {
-        max-width: 520px;
-      }
+    .disclosure { margin: 20px 4px 10px; }
+    footer { padding: 12px 0 23px; }
 
-      .product-nav {
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-        margin: 0 0 12px;
-      }
-
-      .product-nav a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 44px;
-        padding: 8px 15px;
-        border: 1px solid #bddbc5;
-        border-radius: 30px;
-        background: white;
-        color: var(--green-dark);
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 700;
-      }
-
-      .product-nav a[aria-current="true"] {
-        color: white;
-        background: var(--green-dark);
-        border-color: var(--green-dark);
-      }
-
-      .products {
-        display: flex;
-        gap: 14px;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        scrollbar-width: none;
-        padding-bottom: 12px;
-      }
-
-      .products::-webkit-scrollbar {
-        display: none;
-      }
-
-      .card {
-        flex: 0 0 100%;
-        scroll-snap-align: start;
-        box-shadow: 0 5px 12px #3b654218;
-      }
-    }
-
-    @media (max-width: 390px) {
-      h1 { font-size: 26px; }
-      .image-box img { height: 275px; }
-      .details { padding: 18px; }
-      .social-button { font-size: 12px; gap: 5px; }
+    @media (max-width: 480px) {
+      header { padding-top: 16px; }
+      .category { font-size: 11px; }
+      .description { font-size: 12px; }
+      .social-actions { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -350,7 +244,6 @@
 <body>
   <div class="leaf one" aria-hidden="true">🌿</div>
   <div class="leaf two" aria-hidden="true">🍃</div>
-  <div class="leaf three" aria-hidden="true">🌱</div>
 
   <header>
     <div class="logo">MILLION <span>DEALS</span></div>
@@ -364,112 +257,81 @@
       <p class="subtitle">منتجات مختارة من أمازون السعودية</p>
     </div>
 
-    <nav class="product-nav" aria-label="اختيار المنتج">
-      <a href="#chair" aria-current="true">كرسي الرحلات</a>
-      <a href="#bag">شنطة الكيابل ←</a>
-    </nav>
-
-    <section class="products" aria-label="المنتجات">
-      <!-- المنتج الأول: الكرسي -->
-      <article class="card" id="chair" data-product-id="camping_chair_canopy">
-        <div class="color-line"></div>
-
+    <section class="products" aria-label="منتجات المتجر">
+      <article class="card" id="chair"
+               data-product-id="camping_chair_canopy"
+               data-share-url="https://millionfilters.com/chair.html">
         <div class="image-box">
-          <img src="./chair.PNG"
-               alt="كرسي رحلات أسود قابل للطي مع مظلة شمسية">
+          <img src="./chair.PNG" alt="كرسي رحلات أسود قابل للطي مع مظلة شمسية">
         </div>
 
         <div class="details">
           <div class="category">🌿 الرحلات والتخييم</div>
           <h2>كرسي رحلات قابل للطي مع مظلة شمسية</h2>
           <p class="description">
-            كرسي مريح للرحلات والتخييم والشاطئ، مزود بمظلة للحماية
-            من أشعة الشمس. تصميم قابل للطي وسهل الحمل والتخزين.
+            كرسي للتخييم والشاطئ، مع مظلة شمسية وتصميم قابل للطي لسهولة الحمل.
           </p>
-          <a class="buy"
-             href="https://link.amazon/B041Eab8N"
-             target="_blank"
-             rel="nofollow sponsored noopener noreferrer"
-             aria-label="تسوق كرسي الرحلات على أمازون السعودية">تسوق</a>
+          <a class="buy" href="https://link.amazon/B041Eab8N"
+             target="_blank" rel="nofollow sponsored noopener noreferrer"
+             aria-label="تسوق كرسي الرحلات">تسوق</a>
           <div class="social-actions"></div>
         </div>
       </article>
 
-      <!-- المنتج الثاني: الشنطة -->
-      <article class="card" id="bag" data-product-id="fyy_cable_bag">
-        <div class="color-line"></div>
-
+      <article class="card" id="bag"
+               data-product-id="fyy_cable_bag"
+               data-share-url="https://millionfilters.com/bag.html">
         <div class="image-box">
-          <img src="./cable-bag.PNG"
-               alt="شنطة FYY سوداء مفتوحة تظهر جيوب تنظيم الشواحن والكيابل">
+          <img src="./cable-bag.PNG" alt="شنطة FYY سوداء مفتوحة لتنظيم الشواحن والكيابل">
         </div>
 
         <div class="details">
           <div class="category">🧳 السفر والتنظيم</div>
           <h2>شنطة FYY لتنظيم الشواحن والكيابل</h2>
           <p class="description">
-            اجمع الشاحن والسماعات والكيابل في شنطة سوداء صغيرة.
-            طبقتان بجيوب شبكية تسهّلان ترتيب أغراضك والوصول إليها وقت السفر.
+            شنطة صغيرة بطبقتين وجيوب شبكية تجمع الشاحن والسماعات والكيابل أثناء السفر.
           </p>
-          <a class="buy"
-             href="https://link.amazon/B08YaQpP2"
-             target="_blank"
-             rel="nofollow sponsored noopener noreferrer"
-             aria-label="تسوق شنطة FYY السوداء على أمازون السعودية">تسوق</a>
+          <a class="buy" href="https://link.amazon/B08YaQpP2"
+             target="_blank" rel="nofollow sponsored noopener noreferrer"
+             aria-label="تسوق شنطة FYY">تسوق</a>
           <div class="social-actions"></div>
         </div>
       </article>
     </section>
 
-    <p class="disclosure">
-      بصفتي شريكًا في أمازون، أربح من المشتريات المؤهلة.
-    </p>
+    <p class="disclosure">بصفتي شريكًا في أمازون، أربح من المشتريات المؤهلة.</p>
   </main>
 
   <footer><bdi>MILLION DEALS © 2026</bdi></footer>
 
   <template id="whatsapp-buttons">
-    <a class="social-button save" target="_blank" rel="noopener noreferrer"
-       aria-label="حفظ المنتج عبر واتساب">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M6 4h12v17l-6-4-6 4z"/>
-      </svg>
-      حفظ المنتج
-    </a>
-    <a class="social-button share" target="_blank" rel="noopener noreferrer"
-       aria-label="مشاركة المنتج عبر واتساب">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <circle cx="18" cy="5" r="3"/>
-        <circle cx="6" cy="12" r="3"/>
-        <circle cx="18" cy="19" r="3"/>
-        <path d="M8.7 10.6l6.6-4.2M8.7 13.4l6.6 4.2"/>
-      </svg>
-      مشاركة المنتج
-    </a>
+    <a class="social-button save" target="_blank" rel="noopener noreferrer">حفظ المنتج</a>
+    <a class="social-button share" target="_blank" rel="noopener noreferrer">مشاركة المنتج</a>
   </template>
 
   <script>
-    const products = document.querySelector('.products');
-    const cards = products.querySelectorAll('.card');
-    const navLinks = document.querySelectorAll('.product-nav a');
-    const socialTemplate = document.getElementById('whatsapp-buttons');
+    const template = document.getElementById('whatsapp-buttons');
 
-    cards.forEach(function (card) {
-      const productName = card.querySelector('h2').textContent.trim();
-      const productUrl = 'https://millionfilters.com/#' + card.id;
+    document.querySelectorAll('.card').forEach(function (card) {
+      const name = card.querySelector('h2').textContent.trim();
       const productId = card.dataset.productId;
+      const productUrl = card.dataset.shareUrl;
       const buy = card.querySelector('.buy');
-      const actions = socialTemplate.content.cloneNode(true);
-
-      const saveText = '🔖 منتج أريد الاحتفاظ به\n\n' + productName + '\n' + productUrl;
-      const shareText = productName + '\n\nاكتشف المنتج على MILLION DEALS\n' + productUrl;
-
+      const actions = template.content.cloneNode(true);
       const save = actions.querySelector('.save');
       const share = actions.querySelector('.share');
-      const whatsappUrl = 'https://api.whatsapp.com/send?text=';
+      const whatsapp = 'https://api.whatsapp.com/send?text=';
 
-      save.href = whatsappUrl + encodeURIComponent(saveText);
-      share.href = whatsappUrl + encodeURIComponent(shareText);
+      save.href = whatsapp + encodeURIComponent(
+        '🔖 منتج أريد الاحتفاظ به\n\n' + name + '\n' + productUrl
+      );
+
+      share.href = whatsapp + encodeURIComponent(
+        name + '\n\nاكتشف المنتج على MILLION DEALS\n' + productUrl
+      );
+
+      save.setAttribute('aria-label', 'حفظ ' + name + ' عبر واتساب');
+      share.setAttribute('aria-label', 'مشاركة ' + name + ' عبر واتساب');
 
       save.addEventListener('click', function () {
         gtag('event', 'product_save_whatsapp', {
@@ -495,46 +357,6 @@
       });
 
       card.querySelector('.social-actions').append(actions);
-    });
-
-    // تحديث زر المنتج المحدد عند السحب على الجوال.
-    const observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.intersectionRatio < 0.6) return;
-
-        navLinks.forEach(function (link) {
-          if (link.hash === '#' + entry.target.id) {
-            link.setAttribute('aria-current', 'true');
-          } else {
-            link.removeAttribute('aria-current');
-          }
-        });
-      });
-    }, {
-      root: products,
-      threshold: 0.6
-    });
-
-    cards.forEach(function (card) {
-      observer.observe(card);
-    });
-
-    // تحريك البطاقات أفقيًا عند الضغط مع إبقاء زري التنقل ظاهرين.
-    navLinks.forEach(function (link) {
-      link.addEventListener('click', function (event) {
-        event.preventDefault();
-        const card = document.getElementById(link.hash.slice(1));
-        const offset = card.getBoundingClientRect().right -
-                       products.getBoundingClientRect().right;
-
-        products.scrollBy({
-          left: offset,
-          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
-            ? 'instant'
-            : 'smooth'
-        });
-        history.replaceState(null, '', link.hash);
-      });
     });
   </script>
 </body>
