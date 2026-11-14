@@ -3,13 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#fff9e8">
+  <meta name="theme-color" content="#fff000">
   <title>MILLION DEALS | تسوق بذكاء</title>
 
   <meta name="description" content="اكتشف منتجات مختارة من أمازون السعودية، منها كرسي رحلات مع مظلة شمسية وشنطة FYY لتنظيم الشواحن والكيابل.">
   <meta name="keywords" content="كرسي رحلات, كرسي تخييم, كرسي مظلة, كرسي قابل للطي, مستلزمات الرحلات, شنطة كيابل, منظم شواحن, شنطة سفر, أمازون السعودية, تسوق, camping chair, beach chair, outdoor chair, cable organizer, FYY">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://millionfilters.com/">
+
+  <link rel="icon" type="image/png" href="./million-deals-logo.PNG">
+  <link rel="apple-touch-icon" href="./million-deals-logo.PNG">
 
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ar_SA">
@@ -28,21 +31,27 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-5RWJ4Q8L8X"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
+
     function gtag() {
       dataLayer.push(arguments);
     }
+
     gtag('js', new Date());
     gtag('config', 'G-5RWJ4Q8L8X');
   </script>
 
   <style>
     :root {
-      --ink: #19334b;
-      --green: #237b58;
-      --muted: #596972;
+      --ink: #30174c;
+      --muted: #605868;
+      --violet: #5908bd;
+      --lemon: #fff000;
+      --apple: #a5e535;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -50,40 +59,30 @@
       color: var(--ink);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, Arial, sans-serif;
       background:
-        radial-gradient(circle at 95% 10%, #d9f7d9, transparent 36%),
-        radial-gradient(circle at 5% 25%, #fff0cf, transparent 40%),
-        linear-gradient(160deg, #fffdf5, #f5ffe9, #fff5d9);
+        radial-gradient(ellipse at 50% 0%, #fff5aa, transparent 380px),
+        #fffdf7;
     }
-
-    .leaf {
-      position: fixed;
-      opacity: .12;
-      font-size: 68px;
-      pointer-events: none;
-    }
-
-    .leaf.one { right: 0; top: 90px; }
-    .leaf.two { left: 0; bottom: 55px; }
-
-    header, main, footer { position: relative; }
 
     header {
+      padding: 18px 12px 8px;
       text-align: center;
-      padding: 24px 10px 12px;
     }
 
     .logo {
-      direction: ltr;
-      font-size: 27px;
-      font-weight: 900;
-      letter-spacing: 1.5px;
+      display: block;
+      width: clamp(112px, 23vw, 142px);
+      height: auto;
+      aspect-ratio: 1;
+      margin: 0 auto;
+      border-radius: 24%;
+      background: var(--lemon);
+      box-shadow: 0 4px 16px #40205a12;
+      object-fit: contain;
     }
 
-    .logo span { color: #41aa70; }
-
     .tagline {
-      margin-top: 5px;
-      color: var(--green);
+      margin-top: 9px;
+      color: var(--violet);
       font-size: 13px;
       font-weight: 700;
     }
@@ -94,16 +93,16 @@
     }
 
     .intro {
-      text-align: center;
       padding: 8px 0 18px;
+      text-align: center;
     }
 
     .badge {
       display: inline-block;
       padding: 6px 15px;
       border-radius: 30px;
-      background: linear-gradient(130deg, #288453, #40985b);
-      color: white;
+      background: #e0f7b4;
+      color: #334619;
       font-size: 12px;
       font-weight: 800;
     }
@@ -126,30 +125,35 @@
     }
 
     .card {
-      min-width: 0;
       display: flex;
       flex-direction: column;
+      min-width: 0;
       overflow: hidden;
-      border: 1px solid #e4ebdf;
+      border: 1px solid #e9e1ee;
       border-radius: 19px;
-      background: white;
-      box-shadow: 0 7px 20px #3b654217;
+      background: #fff;
+      box-shadow: 0 6px 18px #3414490c;
     }
 
     .card::before {
       content: "";
-      height: 5px;
-      background: linear-gradient(90deg, #45b875, #ffd075, #ff9b29, #87dba0);
+      height: 4px;
+      background: linear-gradient(
+        90deg,
+        var(--violet) 0 58%,
+        var(--lemon) 58% 86%,
+        var(--apple) 86% 100%
+      );
     }
 
     .card:target {
-      outline: 2px solid #45a070;
+      outline: 2px solid var(--violet);
       outline-offset: 1px;
     }
 
     .image-box {
       padding: 7px;
-      background: linear-gradient(150deg, white, #f5fff2);
+      background: #fff;
     }
 
     .image-box img {
@@ -160,15 +164,15 @@
     }
 
     .details {
-      flex: 1;
       display: flex;
+      flex: 1;
       flex-direction: column;
       padding: clamp(9px, 2vw, 18px);
       text-align: center;
     }
 
     .category {
-      color: var(--green);
+      color: #553096;
       font-size: 12px;
       font-weight: 700;
     }
@@ -186,21 +190,22 @@
       line-height: 1.65;
     }
 
-    .buy, .social-button {
+    .buy,
+    .social-button {
       display: flex;
       align-items: center;
       justify-content: center;
       min-height: 44px;
       padding: 7px;
       border-radius: 12px;
-      color: white;
       text-decoration: none;
       font-weight: 800;
     }
 
     .buy {
       margin-top: auto;
-      background: linear-gradient(135deg, #ffa928, #f58200);
+      background: var(--violet);
+      color: #fff;
       font-size: 17px;
     }
 
@@ -212,12 +217,9 @@
     }
 
     .social-button {
-      background: linear-gradient(135deg, #7042d4, #8a4bd4);
+      background: #f2eafa;
+      color: #502184;
       font-size: 13px;
-    }
-
-    .social-button.share {
-      background: linear-gradient(135deg, #8945cd, #6736be);
     }
 
     a:focus-visible {
@@ -225,30 +227,46 @@
       outline-offset: 2px;
     }
 
-    .disclosure, footer {
-      text-align: center;
-      color: #66736d;
+    .disclosure,
+    footer {
+      color: var(--muted);
       font-size: 12px;
+      text-align: center;
     }
 
-    .disclosure { margin: 20px 4px 10px; }
-    footer { padding: 12px 0 23px; }
+    .disclosure {
+      margin: 20px 4px 10px;
+    }
+
+    footer {
+      padding: 12px 0 23px;
+    }
 
     @media (max-width: 480px) {
-      header { padding-top: 16px; }
-      .category { font-size: 11px; }
-      .description { font-size: 12px; }
-      .social-actions { grid-template-columns: 1fr; }
+      header {
+        padding-top: 16px;
+      }
+
+      .category {
+        font-size: 11px;
+      }
+
+      .description {
+        font-size: 12px;
+      }
+
+      .social-actions {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="leaf one" aria-hidden="true">🌿</div>
-  <div class="leaf two" aria-hidden="true">🍃</div>
-
   <header>
-    <div class="logo">MILLION <span>DEALS</span></div>
+    <img class="logo"
+         src="./million-deals-logo.PNG"
+         alt="MILLION DEALS">
     <div class="tagline">اكتشف • اختر • تسوق</div>
   </header>
 
@@ -260,11 +278,13 @@
     </div>
 
     <section class="products" aria-label="منتجات المتجر">
-      <article class="card" id="chair"
+      <article class="card"
+               id="chair"
                data-product-id="camping_chair_canopy"
                data-share-url="https://millionfilters.com/chair.html?v=2">
         <div class="image-box">
-          <img src="./chair.PNG" alt="كرسي رحلات أسود قابل للطي مع مظلة شمسية">
+          <img src="./chair.PNG"
+               alt="كرسي رحلات أسود قابل للطي مع مظلة شمسية">
         </div>
 
         <div class="details">
@@ -273,18 +293,24 @@
           <p class="description">
             كرسي للتخييم والشاطئ، مع مظلة شمسية وتصميم قابل للطي لسهولة الحمل.
           </p>
-          <a class="buy" href="https://link.amazon/B041Eab8N"
-             target="_blank" rel="nofollow sponsored noopener noreferrer"
+
+          <a class="buy"
+             href="https://link.amazon/B041Eab8N"
+             target="_blank"
+             rel="nofollow sponsored noopener noreferrer"
              aria-label="تسوق كرسي الرحلات">تسوق</a>
+
           <div class="social-actions"></div>
         </div>
       </article>
 
-      <article class="card" id="bag"
+      <article class="card"
+               id="bag"
                data-product-id="fyy_cable_bag"
                data-share-url="https://millionfilters.com/bag.html?v=2">
         <div class="image-box">
-          <img src="./cable-bag.PNG" alt="شنطة FYY سوداء مفتوحة لتنظيم الشواحن والكيابل">
+          <img src="./cable-bag.PNG"
+               alt="شنطة FYY سوداء مفتوحة لتنظيم الشواحن والكيابل">
         </div>
 
         <div class="details">
@@ -293,22 +319,33 @@
           <p class="description">
             شنطة صغيرة بطبقتين وجيوب شبكية تجمع الشاحن والسماعات والكيابل أثناء السفر.
           </p>
-          <a class="buy" href="https://link.amazon/B08YaQpP2"
-             target="_blank" rel="nofollow sponsored noopener noreferrer"
+
+          <a class="buy"
+             href="https://link.amazon/B08YaQpP2"
+             target="_blank"
+             rel="nofollow sponsored noopener noreferrer"
              aria-label="تسوق شنطة FYY">تسوق</a>
+
           <div class="social-actions"></div>
         </div>
       </article>
     </section>
 
-    <p class="disclosure">بصفتي شريكًا في أمازون، أربح من المشتريات المؤهلة.</p>
+    <p class="disclosure">
+      بصفتي شريكًا في أمازون، أربح من المشتريات المؤهلة.
+    </p>
   </main>
 
   <footer><bdi>MILLION DEALS © 2026</bdi></footer>
 
   <template id="whatsapp-buttons">
-    <a class="social-button save" target="_blank" rel="noopener noreferrer">حفظ المنتج</a>
-    <a class="social-button share" target="_blank" rel="noopener noreferrer">مشاركة المنتج</a>
+    <a class="social-button save"
+       target="_blank"
+       rel="noopener noreferrer">حفظ المنتج</a>
+
+    <a class="social-button share"
+       target="_blank"
+       rel="noopener noreferrer">مشاركة المنتج</a>
   </template>
 
   <script>
