@@ -1,110 +1,618 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#110c08">
-<meta name="description" content="GOLD GLOBE — World gold spot reference prices by weight in USD.">
+<meta name="theme-color" content="#100b07">
+<meta name="description" content="GOLD GLOBE — Explore world gold spot values by weight in USD.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://millionfilters.com/">
 <title>GOLD GLOBE | World Gold</title>
+
 <style>
-:root{--gold:#f5d88b;--apple:#c9f477;--line:#edbd653d}
+:root{
+ --gold:#f6d88c;
+ --apple:#c9f477;
+ --line:rgba(240,192,96,.30);
+}
+
 *{box-sizing:border-box}
-body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -5%,#563615,#1b130c 31%,#08090b 82%);color:#fff5e2;text-align:center;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
-main{width:min(100%,520px);margin:auto;padding:22px 14px 40px}
-h1{margin:8px 0 5px;color:var(--gold);font-family:Georgia,serif;font-size:clamp(25px,6.4vw,34px);letter-spacing:.14em;text-shadow:0 2px 18px #d495312b}
-.tag{color:#d0bfa1;font-size:11px;letter-spacing:.3em;margin-bottom:16px}
-.panel{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:30px;padding:18px 14px 18px;background:radial-gradient(ellipse at 50% 12%,#5e381b47,transparent 52%),linear-gradient(155deg,#24180f,#10100f 80%);box-shadow:0 20px 48px #0008}
-.eyebrow{color:#f1d18a;font-size:11px;letter-spacing:.21em;margin-bottom:12px}
-.bar-stage{position:relative;width:min(100%,440px);margin:0 auto 3px;filter:drop-shadow(0 15px 20px #0008);animation:bar-float 6s ease-in-out infinite;transform-origin:50% 55%}
-.bar-stage img{display:block;width:100%;height:auto}
-.bar-engrave{position:absolute;top:46%;left:50%;transform:translate(-50%,-50%);width:45%;pointer-events:none;display:flex;flex-direction:column;align-items:center;color:#6c3c09;text-shadow:0 1px 1px #fff3bb99,0 -1px 1px #8a520f75}
-.bar-engrave .fine{font-family:Georgia,serif;font-size:clamp(9px,2.2vw,13px);font-weight:800;letter-spacing:.11em;white-space:nowrap}
-.bar-engrave .weight{font-family:Georgia,serif;font-size:clamp(28px,8vw,44px);line-height:1.13;font-weight:900;white-space:nowrap}
-.bar-engrave .purity{font-size:clamp(8px,2.1vw,11px);font-weight:850;letter-spacing:.07em;white-space:nowrap}
-@keyframes bar-float{0%,100%{transform:translateY(1px) rotate(-.55deg)}50%{transform:translateY(-9px) rotate(.55deg)}}
-.price-caption{color:var(--gold);font-size:11px;letter-spacing:.2em;margin-top:0}
-.price{color:#fff2c5;font-size:clamp(35px,9vw,53px);font-weight:900;line-height:1.15;margin:10px 0 7px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
-.unit{color:#d8c9af;font-size:12px}.status{color:#b7a995;font-size:11px;margin:12px 0 0;line-height:1.7}
-.weights{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:20px 0 8px}
-.weights button{min-height:47px;padding:9px 5px;border-radius:13px;border:1px solid #d8a75d66;background:linear-gradient(#30251c,#191510);color:#f8dfb1;font:800 13px inherit;cursor:pointer;font-size:13px;font-weight:800}
-.weights button.active{background:linear-gradient(#fff1b5,#e6b952 55%,#c48b2b);color:#563609;border-color:#ffebad;box-shadow:0 4px 16px #cc9d4144}
-.weights button:focus-visible,.share:focus-visible{outline:3px solid #fff1b5;outline-offset:3px}
-.scene{position:relative;margin:2px -14px -18px;height:255px;overflow:hidden;isolation:isolate;background:radial-gradient(ellipse at 50% 82%,#9c621b29,transparent 58%)}
-.mountains{position:absolute;left:0;bottom:0;width:100%;height:auto;display:block;z-index:1;filter:drop-shadow(0 0 15px #dc9b2720)}
-.earth-glow{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:220px;height:72px;background:radial-gradient(ellipse,#ffcc5f88,transparent 72%);filter:blur(15px);z-index:2}
-.earth{position:absolute;left:50%;bottom:17px;transform:translateX(-50%);width:190px;height:190px;object-fit:contain;z-index:3;filter:drop-shadow(0 0 14px #daa64b88) drop-shadow(0 7px 17px #0009)}
-.scene:after{content:"";position:absolute;bottom:0;left:0;right:0;height:26px;background:linear-gradient(transparent,#130d09bb);pointer-events:none;z-index:4}
-.share{display:block;width:100%;min-height:58px;margin-top:18px;border:0;border-radius:18px;background:var(--apple);color:#1c2c0a;font-size:18px;font-weight:900;cursor:pointer;box-shadow:0 7px 24px #ade35d44}.share:active{transform:scale(.99)}
-footer{margin-top:18px;color:#a2957e;font-size:10px;line-height:1.8}
-@media(max-width:430px){.scene{height:225px}.earth{width:169px;height:169px}.weights button{font-size:12px}.bar-stage{width:100%}}
-@media(prefers-reduced-motion:reduce){.bar-stage{animation:none}}
+
+html{scroll-behavior:smooth}
+
+body{
+ margin:0;
+ min-height:100vh;
+ color:#fff6e5;
+ text-align:center;
+ font-family:-apple-system,BlinkMacSystemFont,
+ "Segoe UI",Arial,sans-serif;
+ background:
+  radial-gradient(ellipse at 50% 0%,
+   #593717 0%,#1b120a 34%,#080909 85%);
+}
+
+main{
+ width:min(100%,520px);
+ margin:auto;
+ padding:20px 13px 35px;
+}
+
+/* BRAND */
+
+.brand{
+ margin:8px 0 20px;
+}
+
+h1{
+ margin:0;
+ color:var(--gold);
+ font-family:Georgia,serif;
+ font-size:clamp(27px,7vw,35px);
+ letter-spacing:.13em;
+ font-weight:900;
+ text-shadow:0 2px 20px #d9983650;
+}
+
+.tag{
+ color:#cdbb98;
+ font-size:11px;
+ letter-spacing:.30em;
+ margin-top:7px;
+}
+
+/* MAIN PANEL */
+
+.panel{
+ position:relative;
+ overflow:hidden;
+ border:1px solid var(--line);
+ border-radius:29px;
+ padding:19px 13px 0;
+ background:
+  radial-gradient(ellipse at 50% 13%,
+   rgba(220,155,52,.13),transparent 52%),
+  linear-gradient(160deg,
+   #281a10 0%,#17110c 60%,#0b0a09 100%);
+ box-shadow:
+  0 20px 45px #0008,
+  inset 0 1px 0 #e6ba6b22;
+}
+
+.eyebrow{
+ color:#e9c67b;
+ font-size:11px;
+ letter-spacing:.22em;
+ margin-bottom:10px;
+}
+
+/* GOLD BAR */
+
+.bar-stage{
+ position:relative;
+ width:min(100%,440px);
+ margin:0 auto 2px;
+ transform-origin:center;
+ animation:barFloat 6s ease-in-out infinite;
+ filter:drop-shadow(0 16px 20px #0009);
+}
+
+.bar-stage img{
+ display:block;
+ width:100%;
+ height:auto;
+}
+
+.bar-engrave{
+ position:absolute;
+ top:45%;
+ left:50%;
+ transform:translate(-50%,-50%);
+ width:43%;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ justify-content:center;
+ color:#724209;
+ pointer-events:none;
+ text-shadow:
+  0 1px 1px #fff2bc99,
+  0 -1px 1px #88520d66;
+}
+
+.fine{
+ font-family:Georgia,serif;
+ font-size:clamp(9px,2.2vw,13px);
+ font-weight:900;
+ letter-spacing:.08em;
+ white-space:nowrap;
+}
+
+.bar-weight{
+ display:block;
+ font-family:Georgia,serif;
+ font-size:clamp(29px,8vw,44px);
+ font-weight:900;
+ line-height:1.12;
+ margin:3px 0;
+ white-space:nowrap;
+}
+
+.purity{
+ font-size:clamp(8px,2vw,11px);
+ font-weight:900;
+ letter-spacing:.07em;
+ white-space:nowrap;
+}
+
+@keyframes barFloat{
+ 0%,100%{
+  transform:translateY(2px) rotate(-.7deg);
+ }
+ 50%{
+  transform:translateY(-9px) rotate(.7deg);
+ }
+}
+
+/* GOLD PRICE */
+
+.price-caption{
+ margin:0 0 9px;
+ color:var(--gold);
+ font-size:11px;
+ letter-spacing:.2em;
+}
+
+.price{
+ margin:0 0 8px;
+ color:#fff3cc;
+ font-size:clamp(35px,9vw,54px);
+ font-weight:900;
+ line-height:1.13;
+ font-variant-numeric:tabular-nums;
+ overflow-wrap:anywhere;
+ text-shadow:0 0 25px #ecb84c16;
+}
+
+.unit{
+ color:#d9cbb4;
+ font-size:12px;
+}
+
+.status{
+ margin:11px 0 0;
+ color:#b8a891;
+ font-size:11px;
+ line-height:1.7;
+}
+
+/* GOLD WEIGHTS */
+
+.weights{
+ display:grid;
+ grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:9px;
+ margin:19px 0 0;
+}
+
+.weights button{
+ min-height:47px;
+ padding:9px 4px;
+ border:1px solid #d6a25f66;
+ border-radius:13px;
+ background:linear-gradient(180deg,
+  #33271d,#1b1510);
+ color:#f3dcaf;
+ font-size:13px;
+ font-weight:850;
+ cursor:pointer;
+ transition:background .15s ease;
+}
+
+.weights button.active{
+ background:linear-gradient(180deg,
+  #fff1b6,#e8bd5f 55%,#c58d30);
+ color:#543608;
+ border-color:#ffe7a5;
+ box-shadow:0 5px 18px #dca84744;
+}
+
+.weights button:active{
+ transform:scale(.98);
+}
+
+.weights button:focus-visible,
+.share:focus-visible{
+ outline:3px solid #fff0b1;
+ outline-offset:3px;
+}
+
+/* GOLD WORLD */
+
+.scene{
+ position:relative;
+ height:225px;
+ margin:5px -13px 0;
+ overflow:hidden;
+ isolation:isolate;
+ background:
+  radial-gradient(ellipse at 50% 77%,
+   rgba(210,143,38,.18),transparent 67%);
+}
+
+/* MOUNTAINS */
+
+.mountains{
+ position:absolute;
+ left:0;
+ bottom:0;
+ width:100%;
+ height:auto;
+ display:block;
+ z-index:1;
+ filter:
+  brightness(1.08)
+  saturate(1.10);
+ -webkit-mask-image:
+  linear-gradient(to bottom,
+   transparent 0%,black 28%,black 100%);
+ mask-image:
+  linear-gradient(to bottom,
+   transparent 0%,black 28%,black 100%);
+}
+
+/* GLOBE LIGHT */
+
+.earth-halo{
+ position:absolute;
+ left:50%;
+ bottom:18px;
+ transform:translateX(-50%);
+ width:245px;
+ height:200px;
+ border-radius:50%;
+ background:radial-gradient(circle,
+  rgba(255,199,86,.23),
+  transparent 70%);
+ filter:blur(18px);
+ z-index:2;
+}
+
+/* ANIMATED EARTH */
+
+.earth{
+ position:absolute;
+ left:50%;
+ bottom:13px;
+ transform:translateX(-50%);
+ width:185px;
+ height:185px;
+ object-fit:contain;
+ z-index:3;
+ filter:
+  brightness(1.16)
+  contrast(1.08)
+  saturate(1.12)
+  drop-shadow(0 0 17px #e5b45899)
+  drop-shadow(0 9px 20px #0008);
+}
+
+/* FINAL SCENE BLEND */
+
+.scene:after{
+ content:"";
+ position:absolute;
+ left:0;
+ right:0;
+ bottom:0;
+ height:22px;
+ background:linear-gradient(
+  transparent,
+  rgba(12,9,7,.35)
+ );
+ pointer-events:none;
+ z-index:4;
+}
+
+/* SHARE */
+
+.share{
+ display:block;
+ width:100%;
+ min-height:58px;
+ margin-top:17px;
+ border:0;
+ border-radius:18px;
+ background:linear-gradient(180deg,
+  #d8fc95,#c3ef67);
+ color:#1a2c07;
+ font-size:18px;
+ font-weight:900;
+ cursor:pointer;
+ box-shadow:
+  0 8px 26px #a7db583f,
+  inset 0 1px 0 #ffffff66;
+}
+
+.share:active{
+ transform:scale(.99);
+}
+
+footer{
+ margin-top:18px;
+ color:#a89a82;
+ font-size:10px;
+ line-height:1.9;
+}
+
+/* MOBILE */
+
+@media(max-width:430px){
+ .scene{height:205px}
+ .earth{
+  width:168px;
+  height:168px;
+ }
+ .weights button{font-size:12px}
+}
+
+@media(prefers-reduced-motion:reduce){
+ .bar-stage{animation:none}
+}
 </style>
 </head>
+
 <body>
 <main>
-<h1>GOLD GLOBE</h1><div class="tag">WORLD GOLD</div>
+
+<header class="brand">
+ <h1>GOLD GLOBE</h1>
+ <div class="tag">WORLD GOLD</div>
+</header>
+
 <section class="panel">
- <div class="eyebrow">✦ LUXURY GOLD VIEW ✦</div>
+
+ <div class="eyebrow">
+  ✦ LUXURY GOLD VIEW ✦
+ </div>
+
+ <!-- GOLD BAR -->
+
  <div class="bar-stage">
-  <img src="gold-bar-clean.webp" alt="Fine gold bullion bar" width="980" height="460">
+  <img
+   src="gold-bar-clean.webp"
+   alt="Fine gold bullion bar"
+   width="980"
+   height="460"
+  >
+
   <div class="bar-engrave" aria-hidden="true">
    <span class="fine">FINE GOLD</span>
-   <strong class="weight" id="barWeight">1 kg</strong>
+   <strong class="bar-weight" id="barWeight">
+    1 kg
+   </strong>
    <span class="purity">999.9 · 24K</span>
   </div>
  </div>
- <div class="price-caption">GLOBAL GOLD PRICE</div>
- <div class="price" id="price" aria-live="polite">—</div>
- <div class="unit" id="unit">USD / 1 kg · 24K</div>
- <div class="status" id="status">Loading latest price…</div>
- <div class="weights" id="weights" aria-label="Choose gold weight"></div>
- <div class="scene" aria-label="Golden Earth and mountains">
-  <img src="mountains-soft.webp" class="mountains" alt="Golden mountain landscape">
-  <div class="earth-glow"></div>
-  <img class="earth" src="earth-spin.webp" alt="Golden Earth rotating horizontally" width="320" height="320">
+
+ <!-- GOLD PRICE -->
+
+ <div class="price-caption">
+  GLOBAL GOLD PRICE
  </div>
+
+ <div class="price" id="price" aria-live="polite">
+  —
+ </div>
+
+ <div class="unit" id="unit">
+  USD / 1 kg · 24K
+ </div>
+
+ <div class="status" id="status">
+  Loading latest price…
+ </div>
+
+ <!-- WEIGHTS -->
+
+ <div
+  class="weights"
+  id="weights"
+  aria-label="Choose gold weight">
+ </div>
+
+ <!-- GOLD WORLD -->
+
+ <div class="scene">
+
+  <img
+   src="mountains-soft.webp"
+   class="mountains"
+   alt="Golden mountains"
+  >
+
+  <div class="earth-halo"></div>
+
+  <img
+   src="earth-spin.webp"
+   class="earth"
+   alt="Golden Earth rotating horizontally"
+   width="320"
+   height="320"
+  >
+
+ </div>
+
 </section>
-<button class="share" id="share">↗ SHARE GOLD</button>
-<footer>Indicative spot metal value · USD only<br>Not a retail buying or selling quote</footer>
+
+<button class="share" id="share">
+ ↗ SHARE GOLD
+</button>
+
+<footer>
+ Indicative spot metal value · USD only
+ <div>Not a retail buying or selling quote</div>
+</footer>
+
 </main>
+
 <script>
 const OUNCE=31.1034768;
-const weights=[['1 kg',1000],['500 g',500],['250 g',250],['100 g',100],['50 g',50],['20 g',20],['10 g',10],['5 g',5],['1 g',1],['Ounce',OUNCE]];
-let spot=null,grams=1000,selected='1 kg';
+
+const weights=[
+ ['1 kg',1000],
+ ['500 g',500],
+ ['250 g',250],
+ ['100 g',100],
+ ['50 g',50],
+ ['20 g',20],
+ ['10 g',10],
+ ['5 g',5],
+ ['1 g',1],
+ ['Ounce',OUNCE]
+];
+
+let spot=null;
+let grams=1000;
+let selected='1 kg';
+
 const el=id=>document.getElementById(id);
-const money=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2}).format(n);
-for(const [label,g] of weights){
- const b=document.createElement('button');b.type='button';b.textContent=label;b.dataset.label=label;
- b.onclick=()=>{selected=label;grams=g;render()};el('weights').appendChild(b);
+
+function money(value){
+ return new Intl.NumberFormat('en-US',{
+  style:'currency',
+  currency:'USD',
+  minimumFractionDigits:2,
+  maximumFractionDigits:2
+ }).format(value);
 }
+
+/* WEIGHT BUTTONS */
+
+for(const [label,g] of weights){
+ const b=document.createElement('button');
+
+ b.type='button';
+ b.textContent=label;
+ b.dataset.label=label;
+
+ b.onclick=()=>{
+  selected=label;
+  grams=g;
+  render();
+ };
+
+ el('weights').appendChild(b);
+}
+
+/* RENDER */
+
 function render(){
  el('barWeight').textContent=selected;
- el('unit').textContent=selected==='Ounce'?'USD / TROY OUNCE · 24K':'USD / '+selected+' · 24K';
- el('price').textContent=spot===null?'—':money(spot*grams/OUNCE);
- el('weights').querySelectorAll('button').forEach(b=>{const a=b.dataset.label===selected;b.classList.toggle('active',a);b.setAttribute('aria-pressed',String(a))});
+
+ el('unit').textContent=
+  selected==='Ounce'
+  ?'USD / TROY OUNCE · 24K'
+  :'USD / '+selected+' · 24K';
+
+ el('price').textContent=
+  spot===null
+  ?'—'
+  :money(spot*grams/OUNCE);
+
+ el('weights')
+  .querySelectorAll('button')
+  .forEach(b=>{
+   const active=b.dataset.label===selected;
+
+   b.classList.toggle('active',active);
+   b.setAttribute(
+    'aria-pressed',
+    String(active)
+   );
+  });
 }
+
+/* GOLD DATA */
+
 async function updatePrice(){
  try{
-  const r=await fetch('https://api.gold-api.com/price/XAU',{cache:'no-store'});
+  const r=await fetch(
+   'https://api.gold-api.com/price/XAU',
+   {cache:'no-store'}
+  );
+
   if(!r.ok)throw Error('HTTP');
-  const d=await r.json();const p=Number(d.price);
-  if(!Number.isFinite(p)||p<=0)throw Error('Invalid price');
+
+  const d=await r.json();
+  const p=Number(d.price);
+
+  if(!Number.isFinite(p)||p<=0){
+   throw Error('Invalid price');
+  }
+
   spot=p;
-  const date=d.updatedAt?new Date(d.updatedAt):null;
-  el('status').textContent=date&&!isNaN(date.getTime())?'Updated: '+date.toLocaleString('en-GB',{dateStyle:'medium',timeStyle:'short',timeZone:'UTC'})+' UTC':'Latest available gold price';
- }catch(e){spot=null;el('status').textContent='Price unavailable · Refresh to retry'}
+
+  const date=d.updatedAt
+   ?new Date(d.updatedAt)
+   :null;
+
+  el('status').textContent=
+   date&&!isNaN(date.getTime())
+   ?'Updated: '+date.toLocaleString(
+    'en-GB',{
+     dateStyle:'medium',
+     timeStyle:'short',
+     timeZone:'UTC'
+    }
+   )+' UTC'
+   :'Latest available gold price';
+
+ }catch(error){
+  spot=null;
+
+  el('status').textContent=
+   'Price unavailable · Refresh to retry';
+ }
+
  render();
 }
+
+/* SHARE */
+
 el('share').onclick=async()=>{
  const url=location.origin+location.pathname;
- const msg=spot===null?'✨ GOLD GLOBE':'✨ GOLD GLOBE\n'+selected+': '+money(spot*grams/OUNCE);
- try{if(navigator.share){await navigator.share({title:'GOLD GLOBE',text:msg,url});return}}catch(e){if(e.name==='AbortError')return}
- window.open('https://wa.me/?text='+encodeURIComponent(msg+'\n'+url),'_blank','noopener');
+
+ const msg=spot===null
+  ?'✨ GOLD GLOBE'
+  :'✨ GOLD GLOBE\n'+selected+
+   ': '+money(spot*grams/OUNCE);
+
+ try{
+  if(navigator.share){
+   await navigator.share({
+    title:'GOLD GLOBE',
+    text:msg,
+    url
+   });
+   return;
+  }
+ }catch(error){
+  if(error.name==='AbortError')return;
+ }
+
+ window.open(
+  'https://wa.me/?text='+
+   encodeURIComponent(msg+'\n'+url),
+  '_blank',
+  'noopener'
+ );
 };
-render();updatePrice();
-// Do not substitute the current clock for the source's last-update timestamp.
+
+render();
+updatePrice();
 </script>
+
 </body>
 </html>
