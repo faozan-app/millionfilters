@@ -5,163 +5,341 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#090909">
-<meta name="description" content="GOLD GLOBE — Global gold prices by weight in USD.">
-<title>GOLD GLOBE | World Gold Price</title>
+<meta name="description" content="GOLD GLOBE — World gold spot price by weight in USD.">
+<title>GOLD GLOBE | World Gold</title>
+
 <style>
+:root{
+ --gold:#f6d47c;
+ --apple:#c9f477;
+ --muted:#bdb39d;
+}
 *{box-sizing:border-box}
 body{
- margin:0;min-height:100vh;
- background:radial-gradient(ellipse at top,#443015,#15120d 45%,#080909);
- color:white;text-align:center;
- font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif
+ margin:0;
+ min-height:100vh;
+ background:radial-gradient(ellipse at top,#493316,#17130e 43%,#080909);
+ color:#fff;
+ text-align:center;
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
 }
-main{max-width:480px;margin:auto;padding:24px 16px 45px}
-h1{color:#f7d47b;letter-spacing:5px;font-size:23px;margin:12px 0 5px}
-.tagline{color:#cbbd9b;font-size:11px;letter-spacing:3px}
+main{
+ width:min(100%,480px);
+ margin:auto;
+ padding:23px 15px 38px;
+}
+h1{
+ margin:8px 0 6px;
+ color:var(--gold);
+ font-size:23px;
+ letter-spacing:5px;
+}
+.tag{
+ color:#cdbd9e;
+ font-size:11px;
+ letter-spacing:3px;
+}
 .panel{
- margin-top:25px;padding:23px 16px;
- border:1px solid #b58b4155;
- background:linear-gradient(145deg,#30281b99,#111214);
- border-radius:28px;box-shadow:0 18px 40px #0007
+ margin-top:24px;
+ padding:23px 16px;
+ border:1px solid #a7804255;
+ border-radius:27px;
+ background:linear-gradient(145deg,#30281c99,#111214);
+ box-shadow:0 18px 40px #0007;
 }
+
+/* GOLD BAR */
 .goldbar{
- width:225px;max-width:85%;height:118px;
- margin:15px auto 25px;border:2px solid #ffe7a2;
- border-radius:19px;color:#62400a;
- background:linear-gradient(135deg,#fff6c0,#f5cf6e 35%,#bb8528 75%,#855817);
- box-shadow:inset 0 4px 10px #fff8ce,inset -12px -13px 18px #79500b88,
- 0 22px 30px #0008,0 0 55px #d8a53444;
- display:flex;flex-direction:column;justify-content:center;align-items:center;
- animation:float 5s ease-in-out infinite
+ width:230px;
+ max-width:85%;
+ height:118px;
+ margin:15px auto 22px;
+ border:2px solid #ffe7a2;
+ border-radius:19px;
+ color:#62400a;
+ background:linear-gradient(135deg,
+  #fff6c0,#f5cf6e 35%,#bb8528 75%,#855817);
+ box-shadow:
+  inset 0 4px 10px #fff8ce,
+  inset -12px -13px 18px #79500b88,
+  0 22px 30px #0008,
+  0 0 55px #d8a53444;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ animation:float 6s ease-in-out infinite;
 }
-.goldbar small{font-size:10px;letter-spacing:3px;font-weight:800}
-.goldbar strong{font-size:34px;margin:7px 0}
+.goldbar small{
+ font-size:10px;
+ letter-spacing:2px;
+ font-weight:800;
+}
+.goldbar strong{
+ font-size:34px;
+ margin:8px 0;
+}
 @keyframes float{
- 0%,100%{transform:translateY(0) rotateY(-10deg) rotateX(9deg)}
- 50%{transform:translateY(-9px) rotateY(7deg) rotateX(6deg)}
+ 0%,100%{
+  transform:translateY(0) rotateY(-10deg) rotateX(9deg);
+ }
+ 50%{
+  transform:translateY(-8px) rotateY(7deg) rotateX(6deg);
+ }
 }
+
+/* PRICE */
+.caption{
+ color:#e7c47c;
+ font-size:11px;
+ letter-spacing:2px;
+}
+.price{
+ margin:13px 0 7px;
+ color:#fff2c5;
+ font-size:clamp(35px,10vw,51px);
+ font-weight:900;
+ font-variant-numeric:tabular-nums;
+ overflow-wrap:anywhere;
+}
+.unit{
+ color:var(--muted);
+ font-size:12px;
+}
+.status{
+ color:#a9a08d;
+ font-size:11px;
+ margin:13px 0 0;
+ line-height:1.7;
+}
+
+/* WEIGHTS */
 .weights{
- display:grid;grid-template-columns:repeat(3,1fr);
- gap:8px;margin:5px 0 21px
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:8px;
+ margin:22px 0 5px;
 }
 .weights button{
- margin:0;padding:11px 4px;
- border:1px solid #9d793c88;
- border-radius:12px;background:#28231c;
- color:#f2dab1;font-size:13px;font-weight:800;
- cursor:pointer
+ min-height:47px;
+ padding:10px 4px;
+ background:#29241d;
+ color:#f0d8a5;
+ border:1px solid #9c793e88;
+ border-radius:12px;
+ font-size:13px;
+ font-weight:800;
+ cursor:pointer;
 }
 .weights button.active{
- background:linear-gradient(135deg,#ffedaa,#d6a23f);
- color:#513507;border-color:#ffe6a0
+ background:linear-gradient(135deg,#fff0b3,#d4a03d);
+ color:#4e3508;
+ border-color:#ffe69a;
+ box-shadow:0 3px 16px #e2ae3844;
+}
+
+/* ROTATING EARTH */
+.globe-area{
+ margin:28px auto 7px;
+ display:grid;
+ place-items:center;
 }
 .globe{
- width:100px;height:100px;border-radius:50%;
- margin:0 auto 20px;display:grid;place-items:center;
- background:radial-gradient(circle at 30% 25%,#ffe6a2,#c18b31 45%,#50350c 90%);
- box-shadow:inset -15px -12px 22px #33200e,0 0 35px #e7b64744
+ width:155px;
+ height:155px;
+ border-radius:50%;
+ position:relative;
+ overflow:hidden;
+ background:radial-gradient(circle at 30% 24%,
+  #ffe9af,#c49139 45%,#6b4819 85%);
+ box-shadow:
+  inset -22px -17px 28px #24180d,
+  inset 10px 8px 17px #fff2ae55,
+  0 0 37px #d5a23355;
 }
-.globe svg{width:87%;height:87%}
-.globe path{fill:#76511c;opacity:.75}
-.caption{color:#e6c17b;font-size:12px;letter-spacing:2px}
-.price{
- margin:13px 0;font-size:clamp(34px,9vw,49px);
- font-weight:900;color:#fff3ca;
- font-variant-numeric:tabular-nums;overflow-wrap:anywhere
+.globe svg{
+ width:100%;
+ height:100%;
 }
-.unit{color:#c4b89c;font-size:12px}
-.status{margin:18px 0 5px;font-size:11px;color:#b7ae98;line-height:1.7}
+.land{
+ fill:#78501c;
+ opacity:.88;
+}
+.world-strip{
+ animation:earthturn 50s linear infinite;
+}
+@keyframes earthturn{
+ from{transform:translateX(0)}
+ to{transform:translateX(-360px)}
+}
+.globe:after{
+ content:"";
+ position:absolute;
+ inset:0;
+ border-radius:50%;
+ background:
+  radial-gradient(circle at 28% 22%,#fff4bb44,transparent 38%),
+  linear-gradient(90deg,transparent 30%,#1b120a66 100%);
+ pointer-events:none;
+}
+.globe-label{
+ margin-top:14px;
+ color:#dabc79;
+ font-size:11px;
+ letter-spacing:3px;
+}
+
+/* SHARE */
 .share{
- width:100%;margin-top:24px;padding:17px;
- border:0;border-radius:18px;background:#c9f477;
- color:#20310b;font-size:18px;font-weight:850;
- cursor:pointer;box-shadow:0 6px 25px #b4e76044
+ width:100%;
+ min-height:57px;
+ margin-top:22px;
+ border:0;
+ border-radius:18px;
+ background:var(--apple);
+ color:#1b2c08;
+ font-size:18px;
+ font-weight:850;
+ cursor:pointer;
+ box-shadow:0 8px 24px #b7e96044;
 }
 .share:active{transform:scale(.98)}
-footer{margin-top:20px;color:#8d8573;font-size:10px}
-@media(prefers-reduced-motion:reduce){.goldbar{animation:none}}
+footer{
+ margin-top:19px;
+ color:#918877;
+ font-size:10px;
+ line-height:1.7;
+}
+@media(prefers-reduced-motion:reduce){
+ .goldbar,.world-strip{animation:none}
+}
 </style>
 </head>
+
 <body>
 <main>
+
 <h1>GOLD GLOBE</h1>
-<div class="tagline">WORLD GOLD</div>
+<div class="tag">WORLD GOLD</div>
 
 <section class="panel">
+
+<!-- GOLD BAR -->
 <div class="goldbar">
  <small>FINE GOLD</small>
- <strong id="barWeight">1 oz</strong>
+ <strong id="barWeight">Ounce</strong>
  <small>999.9 · 24K GOLD</small>
 </div>
 
-<div class="weights" id="weights"></div>
-
-<div class="globe">
-<svg viewBox="0 0 200 200" aria-hidden="true">
-<path d="M9 49l27-14 21 8 12 21-8 14-16 5-1 16-15 11-12-20-9-13zm44 67 26-8 12 17-6 30-20 27-11-16 4-21zM97 36l28-8 21 11 30-5 17 24-22 13-16-9-9 21-18 9-9-18-24-6-10-15zm18 63 28-4 17 17-8 34-21 20-18-17-7-25zm56 49 23-5 12 17-17 17-20-11z"/>
-</svg>
-</div>
-
+<!-- PRICE UNDER BAR -->
 <div class="caption">GLOBAL GOLD PRICE</div>
 <div class="price" id="price">—</div>
-<div class="unit" id="unit">USD / TROY OUNCE · XAU</div>
+<div class="unit" id="unit">USD / TROY OUNCE</div>
 <div class="status" id="status">Loading...</div>
+
+<!-- WEIGHTS BIG TO SMALL -->
+<div class="weights" id="weights"></div>
+
+<!-- ROTATING GLOBE -->
+<div class="globe-area">
+ <div class="globe">
+  <svg viewBox="0 0 180 180" aria-label="Rotating Earth">
+   <defs>
+    <path id="continents"
+     d="M12 45 L35 30 57 38 70 56 61 72 48 77 44 99 30 107 18 86 8 70Z
+     M54 107 L77 100 94 122 85 153 70 177 56 154 60 134Z
+     M105 37 L129 28 153 39 181 33 207 53 198 71 174 76 159 64 146 91 125 89 115 72 101 67Z
+     M124 101 L151 97 168 114 156 151 137 174 119 151 111 123Z
+     M190 145 L217 138 232 157 215 174 188 164Z
+     M248 42 L273 32 294 46 301 65 281 76 270 98 250 85 239 61Z
+     M267 107 L289 101 302 122 293 151 277 173 262 147Z
+     M307 38 L330 29 352 43 368 62 351 77 332 70 321 94 303 75Z
+     M322 104 L346 99 362 120 351 157 332 174 316 145Z"/>
+   </defs>
+   <g class="world-strip">
+    <use href="#continents" class="land"/>
+    <use href="#continents" x="360" class="land"/>
+   </g>
+  </svg>
+ </div>
+ <div class="globe-label">WORLD GOLD</div>
+</div>
+
 </section>
 
 <button class="share" id="share">↗ SHARE</button>
-<footer>Indicative spot value · Not a retail quote</footer>
+
+<footer>
+ Indicative gold spot value · USD
+ <div>Not a retail buying or selling price</div>
+</footer>
+
 </main>
 
 <script>
 const OZ=31.1034768;
+
 const choices=[
- ['1 g',1],['5 g',5],['10 g',10],
- ['20 g',20],['50 g',50],['100 g',100],
- ['250 g',250],['500 g',500],['1 kg',1000]
+ ['1 kg',1000],
+ ['500 g',500],
+ ['250 g',250],
+ ['100 g',100],
+ ['50 g',50],
+ ['20 g',20],
+ ['10 g',10],
+ ['5 g',5],
+ ['1 g',1],
+ ['Ounce',OZ]
 ];
 
 let ounce=null;
-let grams=OZ;
-let selected='1 oz';
+let weight=OZ;
+let label='Ounce';
 
 const weights=document.getElementById('weights');
+const price=document.getElementById('price');
+const status=document.getElementById('status');
 
-function addChoice(label,value){
- const b=document.createElement('button');
- b.textContent=label;
- b.dataset.label=label;
- b.onclick=()=>{
-  grams=value;
-  selected=label;
+choices.forEach(([name,grams])=>{
+ const button=document.createElement('button');
+ button.textContent=name;
+ button.dataset.label=name;
+ button.setAttribute('aria-pressed',String(name===label));
+
+ button.onclick=()=>{
+  weight=grams;
+  label=name;
   render();
  };
- weights.appendChild(b);
-}
 
-addChoice('1 oz',OZ);
-choices.forEach(([label,value])=>addChoice(label,value));
+ weights.appendChild(button);
+});
 
 function render(){
- document.getElementById('barWeight').textContent=selected;
- document.getElementById('unit').textContent=
-  'USD / '+selected+' · 24K';
+ document.getElementById('barWeight').textContent=label;
 
- document.querySelectorAll('#weights button').forEach(b=>{
-  b.classList.toggle('active',b.dataset.label===selected);
+ document.getElementById('unit').textContent=
+  label==='Ounce'
+  ?'USD / TROY OUNCE'
+  :'USD / '+label+' · 24K';
+
+ weights.querySelectorAll('button').forEach(button=>{
+  const active=button.dataset.label===label;
+  button.classList.toggle('active',active);
+  button.setAttribute('aria-pressed',String(active));
  });
 
- document.getElementById('price').textContent=
-  ounce===null?'—':
-  new Intl.NumberFormat('en-US',{
-   style:'currency',currency:'USD',
+ price.textContent=ounce===null
+  ?'—'
+  :new Intl.NumberFormat('en-US',{
+   style:'currency',
+   currency:'USD',
    minimumFractionDigits:2,
    maximumFractionDigits:2
-  }).format(ounce*grams/OZ);
+  }).format(ounce*weight/OZ);
 }
 
 async function loadGold(){
- const status=document.getElementById('status');
-
  try{
   const response=await fetch(
    'https://api.gold-api.com/price/XAU',
@@ -169,20 +347,29 @@ async function loadGold(){
   );
 
   if(!response.ok)throw Error('Network');
+
   const data=await response.json();
   const value=Number(data.price);
-  if(!Number.isFinite(value)||value<=0)throw Error('Invalid');
+
+  if(!Number.isFinite(value)||value<=0)
+   throw Error('Invalid price');
 
   ounce=value;
-  const date=data.updatedAt?new Date(data.updatedAt):null;
+
+  const date=data.updatedAt
+   ?new Date(data.updatedAt)
+   :null;
+
   status.textContent=date&&!isNaN(date)
    ?'Updated: '+date.toLocaleString('en-GB',{
-      dateStyle:'medium',timeStyle:'short',timeZone:'UTC'
+     dateStyle:'medium',
+     timeStyle:'short',
+     timeZone:'UTC'
     })+' UTC'
-   :'Latest available price';
+   :'Latest available gold price';
 
   render();
- }catch{
+ }catch(error){
   ounce=null;
   render();
   status.textContent='Price unavailable · Refresh to retry';
@@ -191,22 +378,28 @@ async function loadGold(){
 
 document.getElementById('share').onclick=async()=>{
  const url=location.href;
- const text=ounce===null
-  ?'✨ GOLD GLOBE · World Gold Price'
-  :'✨ GOLD GLOBE\n'+selected+': $'+
-   (ounce*grams/OZ).toFixed(2)+' USD';
+ const value=ounce===null
+  ?''
+  :' · $'+(ounce*weight/OZ).toFixed(2);
+
+ const text='✨ GOLD GLOBE\n'+label+value;
 
  try{
   if(navigator.share){
-   await navigator.share({title:'GOLD GLOBE',text,url});
+   await navigator.share({
+    title:'GOLD GLOBE',
+    text,
+    url
+   });
    return;
   }
- }catch(e){
-  if(e.name==='AbortError')return;
+ }catch(error){
+  if(error.name==='AbortError')return;
  }
 
  window.open(
-  'https://wa.me/?text='+encodeURIComponent(text+'\n'+url),
+  'https://wa.me/?text='+
+   encodeURIComponent(text+'\n'+url),
   '_blank','noopener'
  );
 };
