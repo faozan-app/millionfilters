@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#090908">
 <meta name="format-detection" content="telephone=no">
-<meta name="description" content="GOLD GLOBE — A world of golden elegance. Live global gold spot reference values in USD for ten weights.">
+<meta name="description" content="GOLD GLOBE — A world of golden elegance. Live global gold spot reference values in USD, for troy ounce and gram weights across gold karats.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://millionfilters.com/">
 <title>GOLD GLOBE | World Gold</title>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GOLD GLOBE">
 <meta property="og:title" content="GOLD GLOBE | World Gold">
-<meta property="og:description" content="Discover world gold prices in USD, surrounded by golden elegance.">
+<meta property="og:description" content="Discover world gold reference prices in USD, surrounded by golden elegance.">
 <meta property="og:url" content="https://millionfilters.com/">
 <meta property="og:image" content="https://millionfilters.com/gold-globe-share.jpg">
 <meta property="og:image:type" content="image/jpeg">
@@ -30,7 +30,6 @@
 html{min-height:100%;background:#090908}
 body{margin:0;min-height:100vh;color:var(--ivory);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:#090908;text-align:center}
 main{width:min(100%,540px);min-height:100vh;margin:0 auto;position:relative;overflow:hidden;background:linear-gradient(180deg,#080706 0,#120d07 38%,#0c0b09 80%,#080908 100%);box-shadow:0 0 100px #0009}
-/* One continuous jewellery composition, not separate cards */
 .stage{position:relative;isolation:isolate;padding-bottom:22px;overflow:hidden;background:radial-gradient(ellipse 85% 25% at 50% 54%,#67400e66,transparent 75%)}
 .stage:before{content:"";position:absolute;z-index:-1;inset:0 0 auto;height:min(178vw,920px);background:url('gold-globe-hero.webp') center top / 100% auto no-repeat;-webkit-mask-image:linear-gradient(#000 0%,#000 73%,transparent 100%);mask-image:linear-gradient(#000 0%,#000 73%,transparent 100%);pointer-events:none}
 .hero-space{height:clamp(510px,154vw,805px);max-height:805px;position:relative}
@@ -41,17 +40,30 @@ main{width:min(100%,540px);min-height:100vh;margin:0 auto;position:relative;over
 .bar-wrap img{width:100%;height:auto;display:block}
 .engrave{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:47%;color:#73410e;text-shadow:0 1px #ffebae9c,0 -1px #5b310655;display:flex;flex-direction:column;align-items:center;pointer-events:none;white-space:nowrap}
 .engrave span:first-child{font:800 clamp(9px,2vw,13px) Georgia,serif;letter-spacing:.1em}
-.engrave strong{font:900 clamp(26px,7vw,44px) Georgia,serif;line-height:1.18}
+.engrave strong{font:900 clamp(25px,7vw,44px) Georgia,serif;line-height:1.18}
 .engrave span:last-child{font-weight:850;font-size:clamp(8px,2vw,11px)}
 @keyframes float-bar{0%,100%{transform:translateY(2px) rotate(-.35deg)}50%{transform:translateY(-7px) rotate(.35deg)}}
 .label{color:var(--gold);font-size:10px;letter-spacing:.2em;font-weight:800;margin:3px 0 8px}
 .price{font-size:clamp(34px,9vw,55px);font-weight:900;line-height:1.14;overflow-wrap:anywhere;font-variant-numeric:tabular-nums;color:#fff2cb;text-shadow:0 0 22px #e8a64625}
 .unit{color:#dfc99b;font-size:12px;letter-spacing:.05em;margin-top:9px}
 .status{color:#a99d89;font-size:11px;min-height:18px;line-height:1.6;margin-top:9px}
-.weights{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:20px}
-.weights button{font:800 13px -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;min-height:46px;border-radius:13px;padding:9px 4px;background:linear-gradient(180deg,#342719,#181612);border:1px solid #cc9c5066;color:#f1d99e;cursor:pointer;touch-action:manipulation}
-.weights button.active{background:linear-gradient(#fff0b6,#e6ba58 60%,#b9842e);color:#4d300b;border-color:#ffe5a0;box-shadow:0 3px 13px #d1a04340}
-.weights button:focus-visible,.share:focus-visible{outline:3px solid #f6d989;outline-offset:3px}
+.selector-heading{display:flex;align-items:center;gap:10px;margin:22px 4px 12px;color:#d5b87c;font-size:10px;font-weight:800;letter-spacing:.22em;text-align:center}
+.selector-heading:before,.selector-heading:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,#b98e4977,transparent)}
+.karats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px}
+.karats button,.weights button{position:relative;isolation:isolate;overflow:hidden;min-width:0;appearance:none;-webkit-appearance:none;cursor:pointer;touch-action:manipulation;color:#f2d7a1;border:1px solid #b9985e70;background:linear-gradient(145deg,#4b3925 0%,#2a2118 40%,#151411 100%);box-shadow:inset 0 1px 0 #fff0bd20,0 5px 13px #0005;transition:background .2s,border-color .2s,transform .15s,box-shadow .2s}
+.karats button:after,.weights button:after{content:"";position:absolute;inset:1px;border:1px solid #f2cf7e12;border-radius:inherit;pointer-events:none}
+.karats button{min-height:51px;border-radius:12px;padding:8px 2px;font-size:14px;font-weight:900;letter-spacing:.03em}
+.karats button span{display:block;font-size:9px;letter-spacing:.08em;font-weight:600;color:#bcaa8d;margin-top:3px}
+.karats button.active,.weights button.active{color:#493009;border-color:#fff0b2;background:linear-gradient(145deg,#fff4c8 0%,#f0ce83 40%,#d5a64d 80%,#b7802f 100%);box-shadow:0 5px 20px #dcab4d3a,inset 0 1px 0 #fff9d5}
+.karats button.active span,.weights button.active small{color:#684719}
+.weights{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.weights button{min-height:59px;border-radius:14px;padding:9px 3px;font-size:15px;font-weight:850;letter-spacing:.02em}
+.weights button small{display:block;font-size:9px;font-weight:600;letter-spacing:.08em;color:#bcaa8d;margin-top:4px}
+.weights button.featured{grid-column:1 / -1;min-height:64px;border-radius:17px}
+.weights button.featured .weight-main{font-size:19px;letter-spacing:.07em}
+.weights button:active,.karats button:active{transform:scale(.97)}
+.weights button:focus-visible,.karats button:focus-visible,.share:focus-visible{outline:3px solid #f6d989;outline-offset:3px}
+.fineness{color:#a99a7d;font-size:10px;margin:14px 0 0;line-height:1.6}
 .share{display:flex;align-items:center;justify-content:center;gap:11px;margin:17px 14px 0;width:calc(100% - 28px);min-height:59px;border:1px solid #e6ffdd;border-radius:18px;background:linear-gradient(130deg,#ddfad4,#b9efae 58%,#98d890);color:#173a24;box-shadow:0 7px 25px #94dc8a35,inset 0 2px 3px #fff8;font-size:17px;font-weight:900;letter-spacing:.05em;cursor:pointer}
 .share:active{transform:scale(.99)}
 .share svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
@@ -59,26 +71,30 @@ main{width:min(100%,540px);min-height:100vh;margin:0 auto;position:relative;over
 .contact .heading{color:#d7b66d;font-size:10px;letter-spacing:.12em;font-weight:800}
 .contact .phone{display:block;color:#f4e1b4;font-size:20px;letter-spacing:.04em;font-weight:700;margin-top:10px;pointer-events:none;user-select:none;-webkit-user-select:none}
 footer{padding:13px 18px 37px;color:#a49a87;font-size:10px;line-height:1.9}
-@media(max-width:390px){.hero-space{height:147vw}.stage-caption{margin-top:-10px}.weights button{font-size:12px}.gold-content{margin:0 10px;padding:8px 10px 20px}}
+@media(max-width:390px){.hero-space{height:147vw}.stage-caption{margin-top:-10px}.gold-content{margin:0 10px;padding:8px 10px 20px}.weights button{font-size:13px;min-height:55px}.karats{gap:5px}.karats button{font-size:13px}}
 @media(min-width:540px){.hero-space{height:810px}}
-@media(prefers-reduced-motion:reduce){.bar-wrap{animation:none}}
+@media(prefers-reduced-motion:reduce){.bar-wrap{animation:none}.weights button,.karats button{transition:none}}
 </style>
 </head>
 <body>
 <main>
 <section class="stage" aria-label="GOLD GLOBE luxury gold design and gold prices">
   <div class="hero-space" role="img" aria-label="Golden globe pendant and necklace on black velvet background"></div>
-  <div class="stage-caption">✦ WORLD GOLD · 24K ✦</div>
+  <div class="stage-caption">✦ WORLD GOLD · SIGNATURE ✦</div>
   <div class="gold-content">
     <div class="bar-wrap">
       <img src="gold-bar-clean.webp" width="980" height="460" alt="Animated fine gold bullion bar" onerror="this.onerror=null;this.src='gold-bar-fallback.svg'">
-      <div class="engrave" aria-hidden="true"><span>FINE GOLD</span><strong id="barWeight">1 kg</strong><span>999.9 · 24K</span></div>
+      <div class="engrave" aria-hidden="true"><span>GOLD GLOBE</span><strong id="barWeight">1 oz</strong><span id="barKarat">999.9 · 24K</span></div>
     </div>
-    <div class="label">GLOBAL GOLD PRICE · USD</div>
+    <div class="label">GLOBAL GOLD REFERENCE · USD</div>
     <div class="price" id="price" aria-live="polite">—</div>
-    <div class="unit" id="unit">USD / 1 kg · 24K</div>
+    <div class="unit" id="unit">USD / TROY OUNCE · 24K</div>
     <div class="status" id="status" aria-live="polite">Loading latest price…</div>
-    <div class="weights" id="weights" aria-label="Choose gold weight"></div>
+    <div class="selector-heading" id="karats-heading">GOLD PURITY</div>
+    <div class="karats" id="karats" role="group" aria-labelledby="karats-heading"></div>
+    <div class="selector-heading" id="weights-heading">SELECT WEIGHT</div>
+    <div class="weights" id="weights" role="group" aria-labelledby="weights-heading"></div>
+    <p class="fineness" id="calculationNote">24K reference · pure-gold metal value</p>
   </div>
   <button class="share" id="share" type="button" aria-label="Share the selected gold reference price">
     <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.7 10.6l6.6-4.2M8.7 13.4l6.6 4.2"/></svg> SHARE GOLD
@@ -88,24 +104,48 @@ footer{padding:13px 18px 37px;color:#a49a87;font-size:10px;line-height:1.9}
     <span class="phone" translate="no">+966 55 398 9766</span>
   </div>
 </section>
-<footer>Indicative spot metal value · USD only<br>Not a retail buying or selling quote<br>GOLD GLOBE · Signature visual concept</footer>
+<footer>Indicative spot metal value · USD only<br>Lower karats estimated proportionally from 24K spot · No labour, taxes or retail premiums<br>Not a retail buying or selling quote<br>GOLD GLOBE · Signature visual concept</footer>
 </main>
 <script>
 'use strict';
-const OUNCE=31.1034768;
-const weights=[['1 kg',1000],['500 g',500],['250 g',250],['100 g',100],['50 g',50],['20 g',20],['10 g',10],['5 g',5],['1 g',1],['Ounce',OUNCE]];
-let spot=null,grams=1000,selected='1 kg';
+const OUNCE=31.1034768; // One troy ounce in grams
+const weights=[
+ {label:'Ounce',grams:OUNCE,detail:'TROY OUNCE',engrave:'1 oz',featured:true},
+ {label:'1 kg',grams:1000,detail:'1000 GRAMS'},
+ {label:'500 g',grams:500,detail:'HALF KILO'},
+ {label:'250 g',grams:250,detail:'QUARTER KILO'},
+ {label:'100 g',grams:100,detail:'GRAMS'},
+ {label:'50 g',grams:50,detail:'GRAMS'},
+ {label:'20 g',grams:20,detail:'GRAMS'},
+ {label:'10 g',grams:10,detail:'GRAMS'},
+ {label:'5 g',grams:5,detail:'GRAMS'},
+ {label:'1 g',grams:1,detail:'GRAM'}
+];
+const karats=[24,22,21,18,14];
+let spot=null,selectedWeight=weights[0],selectedKarat=24;
 const el=id=>document.getElementById(id);
 const money=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2}).format(n);
-for(const [label,g] of weights){
- const b=document.createElement('button');b.type='button';b.textContent=label;b.dataset.label=label;
- b.onclick=()=>{selected=label;grams=g;render()};el('weights').appendChild(b);
+function value(){return spot===null?null:spot*(selectedWeight.grams/OUNCE)*(selectedKarat/24)}
+for(const k of karats){
+ const b=document.createElement('button');b.type='button';b.dataset.karat=String(k);
+ b.innerHTML=k+'K<span>'+ (k===24?'PURE':Math.round(k/24*100)+'%') +'</span>';
+ b.addEventListener('click',()=>{selectedKarat=k;render()});el('karats').appendChild(b);
+}
+for(const w of weights){
+ const b=document.createElement('button');b.type='button';b.dataset.label=w.label;
+ if(w.featured)b.classList.add('featured');
+ const top=document.createElement('span');top.className='weight-main';top.textContent=w.label;
+ const sub=document.createElement('small');sub.textContent=w.detail;
+ b.append(top,sub);b.addEventListener('click',()=>{selectedWeight=w;render()});el('weights').appendChild(b);
 }
 function render(){
- el('barWeight').textContent=selected;
- el('unit').textContent=selected==='Ounce'?'USD / TROY OUNCE · 24K':'USD / '+selected+' · 24K';
- el('price').textContent=spot===null?'—':money(spot*grams/OUNCE);
- el('weights').querySelectorAll('button').forEach(b=>{const active=b.dataset.label===selected;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});
+ el('barWeight').textContent=selectedWeight.engrave||selectedWeight.label;
+ el('barKarat').textContent=selectedKarat===24?'999.9 · 24K':selectedKarat+'K GOLD';
+ el('unit').textContent='USD / '+(selectedWeight.label==='Ounce'?'TROY OUNCE':selectedWeight.label)+' · '+selectedKarat+'K';
+ const v=value();el('price').textContent=v===null?'—':money(v);
+ el('calculationNote').textContent=selectedKarat===24?'24K reference · pure-gold metal value':selectedKarat+'K estimate · '+selectedKarat+'/24 of pure-gold spot value';
+ el('weights').querySelectorAll('button').forEach(b=>{const active=b.dataset.label===selectedWeight.label;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});
+ el('karats').querySelectorAll('button').forEach(b=>{const active=Number(b.dataset.karat)===selectedKarat;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});
 }
 async function updatePrice(){
  try{
@@ -119,12 +159,12 @@ async function updatePrice(){
  }catch(e){spot=null;el('status').textContent='Price unavailable · Refresh to retry'}
  render();
 }
-el('share').onclick=async()=>{
- const url='https://millionfilters.com/';
- const msg=spot===null?'✨ GOLD GLOBE\n\nWorld Gold Reference Prices · USD':'✨ GOLD GLOBE\n\n🥇 '+selected+' — '+money(spot*grams/OUNCE)+'\n\nWorld Gold Reference Price · USD';
+el('share').addEventListener('click',async()=>{
+ const url='https://millionfilters.com/';const v=value();
+ const msg=v===null?'✨ GOLD GLOBE\n\nWorld Gold Reference Prices · USD':'✨ GOLD GLOBE\n\n🥇 '+selectedWeight.label+' · '+selectedKarat+'K — '+money(v)+'\n\nIndicative metal value · USD';
  try{if(navigator.share){await navigator.share({title:'GOLD GLOBE',text:msg,url});return}}catch(e){if(e.name==='AbortError')return}
  window.open('https://wa.me/?text='+encodeURIComponent(msg+'\n\n'+url),'_blank','noopener');
-};
+});
 render();updatePrice();
 </script>
 </body>

@@ -1,0 +1,1 @@
+GOLD GLOBE update: Upload index.html to the same directory as your existing images: gold-globe-hero.webp, gold-bar-clean.webp, gold-bar-fallback.svg, gold-globe-share.jpg. Keep those image files unchanged.
