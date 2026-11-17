@@ -1,402 +1,1139 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#fff000">
-  <title>MILLION DEALS | تسوق بذكاء</title>
-
-  <meta name="description" content="اكتشف منتجات مختارة من أمازون السعودية، منها كرسي رحلات مع مظلة شمسية وشنطة FYY لتنظيم الشواحن والكيابل.">
-  <meta name="keywords" content="كرسي رحلات, كرسي تخييم, كرسي مظلة, كرسي قابل للطي, مستلزمات الرحلات, شنطة كيابل, منظم شواحن, شنطة سفر, أمازون السعودية, تسوق, camping chair, beach chair, outdoor chair, cable organizer, FYY">
-  <meta name="robots" content="index,follow">
-  <link rel="canonical" href="https://millionfilters.com/">
-
-  <link rel="icon" type="image/png" href="./million-deals-logo.PNG">
-  <link rel="apple-touch-icon" href="./million-deals-logo.PNG">
-
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="ar_SA">
-  <meta property="og:site_name" content="MILLION DEALS">
-  <meta property="og:title" content="MILLION DEALS | تسوق بذكاء">
-  <meta property="og:description" content="كرسي رحلات مع مظلة شمسية وشنطة لتنظيم الشواحن والكيابل. اكتشف اختياراتنا من أمازون السعودية.">
-  <meta property="og:url" content="https://millionfilters.com/">
-  <meta property="og:image" content="https://millionfilters.com/chair.PNG">
-  <meta property="og:image:alt" content="كرسي رحلات أسود مع مظلة شمسية">
-
-  <script defer
-    src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token":"3b9b1e3003164f9a9bd0b36838333860"}'>
-  </script>
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5RWJ4Q8L8X"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-    gtag('config', 'G-5RWJ4Q8L8X');
-  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0a0a0d" />
+  <meta name="description" content="GOLD GLOBE — Your gold bar and world gold in one elegant experience." />
+  <meta name="robots" content="index,follow" />
+  <title>GOLD GLOBE</title>
 
   <style>
-    :root {
-      --ink: #30174c;
-      --muted: #605868;
-      --violet: #5908bd;
-      --lemon: #fff000;
-      --apple: #a5e535;
+    :root{
+      --bg:#08090c;
+      --bg2:#12131a;
+      --panel:rgba(255,255,255,.07);
+      --panel2:rgba(255,255,255,.10);
+      --line:rgba(255,255,255,.12);
+      --text:#f4f1e8;
+      --muted:#cfc7b1;
+      --gold1:#f3d27a;
+      --gold2:#c7962d;
+      --gold3:#8f6818;
+      --goldGlow:rgba(243,210,122,.30);
+      --green:#39d98a;
+      --red:#ff5e6c;
+      --shadow:0 14px 40px rgba(0,0,0,.35);
+      --radius:26px;
+      --radius2:18px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      color: var(--ink);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, Arial, sans-serif;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
       background:
-        radial-gradient(ellipse at 50% 0%, #fff5aa, transparent 380px),
-        #fffdf7;
+        radial-gradient(circle at 20% 0%, rgba(243,210,122,.10), transparent 28%),
+        radial-gradient(circle at 80% 10%, rgba(243,210,122,.08), transparent 22%),
+        linear-gradient(180deg, #0a0b0f 0%, #0b0c11 40%, #090a0d 100%);
+      overflow-x:hidden;
     }
 
-    header {
-      padding: 18px 12px 8px;
-      text-align: center;
+    .wrap{
+      width:min(1180px, calc(100% - 28px));
+      margin:0 auto;
     }
 
-    .logo {
-      display: block;
-      width: clamp(112px, 23vw, 142px);
-      height: auto;
-      aspect-ratio: 1;
-      margin: 0 auto;
-      border-radius: 24%;
-      background: var(--lemon);
-      box-shadow: 0 4px 16px #40205a12;
-      object-fit: contain;
+    .top{
+      padding:26px 0 10px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
     }
 
-    .tagline {
-      margin-top: 9px;
-      color: var(--violet);
-      font-size: 13px;
-      font-weight: 700;
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
     }
 
-    main {
-      width: min(94%, 880px);
-      margin: auto;
+    .brandMark{
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      background:
+        linear-gradient(145deg, #fff2bf 0%, #efcb6e 24%, #cb962f 58%, #8e6515 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.45),
+        0 0 0 1px rgba(255,255,255,.08),
+        0 10px 24px rgba(199,150,45,.28);
+      position:relative;
+      flex:0 0 auto;
     }
 
-    .intro {
-      padding: 8px 0 18px;
-      text-align: center;
+    .brandMark:before{
+      content:"";
+      position:absolute;
+      inset:9px 11px;
+      border-radius:9px;
+      background:linear-gradient(180deg, rgba(255,255,255,.42), rgba(255,255,255,.05));
+      transform:skewX(-18deg);
     }
 
-    .badge {
-      display: inline-block;
-      padding: 6px 15px;
-      border-radius: 30px;
-      background: #e0f7b4;
-      color: #334619;
-      font-size: 12px;
-      font-weight: 800;
+    .brandText{
+      min-width:0;
     }
 
-    h1 {
-      margin: 10px 0 4px;
-      font-size: clamp(22px, 4vw, 29px);
+    .brandText h1{
+      margin:0;
+      font-size:1.15rem;
+      letter-spacing:.20em;
+      font-weight:800;
+      white-space:nowrap;
     }
 
-    .subtitle {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
+    .brandText p{
+      margin:4px 0 0;
+      color:var(--muted);
+      font-size:.88rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      white-space:nowrap;
     }
 
-    .products {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: clamp(8px, 2vw, 18px);
+    .pillLive{
+      flex:0 0 auto;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:.86rem;
+      backdrop-filter:blur(8px);
     }
 
-    .card {
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-      overflow: hidden;
-      border: 1px solid #e9e1ee;
-      border-radius: 19px;
-      background: #fff;
-      box-shadow: 0 6px 18px #3414490c;
+    .hero{
+      padding:16px 0 10px;
+      display:grid;
+      grid-template-columns:1.06fr .94fr;
+      gap:20px;
+      align-items:stretch;
     }
 
-    .card::before {
-      content: "";
-      height: 4px;
-      background: linear-gradient(
-        90deg,
-        var(--violet) 0 58%,
-        var(--lemon) 58% 86%,
-        var(--apple) 86% 100%
-      );
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(10px);
     }
 
-    .card:target {
-      outline: 2px solid var(--violet);
-      outline-offset: 1px;
+    .goldCard{
+      padding:20px;
+      position:relative;
+      overflow:hidden;
+      min-height:580px;
     }
 
-    .image-box {
-      padding: 7px;
-      background: #fff;
+    .glow{
+      position:absolute;
+      width:280px;
+      height:280px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(243,210,122,.24), rgba(243,210,122,0) 72%);
+      filter:blur(6px);
+      pointer-events:none;
     }
 
-    .image-box img {
-      display: block;
-      width: 100%;
-      height: clamp(100px, 32vw, 190px);
-      object-fit: contain;
+    .glow.g1{top:-80px; left:-60px;}
+    .glow.g2{bottom:-90px; right:-70px;}
+
+    .sectionTop{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      position:relative;
+      z-index:1;
     }
 
-    .details {
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-      padding: clamp(9px, 2vw, 18px);
-      text-align: center;
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      color:#faebc0;
+      background:rgba(243,210,122,.10);
+      border:1px solid rgba(243,210,122,.18);
+      font-size:.85rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
     }
 
-    .category {
-      color: #553096;
-      font-size: 12px;
-      font-weight: 700;
+    .sectionTitle{
+      margin:0;
+      font-size:clamp(1.9rem, 3.4vw, 3.2rem);
+      line-height:1;
+      letter-spacing:.02em;
+      font-weight:850;
     }
 
-    h2 {
-      margin: 7px 0;
-      font-size: clamp(15px, 2.5vw, 21px);
-      line-height: 1.5;
+    .sectionDesc{
+      margin:10px 0 0;
+      color:var(--muted);
+      max-width:460px;
+      line-height:1.7;
+      font-size:1rem;
     }
 
-    .description {
-      margin: 0 0 13px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.65;
+    .barStage{
+      margin-top:18px;
+      padding:18px 10px 8px;
+      position:relative;
+      z-index:1;
     }
 
-    .buy,
-    .social-button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 7px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 800;
+    .goldBar{
+      margin:0 auto;
+      width:min(100%, 500px);
+      aspect-ratio:1.9/1;
+      position:relative;
+      transform-style:preserve-3d;
+      animation:floatBar 6s ease-in-out infinite;
+      filter:drop-shadow(0 20px 30px rgba(0,0,0,.35));
     }
 
-    .buy {
-      margin-top: auto;
-      background: var(--violet);
-      color: #fff;
-      font-size: 17px;
+    @keyframes floatBar{
+      0%,100%{transform:translateY(0px) rotateX(10deg) rotateY(-12deg)}
+      50%{transform:translateY(-10px) rotateX(8deg) rotateY(-8deg)}
     }
 
-    .social-actions {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 6px;
-      margin-top: 7px;
+    .goldBar .topFace{
+      position:absolute;
+      inset:0;
+      border-radius:22px;
+      background:
+        linear-gradient(160deg, #fff7cf 0%, #f8e09a 12%, #efc75f 24%, #d9a63f 50%, #b97f24 78%, #8a5f16 100%);
+      box-shadow:
+        inset 0 2px 0 rgba(255,255,255,.65),
+        inset 0 -18px 30px rgba(102,70,12,.18),
+        0 0 0 1px rgba(255,255,255,.18);
+      transform:translateZ(12px);
+      overflow:hidden;
     }
 
-    .social-button {
-      background: #f2eafa;
-      color: #502184;
-      font-size: 13px;
+    .goldBar .topFace:before{
+      content:"";
+      position:absolute;
+      inset:8% 12%;
+      border-radius:18px;
+      border:1px solid rgba(120,80,14,.35);
+      pointer-events:none;
     }
 
-    a:focus-visible {
-      outline: 3px solid var(--ink);
-      outline-offset: 2px;
+    .goldBar .topFace:after{
+      content:"";
+      position:absolute;
+      left:10%;
+      top:12%;
+      width:42%;
+      height:18%;
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,0));
+      filter:blur(2px);
+      transform:rotate(-7deg);
+      pointer-events:none;
     }
 
-    .disclosure,
-    footer {
-      color: var(--muted);
-      font-size: 12px;
-      text-align: center;
+    .goldBar .sideFace{
+      position:absolute;
+      left:3%;
+      right:3%;
+      bottom:-14px;
+      height:26px;
+      border-radius:0 0 18px 18px;
+      background:linear-gradient(180deg, #b57f22, #7f5613);
+      transform:skewX(-16deg);
+      filter:brightness(.92);
     }
 
-    .disclosure {
-      margin: 20px 4px 10px;
+    .goldBar .barText{
+      position:absolute;
+      inset:0;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:#5c3f08;
+      text-shadow:0 1px 0 rgba(255,255,255,.25);
+      z-index:2;
+      pointer-events:none;
     }
 
-    footer {
-      padding: 12px 0 23px;
+    .barText .tiny{
+      letter-spacing:.24em;
+      font-size:.86rem;
+      opacity:.84;
+      font-weight:800;
     }
 
-    @media (max-width: 480px) {
-      header {
-        padding-top: 16px;
+    .barText .big{
+      margin:10px 0 8px;
+      font-size:clamp(1.7rem, 4vw, 2.7rem);
+      font-weight:900;
+      letter-spacing:.08em;
+    }
+
+    .barText .mid{
+      font-size:1rem;
+      font-weight:800;
+      letter-spacing:.18em;
+      opacity:.88;
+    }
+
+    .pricePanel{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:16px;
+      align-items:end;
+      position:relative;
+      z-index:1;
+    }
+
+    .priceBig{
+      font-size:clamp(2.2rem, 5vw, 3.8rem);
+      line-height:1;
+      font-weight:900;
+      letter-spacing:-.03em;
+      color:#fff6dc;
+      text-shadow:0 0 18px rgba(243,210,122,.10);
+      word-break:break-word;
+    }
+
+    .priceMeta{
+      margin-top:10px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .trend{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      font-weight:700;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(57,217,138,.20);
+      background:rgba(57,217,138,.10);
+      color:var(--green);
+    }
+
+    .miniBadge{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+    }
+
+    .controls{
+      margin-top:18px;
+      display:grid;
+      gap:14px;
+      position:relative;
+      z-index:1;
+    }
+
+    .controlBlock{
+      padding:15px;
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.04);
+    }
+
+    .labelRow{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:12px;
+      color:var(--muted);
+      font-size:.92rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .chip{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      padding:11px 14px;
+      min-width:72px;
+      border-radius:16px;
+      color:var(--text);
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+      font-weight:800;
+      letter-spacing:.02em;
+      transition:.18s ease;
+      box-shadow:none;
+    }
+
+    .chip:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.08);
+    }
+
+    .chip.active{
+      color:#4e3607;
+      background:linear-gradient(180deg, #ffeaa6 0%, #f0c65e 54%, #ca932f 100%);
+      border-color:rgba(255,255,255,.24);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.55),
+        0 8px 18px rgba(202,147,47,.26);
+    }
+
+    .globeCard{
+      padding:20px;
+      min-height:580px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .globeWrap{
+      position:relative;
+      margin-top:14px;
+      display:grid;
+      place-items:center;
+      min-height:360px;
+    }
+
+    .globeHalo{
+      position:absolute;
+      width:340px;
+      height:340px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(243,210,122,.22), rgba(243,210,122,0) 68%);
+      filter:blur(8px);
+    }
+
+    .globe{
+      width:min(100%, 360px);
+      aspect-ratio:1/1;
+      border-radius:50%;
+      position:relative;
+      background:
+        radial-gradient(circle at 35% 30%, rgba(255,248,220,.45), rgba(255,248,220,0) 18%),
+        radial-gradient(circle at 60% 70%, rgba(255,248,220,.18), rgba(255,248,220,0) 25%),
+        linear-gradient(145deg, #f5d782 0%, #d7a63d 35%, #9b6e1c 65%, #6d4a10 100%);
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow:
+        inset -18px -22px 40px rgba(86,56,9,.38),
+        inset 12px 14px 24px rgba(255,255,255,.20),
+        0 0 0 1px rgba(255,255,255,.04),
+        0 18px 40px rgba(0,0,0,.30);
+      overflow:hidden;
+    }
+
+    .globe:before,
+    .globe:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:50%;
+      pointer-events:none;
+    }
+
+    .globe:before{
+      background:
+        repeating-linear-gradient(90deg,
+          rgba(255,255,255,.18) 0 1px,
+          transparent 1px 44px);
+      opacity:.23;
+      transform:scale(.98);
+    }
+
+    .globe:after{
+      background:
+        repeating-linear-gradient(180deg,
+          rgba(255,255,255,.15) 0 1px,
+          transparent 1px 42px);
+      opacity:.18;
+      transform:scale(.98);
+    }
+
+    .continent{
+      position:absolute;
+      background:rgba(109,72,12,.55);
+      filter:blur(.2px);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    .c1{
+      width:95px; height:62px;
+      left:54px; top:92px;
+      border-radius:48% 52% 45% 55% / 42% 38% 62% 58%;
+      transform:rotate(-10deg);
+    }
+    .c2{
+      width:58px; height:82px;
+      left:94px; top:156px;
+      border-radius:42% 58% 50% 50% / 34% 42% 58% 66%;
+      transform:rotate(8deg);
+    }
+    .c3{
+      width:108px; height:72px;
+      right:52px; top:92px;
+      border-radius:45% 55% 55% 45% / 40% 45% 55% 60%;
+      transform:rotate(6deg);
+    }
+    .c4{
+      width:74px; height:48px;
+      right:74px; top:176px;
+      border-radius:50% 50% 55% 45% / 44% 48% 52% 56%;
+      transform:rotate(-12deg);
+    }
+    .c5{
+      width:38px; height:30px;
+      left:152px; top:86px;
+      border-radius:48%;
+    }
+
+    .globePin{
+      position:absolute;
+      transform:translate(-50%, -50%);
+      display:grid;
+      place-items:center;
+      width:18px;
+      height:18px;
+      border:none;
+      padding:0;
+      border-radius:50%;
+      cursor:pointer;
+      background:radial-gradient(circle at 35% 35%, #fff5cb 0%, #f2cc68 45%, #c58d2a 100%);
+      box-shadow:
+        0 0 0 4px rgba(243,210,122,.10),
+        0 6px 16px rgba(0,0,0,.28);
+      transition:.18s ease;
+    }
+
+    .globePin:hover,
+    .globePin.active{
+      transform:translate(-50%, -50%) scale(1.1);
+      box-shadow:
+        0 0 0 7px rgba(243,210,122,.12),
+        0 8px 20px rgba(0,0,0,.34);
+    }
+
+    .globePin span{
+      position:absolute;
+      top:-30px;
+      white-space:nowrap;
+      padding:5px 8px;
+      border-radius:999px;
+      font-size:.72rem;
+      color:#f8edc9;
+      background:rgba(0,0,0,.42);
+      border:1px solid rgba(255,255,255,.10);
+      opacity:0;
+      pointer-events:none;
+      transition:.18s ease;
+    }
+
+    .globePin:hover span,
+    .globePin.active span{
+      opacity:1;
+      top:-34px;
+    }
+
+    .countryCard{
+      margin-top:18px;
+      padding:16px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+    }
+
+    .countryTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .flagName{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    .flag{
+      width:54px;
+      height:54px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      font-size:1.6rem;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.10);
+      flex:0 0 auto;
+    }
+
+    .countryName{
+      min-width:0;
+    }
+
+    .countryName h3{
+      margin:0;
+      font-size:1.15rem;
+      letter-spacing:.04em;
+    }
+
+    .countryName p{
+      margin:5px 0 0;
+      color:var(--muted);
+      font-size:.92rem;
+      letter-spacing:.05em;
+    }
+
+    .countryPrice{
+      text-align:right;
+    }
+
+    .countryPrice .amount{
+      font-size:1.9rem;
+      font-weight:900;
+      color:#fff6dc;
+      line-height:1;
+    }
+
+    .countryPrice .unit{
+      margin-top:6px;
+      color:var(--muted);
+      font-size:.92rem;
+    }
+
+    .countryGrid{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:10px;
+    }
+
+    .miniStat{
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
+    }
+
+    .miniStat .k{
+      color:var(--muted);
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+
+    .miniStat .v{
+      margin-top:6px;
+      font-weight:850;
+      font-size:1rem;
+    }
+
+    .countryList{
+      margin-top:18px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .countryBtn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      padding:10px 12px;
+      border-radius:14px;
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+      border:1px solid rgba(255,255,255,.10);
+      font-weight:700;
+      transition:.18s ease;
+    }
+
+    .countryBtn:hover{transform:translateY(-1px)}
+    .countryBtn.active{
+      color:#4e3607;
+      background:linear-gradient(180deg, #ffeaa6 0%, #f0c65e 54%, #ca932f 100%);
+      border-color:rgba(255,255,255,.24);
+    }
+
+    .footerBar{
+      margin:20px 0 30px;
+      padding:16px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:.92rem;
+    }
+
+    .tinyDot{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--green);
+      box-shadow:0 0 0 6px rgba(57,217,138,.08);
+      display:inline-block;
+      margin-right:8px;
+      vertical-align:middle;
+    }
+
+    .footerLeft,.footerRight{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .note{
+      color:var(--muted);
+      font-size:.84rem;
+      line-height:1.7;
+      margin-top:14px;
+    }
+
+    @media (max-width: 980px){
+      .hero{
+        grid-template-columns:1fr;
       }
-
-      .category {
-        font-size: 11px;
+      .goldCard, .globeCard{
+        min-height:auto;
       }
+    }
 
-      .description {
-        font-size: 12px;
+    @media (max-width: 680px){
+      .top{
+        flex-direction:column;
+        align-items:flex-start;
       }
+      .pricePanel{
+        grid-template-columns:1fr;
+        align-items:start;
+      }
+      .countryGrid{
+        grid-template-columns:1fr 1fr;
+      }
+      .brandText p{white-space:normal}
+      .chip{
+        min-width:auto;
+        flex:1 1 calc(33.333% - 10px);
+      }
+    }
 
-      .social-actions {
-        grid-template-columns: 1fr;
+    @media (max-width: 480px){
+      .wrap{
+        width:min(100% - 18px, 1000px);
+      }
+      .goldCard,.globeCard{
+        padding:16px;
+      }
+      .countryGrid{
+        grid-template-columns:1fr;
+      }
+      .chip{
+        flex:1 1 calc(50% - 10px);
+      }
+      .sectionDesc{
+        font-size:.95rem;
       }
     }
   </style>
 </head>
-
 <body>
-  <header>
-    <img class="logo"
-         src="./million-deals-logo.PNG"
-         alt="MILLION DEALS">
-    <div class="tagline">اكتشف • اختر • تسوق</div>
-  </header>
+  <div class="wrap">
+    <header class="top">
+      <div class="brand">
+        <div class="brandMark"></div>
+        <div class="brandText">
+          <h1>GOLD GLOBE</h1>
+          <p>MY GOLD • WORLD GOLD</p>
+        </div>
+      </div>
+      <div class="pillLive">DEMO • GOLD 24K</div>
+    </header>
 
-  <main>
-    <div class="intro">
-      <div class="badge">✨ اختيار مميز</div>
-      <h1>تسوق بذكاء وأناقة</h1>
-      <p class="subtitle">منتجات مختارة من أمازون السعودية</p>
+    <main class="hero">
+      <!-- GOLD BAR -->
+      <section class="card goldCard">
+        <div class="glow g1"></div>
+        <div class="glow g2"></div>
+
+        <div class="sectionTop">
+          <div>
+            <div class="eyebrow">✦ Your Gold Bar</div>
+            <h2 class="sectionTitle">Your Gold</h2>
+            <p class="sectionDesc">
+              Choose the weight. Change the currency. See your gold value instantly in a premium, simple, visual experience.
+            </p>
+          </div>
+        </div>
+
+        <div class="barStage">
+          <div class="goldBar">
+            <div class="topFace"></div>
+            <div class="sideFace"></div>
+            <div class="barText">
+              <div class="tiny">FINE GOLD</div>
+              <div class="big" id="barWeightText">50 g</div>
+              <div class="mid">999.9 • 24K</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pricePanel">
+          <div>
+            <div class="priceBig" id="mainPrice">SAR 16,387.50</div>
+            <div class="priceMeta">
+              <span class="trend" id="trendBadge">▲ +0.62%</span>
+              <span class="miniBadge" id="metaWeight">50 g</span>
+              <span class="miniBadge" id="metaCurrency">SAR</span>
+              <span class="miniBadge">24K • 999.9</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="controls">
+          <div class="controlBlock">
+            <div class="labelRow">
+              <span>Weight</span>
+              <span id="selectedWeightHint">50 g</span>
+            </div>
+            <div class="chips" id="weightChips">
+              <button class="chip" data-weight="1">1g</button>
+              <button class="chip" data-weight="5">5g</button>
+              <button class="chip" data-weight="10">10g</button>
+              <button class="chip" data-weight="20">20g</button>
+              <button class="chip active" data-weight="50">50g</button>
+              <button class="chip" data-weight="100">100g</button>
+              <button class="chip" data-weight="250">250g</button>
+              <button class="chip" data-weight="500">500g</button>
+              <button class="chip" data-weight="1000">1kg</button>
+            </div>
+          </div>
+
+          <div class="controlBlock">
+            <div class="labelRow">
+              <span>Currency</span>
+              <span id="selectedCurrencyHint">SAR</span>
+            </div>
+            <div class="chips" id="currencyChips">
+              <button class="chip active" data-currency="SAR">SAR</button>
+              <button class="chip" data-currency="USD">USD</button>
+              <button class="chip" data-currency="EUR">EUR</button>
+              <button class="chip" data-currency="INR">INR</button>
+              <button class="chip" data-currency="CNY">CNY</button>
+            </div>
+          </div>
+        </div>
+
+        <p class="note">
+          Visual prototype. Prices below are currently demo values for interface testing only.
+        </p>
+      </section>
+
+      <!-- WORLD GOLD -->
+      <section class="card globeCard">
+        <div class="sectionTop">
+          <div>
+            <div class="eyebrow">✦ World Gold</div>
+            <h2 class="sectionTitle">Gold Globe</h2>
+            <p class="sectionDesc">
+              Explore gold across the world. Tap a point on the globe or choose a country below to view the local 24K gold value.
+            </p>
+          </div>
+        </div>
+
+        <div class="globeWrap">
+          <div class="globeHalo"></div>
+          <div class="globe" id="globe">
+            <div class="continent c1"></div>
+            <div class="continent c2"></div>
+            <div class="continent c3"></div>
+            <div class="continent c4"></div>
+            <div class="continent c5"></div>
+
+            <button class="globePin active" data-country="SA" style="left:66%; top:49%;">
+              <span>Saudi Arabia</span>
+            </button>
+            <button class="globePin" data-country="US" style="left:26%; top:44%;">
+              <span>United States</span>
+            </button>
+            <button class="globePin" data-country="IN" style="left:73%; top:56%;">
+              <span>India</span>
+            </button>
+            <button class="globePin" data-country="CN" style="left:79%; top:42%;">
+              <span>China</span>
+            </button>
+            <button class="globePin" data-country="GB" style="left:55%; top:33%;">
+              <span>United Kingdom</span>
+            </button>
+            <button class="globePin" data-country="AE" style="left:68%; top:52%;">
+              <span>UAE</span>
+            </button>
+            <button class="globePin" data-country="TR" style="left:61%; top:43%;">
+              <span>Türkiye</span>
+            </button>
+            <button class="globePin" data-country="EG" style="left:59%; top:49%;">
+              <span>Egypt</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="countryCard">
+          <div class="countryTop">
+            <div class="flagName">
+              <div class="flag" id="countryFlag">🇸🇦</div>
+              <div class="countryName">
+                <h3 id="countryName">Saudi Arabia</h3>
+                <p id="countrySub">SAR • 24K Gold • 1g</p>
+              </div>
+            </div>
+
+            <div class="countryPrice">
+              <div class="amount" id="countryAmount">SAR 327.75</div>
+              <div class="unit" id="countryTrend">▲ +0.62%</div>
+            </div>
+          </div>
+
+          <div class="countryGrid">
+            <div class="miniStat">
+              <div class="k">Currency</div>
+              <div class="v" id="statCurrency">SAR</div>
+            </div>
+            <div class="miniStat">
+              <div class="k">Purity</div>
+              <div class="v">24K / 999.9</div>
+            </div>
+            <div class="miniStat">
+              <div class="k">Reference</div>
+              <div class="v">1 gram</div>
+            </div>
+          </div>
+
+          <div class="countryList" id="countryList">
+            <button class="countryBtn active" data-country="SA">🇸🇦 Saudi</button>
+            <button class="countryBtn" data-country="US">🇺🇸 USA</button>
+            <button class="countryBtn" data-country="GB">🇬🇧 UK</button>
+            <button class="countryBtn" data-country="AE">🇦🇪 UAE</button>
+            <button class="countryBtn" data-country="IN">🇮🇳 India</button>
+            <button class="countryBtn" data-country="CN">🇨🇳 China</button>
+            <button class="countryBtn" data-country="TR">🇹🇷 Türkiye</button>
+            <button class="countryBtn" data-country="EG">🇪🇬 Egypt</button>
+          </div>
+        </div>
+
+        <p class="note">
+          Country values are demo samples for interface layout. Later we can connect them to live data.
+        </p>
+      </section>
+    </main>
+
+    <div class="footerBar">
+      <div class="footerLeft">
+        <span><span class="tinyDot"></span>Visual First Prototype</span>
+        <span>Gold Bar + Gold Globe</span>
+      </div>
+      <div class="footerRight">
+        <span id="updatedAt">Updated • Demo Data</span>
+      </div>
     </div>
-
-    <section class="products" aria-label="منتجات المتجر">
-      <article class="card"
-               id="chair"
-               data-product-id="camping_chair_canopy"
-               data-share-url="https://millionfilters.com/chair.html?v=2">
-        <div class="image-box">
-          <img src="./chair.PNG"
-               alt="كرسي رحلات أسود قابل للطي مع مظلة شمسية">
-        </div>
-
-        <div class="details">
-          <div class="category">🌿 الرحلات والتخييم</div>
-          <h2>كرسي رحلات قابل للطي مع مظلة شمسية</h2>
-          <p class="description">
-            كرسي للتخييم والشاطئ، مع مظلة شمسية وتصميم قابل للطي لسهولة الحمل.
-          </p>
-
-          <a class="buy"
-             href="https://link.amazon/B041Eab8N"
-             target="_blank"
-             rel="nofollow sponsored noopener noreferrer"
-             aria-label="تسوق كرسي الرحلات">تسوق</a>
-
-          <div class="social-actions"></div>
-        </div>
-      </article>
-
-      <article class="card"
-               id="bag"
-               data-product-id="fyy_cable_bag"
-               data-share-url="https://millionfilters.com/bag.html?v=2">
-        <div class="image-box">
-          <img src="./cable-bag.PNG"
-               alt="شنطة FYY سوداء مفتوحة لتنظيم الشواحن والكيابل">
-        </div>
-
-        <div class="details">
-          <div class="category">🧳 السفر والتنظيم</div>
-          <h2>شنطة FYY لتنظيم الشواحن والكيابل</h2>
-          <p class="description">
-            شنطة صغيرة بطبقتين وجيوب شبكية تجمع الشاحن والسماعات والكيابل أثناء السفر.
-          </p>
-
-          <a class="buy"
-             href="https://link.amazon/B08YaQpP2"
-             target="_blank"
-             rel="nofollow sponsored noopener noreferrer"
-             aria-label="تسوق شنطة FYY">تسوق</a>
-
-          <div class="social-actions"></div>
-        </div>
-      </article>
-    </section>
-
-    <p class="disclosure">
-      بصفتي شريكًا في أمازون، أربح من المشتريات المؤهلة.
-    </p>
-  </main>
-
-  <footer><bdi>MILLION DEALS © 2026</bdi></footer>
-
-  <template id="whatsapp-buttons">
-    <a class="social-button save"
-       target="_blank"
-       rel="noopener noreferrer">حفظ المنتج</a>
-
-    <a class="social-button share"
-       target="_blank"
-       rel="noopener noreferrer">مشاركة المنتج</a>
-  </template>
+  </div>
 
   <script>
-    const template = document.getElementById('whatsapp-buttons');
-    const whatsapp = 'https://api.whatsapp.com/send?text=';
+    // -----------------------------
+    // DEMO DATA
+    // -----------------------------
+    const demoData = {
+      perGram24K: {
+        SAR: 327.75,
+        USD: 87.40,
+        EUR: 80.90,
+        INR: 7280.00,
+        CNY: 629.00
+      },
+      trendPct: 0.62,
+      countries: {
+        SA: { name: "Saudi Arabia", flag: "🇸🇦", currency: "SAR", price: 327.75, trend: 0.62 },
+        US: { name: "United States", flag: "🇺🇸", currency: "USD", price: 87.40, trend: 0.41 },
+        GB: { name: "United Kingdom", flag: "🇬🇧", currency: "GBP", price: 69.30, trend: 0.37 },
+        AE: { name: "United Arab Emirates", flag: "🇦🇪", currency: "AED", price: 321.30, trend: 0.59 },
+        IN: { name: "India", flag: "🇮🇳", currency: "INR", price: 7280.00, trend: 0.84 },
+        CN: { name: "China", flag: "🇨🇳", currency: "CNY", price: 629.00, trend: 0.51 },
+        TR: { name: "Türkiye", flag: "🇹🇷", currency: "TRY", price: 2998.00, trend: 0.95 },
+        EG: { name: "Egypt", flag: "🇪🇬", currency: "EGP", price: 4305.00, trend: 0.70 }
+      }
+    };
 
-    document.querySelectorAll('.card').forEach(function (card) {
-      const name = card.querySelector('h2').textContent.trim();
-      const productId = card.dataset.productId;
-      const productUrl = card.dataset.shareUrl;
-      const buy = card.querySelector('.buy');
-      const actions = template.content.cloneNode(true);
-      const save = actions.querySelector('.save');
-      const share = actions.querySelector('.share');
+    const state = {
+      weight: Number(localStorage.getItem("goldglobe_weight")) || 50,
+      currency: localStorage.getItem("goldglobe_currency") || "SAR",
+      country: localStorage.getItem("goldglobe_country") || "SA"
+    };
 
-      save.href = whatsapp + encodeURIComponent(
-        '🔖 منتج أريد الاحتفاظ به\n\n' + name + '\n' + productUrl
-      );
+    const mainPrice = document.getElementById("mainPrice");
+    const barWeightText = document.getElementById("barWeightText");
+    const metaWeight = document.getElementById("metaWeight");
+    const metaCurrency = document.getElementById("metaCurrency");
+    const selectedWeightHint = document.getElementById("selectedWeightHint");
+    const selectedCurrencyHint = document.getElementById("selectedCurrencyHint");
+    const trendBadge = document.getElementById("trendBadge");
 
-      share.href = whatsapp + encodeURIComponent(
-        name + '\n\nاكتشف المنتج على MILLION DEALS\n' + productUrl
-      );
+    const weightButtons = [...document.querySelectorAll("#weightChips .chip")];
+    const currencyButtons = [...document.querySelectorAll("#currencyChips .chip")];
+    const countryButtons = [...document.querySelectorAll(".countryBtn")];
+    const globePins = [...document.querySelectorAll(".globePin")];
 
-      save.setAttribute('aria-label', 'حفظ ' + name + ' عبر واتساب');
-      share.setAttribute('aria-label', 'مشاركة ' + name + ' عبر واتساب');
+    const countryFlag = document.getElementById("countryFlag");
+    const countryName = document.getElementById("countryName");
+    const countrySub = document.getElementById("countrySub");
+    const countryAmount = document.getElementById("countryAmount");
+    const countryTrend = document.getElementById("countryTrend");
+    const statCurrency = document.getElementById("statCurrency");
+    const updatedAt = document.getElementById("updatedAt");
 
-      save.addEventListener('click', function () {
-        gtag('event', 'product_save_whatsapp', {
-          product_id: productId,
-          method: 'whatsapp'
+    function formatPrice(currency, value){
+      try{
+        return new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency,
+          maximumFractionDigits: 2
+        }).format(value);
+      }catch(e){
+        return currency + " " + Number(value).toLocaleString("en-US", {
+          maximumFractionDigits: 2
         });
-      });
+      }
+    }
 
-      share.addEventListener('click', function () {
-        gtag('event', 'product_share_whatsapp', {
-          product_id: productId,
-          method: 'whatsapp'
-        });
+    function setActive(buttons, matcher){
+      buttons.forEach(btn => {
+        if(matcher(btn)){
+          btn.classList.add("active");
+        }else{
+          btn.classList.remove("active");
+        }
       });
+    }
 
-      buy.addEventListener('click', function () {
-        gtag('event', 'affiliate_click', {
-          product_id: productId,
-          affiliate: 'amazon_sa',
-          outbound_url: buy.href,
-          currency: 'SAR'
-        });
+    function updateGoldBar(){
+      const perGram = demoData.perGram24K[state.currency] || 0;
+      const total = perGram * state.weight;
+
+      mainPrice.textContent = formatPrice(state.currency, total);
+      barWeightText.textContent = state.weight >= 1000 ? "1 kg" : `${state.weight} g`;
+      metaWeight.textContent = state.weight >= 1000 ? "1 kg" : `${state.weight} g`;
+      metaCurrency.textContent = state.currency;
+      selectedWeightHint.textContent = state.weight >= 1000 ? "1 kg" : `${state.weight} g`;
+      selectedCurrencyHint.textContent = state.currency;
+
+      const sign = demoData.trendPct >= 0 ? "▲" : "▼";
+      trendBadge.textContent = `${sign} ${demoData.trendPct > 0 ? "+" : ""}${demoData.trendPct.toFixed(2)}%`;
+      trendBadge.style.color = demoData.trendPct >= 0 ? "var(--green)" : "var(--red)";
+      trendBadge.style.background = demoData.trendPct >= 0 ? "rgba(57,217,138,.10)" : "rgba(255,94,108,.10)";
+      trendBadge.style.borderColor = demoData.trendPct >= 0 ? "rgba(57,217,138,.20)" : "rgba(255,94,108,.20)";
+
+      setActive(weightButtons, btn => Number(btn.dataset.weight) === state.weight);
+      setActive(currencyButtons, btn => btn.dataset.currency === state.currency);
+
+      localStorage.setItem("goldglobe_weight", state.weight);
+      localStorage.setItem("goldglobe_currency", state.currency);
+    }
+
+    function updateCountry(){
+      const c = demoData.countries[state.country];
+      if(!c) return;
+
+      countryFlag.textContent = c.flag;
+      countryName.textContent = c.name;
+      countrySub.textContent = `${c.currency} • 24K Gold • 1g`;
+      countryAmount.textContent = formatPrice(c.currency, c.price);
+      countryTrend.textContent = `${c.trend >= 0 ? "▲" : "▼"} ${c.trend > 0 ? "+" : ""}${c.trend.toFixed(2)}%`;
+      countryTrend.style.color = c.trend >= 0 ? "var(--green)" : "var(--red)";
+      statCurrency.textContent = c.currency;
+
+      setActive(countryButtons, btn => btn.dataset.country === state.country);
+      setActive(globePins, pin => pin.dataset.country === state.country);
+
+      localStorage.setItem("goldglobe_country", state.country);
+    }
+
+    weightButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        state.weight = Number(btn.dataset.weight);
+        updateGoldBar();
       });
-
-      card.querySelector('.social-actions').append(actions);
     });
+
+    currencyButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        state.currency = btn.dataset.currency;
+        updateGoldBar();
+      });
+    });
+
+    countryButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        state.country = btn.dataset.country;
+        updateCountry();
+      });
+    });
+
+    globePins.forEach(pin => {
+      pin.addEventListener("click", () => {
+        state.country = pin.dataset.country;
+        updateCountry();
+      });
+    });
+
+    function updateTimeLabel(){
+      const now = new Date();
+      updatedAt.textContent =
+        "Updated • " +
+        now.toLocaleDateString("en-GB") +
+        " • " +
+        now.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
+    }
+
+    updateGoldBar();
+    updateCountry();
+    updateTimeLabel();
   </script>
 </body>
 </html>
