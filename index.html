@@ -1,1139 +1,516 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0a0a0d" />
-  <meta name="description" content="GOLD GLOBE — Your gold bar and world gold in one elegant experience." />
-  <meta name="robots" content="index,follow" />
-  <title>GOLD GLOBE</title>
-
-  <style>
-    :root{
-      --bg:#08090c;
-      --bg2:#12131a;
-      --panel:rgba(255,255,255,.07);
-      --panel2:rgba(255,255,255,.10);
-      --line:rgba(255,255,255,.12);
-      --text:#f4f1e8;
-      --muted:#cfc7b1;
-      --gold1:#f3d27a;
-      --gold2:#c7962d;
-      --gold3:#8f6818;
-      --goldGlow:rgba(243,210,122,.30);
-      --green:#39d98a;
-      --red:#ff5e6c;
-      --shadow:0 14px 40px rgba(0,0,0,.35);
-      --radius:26px;
-      --radius2:18px;
-    }
-
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      min-height:100vh;
-      color:var(--text);
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-      background:
-        radial-gradient(circle at 20% 0%, rgba(243,210,122,.10), transparent 28%),
-        radial-gradient(circle at 80% 10%, rgba(243,210,122,.08), transparent 22%),
-        linear-gradient(180deg, #0a0b0f 0%, #0b0c11 40%, #090a0d 100%);
-      overflow-x:hidden;
-    }
-
-    .wrap{
-      width:min(1180px, calc(100% - 28px));
-      margin:0 auto;
-    }
-
-    .top{
-      padding:26px 0 10px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      min-width:0;
-    }
-
-    .brandMark{
-      width:44px;
-      height:44px;
-      border-radius:14px;
-      background:
-        linear-gradient(145deg, #fff2bf 0%, #efcb6e 24%, #cb962f 58%, #8e6515 100%);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.45),
-        0 0 0 1px rgba(255,255,255,.08),
-        0 10px 24px rgba(199,150,45,.28);
-      position:relative;
-      flex:0 0 auto;
-    }
-
-    .brandMark:before{
-      content:"";
-      position:absolute;
-      inset:9px 11px;
-      border-radius:9px;
-      background:linear-gradient(180deg, rgba(255,255,255,.42), rgba(255,255,255,.05));
-      transform:skewX(-18deg);
-    }
-
-    .brandText{
-      min-width:0;
-    }
-
-    .brandText h1{
-      margin:0;
-      font-size:1.15rem;
-      letter-spacing:.20em;
-      font-weight:800;
-      white-space:nowrap;
-    }
-
-    .brandText p{
-      margin:4px 0 0;
-      color:var(--muted);
-      font-size:.88rem;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      white-space:nowrap;
-    }
-
-    .pillLive{
-      flex:0 0 auto;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      color:var(--muted);
-      font-size:.86rem;
-      backdrop-filter:blur(8px);
-    }
-
-    .hero{
-      padding:16px 0 10px;
-      display:grid;
-      grid-template-columns:1.06fr .94fr;
-      gap:20px;
-      align-items:stretch;
-    }
-
-    .card{
-      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      backdrop-filter:blur(10px);
-    }
-
-    .goldCard{
-      padding:20px;
-      position:relative;
-      overflow:hidden;
-      min-height:580px;
-    }
-
-    .glow{
-      position:absolute;
-      width:280px;
-      height:280px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(243,210,122,.24), rgba(243,210,122,0) 72%);
-      filter:blur(6px);
-      pointer-events:none;
-    }
-
-    .glow.g1{top:-80px; left:-60px;}
-    .glow.g2{bottom:-90px; right:-70px;}
-
-    .sectionTop{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:14px;
-      position:relative;
-      z-index:1;
-    }
-
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      margin-bottom:10px;
-      padding:8px 12px;
-      border-radius:999px;
-      color:#faebc0;
-      background:rgba(243,210,122,.10);
-      border:1px solid rgba(243,210,122,.18);
-      font-size:.85rem;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-    }
-
-    .sectionTitle{
-      margin:0;
-      font-size:clamp(1.9rem, 3.4vw, 3.2rem);
-      line-height:1;
-      letter-spacing:.02em;
-      font-weight:850;
-    }
-
-    .sectionDesc{
-      margin:10px 0 0;
-      color:var(--muted);
-      max-width:460px;
-      line-height:1.7;
-      font-size:1rem;
-    }
-
-    .barStage{
-      margin-top:18px;
-      padding:18px 10px 8px;
-      position:relative;
-      z-index:1;
-    }
-
-    .goldBar{
-      margin:0 auto;
-      width:min(100%, 500px);
-      aspect-ratio:1.9/1;
-      position:relative;
-      transform-style:preserve-3d;
-      animation:floatBar 6s ease-in-out infinite;
-      filter:drop-shadow(0 20px 30px rgba(0,0,0,.35));
-    }
-
-    @keyframes floatBar{
-      0%,100%{transform:translateY(0px) rotateX(10deg) rotateY(-12deg)}
-      50%{transform:translateY(-10px) rotateX(8deg) rotateY(-8deg)}
-    }
-
-    .goldBar .topFace{
-      position:absolute;
-      inset:0;
-      border-radius:22px;
-      background:
-        linear-gradient(160deg, #fff7cf 0%, #f8e09a 12%, #efc75f 24%, #d9a63f 50%, #b97f24 78%, #8a5f16 100%);
-      box-shadow:
-        inset 0 2px 0 rgba(255,255,255,.65),
-        inset 0 -18px 30px rgba(102,70,12,.18),
-        0 0 0 1px rgba(255,255,255,.18);
-      transform:translateZ(12px);
-      overflow:hidden;
-    }
-
-    .goldBar .topFace:before{
-      content:"";
-      position:absolute;
-      inset:8% 12%;
-      border-radius:18px;
-      border:1px solid rgba(120,80,14,.35);
-      pointer-events:none;
-    }
-
-    .goldBar .topFace:after{
-      content:"";
-      position:absolute;
-      left:10%;
-      top:12%;
-      width:42%;
-      height:18%;
-      border-radius:18px;
-      background:linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,0));
-      filter:blur(2px);
-      transform:rotate(-7deg);
-      pointer-events:none;
-    }
-
-    .goldBar .sideFace{
-      position:absolute;
-      left:3%;
-      right:3%;
-      bottom:-14px;
-      height:26px;
-      border-radius:0 0 18px 18px;
-      background:linear-gradient(180deg, #b57f22, #7f5613);
-      transform:skewX(-16deg);
-      filter:brightness(.92);
-    }
-
-    .goldBar .barText{
-      position:absolute;
-      inset:0;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      color:#5c3f08;
-      text-shadow:0 1px 0 rgba(255,255,255,.25);
-      z-index:2;
-      pointer-events:none;
-    }
-
-    .barText .tiny{
-      letter-spacing:.24em;
-      font-size:.86rem;
-      opacity:.84;
-      font-weight:800;
-    }
-
-    .barText .big{
-      margin:10px 0 8px;
-      font-size:clamp(1.7rem, 4vw, 2.7rem);
-      font-weight:900;
-      letter-spacing:.08em;
-    }
-
-    .barText .mid{
-      font-size:1rem;
-      font-weight:800;
-      letter-spacing:.18em;
-      opacity:.88;
-    }
-
-    .pricePanel{
-      margin-top:16px;
-      display:grid;
-      grid-template-columns:1fr auto;
-      gap:16px;
-      align-items:end;
-      position:relative;
-      z-index:1;
-    }
-
-    .priceBig{
-      font-size:clamp(2.2rem, 5vw, 3.8rem);
-      line-height:1;
-      font-weight:900;
-      letter-spacing:-.03em;
-      color:#fff6dc;
-      text-shadow:0 0 18px rgba(243,210,122,.10);
-      word-break:break-word;
-    }
-
-    .priceMeta{
-      margin-top:10px;
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-      color:var(--muted);
-      font-size:.95rem;
-    }
-
-    .trend{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      font-weight:700;
-      padding:8px 12px;
-      border-radius:999px;
-      border:1px solid rgba(57,217,138,.20);
-      background:rgba(57,217,138,.10);
-      color:var(--green);
-    }
-
-    .miniBadge{
-      display:inline-flex;
-      align-items:center;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-    }
-
-    .controls{
-      margin-top:18px;
-      display:grid;
-      gap:14px;
-      position:relative;
-      z-index:1;
-    }
-
-    .controlBlock{
-      padding:15px;
-      border-radius:20px;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.04);
-    }
-
-    .labelRow{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      margin-bottom:12px;
-      color:var(--muted);
-      font-size:.92rem;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-    }
-
-    .chips{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-
-    .chip{
-      appearance:none;
-      border:none;
-      cursor:pointer;
-      padding:11px 14px;
-      min-width:72px;
-      border-radius:16px;
-      color:var(--text);
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.10);
-      font-weight:800;
-      letter-spacing:.02em;
-      transition:.18s ease;
-      box-shadow:none;
-    }
-
-    .chip:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.08);
-    }
-
-    .chip.active{
-      color:#4e3607;
-      background:linear-gradient(180deg, #ffeaa6 0%, #f0c65e 54%, #ca932f 100%);
-      border-color:rgba(255,255,255,.24);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.55),
-        0 8px 18px rgba(202,147,47,.26);
-    }
-
-    .globeCard{
-      padding:20px;
-      min-height:580px;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .globeWrap{
-      position:relative;
-      margin-top:14px;
-      display:grid;
-      place-items:center;
-      min-height:360px;
-    }
-
-    .globeHalo{
-      position:absolute;
-      width:340px;
-      height:340px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(243,210,122,.22), rgba(243,210,122,0) 68%);
-      filter:blur(8px);
-    }
-
-    .globe{
-      width:min(100%, 360px);
-      aspect-ratio:1/1;
-      border-radius:50%;
-      position:relative;
-      background:
-        radial-gradient(circle at 35% 30%, rgba(255,248,220,.45), rgba(255,248,220,0) 18%),
-        radial-gradient(circle at 60% 70%, rgba(255,248,220,.18), rgba(255,248,220,0) 25%),
-        linear-gradient(145deg, #f5d782 0%, #d7a63d 35%, #9b6e1c 65%, #6d4a10 100%);
-      border:1px solid rgba(255,255,255,.18);
-      box-shadow:
-        inset -18px -22px 40px rgba(86,56,9,.38),
-        inset 12px 14px 24px rgba(255,255,255,.20),
-        0 0 0 1px rgba(255,255,255,.04),
-        0 18px 40px rgba(0,0,0,.30);
-      overflow:hidden;
-    }
-
-    .globe:before,
-    .globe:after{
-      content:"";
-      position:absolute;
-      inset:0;
-      border-radius:50%;
-      pointer-events:none;
-    }
-
-    .globe:before{
-      background:
-        repeating-linear-gradient(90deg,
-          rgba(255,255,255,.18) 0 1px,
-          transparent 1px 44px);
-      opacity:.23;
-      transform:scale(.98);
-    }
-
-    .globe:after{
-      background:
-        repeating-linear-gradient(180deg,
-          rgba(255,255,255,.15) 0 1px,
-          transparent 1px 42px);
-      opacity:.18;
-      transform:scale(.98);
-    }
-
-    .continent{
-      position:absolute;
-      background:rgba(109,72,12,.55);
-      filter:blur(.2px);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
-    }
-
-    .c1{
-      width:95px; height:62px;
-      left:54px; top:92px;
-      border-radius:48% 52% 45% 55% / 42% 38% 62% 58%;
-      transform:rotate(-10deg);
-    }
-    .c2{
-      width:58px; height:82px;
-      left:94px; top:156px;
-      border-radius:42% 58% 50% 50% / 34% 42% 58% 66%;
-      transform:rotate(8deg);
-    }
-    .c3{
-      width:108px; height:72px;
-      right:52px; top:92px;
-      border-radius:45% 55% 55% 45% / 40% 45% 55% 60%;
-      transform:rotate(6deg);
-    }
-    .c4{
-      width:74px; height:48px;
-      right:74px; top:176px;
-      border-radius:50% 50% 55% 45% / 44% 48% 52% 56%;
-      transform:rotate(-12deg);
-    }
-    .c5{
-      width:38px; height:30px;
-      left:152px; top:86px;
-      border-radius:48%;
-    }
-
-    .globePin{
-      position:absolute;
-      transform:translate(-50%, -50%);
-      display:grid;
-      place-items:center;
-      width:18px;
-      height:18px;
-      border:none;
-      padding:0;
-      border-radius:50%;
-      cursor:pointer;
-      background:radial-gradient(circle at 35% 35%, #fff5cb 0%, #f2cc68 45%, #c58d2a 100%);
-      box-shadow:
-        0 0 0 4px rgba(243,210,122,.10),
-        0 6px 16px rgba(0,0,0,.28);
-      transition:.18s ease;
-    }
-
-    .globePin:hover,
-    .globePin.active{
-      transform:translate(-50%, -50%) scale(1.1);
-      box-shadow:
-        0 0 0 7px rgba(243,210,122,.12),
-        0 8px 20px rgba(0,0,0,.34);
-    }
-
-    .globePin span{
-      position:absolute;
-      top:-30px;
-      white-space:nowrap;
-      padding:5px 8px;
-      border-radius:999px;
-      font-size:.72rem;
-      color:#f8edc9;
-      background:rgba(0,0,0,.42);
-      border:1px solid rgba(255,255,255,.10);
-      opacity:0;
-      pointer-events:none;
-      transition:.18s ease;
-    }
-
-    .globePin:hover span,
-    .globePin.active span{
-      opacity:1;
-      top:-34px;
-    }
-
-    .countryCard{
-      margin-top:18px;
-      padding:16px;
-      border-radius:22px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-    }
-
-    .countryTop{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-
-    .flagName{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      min-width:0;
-    }
-
-    .flag{
-      width:54px;
-      height:54px;
-      border-radius:16px;
-      display:grid;
-      place-items:center;
-      font-size:1.6rem;
-      background:rgba(255,255,255,.07);
-      border:1px solid rgba(255,255,255,.10);
-      flex:0 0 auto;
-    }
-
-    .countryName{
-      min-width:0;
-    }
-
-    .countryName h3{
-      margin:0;
-      font-size:1.15rem;
-      letter-spacing:.04em;
-    }
-
-    .countryName p{
-      margin:5px 0 0;
-      color:var(--muted);
-      font-size:.92rem;
-      letter-spacing:.05em;
-    }
-
-    .countryPrice{
-      text-align:right;
-    }
-
-    .countryPrice .amount{
-      font-size:1.9rem;
-      font-weight:900;
-      color:#fff6dc;
-      line-height:1;
-    }
-
-    .countryPrice .unit{
-      margin-top:6px;
-      color:var(--muted);
-      font-size:.92rem;
-    }
-
-    .countryGrid{
-      margin-top:14px;
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:10px;
-    }
-
-    .miniStat{
-      padding:12px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.03);
-    }
-
-    .miniStat .k{
-      color:var(--muted);
-      font-size:.78rem;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-    }
-
-    .miniStat .v{
-      margin-top:6px;
-      font-weight:850;
-      font-size:1rem;
-    }
-
-    .countryList{
-      margin-top:18px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-
-    .countryBtn{
-      appearance:none;
-      border:none;
-      cursor:pointer;
-      padding:10px 12px;
-      border-radius:14px;
-      background:rgba(255,255,255,.05);
-      color:var(--text);
-      border:1px solid rgba(255,255,255,.10);
-      font-weight:700;
-      transition:.18s ease;
-    }
-
-    .countryBtn:hover{transform:translateY(-1px)}
-    .countryBtn.active{
-      color:#4e3607;
-      background:linear-gradient(180deg, #ffeaa6 0%, #f0c65e 54%, #ca932f 100%);
-      border-color:rgba(255,255,255,.24);
-    }
-
-    .footerBar{
-      margin:20px 0 30px;
-      padding:16px 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
-      border-radius:20px;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.04);
-      color:var(--muted);
-      font-size:.92rem;
-    }
-
-    .tinyDot{
-      width:8px;
-      height:8px;
-      border-radius:50%;
-      background:var(--green);
-      box-shadow:0 0 0 6px rgba(57,217,138,.08);
-      display:inline-block;
-      margin-right:8px;
-      vertical-align:middle;
-    }
-
-    .footerLeft,.footerRight{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      flex-wrap:wrap;
-    }
-
-    .note{
-      color:var(--muted);
-      font-size:.84rem;
-      line-height:1.7;
-      margin-top:14px;
-    }
-
-    @media (max-width: 980px){
-      .hero{
-        grid-template-columns:1fr;
-      }
-      .goldCard, .globeCard{
-        min-height:auto;
-      }
-    }
-
-    @media (max-width: 680px){
-      .top{
-        flex-direction:column;
-        align-items:flex-start;
-      }
-      .pricePanel{
-        grid-template-columns:1fr;
-        align-items:start;
-      }
-      .countryGrid{
-        grid-template-columns:1fr 1fr;
-      }
-      .brandText p{white-space:normal}
-      .chip{
-        min-width:auto;
-        flex:1 1 calc(33.333% - 10px);
-      }
-    }
-
-    @media (max-width: 480px){
-      .wrap{
-        width:min(100% - 18px, 1000px);
-      }
-      .goldCard,.globeCard{
-        padding:16px;
-      }
-      .countryGrid{
-        grid-template-columns:1fr;
-      }
-      .chip{
-        flex:1 1 calc(50% - 10px);
-      }
-      .sectionDesc{
-        font-size:.95rem;
-      }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0b0a">
+<meta name="description" content="Gold Globe — your gold bar and world gold reference value in a beautiful, simple view.">
+<title>GOLD GLOBE | My Gold · World Gold</title>
+
+<meta property="og:title" content="GOLD GLOBE ✨">
+<meta property="og:description" content="Your gold bar. A world of gold.">
+<meta property="og:type" content="website">
+
+<style>
+:root{
+  --gold:#f5ce72;
+  --muted:#bcb6a5;
+  --apple:#c8f36c;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:radial-gradient(ellipse at 50% -15%,#4d391c 0,#14120f 38%,#08090b 85%);
+  color:#fff7e7;
+  font:15px -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;
+}
+button,select{font:inherit}
+button{cursor:pointer}
+main{max-width:980px;margin:auto;padding:19px 14px 40px}
+header{text-align:center;margin:8px 0 20px}
+h1{
+  font-size:22px;
+  letter-spacing:.26em;
+  margin:0;
+  color:var(--gold);
+}
+header small{
+  display:block;
+  margin-top:7px;
+  letter-spacing:.18em;
+  color:var(--muted);
+  font-size:10px;
+}
+.layout{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.panel{
+  min-width:0;
+  text-align:center;
+  padding:22px 16px;
+  background:linear-gradient(160deg,#29241eaa,#101114ee);
+  border:1px solid #a7834b55;
+  border-radius:25px;
+  box-shadow:0 20px 50px #0006;
+}
+h2{
+  font-size:13px;
+  color:var(--gold);
+  letter-spacing:.17em;
+  margin:0 0 15px;
+}
+.bar-stage{
+  height:168px;
+  display:grid;
+  place-items:center;
+  perspective:600px;
+}
+.goldbar{
+  width:235px;
+  max-width:85%;
+  height:122px;
+  border-radius:18px 18px 25px 25px;
+  background:linear-gradient(130deg,#fff3b0,#f4c65c 30%,#bc852a 70%,#805518);
+  box-shadow:inset 0 3px 7px #fff9d5cc,
+    inset -8px -12px 15px #65400780,
+    0 17px 25px #0009,
+    0 0 55px #d19e2833;
+  transform:rotateX(14deg) rotateY(-12deg);
+  animation:float 5s ease-in-out infinite;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  color:#624007;
+  text-shadow:0 1px #fff6a366;
+  border:2px solid #efd181;
+}
+.goldbar:before{
+  content:'FINE GOLD';
+  font-size:10px;
+  letter-spacing:.25em;
+  font-weight:800;
+}
+.goldbar strong{font-size:30px;margin:7px 0}
+.goldbar:after{
+  content:'999.9 · 24K';
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.12em;
+}
+@keyframes float{
+  50%{transform:translateY(-9px) rotateX(10deg) rotateY(3deg)}
+}
+.price{
+  font-weight:850;
+  font-size:clamp(28px,4vw,40px);
+  font-variant-numeric:tabular-nums;
+  margin:8px 0 4px;
+  overflow-wrap:anywhere;
+}
+.sub{
+  font-size:11px;
+  color:var(--muted);
+  min-height:17px;
+}
+.controls{
+  display:flex;
+  gap:8px;
+  justify-content:center;
+  margin-top:18px;
+  flex-wrap:wrap;
+}
+.controls select,.weight{
+  background:#22211e;
+  color:#fff4d7;
+  border:1px solid #a68b5a88;
+  border-radius:13px;
+  padding:12px;
+  min-height:44px;
+}
+.weight{width:120px}
+select{min-width:98px}
+.globe-stage{
+  height:207px;
+  display:grid;
+  place-items:center;
+  position:relative;
+}
+.globe{
+  width:193px;
+  height:193px;
+  border-radius:50%;
+  position:relative;
+  overflow:hidden;
+  box-shadow:inset -22px -18px 35px #0e0c0a,
+    inset 8px 8px 22px #fff1a23d,
+    0 0 40px #d9a12c44;
+  background:radial-gradient(circle at 29% 22%,#f5da91,#ae7a29 50%,#483314 94%);
+}
+.globe svg{
+  width:100%;
+  height:100%;
+  opacity:.58;
+  animation:glowspin 26s ease-in-out infinite alternate;
+}
+.globe path{
+  fill:#563f20;
+  stroke:#efd18b55;
+  stroke-width:1;
+}
+@keyframes glowspin{
+  to{transform:translateX(-9%) scale(1.12)}
+}
+.country-grid{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:12px 0;
+}
+.flag{
+  background:#25221d;
+  border:1px solid #5e5036;
+  color:white;
+  border-radius:13px;
+  font-size:22px;
+  min-width:51px;
+  min-height:45px;
+}
+.flag[aria-pressed=true]{
+  border-color:#e9c370;
+  background:#534024;
+  box-shadow:0 0 0 2px #e3bb5844;
+}
+.who{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:4px;
+}
+.buttons{
+  display:flex;
+  gap:10px;
+  margin:16px auto 0;
+  max-width:640px;
+}
+.action{
+  background:var(--apple);
+  color:#17240a;
+  border:0;
+  border-radius:16px;
+  flex:1;
+  font-size:15px;
+  font-weight:850;
+  min-height:54px;
+  box-shadow:0 5px 20px #a9e45e33;
+}
+.action:active{transform:scale(.98)}
+.status{
+  margin:12px auto 0;
+  font-size:11px;
+  color:#c9c0a8;
+  text-align:center;
+  line-height:1.8;
+  max-width:650px;
+}
+.status a{color:#dccc8d}
+#tip{
+  display:none;
+  background:#1e2616;
+  border:1px solid #a4c77877;
+  border-radius:14px;
+  padding:12px;
+  margin:13px auto 0;
+  max-width:600px;
+  font-size:13px;
+  text-align:center;
+  line-height:1.7;
+}
+#tip.show{display:block}
+@media(max-width:650px){
+  main{padding:16px 12px 35px}
+  .layout{grid-template-columns:1fr}
+  .panel{padding:19px 12px}
+  .bar-stage{height:156px}
+  .globe-stage{height:195px}
+  h1{font-size:20px}
+  .price{font-size:34px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important}
+}
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <header class="top">
-      <div class="brand">
-        <div class="brandMark"></div>
-        <div class="brandText">
-          <h1>GOLD GLOBE</h1>
-          <p>MY GOLD • WORLD GOLD</p>
-        </div>
-      </div>
-      <div class="pillLive">DEMO • GOLD 24K</div>
-    </header>
+<main>
 
-    <main class="hero">
-      <!-- GOLD BAR -->
-      <section class="card goldCard">
-        <div class="glow g1"></div>
-        <div class="glow g2"></div>
+<header>
+  <h1>GOLD GLOBE</h1>
+  <small>MY GOLD · WORLD GOLD</small>
+</header>
 
-        <div class="sectionTop">
-          <div>
-            <div class="eyebrow">✦ Your Gold Bar</div>
-            <h2 class="sectionTitle">Your Gold</h2>
-            <p class="sectionDesc">
-              Choose the weight. Change the currency. See your gold value instantly in a premium, simple, visual experience.
-            </p>
-          </div>
-        </div>
+<div class="layout">
 
-        <div class="barStage">
-          <div class="goldBar">
-            <div class="topFace"></div>
-            <div class="sideFace"></div>
-            <div class="barText">
-              <div class="tiny">FINE GOLD</div>
-              <div class="big" id="barWeightText">50 g</div>
-              <div class="mid">999.9 • 24K</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="pricePanel">
-          <div>
-            <div class="priceBig" id="mainPrice">SAR 16,387.50</div>
-            <div class="priceMeta">
-              <span class="trend" id="trendBadge">▲ +0.62%</span>
-              <span class="miniBadge" id="metaWeight">50 g</span>
-              <span class="miniBadge" id="metaCurrency">SAR</span>
-              <span class="miniBadge">24K • 999.9</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="controls">
-          <div class="controlBlock">
-            <div class="labelRow">
-              <span>Weight</span>
-              <span id="selectedWeightHint">50 g</span>
-            </div>
-            <div class="chips" id="weightChips">
-              <button class="chip" data-weight="1">1g</button>
-              <button class="chip" data-weight="5">5g</button>
-              <button class="chip" data-weight="10">10g</button>
-              <button class="chip" data-weight="20">20g</button>
-              <button class="chip active" data-weight="50">50g</button>
-              <button class="chip" data-weight="100">100g</button>
-              <button class="chip" data-weight="250">250g</button>
-              <button class="chip" data-weight="500">500g</button>
-              <button class="chip" data-weight="1000">1kg</button>
-            </div>
-          </div>
-
-          <div class="controlBlock">
-            <div class="labelRow">
-              <span>Currency</span>
-              <span id="selectedCurrencyHint">SAR</span>
-            </div>
-            <div class="chips" id="currencyChips">
-              <button class="chip active" data-currency="SAR">SAR</button>
-              <button class="chip" data-currency="USD">USD</button>
-              <button class="chip" data-currency="EUR">EUR</button>
-              <button class="chip" data-currency="INR">INR</button>
-              <button class="chip" data-currency="CNY">CNY</button>
-            </div>
-          </div>
-        </div>
-
-        <p class="note">
-          Visual prototype. Prices below are currently demo values for interface testing only.
-        </p>
-      </section>
-
-      <!-- WORLD GOLD -->
-      <section class="card globeCard">
-        <div class="sectionTop">
-          <div>
-            <div class="eyebrow">✦ World Gold</div>
-            <h2 class="sectionTitle">Gold Globe</h2>
-            <p class="sectionDesc">
-              Explore gold across the world. Tap a point on the globe or choose a country below to view the local 24K gold value.
-            </p>
-          </div>
-        </div>
-
-        <div class="globeWrap">
-          <div class="globeHalo"></div>
-          <div class="globe" id="globe">
-            <div class="continent c1"></div>
-            <div class="continent c2"></div>
-            <div class="continent c3"></div>
-            <div class="continent c4"></div>
-            <div class="continent c5"></div>
-
-            <button class="globePin active" data-country="SA" style="left:66%; top:49%;">
-              <span>Saudi Arabia</span>
-            </button>
-            <button class="globePin" data-country="US" style="left:26%; top:44%;">
-              <span>United States</span>
-            </button>
-            <button class="globePin" data-country="IN" style="left:73%; top:56%;">
-              <span>India</span>
-            </button>
-            <button class="globePin" data-country="CN" style="left:79%; top:42%;">
-              <span>China</span>
-            </button>
-            <button class="globePin" data-country="GB" style="left:55%; top:33%;">
-              <span>United Kingdom</span>
-            </button>
-            <button class="globePin" data-country="AE" style="left:68%; top:52%;">
-              <span>UAE</span>
-            </button>
-            <button class="globePin" data-country="TR" style="left:61%; top:43%;">
-              <span>Türkiye</span>
-            </button>
-            <button class="globePin" data-country="EG" style="left:59%; top:49%;">
-              <span>Egypt</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="countryCard">
-          <div class="countryTop">
-            <div class="flagName">
-              <div class="flag" id="countryFlag">🇸🇦</div>
-              <div class="countryName">
-                <h3 id="countryName">Saudi Arabia</h3>
-                <p id="countrySub">SAR • 24K Gold • 1g</p>
-              </div>
-            </div>
-
-            <div class="countryPrice">
-              <div class="amount" id="countryAmount">SAR 327.75</div>
-              <div class="unit" id="countryTrend">▲ +0.62%</div>
-            </div>
-          </div>
-
-          <div class="countryGrid">
-            <div class="miniStat">
-              <div class="k">Currency</div>
-              <div class="v" id="statCurrency">SAR</div>
-            </div>
-            <div class="miniStat">
-              <div class="k">Purity</div>
-              <div class="v">24K / 999.9</div>
-            </div>
-            <div class="miniStat">
-              <div class="k">Reference</div>
-              <div class="v">1 gram</div>
-            </div>
-          </div>
-
-          <div class="countryList" id="countryList">
-            <button class="countryBtn active" data-country="SA">🇸🇦 Saudi</button>
-            <button class="countryBtn" data-country="US">🇺🇸 USA</button>
-            <button class="countryBtn" data-country="GB">🇬🇧 UK</button>
-            <button class="countryBtn" data-country="AE">🇦🇪 UAE</button>
-            <button class="countryBtn" data-country="IN">🇮🇳 India</button>
-            <button class="countryBtn" data-country="CN">🇨🇳 China</button>
-            <button class="countryBtn" data-country="TR">🇹🇷 Türkiye</button>
-            <button class="countryBtn" data-country="EG">🇪🇬 Egypt</button>
-          </div>
-        </div>
-
-        <p class="note">
-          Country values are demo samples for interface layout. Later we can connect them to live data.
-        </p>
-      </section>
-    </main>
-
-    <div class="footerBar">
-      <div class="footerLeft">
-        <span><span class="tinyDot"></span>Visual First Prototype</span>
-        <span>Gold Bar + Gold Globe</span>
-      </div>
-      <div class="footerRight">
-        <span id="updatedAt">Updated • Demo Data</span>
-      </div>
+<section class="panel" aria-label="My gold bar">
+  <h2>✦ MY GOLD</h2>
+  <div class="bar-stage">
+    <div class="goldbar">
+      <strong id="engrave">10 g</strong>
     </div>
   </div>
+  <div class="price" id="myPrice">—</div>
+  <div class="sub" id="myUnit">24K · MARKET REFERENCE</div>
+  <div class="controls">
+    <select id="weight" aria-label="Gold weight">
+      <option value="1">1 g</option>
+      <option value="5">5 g</option>
+      <option value="10" selected>10 g</option>
+      <option value="20">20 g</option>
+      <option value="50">50 g</option>
+      <option value="100">100 g</option>
+      <option value="250">250 g</option>
+      <option value="500">500 g</option>
+      <option value="1000">1 kg</option>
+    </select>
+    <select id="currency" aria-label="Currency">
+      <option>SAR</option>
+      <option>USD</option>
+      <option>EUR</option>
+      <option>INR</option>
+      <option>CNY</option>
+      <option>AED</option>
+      <option>GBP</option>
+      <option>TRY</option>
+      <option>EGP</option>
+    </select>
+  </div>
+</section>
 
-  <script>
-    // -----------------------------
-    // DEMO DATA
-    // -----------------------------
-    const demoData = {
-      perGram24K: {
-        SAR: 327.75,
-        USD: 87.40,
-        EUR: 80.90,
-        INR: 7280.00,
-        CNY: 629.00
-      },
-      trendPct: 0.62,
-      countries: {
-        SA: { name: "Saudi Arabia", flag: "🇸🇦", currency: "SAR", price: 327.75, trend: 0.62 },
-        US: { name: "United States", flag: "🇺🇸", currency: "USD", price: 87.40, trend: 0.41 },
-        GB: { name: "United Kingdom", flag: "🇬🇧", currency: "GBP", price: 69.30, trend: 0.37 },
-        AE: { name: "United Arab Emirates", flag: "🇦🇪", currency: "AED", price: 321.30, trend: 0.59 },
-        IN: { name: "India", flag: "🇮🇳", currency: "INR", price: 7280.00, trend: 0.84 },
-        CN: { name: "China", flag: "🇨🇳", currency: "CNY", price: 629.00, trend: 0.51 },
-        TR: { name: "Türkiye", flag: "🇹🇷", currency: "TRY", price: 2998.00, trend: 0.95 },
-        EG: { name: "Egypt", flag: "🇪🇬", currency: "EGP", price: 4305.00, trend: 0.70 }
-      }
+<section class="panel" aria-label="World gold">
+  <h2>✦ WORLD GOLD</h2>
+  <div class="globe-stage">
+    <div class="globe">
+      <svg viewBox="0 0 200 200" aria-hidden="true">
+        <path d="M9 49l27-14 21 8 12 21-8 14-16 5-1 16-15 11-12-20-9-13zm44 67 26-8 12 17-6 30-20 27-11-16 4-21zM97 36l28-8 21 11 30-5 17 24-22 13-16-9-9 21-18 9-9-18-24-6-10-15zm18 63 28-4 17 17-8 34-21 20-18-17-7-25zm56 49 23-5 12 17-17 17-20-11z"/>
+      </svg>
+    </div>
+  </div>
+  <div class="price" id="worldPrice">—</div>
+  <div class="sub">24K · 1 g · <span id="worldCurrency">SAR</span></div>
+  <div class="country-grid" id="countries"></div>
+  <div class="who" id="countryName">🇸🇦 Saudi Arabia</div>
+</section>
+
+</div>
+
+<div class="buttons">
+  <button class="action" id="save">🍏 Save</button>
+  <button class="action" id="share">↗ Share</button>
+</div>
+
+<div id="tip" role="status"></div>
+
+<p class="status" id="status">
+  Connecting to gold and currency sources…
+</p>
+
+<p class="status">
+  Reference metal value only · not a retail buying/selling quote.
+  <br>
+  Gold:
+  <a href="https://gold-api.com/" target="_blank" rel="noopener">Gold API</a>
+  · FX:
+  <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener">ExchangeRate-API</a>
+</p>
+
+</main>
+
+<script>
+const $=id=>document.getElementById(id),OZ=31.1034768;
+
+const nations=[
+  ['SA','🇸🇦','Saudi Arabia','SAR'],
+  ['US','🇺🇸','USA','USD'],
+  ['AE','🇦🇪','UAE','AED'],
+  ['IN','🇮🇳','India','INR'],
+  ['CN','🇨🇳','China','CNY'],
+  ['GB','🇬🇧','UK','GBP'],
+  ['TR','🇹🇷','Türkiye','TRY'],
+  ['EG','🇪🇬','Egypt','EGP'],
+  ['DE','🇩🇪','Germany','EUR']
+];
+
+let state={weight:'10',currency:'SAR',country:'SA'},
+    ounce=null,rates=null,stamp='';
+
+try{
+  state={
+    ...state,
+    ...JSON.parse(localStorage.getItem('gold-globe-v2')||'{}')
+  };
+}catch{}
+
+if(![...$('weight').options].some(o=>o.value===state.weight))
+  state.weight='10';
+
+if(![...$('currency').options].some(o=>o.value===state.currency))
+  state.currency='SAR';
+
+if(!nations.some(n=>n[0]===state.country))
+  state.country='SA';
+
+$('weight').value=state.weight;
+$('currency').value=state.currency;
+
+const savePrefs=()=>{
+  try{
+    localStorage.setItem('gold-globe-v2',JSON.stringify(state));
+  }catch{}
+};
+
+const cash=(value,cur)=>
+  new Intl.NumberFormat('en-US',{
+    style:'currency',
+    currency:cur,
+    maximumFractionDigits:2
+  }).format(value);
+
+const selected=()=>nations.find(n=>n[0]===state.country);
+
+function render(){
+  const n=selected();
+
+  $('engrave').textContent=
+    Number(state.weight)===1000?'1 kg':state.weight+' g';
+
+  $('worldCurrency').textContent=n[3];
+  $('countryName').textContent=n[1]+' '+n[2];
+
+  $('myPrice').textContent=ounce&&rates?.[state.currency]
+    ?cash(ounce/OZ*Number(state.weight)*rates[state.currency],state.currency)
+    :'—';
+
+  $('worldPrice').textContent=ounce&&rates?.[n[3]]
+    ?cash(ounce/OZ*rates[n[3]],n[3])
+    :'—';
+
+  $('countries').innerHTML='';
+
+  for(const item of nations){
+    const b=document.createElement('button');
+    b.className='flag';
+    b.textContent=item[1];
+    b.title=item[2];
+    b.setAttribute('aria-label',item[2]);
+    b.setAttribute('aria-pressed',String(item[0]===state.country));
+
+    b.onclick=()=>{
+      state.country=item[0];
+      savePrefs();
+      render();
     };
 
-    const state = {
-      weight: Number(localStorage.getItem("goldglobe_weight")) || 50,
-      currency: localStorage.getItem("goldglobe_currency") || "SAR",
-      country: localStorage.getItem("goldglobe_country") || "SA"
-    };
+    $('countries').appendChild(b);
+  }
+}
 
-    const mainPrice = document.getElementById("mainPrice");
-    const barWeightText = document.getElementById("barWeightText");
-    const metaWeight = document.getElementById("metaWeight");
-    const metaCurrency = document.getElementById("metaCurrency");
-    const selectedWeightHint = document.getElementById("selectedWeightHint");
-    const selectedCurrencyHint = document.getElementById("selectedCurrencyHint");
-    const trendBadge = document.getElementById("trendBadge");
+$('weight').onchange=e=>{
+  state.weight=e.target.value;
+  savePrefs();
+  render();
+};
 
-    const weightButtons = [...document.querySelectorAll("#weightChips .chip")];
-    const currencyButtons = [...document.querySelectorAll("#currencyChips .chip")];
-    const countryButtons = [...document.querySelectorAll(".countryBtn")];
-    const globePins = [...document.querySelectorAll(".globePin")];
+$('currency').onchange=e=>{
+  state.currency=e.target.value;
+  savePrefs();
+  render();
+};
 
-    const countryFlag = document.getElementById("countryFlag");
-    const countryName = document.getElementById("countryName");
-    const countrySub = document.getElementById("countrySub");
-    const countryAmount = document.getElementById("countryAmount");
-    const countryTrend = document.getElementById("countryTrend");
-    const statCurrency = document.getElementById("statCurrency");
-    const updatedAt = document.getElementById("updatedAt");
+async function load(){
+  try{
+    const [g,f]=await Promise.all([
+      fetch('https://api.gold-api.com/price/XAU',{cache:'no-store'}),
+      fetch('https://open.er-api.com/v6/latest/USD')
+    ]);
 
-    function formatPrice(currency, value){
-      try{
-        return new Intl.NumberFormat("en-US", {
-          style: "currency",
-          currency,
-          maximumFractionDigits: 2
-        }).format(value);
-      }catch(e){
-        return currency + " " + Number(value).toLocaleString("en-US", {
-          maximumFractionDigits: 2
-        });
-      }
-    }
+    if(!g.ok||!f.ok)throw Error('response');
 
-    function setActive(buttons, matcher){
-      buttons.forEach(btn => {
-        if(matcher(btn)){
-          btn.classList.add("active");
-        }else{
-          btn.classList.remove("active");
-        }
+    const gold=await g.json(),
+          fx=await f.json();
+
+    if(
+      !Number.isFinite(Number(gold.price))||
+      Number(gold.price)<=0||
+      fx.result!=='success'||
+      !fx.rates?.USD
+    )throw Error('data');
+
+    ounce=Number(gold.price);
+    rates=fx.rates;
+    stamp=gold.updatedAt||'';
+
+    $('status').textContent=
+      'Gold: '+
+      (stamp
+        ?new Date(stamp).toLocaleString('en-GB',{
+          dateStyle:'medium',
+          timeStyle:'short',
+          timeZone:'UTC'
+        })+' UTC'
+        :'latest available')+
+      ' · FX: '+
+      (fx.time_last_update_utc||'latest available')+
+      ' · Est. 24K spot value';
+
+    render();
+  }catch(e){
+    $('status').textContent=
+      'Price unavailable · Check connection and refresh. No sample prices are shown.';
+    render();
+  }
+}
+
+$('save').onclick=async()=>{
+  savePrefs();
+
+  const tip=$('tip');
+  tip.classList.add('show');
+
+  tip.textContent=/iPhone|iPad|iPod/.test(navigator.userAgent)
+    ?'✓ Choices saved on this device. To save the page: Safari Share ⬆ → Add to Home Screen.'
+    :'✓ Choices saved on this device. Use your browser bookmark ⭐ or Add to Home Screen.';
+
+  try{
+    await navigator.clipboard.writeText(location.href);
+    tip.textContent+=' Link copied.';
+  }catch{}
+};
+
+$('share').onclick=async()=>{
+  const url=location.href,
+        text='✨ GOLD GLOBE · My Gold · World Gold';
+
+  try{
+    if(navigator.share){
+      await navigator.share({
+        title:'GOLD GLOBE',
+        text,
+        url
       });
+      return;
     }
+  }catch(e){
+    if(e.name==='AbortError')return;
+  }
 
-    function updateGoldBar(){
-      const perGram = demoData.perGram24K[state.currency] || 0;
-      const total = perGram * state.weight;
+  window.open(
+    'https://wa.me/?text='+encodeURIComponent(text+'\n'+url),
+    '_blank',
+    'noopener'
+  );
+};
 
-      mainPrice.textContent = formatPrice(state.currency, total);
-      barWeightText.textContent = state.weight >= 1000 ? "1 kg" : `${state.weight} g`;
-      metaWeight.textContent = state.weight >= 1000 ? "1 kg" : `${state.weight} g`;
-      metaCurrency.textContent = state.currency;
-      selectedWeightHint.textContent = state.weight >= 1000 ? "1 kg" : `${state.weight} g`;
-      selectedCurrencyHint.textContent = state.currency;
-
-      const sign = demoData.trendPct >= 0 ? "▲" : "▼";
-      trendBadge.textContent = `${sign} ${demoData.trendPct > 0 ? "+" : ""}${demoData.trendPct.toFixed(2)}%`;
-      trendBadge.style.color = demoData.trendPct >= 0 ? "var(--green)" : "var(--red)";
-      trendBadge.style.background = demoData.trendPct >= 0 ? "rgba(57,217,138,.10)" : "rgba(255,94,108,.10)";
-      trendBadge.style.borderColor = demoData.trendPct >= 0 ? "rgba(57,217,138,.20)" : "rgba(255,94,108,.20)";
-
-      setActive(weightButtons, btn => Number(btn.dataset.weight) === state.weight);
-      setActive(currencyButtons, btn => btn.dataset.currency === state.currency);
-
-      localStorage.setItem("goldglobe_weight", state.weight);
-      localStorage.setItem("goldglobe_currency", state.currency);
-    }
-
-    function updateCountry(){
-      const c = demoData.countries[state.country];
-      if(!c) return;
-
-      countryFlag.textContent = c.flag;
-      countryName.textContent = c.name;
-      countrySub.textContent = `${c.currency} • 24K Gold • 1g`;
-      countryAmount.textContent = formatPrice(c.currency, c.price);
-      countryTrend.textContent = `${c.trend >= 0 ? "▲" : "▼"} ${c.trend > 0 ? "+" : ""}${c.trend.toFixed(2)}%`;
-      countryTrend.style.color = c.trend >= 0 ? "var(--green)" : "var(--red)";
-      statCurrency.textContent = c.currency;
-
-      setActive(countryButtons, btn => btn.dataset.country === state.country);
-      setActive(globePins, pin => pin.dataset.country === state.country);
-
-      localStorage.setItem("goldglobe_country", state.country);
-    }
-
-    weightButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        state.weight = Number(btn.dataset.weight);
-        updateGoldBar();
-      });
-    });
-
-    currencyButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        state.currency = btn.dataset.currency;
-        updateGoldBar();
-      });
-    });
-
-    countryButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        state.country = btn.dataset.country;
-        updateCountry();
-      });
-    });
-
-    globePins.forEach(pin => {
-      pin.addEventListener("click", () => {
-        state.country = pin.dataset.country;
-        updateCountry();
-      });
-    });
-
-    function updateTimeLabel(){
-      const now = new Date();
-      updatedAt.textContent =
-        "Updated • " +
-        now.toLocaleDateString("en-GB") +
-        " • " +
-        now.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
-    }
-
-    updateGoldBar();
-    updateCountry();
-    updateTimeLabel();
-  </script>
+render();
+load();
+</script>
 </body>
 </html>
