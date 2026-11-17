@@ -5,257 +5,286 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0a0908">
-<meta name="description" content="GOLD GLOBE — World gold prices by weight in US dollars.">
+<meta name="description" content="GOLD GLOBE — Luxury world gold prices in USD.">
 <meta name="robots" content="index,follow">
 <title>GOLD GLOBE | World Gold</title>
 
 <style>
 :root{
- --gold:#f3d48a;
- --apple:#c8f36c;
- --line:rgba(235,191,103,.28);
+  --bg:#080707;
+  --gold:#f3d48a;
+  --gold2:#c99739;
+  --muted:#b8aa8d;
+  --line:rgba(235,191,103,.28);
+  --apple:#c8f36c;
 }
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
- margin:0;
- min-height:100vh;
- background:
-  radial-gradient(circle at 50% 0%,
-   #493016 0%,#1b120a 28%,#080808 85%);
- color:#fff7e7;
- text-align:center;
- font-family:-apple-system,BlinkMacSystemFont,
- "Segoe UI",Arial,sans-serif;
+  margin:0;
+  min-height:100vh;
+  color:#fff7e7;
+  text-align:center;
+  font-family:-apple-system,BlinkMacSystemFont,
+  "Segoe UI",Arial,sans-serif;
+  background:
+    radial-gradient(circle at 50% 0%,
+      rgba(214,151,39,.24),transparent 26%),
+    linear-gradient(180deg,
+      #191108 0%,#0d0b09 38%,#070707 100%);
 }
 main{
- width:min(100%,520px);
- margin:auto;
- padding:20px 14px 40px;
+  width:min(100%,520px);
+  margin:auto;
+  padding:20px 14px 40px;
 }
 h1{
- margin:10px 0 5px;
- color:var(--gold);
- font-size:24px;
- letter-spacing:.25em;
- font-weight:900;
+  margin:10px 0 5px;
+  color:var(--gold);
+  font-size:24px;
+  letter-spacing:.28em;
+  font-weight:900;
 }
 .tag{
- color:#d3c19d;
- font-size:11px;
- letter-spacing:.3em;
- margin-bottom:16px;
+  color:#d3c19d;
+  font-size:11px;
+  letter-spacing:.30em;
+  margin-bottom:16px;
 }
 .panel{
- overflow:hidden;
- position:relative;
- border:1px solid var(--line);
- border-radius:30px;
- padding:18px 14px 20px;
- background:
-  radial-gradient(circle at 50% 12%,#62401e55,transparent 38%),
-  linear-gradient(155deg,#281a10,#100d0a 70%,#090909);
- box-shadow:0 20px 48px #0008;
+  position:relative;
+  overflow:hidden;
+  border-radius:30px;
+  border:1px solid var(--line);
+  padding:18px 14px 24px;
+  background:
+    radial-gradient(circle at 50% 10%,
+      rgba(215,154,49,.12),transparent 28%),
+    linear-gradient(160deg,
+      rgba(40,28,15,.95),rgba(10,10,10,.97));
+  box-shadow:0 20px 48px rgba(0,0,0,.45);
 }
 .eyebrow{
- color:var(--gold);
- font-size:11px;
- letter-spacing:.22em;
- margin-bottom:12px;
+  color:var(--gold);
+  font-size:11px;
+  letter-spacing:.24em;
+  margin-bottom:12px;
 }
 
 /* GOLD BAR */
 .bar-wrap{
- position:relative;
- width:min(100%,420px);
- margin:0 auto;
+  position:relative;
+  width:min(100%,420px);
+  margin:0 auto 10px;
 }
 .bar-img{
- width:100%;
- display:block;
- filter:drop-shadow(0 12px 18px #0008);
+  width:100%;
+  display:block;
+  filter:drop-shadow(
+    0 12px 18px rgba(0,0,0,.35)
+  );
+}
+.bar-weight{
+  position:absolute;
+  left:50%;
+  top:53%;
+  transform:translate(-50%,-50%);
+  min-width:115px;
+  padding:8px 13px;
+  border-radius:12px;
+  color:#593505;
+  background:linear-gradient(140deg,
+    #ffe9a1,#e3ae45 65%,#c48c2c);
+  box-shadow:
+    0 0 16px rgba(229,172,61,.35),
+    inset 0 1px 3px rgba(255,255,255,.6);
+  font-size:clamp(28px,7vw,42px);
+  font-weight:900;
+  line-height:1.1;
+  white-space:nowrap;
+  pointer-events:none;
 }
 
-/* WEIGHT BELOW THE BAR */
-.selected-weight{
- display:inline-block;
- margin:0 auto 9px;
- color:#f8d986;
- font-size:22px;
- font-weight:850;
- letter-spacing:.08em;
-}
+/* PRICE */
 .price-caption{
- color:var(--gold);
- font-size:11px;
- letter-spacing:.2em;
- margin:5px 0 10px;
+  color:var(--gold);
+  font-size:12px;
+  letter-spacing:.22em;
+  margin-top:6px;
 }
 .price{
- color:#fff4cd;
- font-size:clamp(34px,9.5vw,54px);
- font-weight:900;
- line-height:1.15;
- font-variant-numeric:tabular-nums;
- overflow-wrap:anywhere;
+  margin:12px 0 7px;
+  color:#fff4cd;
+  font-size:clamp(36px,10vw,56px);
+  font-weight:900;
+  line-height:1.1;
+  font-variant-numeric:tabular-nums;
+  overflow-wrap:anywhere;
 }
 .unit{
- margin-top:8px;
- color:#d7ccb8;
- font-size:12px;
+  color:#d7ccb8;
+  font-size:12px;
 }
 .status{
- color:#a99e8a;
- font-size:11px;
- margin:14px 0 0;
- line-height:1.7;
+  color:#a99e8a;
+  font-size:11px;
+  margin:14px 0 0;
+  line-height:1.7;
 }
 
-/* WEIGHT BUTTONS */
+/* WEIGHTS */
 .weights{
- display:grid;
- grid-template-columns:repeat(3,minmax(0,1fr));
- gap:9px;
- margin:20px 0 10px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin:18px 0 14px;
 }
 .weights button{
- min-height:48px;
- border:1px solid #d39e6255;
- border-radius:14px;
- background:linear-gradient(180deg,#30241b,#17120e);
- color:#f1dbaf;
- font-size:13px;
- font-weight:850;
- cursor:pointer;
+  min-height:48px;
+  border-radius:14px;
+  border:1px solid rgba(211,158,62,.42);
+  background:linear-gradient(180deg,
+    rgba(38,28,21,.96),
+    rgba(19,15,12,.96));
+  color:#f1dbaf;
+  font-size:13px;
+  font-weight:850;
+  cursor:pointer;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
 }
 .weights button.active{
- color:#54370a;
- border-color:#ffeba8;
- background:linear-gradient(180deg,
-  #fff1b8,#e5bb5c 55%,#cb9335);
- box-shadow:0 5px 17px #dfab4538;
+  background:linear-gradient(180deg,
+    #fff0b3 0%,#e5bb5c 52%,#cb9335 100%);
+  color:#54370a;
+  border-color:#ffeba8;
+  box-shadow:0 6px 18px rgba(227,175,67,.22);
 }
 .weights button:active{
- transform:scale(.98);
+  transform:scale(.98);
 }
 
-/* INTEGRATED GOLD LANDSCAPE */
+/* GOLD SCENE */
 .scene{
- position:relative;
- width:100%;
- height:250px;
- margin:0 auto;
- overflow:hidden;
- isolation:isolate;
+  position:relative;
+  width:100%;
+  margin:0 auto;
+  height:240px;
+  isolation:isolate;
 }
 .mountains{
- position:absolute;
- left:0;
- bottom:0;
- width:100%;
- height:auto;
- max-height:215px;
- object-fit:cover;
- object-position:bottom;
- z-index:1;
- -webkit-mask-image:
-  linear-gradient(to right,
-   black 0%,black 28%,
-   transparent 47%,transparent 53%,
-   black 72%,black 100%);
- mask-image:
-  linear-gradient(to right,
-   black 0%,black 28%,
-   transparent 47%,transparent 53%,
-   black 72%,black 100%);
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:0 0 26px 26px;
+  z-index:1;
+  -webkit-mask-image:
+    linear-gradient(to bottom,
+      transparent 0%,black 25%,black 100%);
+  mask-image:
+    linear-gradient(to bottom,
+      transparent 0%,black 25%,black 100%);
 }
-.scene-glow{
- position:absolute;
- left:50%;
- bottom:10px;
- transform:translateX(-50%);
- width:260px;
- height:110px;
- border-radius:50%;
- background:radial-gradient(ellipse,
-  #e4ad4155,transparent 72%);
- filter:blur(22px);
- z-index:2;
+.globe-glow{
+  position:absolute;
+  left:50%;
+  bottom:13px;
+  transform:translateX(-50%);
+  width:190px;
+  height:42px;
+  border-radius:50%;
+  background:radial-gradient(circle,
+    rgba(255,212,97,.45),transparent 72%);
+  filter:blur(12px);
+  z-index:2;
 }
-.globe-shell{
- position:absolute;
- left:50%;
- bottom:23px;
- transform:translateX(-50%);
- width:190px;
- height:190px;
- border-radius:50%;
- overflow:hidden;
- z-index:3;
- box-shadow:
-  0 0 32px #dcb45766,
-  0 12px 30px #0008;
+
+/* ROTATING GOLD GLOBE */
+.globe-wrap{
+  position:absolute;
+  left:50%;
+  bottom:20px;
+  transform:translateX(-50%);
+  width:170px;
+  height:170px;
+  border-radius:50%;
+  overflow:hidden;
+  background:transparent;
+  box-shadow:
+    0 0 30px rgba(235,189,85,.22),
+    0 12px 22px rgba(0,0,0,.18);
+  z-index:3;
 }
-.globe-shell canvas,
-.globe-fallback{
- display:block;
- width:100%;
- height:100%;
- border-radius:50%;
+.globe-img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:50%;
+  animation:spinGlobe 40s linear infinite;
+  transform-origin:center center;
+  will-change:transform;
 }
-.globe-fallback{
- position:absolute;
- inset:0;
- object-fit:cover;
+@keyframes spinGlobe{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
 }
-.globe-shell canvas{
- position:relative;
- z-index:2;
-}
-.globe-shell canvas:not(.ready){
- opacity:0;
-}
-.globe-shell canvas.ready{
- opacity:1;
+.scene-fade{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(180deg,
+      transparent 0%,
+      transparent 78%,
+      rgba(8,7,7,.08) 100%);
+  z-index:4;
 }
 
 /* SHARE */
 .share{
- width:100%;
- min-height:58px;
- margin-top:18px;
- border:0;
- border-radius:18px;
- background:var(--apple);
- color:#1d2c08;
- font-size:18px;
- font-weight:900;
- cursor:pointer;
- box-shadow:0 8px 24px #b7e96044;
+  width:100%;
+  min-height:58px;
+  margin-top:18px;
+  border:0;
+  border-radius:18px;
+  background:var(--apple);
+  color:#1d2c08;
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:.03em;
+  cursor:pointer;
+  box-shadow:0 8px 24px rgba(183,233,96,.24);
 }
-.share:active{transform:scale(.98)}
+.share:active{
+  transform:scale(.98);
+}
 footer{
- margin-top:18px;
- color:#968c79;
- font-size:10px;
- line-height:1.8;
+  margin-top:18px;
+  color:#968c79;
+  font-size:10px;
+  line-height:1.8;
 }
+
 @media(max-width:430px){
- .weights button{font-size:12px}
- .scene{height:225px}
- .globe-shell{
-  width:170px;
-  height:170px;
- }
+  .weights button{font-size:12px}
+  .scene{height:220px}
+  .globe-wrap{
+    width:160px;
+    height:160px;
+  }
 }
 @media(prefers-reduced-motion:reduce){
- *,*:before,*:after{
-  scroll-behavior:auto!important;
- }
+  .globe-img{
+    animation:none;
+  }
 }
 </style>
 </head>
-<body>
 
+<body>
 <main>
 
 <h1>GOLD GLOBE</h1>
@@ -263,467 +292,215 @@ footer{
 
 <section class="panel">
 
-<div class="eyebrow">
- ✦ LUXURY GOLD VIEW ✦
-</div>
+  <div class="eyebrow">
+    ✦ LUXURY GOLD VIEW ✦
+  </div>
 
-<div class="bar-wrap">
- <img
-  src="gold-bar.webp"
-  alt="Fine gold bar"
-  class="bar-img"
- >
-</div>
+  <div class="bar-wrap">
+    <img
+      src="gold-bar.webp"
+      alt="Fine gold bar"
+      class="bar-img"
+    >
+    <div class="bar-weight" id="barWeight">
+      1 kg
+    </div>
+  </div>
 
-<div class="selected-weight" id="selectedWeight">
- 1 kg
-</div>
+  <div class="price-caption">
+    GLOBAL GOLD PRICE
+  </div>
 
-<div class="price-caption">
- GLOBAL GOLD PRICE
-</div>
+  <div class="price" id="price">—</div>
 
-<div class="price" id="price">—</div>
+  <div class="unit" id="unit">
+    USD / 1 kg · 24K
+  </div>
 
-<div class="unit" id="unit">
- USD / 1 kg · 24K
-</div>
+  <div class="status" id="status">
+    Loading...
+  </div>
 
-<div class="status" id="status">
- Loading...
-</div>
+  <div class="weights" id="weights"></div>
 
-<div class="weights" id="weights"></div>
+  <div class="scene">
+    <div class="globe-glow"></div>
 
-<div class="scene">
- <img
-  src="gold-mountains.webp"
-  alt="Gold mountains"
-  class="mountains"
- >
- <div class="scene-glow"></div>
+    <img
+      src="gold-mountains.webp"
+      alt="Gold mountains"
+      class="mountains"
+    >
 
- <div class="globe-shell">
-  <img
-   src="globe.webp"
-   alt="Gold Earth"
-   class="globe-fallback"
-  >
-  <canvas
-   id="earth"
-   width="380"
-   height="380"
-   aria-label="Slowly rotating golden Earth"
-   role="img"
-  ></canvas>
- </div>
-</div>
+    <div class="globe-wrap">
+      <img
+        src="globe.webp"
+        alt="Rotating gold globe"
+        class="globe-img"
+      >
+    </div>
+
+    <div class="scene-fade"></div>
+  </div>
 
 </section>
 
 <button class="share" id="share">
- ↗ SHARE GOLD
+  ↗ SHARE GOLD
 </button>
 
 <footer>
- Indicative spot metal value · USD only
- <div>Not a retail buying or selling quote</div>
+  Indicative spot metal value · USD only
+  <div>
+    Not a retail buying or selling quote
+  </div>
 </footer>
 
 </main>
 
 <script>
-/* GOLD PRICE */
 const OZ=31.1034768;
 
 const choices=[
- ['1 kg',1000],
- ['500 g',500],
- ['250 g',250],
- ['100 g',100],
- ['50 g',50],
- ['20 g',20],
- ['10 g',10],
- ['5 g',5],
- ['1 g',1],
- ['Ounce',OZ]
+  ['1 kg',1000],
+  ['500 g',500],
+  ['250 g',250],
+  ['100 g',100],
+  ['50 g',50],
+  ['20 g',20],
+  ['10 g',10],
+  ['5 g',5],
+  ['1 g',1],
+  ['Ounce',OZ]
 ];
 
 let ouncePrice=null;
 let currentWeight=1000;
 let currentLabel='1 kg';
 
-const $=id=>document.getElementById(id);
+const priceEl=document.getElementById('price');
+const unitEl=document.getElementById('unit');
+const statusEl=document.getElementById('status');
+const barWeightEl=document.getElementById('barWeight');
+const weightsEl=document.getElementById('weights');
 
 function moneyUSD(value){
- return new Intl.NumberFormat('en-US',{
-  style:'currency',
-  currency:'USD',
-  minimumFractionDigits:2,
-  maximumFractionDigits:2
- }).format(value);
+  return new Intl.NumberFormat('en-US',{
+    style:'currency',
+    currency:'USD',
+    minimumFractionDigits:2,
+    maximumFractionDigits:2
+  }).format(value);
 }
 
 function render(){
- $('selectedWeight').textContent=currentLabel;
- $('unit').textContent=
-  'USD / '+currentLabel+' · 24K';
+  barWeightEl.textContent=currentLabel;
 
- document.querySelectorAll(
-  '#weights button'
- ).forEach(btn=>{
-  const active=btn.dataset.label===currentLabel;
-  btn.classList.toggle('active',active);
-  btn.setAttribute(
-   'aria-pressed',String(active)
-  );
- });
+  unitEl.textContent=
+    'USD / '+currentLabel+' · 24K';
 
- $('price').textContent=ouncePrice===null
-  ?'—'
-  :moneyUSD(ouncePrice*currentWeight/OZ);
+  weightsEl.querySelectorAll('button').forEach(btn=>{
+    const active=
+      btn.dataset.label===currentLabel;
+
+    btn.classList.toggle('active',active);
+    btn.setAttribute(
+      'aria-pressed',
+      String(active)
+    );
+  });
+
+  priceEl.textContent=ouncePrice===null
+    ?'—'
+    :moneyUSD(ouncePrice*currentWeight/OZ);
 }
 
 choices.forEach(([label,grams])=>{
- const btn=document.createElement('button');
- btn.textContent=label;
- btn.dataset.label=label;
+  const btn=document.createElement('button');
 
- btn.onclick=()=>{
-  currentLabel=label;
-  currentWeight=grams;
-  render();
- };
+  btn.textContent=label;
+  btn.dataset.label=label;
 
- $('weights').appendChild(btn);
+  btn.onclick=()=>{
+    currentLabel=label;
+    currentWeight=grams;
+    render();
+  };
+
+  weightsEl.appendChild(btn);
 });
 
 async function loadGold(){
- try{
-  const res=await fetch(
-   'https://api.gold-api.com/price/XAU',
-   {cache:'no-store'}
-  );
+  try{
+    const res=await fetch(
+      'https://api.gold-api.com/price/XAU',
+      {cache:'no-store'}
+    );
 
-  if(!res.ok)throw Error('network');
+    if(!res.ok)throw new Error('network');
 
-  const data=await res.json();
-  const value=Number(data.price);
+    const data=await res.json();
+    const value=Number(data.price);
 
-  if(!Number.isFinite(value)||value<=0){
-   throw Error('invalid');
-  }
-
-  ouncePrice=value;
-
-  const date=data.updatedAt
-   ?new Date(data.updatedAt)
-   :null;
-
-  $('status').textContent=
-   date&&!isNaN(date.getTime())
-   ?'Updated: '+date.toLocaleString(
-    'en-GB',{
-     dateStyle:'medium',
-     timeStyle:'short',
-     timeZone:'UTC'
+    if(!Number.isFinite(value)||value<=0){
+      throw new Error('invalid');
     }
-   )+' UTC'
-   :'Latest available gold price';
 
-  render();
- }catch(error){
-  ouncePrice=null;
-  render();
-  $('status').textContent=
-   'Price unavailable · Refresh to retry';
- }
+    ouncePrice=value;
+
+    const d=data.updatedAt
+      ?new Date(data.updatedAt)
+      :null;
+
+    statusEl.textContent=d&&!isNaN(d.getTime())
+      ?'Updated: '+d.toLocaleString('en-GB',{
+        dateStyle:'medium',
+        timeStyle:'short',
+        timeZone:'UTC'
+      })+' UTC'
+      :'Latest available gold price';
+
+    render();
+  }catch(error){
+    ouncePrice=null;
+    render();
+
+    statusEl.textContent=
+      'Price unavailable · Refresh to retry';
+  }
 }
 
-/* SHARE */
-$('share').onclick=async()=>{
- const url=location.origin+location.pathname;
+document.getElementById('share').onclick=async()=>{
+  const url=location.origin+location.pathname;
 
- const text=ouncePrice===null
-  ?'✨ GOLD GLOBE'
-  :'✨ GOLD GLOBE\n'+currentLabel+
-   ': '+moneyUSD(ouncePrice*currentWeight/OZ);
+  const text=ouncePrice===null
+    ?'✨ GOLD GLOBE'
+    :'✨ GOLD GLOBE\n'+currentLabel+
+      ': '+moneyUSD(ouncePrice*currentWeight/OZ);
 
- try{
-  if(navigator.share){
-   await navigator.share({
-    title:'GOLD GLOBE',
-    text,
-    url
-   });
-   return;
+  try{
+    if(navigator.share){
+      await navigator.share({
+        title:'GOLD GLOBE',
+        text,
+        url
+      });
+      return;
+    }
+  }catch(err){
+    if(err.name==='AbortError')return;
   }
- }catch(err){
-  if(err.name==='AbortError')return;
- }
 
- window.open(
-  'https://wa.me/?text='+
-   encodeURIComponent(text+'\n'+url),
-  '_blank','noopener'
- );
+  window.open(
+    'https://wa.me/?text='+
+      encodeURIComponent(text+'\n'+url),
+    '_blank',
+    'noopener'
+  );
 };
-
-/* GOLDEN EARTH ROTATION */
-(function(){
- const canvas=$('earth');
- const ctx=canvas.getContext('2d');
- if(!ctx)return;
-
- const S=380;
- const R=185;
- const C=190;
- const rad=Math.PI/180;
-
- /*
-  Simplified continent outlines in
-  longitude / latitude coordinates.
- */
- const continents=[
-  [
-   [-168,66],[-151,70],[-137,61],
-   [-124,52],[-126,43],[-117,32],
-   [-110,29],[-104,24],[-97,17],
-   [-90,19],[-85,12],[-81,9],
-   [-79,18],[-87,22],[-91,29],
-   [-96,30],[-103,29],[-111,32],
-   [-117,48],[-126,49],[-130,54],
-   [-141,60],[-154,59]
-  ],
-  [
-   [-81,12],[-73,10],[-64,11],
-   [-51,3],[-47,-8],[-36,-10],
-   [-39,-23],[-50,-30],
-   [-54,-39],[-69,-55],
-   [-75,-41],[-71,-27],
-   [-79,-5]
-  ],
-  [
-   [-11,36],[-17,28],[-16,12],
-   [-7,5],[9,4],[13,-5],
-   [22,-11],[34,-25],
-   [32,-34],[20,-35],
-   [14,-26],[10,-16],
-   [4,-7],[-1,5],[-10,20]
-  ],
-  [
-   [-11,36],[-10,44],[-5,50],
-   [2,51],[8,55],[15,55],
-   [24,60],[30,70],[41,71],
-   [50,62],[70,58],[90,56],
-   [110,56],[127,50],
-   [140,48],[142,36],
-   [131,32],[121,23],
-   [112,19],[106,10],
-   [100,2],[104,-7],
-   [119,-8],[127,-3],
-   [129,8],[122,19],
-   [114,23],[106,17],
-   [98,9],[93,19],
-   [82,8],[77,8],
-   [72,19],[68,24],
-   [60,26],[50,30],
-   [43,38],[34,35],
-   [29,41],[22,40],
-   [14,46],[8,44],[3,43],
-   [-3,37]
-  ],
-  [
-   [113,-11],[130,-12],
-   [138,-15],[153,-26],
-   [151,-38],[141,-39],
-   [132,-34],[115,-34],
-   [113,-24]
-  ],
-  [
-   [-52,60],[-43,61],[-40,72],
-   [-47,81],[-60,83],[-57,70]
-  ],
-  [
-   [47,-13],[50,-17],[49,-25],
-   [44,-26],[43,-17]
-  ],
-  [
-   [129,31],[135,35],[142,43],
-   [146,44],[141,34]
-  ],
-  [
-   [-10,50],[-5,51],[-2,55],
-   [-6,59],[-9,58]
-  ]
- ];
-
- function project(lon,lat,center){
-  const a=(lon-center)*rad;
-  const b=lat*rad;
-  const z=Math.cos(b)*Math.cos(a);
-
-  return {
-   x:C+R*Math.cos(b)*Math.sin(a),
-   y:C-R*Math.sin(b),
-   z
-  };
- }
-
- function line(points,center){
-  let drawing=false;
-  ctx.beginPath();
-
-  for(let i=0;i<points.length;i++){
-   const p=project(
-    points[i][0],points[i][1],center
-   );
-
-   if(p.z>0){
-    if(!drawing){
-     ctx.moveTo(p.x,p.y);
-     drawing=true;
-    }else{
-     ctx.lineTo(p.x,p.y);
-    }
-   }else{
-    drawing=false;
-   }
-  }
- }
-
- function draw(center){
-  ctx.clearRect(0,0,S,S);
-
-  ctx.save();
-  ctx.beginPath();
-  ctx.arc(C,C,R,0,Math.PI*2);
-  ctx.clip();
-
-  const ocean=ctx.createRadialGradient(
-   125,105,10,205,215,280
-  );
-  ocean.addColorStop(0,'#455166');
-  ocean.addColorStop(.35,'#263242');
-  ocean.addColorStop(.72,'#131b27');
-  ocean.addColorStop(1,'#07090e');
-
-  ctx.fillStyle=ocean;
-  ctx.fillRect(0,0,S,S);
-
-  ctx.strokeStyle='rgba(230,180,75,.20)';
-  ctx.lineWidth=1;
-
-  for(let lat=-60;lat<=60;lat+=30){
-   const pts=[];
-   for(let lon=-180;lon<=180;lon+=3){
-    pts.push([lon,lat]);
-   }
-   line(pts,center);
-   ctx.stroke();
-  }
-
-  for(let lon=-180;lon<180;lon+=30){
-   const pts=[];
-   for(let lat=-89;lat<=89;lat+=3){
-    pts.push([lon,lat]);
-   }
-   line(pts,center);
-   ctx.stroke();
-  }
-
-  for(const polygon of continents){
-   const pts=[];
-
-   for(let i=0;i<polygon.length;i++){
-    const a=polygon[i];
-    const b=polygon[(i+1)%polygon.length];
-
-    pts.push(a);
-
-    for(let j=1;j<6;j++){
-     let delta=b[0]-a[0];
-
-     if(delta>180)delta-=360;
-     if(delta<-180)delta+=360;
-
-     pts.push([
-      a[0]+delta*j/6,
-      a[1]+(b[1]-a[1])*j/6
-     ]);
-    }
-   }
-
-   line(pts,center);
-   ctx.closePath();
-
-   const gold=ctx.createLinearGradient(
-    85,65,290,300
-   );
-   gold.addColorStop(0,'#fff0b6');
-   gold.addColorStop(.35,'#e9bd59');
-   gold.addColorStop(.75,'#b67d24');
-   gold.addColorStop(1,'#774812');
-
-   ctx.fillStyle=gold;
-   ctx.strokeStyle='#ffdfa466';
-   ctx.lineWidth=.8;
-   ctx.fill();
-   ctx.stroke();
-  }
-
-  const light=ctx.createRadialGradient(
-   120,80,10,210,200,245
-  );
-  light.addColorStop(0,'#fff1ba33');
-  light.addColorStop(.5,'#ffffff00');
-  light.addColorStop(1,'#000000bb');
-
-  ctx.fillStyle=light;
-  ctx.fillRect(0,0,S,S);
-
-  ctx.restore();
-
-  ctx.beginPath();
-  ctx.arc(C,C,R,0,Math.PI*2);
-  ctx.strokeStyle='#e6b95c';
-  ctx.lineWidth=3;
-  ctx.stroke();
- }
-
- let start=null;
- let last=0;
-
- const reduceMotion=window.matchMedia(
-  '(prefers-reduced-motion: reduce)'
- ).matches;
-
- function frame(t){
-  if(start===null)start=t;
-
-  if(t-last>=33||last===0){
-   const elapsed=reduceMotion?0:t-start;
-
-   // One full horizontal rotation in 90 seconds.
-   const center=20+
-    (elapsed%90000)/90000*360;
-
-   draw(center);
-   canvas.classList.add('ready');
-   last=t;
-  }
-
-  if(!reduceMotion){
-   requestAnimationFrame(frame);
-  }
- }
-
- requestAnimationFrame(frame);
-})();
 
 render();
 loadGold();
 </script>
-
 </body>
 </html>
