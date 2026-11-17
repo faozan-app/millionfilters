@@ -14,15 +14,15 @@
 <meta property="og:title" content="GOLD GLOBE | World Gold">
 <meta property="og:description" content="Explore world gold reference prices in USD and the GOLD GLOBE signature design.">
 <meta property="og:url" content="https://millionfilters.com/">
-<meta property="og:image" content="https://millionfilters.com/gold-globe-necklace.webp">
+<meta property="og:image" content="https://millionfilters.com/gold-globe-hero.webp">
 <meta property="og:image:type" content="image/webp">
-<meta property="og:image:width" content="1122">
-<meta property="og:image:height" content="1402">
-<meta property="og:image:alt" content="Luxurious globe-inspired gold necklace, GOLD GLOBE signature design">
+<meta property="og:image:width" content="941">
+<meta property="og:image:height" content="1672">
+<meta property="og:image:alt" content="GOLD GLOBE exclusive necklace on luxury black and gold background">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="GOLD GLOBE | World Gold">
 <meta name="twitter:description" content="Global gold prices and a luxurious gold globe signature.">
-<meta name="twitter:image" content="https://millionfilters.com/gold-globe-necklace.webp">
+<meta name="twitter:image" content="https://millionfilters.com/gold-globe-hero.webp">
 <style>
 :root{--gold:#f5dfa6;--cream:#fff2d1;--apple:#b6edaa;--line:rgba(237,197,113,.25)}
 *{box-sizing:border-box}
@@ -73,13 +73,31 @@ h1{margin:8px 0 6px;color:var(--gold);font-family:Georgia,serif;font-size:clamp(
 footer{margin-top:12px;color:#aaa18e;font-size:10px;line-height:1.9}
 @media(max-width:430px){.scene{height:225px}.earth{width:169px;height:169px}.weights button{font-size:12px}.bar-stage{width:100%}}
 @media(prefers-reduced-motion:reduce){.bar-stage{animation:none}}
+
+/* GOLD GLOBE · Luxury hero edition */
+body{background:radial-gradient(ellipse at 50% 0,#382511 0%,#100d0a 45%,#050606 100%)}
+main{padding-top:9px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.hero{position:relative;overflow:hidden;border-radius:22px 22px 10px 10px;border:1px solid #ba872c66;background:#050403;box-shadow:0 20px 55px #000c,0 0 35px #b77d281b}
+.hero-art{display:block;width:100%;height:auto;aspect-ratio:9/13;object-fit:cover;object-position:center top}
+.hero-edge{position:absolute;pointer-events:none;inset:auto 0 0;height:48px;background:linear-gradient(transparent,#0d0b08)}
+.panel{margin-top:13px;border-radius:23px;padding:18px 13px 19px;background:radial-gradient(ellipse at 50% 3%,#6b4b2336,transparent 60%),linear-gradient(155deg,#231b11,#0d100e 85%)}
+.bar-stage{width:min(100%,370px)}
+.eyebrow{margin-bottom:8px}
+.weights{margin-bottom:4px}
+.share{margin-top:17px}
+@media(max-width:430px){.hero{border-radius:18px 18px 8px 8px}.hero-art{aspect-ratio:9/13}}
 </style>
 </head>
 <body>
 <main>
-<h1>GOLD GLOBE</h1><div class="tag">WORLD GOLD</div>
-<section class="panel">
- <div class="eyebrow">✦ LUXURY GOLD VIEW ✦</div>
+<h1 class="sr-only">GOLD GLOBE — World Gold Prices</h1>
+<section class="hero" aria-label="GOLD GLOBE signature gold necklace">
+ <img class="hero-art" src="gold-globe-hero.webp" alt="GOLD GLOBE, luxurious gold globe pendant necklace on black velvet" width="941" height="1672" fetchpriority="high">
+ <div class="hero-edge" aria-hidden="true"></div>
+</section>
+<section class="panel" aria-label="World gold spot values">
+ <div class="eyebrow">✦ WORLD GOLD · USD ✦</div>
  <div class="bar-stage">
   <img src="gold-bar-clean.webp" alt="Fine gold bullion bar" width="980" height="460">
   <div class="bar-engrave" aria-hidden="true">
@@ -91,22 +109,8 @@ footer{margin-top:12px;color:#aaa18e;font-size:10px;line-height:1.9}
  <div class="price-caption">GLOBAL GOLD PRICE</div>
  <div class="price" id="price" aria-live="polite">—</div>
  <div class="unit" id="unit">USD / 1 kg · 24K</div>
- <div class="status" id="status">Loading latest price…</div>
+ <div class="status" id="status" aria-live="polite">Loading latest price…</div>
  <div class="weights" id="weights" aria-label="Choose gold weight"></div>
- <div class="scene" aria-label="Golden Earth and mountains">
-  <img src="mountains-soft.webp" class="mountains" alt="Golden mountain landscape">
-  <div class="earth-glow"></div>
-  <video class="earth" autoplay muted loop playsinline webkit-playsinline preload="auto" aria-label="Golden Earth rotating smoothly" width="320" height="320"><source src="earth-spin.mp4" type="video/mp4"></video>
- </div>
-<section class="signature" aria-label="GOLD GLOBE signature gold necklace concept">
- <div class="signature-label">✦ THE SIGNATURE COLLECTION ✦</div>
- <h2>THE GOLDEN GLOBE</h2>
- <p class="sub">A WORLD OF GOLDEN ELEGANCE</p>
- <div class="necklace-frame">
-  <img src="gold-globe-necklace.webp" alt="Luxurious golden globe pendant necklace with delicate gemstone accents" width="1122" height="1402" loading="lazy" decoding="async">
- </div>
- <p class="signature-note">GOLD GLOBE · EXCLUSIVE DESIGN CONCEPT</p>
-</section>
 </section>
 <button class="share" id="share" type="button" aria-label="Share GOLD GLOBE price and website">
  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.7 10.6l6.6-4.2M8.7 13.4l6.6 4.2"/></svg>
