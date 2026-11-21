@@ -22,6 +22,7 @@
 .pl-card.gain .pl-number{color:#a7e5ba}.pl-card.loss .pl-number{color:#f6aaaa}.pl-card.even .pl-number{color:#efcd8a}
 .pl-percent{font-weight:700;direction:ltr;unicode-bidi:isolate}
 .pl-foot{font-size:11px;line-height:1.6;color:#b6b6a6;margin-top:10px}
+.quote-box{margin-top:14px;padding-top:13px;border-top:1px solid var(--line);display:grid;gap:5px}.quote-value{font-size:23px;font-weight:750;direction:ltr;unicode-bidi:isolate;text-align:start}#indicativeStamp{overflow-wrap:anywhere}
 </style>
 </head>
 <body><main>
@@ -36,7 +37,7 @@
   <div class="pl-foot" id="plFoot" data-i18n="plLoading">Checking the indicative gold price…</div>
 </div>
 </section>
-<section class="panel"><div class="row"><h2 class="sectionTitle" data-i18n="priceTitle">Gold reference price</h2><button type="button" class="secondary" id="refreshBtn" data-i18n="refresh" style="padding:7px 12px;font-size:12px">Refresh</button></div><p class="tiny" data-i18n="priceHelp">Displayed price is from your last successful trade, not a verified live quote. Stale prices block trading.</p><div class="gold" id="lastPrice">—</div></section>
+<section class="panel"><div class="row"><h2 class="sectionTitle" data-i18n="priceTitle">Gold reference price</h2><button type="button" class="secondary" id="refreshBtn" data-i18n="refresh" style="padding:7px 12px;font-size:12px">Refresh</button></div><p class="tiny" data-i18n="priceHelp">Displayed price is from your last successful trade, not a verified live quote. Stale prices block trading.</p><div class="gold" id="lastPrice">—</div><div class="quote-box"><div class="muted tiny" data-i18n="liveRef">Latest indicative price</div><div class="gold quote-value" id="indicativeSpot">—</div><div class="tiny muted" id="indicativeStamp">—</div><div class="tiny muted" data-i18n="quoteCaution">Public quote; execution uses the protected server price</div><div class="tiny muted" data-i18n="autoQuote">Automatic refresh approximately every minute</div></div></section>
 <section class="panel"><h2 class="sectionTitle" data-i18n="tradeTitle">Virtual trade</h2><div class="row"><span class="muted tiny" data-i18n="buyHint">BUY = USD amount</span><span class="muted tiny" data-i18n="sellHint">SELL = grams</span></div><label for="buyAmount" data-i18n="buyLabel">Buy gold for USD</label><input id="buyAmount" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="100.00"><div class="btnrow"><button type="button" class="buy" id="buyBtn" data-i18n="buyBtn">BUY VIRTUAL GOLD</button></div><label for="sellAmount" data-i18n="sellLabel">Sell gold in grams</label><input id="sellAmount" type="number" inputmode="decimal" min="0.00000001" step="0.00000001" placeholder="0.10000000"><div class="btnrow"><button type="button" class="sell" id="sellBtn" data-i18n="sellBtn">SELL VIRTUAL GOLD</button></div><p class="tiny" data-i18n="tradeHelp">Each order requires confirmation. No real money or gold is traded.</p></section>
 <section class="panel"><h2 class="sectionTitle" data-i18n="historyTitle">Transaction history</h2><div id="history" class="tiny muted">—</div></section></section>
 <div id="notice" class="notice hide" role="status" aria-live="polite"></div><small data-i18n="footer">Independent test page • No real funds, no physical gold • GOLD GLOBE</small>
@@ -73,6 +74,8 @@ const RU={subtitle:'Виртуальное золото · Только трен
 const translations={en:EN,ar:AR,hi:HI,bn:BN,ur:UR,es:ES,fr:FR,tr:TR,id:ID,pt:PT,de:DE,zh:ZH,ja:JA,ru:RU};
 const PL_TRANSLATIONS={"en":{"plTitle":"Indicative profit / loss","plFoot":"Based on the starting 10,000 virtual USD and the latest available indicative gold price. Not a realized gain.","plMissing":"Unable to calculate until a recent gold reference price is available.","plLoading":"Checking the indicative gold price…"},"ar":{"plTitle":"الربح / الخسارة التقديرية","plFoot":"مقارنة برصيد البداية 10,000 دولار افتراضي، وفق أحدث سعر ذهب إرشادي متاح. ليست أرباحًا محققة.","plMissing":"يتعذر حساب الربح والخسارة حتى يتوفر سعر مرجعي حديث للذهب.","plLoading":"جارٍ التحقق من السعر الإرشادي للذهب…"},"hi":{"plTitle":"अनुमानित लाभ / हानि","plFoot":"प्रारंभिक 10,000 आभासी USD और उपलब्ध सांकेतिक सोने के भाव पर आधारित। यह वास्तविक लाभ नहीं है।","plMissing":"हाल का सोने का भाव उपलब्ध होने तक गणना संभव नहीं है।","plLoading":"सांकेतिक सोने का भाव जाँचा जा रहा है…"},"bn":{"plTitle":"আনুমানিক লাভ / ক্ষতি","plFoot":"প্রারম্ভিক ১০,০০০ ভার্চুয়াল USD এবং সর্বশেষ উপলব্ধ নির্দেশক স্বর্ণমূল্যের ভিত্তিতে। এটি বাস্তব লাভ নয়।","plMissing":"সাম্প্রতিক স্বর্ণমূল্য না থাকলে হিসাব করা যাবে না।","plLoading":"নির্দেশক স্বর্ণমূল্য যাচাই করা হচ্ছে…"},"ur":{"plTitle":"تخمینی نفع / نقصان","plFoot":"ابتدائی 10,000 فرضی USD اور دستیاب حالیہ تخمینی سونے کی قیمت کی بنیاد پر؛ یہ حقیقی منافع نہیں۔","plMissing":"حالیہ حوالہ قیمت کے بغیر حساب ممکن نہیں۔","plLoading":"سونے کی تخمینی قیمت چیک کی جا رہی ہے…"},"es":{"plTitle":"Ganancia / pérdida estimada","plFoot":"Comparado con los 10.000 USD virtuales iniciales, usando el precio indicativo disponible. No es ganancia realizada.","plMissing":"No se puede calcular sin un precio reciente del oro.","plLoading":"Comprobando el precio indicativo del oro…"},"fr":{"plTitle":"Gain / perte estimé","plFoot":"Comparé aux 10 000 USD virtuels initiaux, selon le dernier prix indicatif disponible. Gain non réalisé.","plMissing":"Calcul impossible sans prix de référence récent.","plLoading":"Vérification du prix indicatif de l’or…"},"de":{"plTitle":"Geschätzter Gewinn / Verlust","plFoot":"Verglichen mit den anfänglichen 10.000 virtuellen USD zum jüngsten Richtpreis. Kein realisierter Gewinn.","plMissing":"Ohne aktuellen Goldrichtpreis keine Berechnung möglich.","plLoading":"Goldrichtpreis wird geprüft…"},"pt":{"plTitle":"Lucro / prejuízo estimado","plFoot":"Comparado aos 10.000 USD virtuais iniciais, pelo último preço indicativo disponível. Não é lucro realizado.","plMissing":"Não é possível calcular sem cotação recente do ouro.","plLoading":"Verificando preço indicativo do ouro…"},"tr":{"plTitle":"Tahmini kâr / zarar","plFoot":"Başlangıçtaki 10.000 sanal USD ile mevcut gösterge altın fiyatı karşılaştırılır. Gerçekleşmiş kazanç değildir.","plMissing":"Güncel altın fiyatı olmadan hesaplanamaz.","plLoading":"Gösterge altın fiyatı kontrol ediliyor…"},"id":{"plTitle":"Estimasi untung / rugi","plFoot":"Dibanding saldo awal 10.000 USD virtual dengan harga acuan emas terbaru. Bukan keuntungan nyata.","plMissing":"Perhitungan memerlukan harga emas acuan terbaru.","plLoading":"Memeriksa harga acuan emas…"},"zh":{"plTitle":"预估盈亏","plFoot":"基于初始 10,000 虚拟美元和最新可用的参考金价，不代表实际已实现收益。","plMissing":"没有近期参考金价，暂无法计算。","plLoading":"正在查询参考金价…"},"ja":{"plTitle":"推定損益","plFoot":"初期の仮想10,000米ドルと最新の参考金価格を比較しています。実現利益ではありません。","plMissing":"最近の参考金価格がないため計算できません。","plLoading":"参考金価格を確認中…"},"ru":{"plTitle":"Оценочная прибыль / убыток","plFoot":"Относительно начальных 10 000 виртуальных USD по доступной индикативной цене золота. Не реализованная прибыль.","plMissing":"Невозможно рассчитать без свежей справочной цены.","plLoading":"Проверка ориентировочной цены золота…"}};
 for(const [lc,entries] of Object.entries(PL_TRANSLATIONS))Object.assign(translations[lc],entries);
+const MARKET_TRANSLATIONS={"en":{"liveRef":"Latest indicative price","quoteTime":"Updated","quoteUnavailable":"Price unavailable or too old","quoteCaution":"Public quote; execution uses the protected server price","autoQuote":"Automatic refresh approximately every minute"},"ar":{"liveRef":"أحدث سعر إرشادي","quoteTime":"آخر تحديث","quoteUnavailable":"السعر غير متاح أو قديم","quoteCaution":"سعر إرشادي عام؛ التنفيذ يتم بسعر الخادم المحمي","autoQuote":"تحديث تلقائي كل دقيقة تقريبًا"},"hi":{"liveRef":"नवीनतम सांकेतिक मूल्य","quoteTime":"अपडेट","quoteUnavailable":"मूल्य अनुपलब्ध या पुराना","quoteCaution":"सार्वजनिक अनुमान; ट्रेड का मूल्य सर्वर तय करता है","autoQuote":"लगभग हर मिनट स्वतः अपडेट"},"bn":{"liveRef":"সর্বশেষ নির্দেশক মূল্য","quoteTime":"সর্বশেষ আপডেট","quoteUnavailable":"মূল্য অনুপলব্ধ বা পুরোনো","quoteCaution":"নির্দেশক মূল্য; লেনদেন সার্ভারের সুরক্ষিত দরে","autoQuote":"প্রতি মিনিটে স্বয়ংক্রিয় আপডেট"},"ur":{"liveRef":"تازہ ترین تخمینی قیمت","quoteTime":"آخری تازہ کاری","quoteUnavailable":"قیمت دستیاب نہیں یا پرانی ہے","quoteCaution":"تخمینی نرخ؛ لین دین محفوظ سرور نرخ پر ہوتا ہے","autoQuote":"تقریباً ہر منٹ خودکار تازہ کاری"},"es":{"liveRef":"Último precio indicativo","quoteTime":"Actualizado","quoteUnavailable":"Precio no disponible o antiguo","quoteCaution":"Cotización indicativa; ejecución con precio protegido del servidor","autoQuote":"Actualización automática cada minuto"},"fr":{"liveRef":"Dernier prix indicatif","quoteTime":"Mis à jour","quoteUnavailable":"Prix indisponible ou ancien","quoteCaution":"Prix indicatif ; exécution au prix sécurisé du serveur","autoQuote":"Actualisation automatique chaque minute"},"de":{"liveRef":"Aktueller Richtpreis","quoteTime":"Aktualisiert","quoteUnavailable":"Preis nicht verfügbar oder veraltet","quoteCaution":"Richtpreis; Handel zum geschützten Serverkurs","autoQuote":"Automatische Aktualisierung jede Minute"},"pt":{"liveRef":"Última cotação indicativa","quoteTime":"Atualizado","quoteUnavailable":"Preço indisponível ou antigo","quoteCaution":"Cotação indicativa; execução pelo servidor protegido","autoQuote":"Atualização automática a cada minuto"},"tr":{"liveRef":"Son gösterge fiyatı","quoteTime":"Güncellendi","quoteUnavailable":"Fiyat yok veya eski","quoteCaution":"Gösterge fiyat; işlem korumalı sunucu fiyatıyla","autoQuote":"Yaklaşık her dakika otomatik yenileme"},"id":{"liveRef":"Harga acuan terbaru","quoteTime":"Diperbarui","quoteUnavailable":"Harga tidak tersedia atau lama","quoteCaution":"Harga indikatif; transaksi memakai harga server aman","autoQuote":"Pembaruan otomatis tiap menit"},"zh":{"liveRef":"最新参考金价","quoteTime":"更新于","quoteUnavailable":"价格不可用或过期","quoteCaution":"仅供参考，交易采用受保护服务器报价","autoQuote":"约每分钟自动更新"},"ja":{"liveRef":"最新の参考金価格","quoteTime":"更新日時","quoteUnavailable":"価格が取得できないか古いです","quoteCaution":"参考価格です。取引はサーバーの保護された価格を使用","autoQuote":"約1分ごとに自動更新"},"ru":{"liveRef":"Последняя ориентировочная цена","quoteTime":"Обновлено","quoteUnavailable":"Цена недоступна или устарела","quoteCaution":"Ориентировочная цена; сделка по защищённой котировке сервера","autoQuote":"Автообновление примерно раз в минуту"}};
+for(const [lc,entries] of Object.entries(MARKET_TRANSLATIONS))Object.assign(translations[lc],entries);
 const t=(key,vars={})=>{let str=(translations[locale]||EN)[key]||EN[key]||key;for(const [k,v] of Object.entries(vars))str=str.replaceAll('{'+k+'}',String(v));return str;};
 const language=translations[locale]?locale:'en';document.documentElement.lang=language;document.documentElement.dir=['ar','ur'].includes(language)?'rtl':'ltr';document.title='MILLION GOLD | '+t('wallet');
 for(const node of document.querySelectorAll('[data-i18n]'))node.textContent=t(node.dataset.i18n);
@@ -92,34 +95,59 @@ const readableError=e=>{const m=e?.message||String(e);const map={'Login required
 let client;let busy=false;let currentUser=null;let latestPrice=null;
 try {if(!window.supabase)throw Error(t('libraryError'));client=window.supabase.createClient(PROJECT_URL,PUBLISHABLE_KEY,{auth:{persistSession:true,autoRefreshToken:true}});}catch(e){notice(readableError(e),'bad');}
 function setBusy(v){busy=v;for(const id of ['loginBtn','buyBtn','sellBtn','refreshBtn'])el(id).disabled=v;}
-function displaySignedOut(){currentUser=null;el('loginPanel').classList.remove('hide');el('app').classList.add('hide');el('password').value='';}
+function displaySignedOut(){walletSnapshot=null;currentUser=null;el('loginPanel').classList.remove('hide');el('app').classList.add('hide');el('password').value='';}
 async function renderSession(){if(!client)return;const {data,error}=await client.auth.getUser();if(error||!data.user){displaySignedOut();return;}currentUser=data.user;el('loginPanel').classList.add('hide');el('app').classList.remove('hide');el('userLabel').textContent=data.user.email||t('wallet');await refreshData();}
-// Visual-only indicative valuation. The protected trade function remains authoritative.
+// Indicative valuation only: public XAU quote, never the protected execution price.
 const STARTING_VIRTUAL_CASH=10000;
 const TROY_OUNCE_GRAMS=31.1034768;
+const QUOTE_TTL_MS=60000;
+const MAX_QUOTE_AGE_MS=24*60*60*1000;
 let indicativeQuote=null;
 let indicativeQuoteTimestamp=null;
 let indicativeCheckedAt=0;
-async function fetchIndicativeQuote(){
- if(indicativeQuote && Date.now()-indicativeCheckedAt < 60000) return indicativeQuote;
- indicativeCheckedAt=Date.now();
- try{
-  const res=await fetch('https://api.gold-api.com/price/XAU',{cache:'no-store'});
-  if(!res.ok)throw Error('reference service unavailable');
-  const data=await res.json();
-  const oz=Number(data.price);
-  const timestamp=data.updatedAt?Date.parse(data.updatedAt):NaN;
-  if(!Number.isFinite(oz)||oz<=0||!Number.isFinite(timestamp)||timestamp>Date.now()+300000||Date.now()-timestamp>72*60*60*1000)throw Error('unavailable or outdated reference');
-  indicativeQuote=oz/TROY_OUNCE_GRAMS;
-  indicativeQuoteTimestamp=timestamp;
-  return indicativeQuote;
- }catch(_){indicativeQuote=null;return null;}
+let quoteInFlight=null;
+let walletSnapshot=null;
+const quoteLocale=()=>language==='ar'?'ar-SA':language==='ur'?'ur-PK':language;
+function quoteTime(){return indicativeQuoteTimestamp?new Date(indicativeQuoteTimestamp).toLocaleString(quoteLocale(),{dateStyle:'short',timeStyle:'short'}):'—';}
+async function fetchIndicativeQuote(force=false){
+  if(!force && indicativeCheckedAt && Date.now()-indicativeCheckedAt<QUOTE_TTL_MS){
+    return indicativeQuoteTimestamp && Date.now()-indicativeQuoteTimestamp<=MAX_QUOTE_AGE_MS?indicativeQuote:null;
+  }
+  if(quoteInFlight)return quoteInFlight;
+  quoteInFlight=(async()=>{
+    indicativeCheckedAt=Date.now();
+    try{
+      const controller=new AbortController();
+      const timer=setTimeout(()=>controller.abort(),12000);
+      let res;
+      try{res=await fetch('https://api.gold-api.com/price/XAU',{cache:'no-store',signal:controller.signal});}
+      finally{clearTimeout(timer);}
+      if(!res.ok)throw Error('reference unavailable');
+      const data=await res.json();
+      const usdPerOunce=Number(data.price);
+      const stamp=Date.parse(data.updatedAt||'');
+      if(!Number.isFinite(usdPerOunce)||usdPerOunce<=0||!Number.isFinite(stamp)||stamp>Date.now()+5*60000||Date.now()-stamp>MAX_QUOTE_AGE_MS)throw Error('outdated quote');
+      indicativeQuote=usdPerOunce/TROY_OUNCE_GRAMS;
+      indicativeQuoteTimestamp=stamp;
+      return indicativeQuote;
+    }catch(_){
+      // Never keep showing an old gain/loss as though the price were verified.
+      indicativeQuote=null;indicativeQuoteTimestamp=null;
+      return null;
+    }
+  })();
+  try{return await quoteInFlight;}finally{quoteInFlight=null;}
 }
-async function renderIndicativePL(cash,gold){
+async function renderIndicativePL(cash,gold,force=false){
  const card=el('plCard'),amount=el('plAmount'),percent=el('plPercent'),mark=el('plMark'),foot=el('plFoot');
  card.className='pl-card pending';mark.textContent='–';amount.textContent='—';percent.textContent='—';foot.textContent=t('plLoading');
- const ref=await fetchIndicativeQuote();
- if(!Number.isFinite(ref)||ref<=0){foot.textContent=t('plMissing');if(gold>0)el('portfolio').textContent='—';return;}
+ el('indicativeSpot').textContent='—';el('indicativeStamp').textContent=t('plLoading');
+ const ref=await fetchIndicativeQuote(force);
+ if(!currentUser)return;
+ if(!Number.isFinite(ref)||ref<=0){
+   foot.textContent=t('plMissing');el('indicativeStamp').textContent=t('quoteUnavailable');
+   el('portfolio').textContent='—';return;
+ }
  const valuation=cash+gold*ref;
  el('portfolio').textContent=money(valuation);
  const pl=valuation-STARTING_VIRTUAL_CASH;
@@ -129,14 +157,22 @@ async function renderIndicativePL(cash,gold){
  mark.textContent=rounded>0?'↑':rounded<0?'↓':'=';
  amount.textContent=sign+money(Math.abs(rounded));
  percent.textContent=sign+(Math.abs(pl)/STARTING_VIRTUAL_CASH*100).toFixed(2)+'%';
- foot.textContent=t('plFoot')+(indicativeQuoteTimestamp?' · '+new Date(indicativeQuoteTimestamp).toLocaleDateString(language):'');
+ el('indicativeSpot').textContent=money(ref)+' / g';
+ el('indicativeStamp').textContent=t('quoteTime')+': '+quoteTime()+' · gold-api.com/XAU';
+ foot.textContent=t('plFoot')+' · '+t('quoteTime')+': '+quoteTime();
+}
+async function refreshIndicativeOnly(force=false){
+ if(!client||!currentUser||busy||!walletSnapshot)return;
+ await renderIndicativePL(walletSnapshot.cash,walletSnapshot.gold,force);
 }
 async function refreshData(){if(!client||!currentUser)return;const [w,txs]=await Promise.all([client.from('gold_wallets').select('cash_balance,gold_grams').eq('user_id',currentUser.id).maybeSingle(),client.from('gold_transactions').select('id,trade_type,total_usd,gold_grams,price_per_gram_usd').eq('user_id',currentUser.id).order('id',{ascending:false}).limit(12)]);if(w.error)throw w.error;if(txs.error)throw txs.error;if(!w.data)throw Error('Wallet not found');let price=latestPrice;if(txs.data?.length){price=Number(txs.data[0].price_per_gram_usd);latestPrice=price;}el('cash').textContent=money(w.data.cash_balance);el('gold').textContent=grams(w.data.gold_grams)+' g';el('portfolio').textContent=price?money(Number(w.data.cash_balance)+Number(w.data.gold_grams)*price):money(w.data.cash_balance)+t('plusGold');el('lastPrice').textContent=price?money(price)+' / g ('+t('lastTrade')+')':t('firstPrice');
-await renderIndicativePL(Number(w.data.cash_balance),Number(w.data.gold_grams));el('history').replaceChildren();if(!txs.data?.length){el('history').textContent=t('noTrades');return;}for(const tx of txs.data){const div=document.createElement('div');div.className='trade';const strong=document.createElement('strong');strong.textContent=t(tx.trade_type==='BUY'?'buy':'sell')+' · '+money(tx.total_usd);const detail=document.createElement('div');detail.textContent=grams(tx.gold_grams)+' g · '+money(tx.price_per_gram_usd)+'/g';div.append(strong,detail);el('history').append(div);}}
+walletSnapshot={cash:Number(w.data.cash_balance),gold:Number(w.data.gold_grams)};await renderIndicativePL(walletSnapshot.cash,walletSnapshot.gold);el('history').replaceChildren();if(!txs.data?.length){el('history').textContent=t('noTrades');return;}for(const tx of txs.data){const div=document.createElement('div');div.className='trade';const strong=document.createElement('strong');strong.textContent=t(tx.trade_type==='BUY'?'buy':'sell')+' · '+money(tx.total_usd);const detail=document.createElement('div');detail.textContent=grams(tx.gold_grams)+' g · '+money(tx.price_per_gram_usd)+'/g';div.append(strong,detail);el('history').append(div);}}
 el('loginForm').addEventListener('submit',async ev=>{ev.preventDefault();if(!client)return;setBusy(true);notice(t('signingIn'));try{const {error}=await client.auth.signInWithPassword({email:el('email').value.trim(),password:el('password').value});if(error)throw error;el('password').value='';await renderSession();notice(t('signedIn'),'ok');}catch(e){notice(t('signInFailed')+': '+readableError(e),'bad');}finally{setBusy(false);}});
 el('logoutBtn').addEventListener('click',async()=>{if(!client)return;const {error}=await client.auth.signOut();if(error)notice(readableError(error),'bad');else{displaySignedOut();notice(t('signedOut'),'ok');}});
-el('refreshBtn').addEventListener('click',async()=>{setBusy(true);try{await refreshData();notice(t('refreshed'),'ok');}catch(e){notice(readableError(e),'bad');}finally{setBusy(false);}});
+el('refreshBtn').addEventListener('click',async()=>{setBusy(true);try{indicativeCheckedAt=0;await refreshData();notice(t('refreshed'),'ok');}catch(e){notice(readableError(e),'bad');}finally{setBusy(false);}});
 async function trade(side){if(!client||busy||!currentUser)return;const inp=el(side==='BUY'?'buyAmount':'sellAmount');const value=inp.value.trim();const number=Number(value);const ok=/^\d+(?:\.\d+)?$/.test(value)&&Number.isFinite(number)&&number>0&&(side==='BUY'?(/^\d+(?:\.\d{1,2})?$/.test(value)&&number>=.01):/^\d+(?:\.\d{1,8})?$/.test(value));if(!ok){notice(t(side==='BUY'?'buyInvalid':'sellInvalid'),'bad');return;}if(!window.crypto?.randomUUID){notice(t('secureError'),'bad');return;}const description=side==='BUY'?money(number):grams(number)+' g';if(!confirm(t(side==='BUY'?'confirmBuy':'confirmSell',{amount:description})))return;setBusy(true);notice(t('submitting',{side:t(side==='BUY'?'buy':'sell')}));try{const {data,error}=await client.rpc('execute_gold_trade',{p_side:side,p_amount:number,p_request_id:crypto.randomUUID()});if(error)throw error;if(!data?.success)throw Error(t('tradeUnconfirmed'));latestPrice=Number(data.price_per_gram);await refreshData();inp.value='';notice(t('completed',{side:t(side==='BUY'?'buy':'sell'),usd:money(data.usd),grams:grams(data.grams)}),'ok');}catch(e){notice(t('tradeFailed')+': '+readableError(e),'bad');}finally{setBusy(false);}}
+setInterval(()=>{if(!document.hidden)void refreshIndicativeOnly(true);},60000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)void refreshIndicativeOnly(true);});
 el('buyBtn').addEventListener('click',()=>trade('BUY'));el('sellBtn').addEventListener('click',()=>trade('SELL'));
 if(client){client.auth.onAuthStateChange((event)=>{if(event==='SIGNED_OUT')displaySignedOut();});renderSession().catch(e=>notice(readableError(e),'bad'));}
 </script>
