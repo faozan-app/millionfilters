@@ -23,6 +23,15 @@
 .pl-percent{font-weight:700;direction:ltr;unicode-bidi:isolate}
 .pl-foot{font-size:11px;line-height:1.6;color:#b6b6a6;margin-top:10px}
 .quote-box{margin-top:14px;padding-top:13px;border-top:1px solid var(--line);display:grid;gap:5px}.quote-value{font-size:23px;font-weight:750;direction:ltr;unicode-bidi:isolate;text-align:start}#indicativeStamp{overflow-wrap:anywhere}
+
+/* Indicative COMEX gold futures session clock; not a live exchange feed */
+.market-hours{margin:11px 0 5px;padding:10px 12px;border:1px solid #6d6245;border-radius:12px;background:#28251b;text-align:start}
+.market-hours.open{border-color:#45794d;background:#172a1b}
+.market-hours.closed{border-color:#84673d;background:#302519}
+.market-hours .market-line{display:flex;align-items:center;gap:8px;font-weight:800;font-size:13px}
+.market-hours .market-dot{width:9px;height:9px;border-radius:50%;background:#e7bc73;flex:none}
+.market-hours.open .market-dot{background:#6cdd85;box-shadow:0 0 8px #48c86b77}
+.market-hours .market-note{font-size:11px;line-height:1.6;color:#c3b8a3;margin-top:5px}
 </style>
 </head>
 <body><main>
@@ -37,7 +46,11 @@
   <div class="pl-foot" id="plFoot" data-i18n="plLoading">Checking the indicative gold price…</div>
 </div>
 </section>
-<section class="panel"><div class="row"><h2 class="sectionTitle" data-i18n="priceTitle">Gold reference price</h2><button type="button" class="secondary" id="refreshBtn" data-i18n="refresh" style="padding:7px 12px;font-size:12px">Refresh</button></div><p class="tiny" data-i18n="priceHelp">Displayed price is from your last successful trade, not a verified live quote. Stale prices block trading.</p><div class="gold" id="lastPrice">—</div><div class="quote-box"><div class="muted tiny" data-i18n="liveRef">Latest indicative price</div><div class="gold quote-value" id="indicativeSpot">—</div><div class="tiny muted" id="indicativeStamp">—</div><div class="tiny muted" data-i18n="quoteCaution">Public quote; execution uses the protected server price</div><div class="tiny muted" data-i18n="autoQuote">Automatic refresh approximately every minute</div></div></section>
+<section class="panel"><div class="row"><h2 class="sectionTitle" data-i18n="priceTitle">Gold reference price</h2><button type="button" class="secondary" id="refreshBtn" data-i18n="refresh" style="padding:7px 12px;font-size:12px">Refresh</button></div><p class="tiny" data-i18n="priceHelp">Displayed price is from your last successful trade, not a verified live quote. Stale prices block trading.</p><div class="gold" id="lastPrice">—</div><div id="marketHoursBadge" class="market-hours" role="status" aria-live="polite">
+  <div class="market-line"><span class="market-dot" aria-hidden="true"></span><span id="marketHoursText">Checking typical trading hours…</span></div>
+  <div id="marketHoursNote" class="market-note">Schedule estimate; not a live exchange status.</div>
+</div>
+<div class="quote-box"><div class="muted tiny" data-i18n="liveRef">Latest indicative price</div><div class="gold quote-value" id="indicativeSpot">—</div><div class="tiny muted" id="indicativeStamp">—</div><div class="tiny muted" data-i18n="quoteCaution">Public quote; execution uses the protected server price</div><div class="tiny muted" data-i18n="autoQuote">Automatic refresh approximately every minute</div></div></section>
 <section class="panel"><h2 class="sectionTitle" data-i18n="tradeTitle">Virtual trade</h2><div class="row"><span class="muted tiny" data-i18n="buyHint">BUY = USD amount</span><span class="muted tiny" data-i18n="sellHint">SELL = grams</span></div><label for="buyAmount" data-i18n="buyLabel">Buy gold for USD</label><input id="buyAmount" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="100.00"><div class="btnrow"><button type="button" class="buy" id="buyBtn" data-i18n="buyBtn">BUY VIRTUAL GOLD</button></div><label for="sellAmount" data-i18n="sellLabel">Sell gold in grams</label><input id="sellAmount" type="number" inputmode="decimal" min="0.00000001" step="0.00000001" placeholder="0.10000000"><div class="btnrow"><button type="button" class="sell" id="sellBtn" data-i18n="sellBtn">SELL VIRTUAL GOLD</button></div><p class="tiny" data-i18n="tradeHelp">Each order requires confirmation. No real money or gold is traded.</p></section>
 <section class="panel"><h2 class="sectionTitle" data-i18n="historyTitle">Transaction history</h2><div id="history" class="tiny muted">—</div></section></section>
 <div id="notice" class="notice hide" role="status" aria-live="polite"></div><small data-i18n="footer">Independent test page • No real funds, no physical gold • GOLD GLOBE</small>
@@ -173,6 +186,29 @@ el('refreshBtn').addEventListener('click',async()=>{setBusy(true);try{indicative
 async function trade(side){if(!client||busy||!currentUser)return;const inp=el(side==='BUY'?'buyAmount':'sellAmount');const value=inp.value.trim();const number=Number(value);const ok=/^\d+(?:\.\d+)?$/.test(value)&&Number.isFinite(number)&&number>0&&(side==='BUY'?(/^\d+(?:\.\d{1,2})?$/.test(value)&&number>=.01):/^\d+(?:\.\d{1,8})?$/.test(value));if(!ok){notice(t(side==='BUY'?'buyInvalid':'sellInvalid'),'bad');return;}if(!window.crypto?.randomUUID){notice(t('secureError'),'bad');return;}const description=side==='BUY'?money(number):grams(number)+' g';if(!confirm(t(side==='BUY'?'confirmBuy':'confirmSell',{amount:description})))return;setBusy(true);notice(t('submitting',{side:t(side==='BUY'?'buy':'sell')}));try{const {data,error}=await client.rpc('execute_gold_trade',{p_side:side,p_amount:number,p_request_id:crypto.randomUUID()});if(error)throw error;if(!data?.success)throw Error(t('tradeUnconfirmed'));latestPrice=Number(data.price_per_gram);await refreshData();inp.value='';notice(t('completed',{side:t(side==='BUY'?'buy':'sell'),usd:money(data.usd),grams:grams(data.grams)}),'ok');}catch(e){notice(t('tradeFailed')+': '+readableError(e),'bad');}finally{setBusy(false);}}
 setInterval(()=>{if(!document.hidden)void refreshIndicativeOnly(true);},60000);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)void refreshIndicativeOnly(true);});
+
+// Session indicator for CME gold futures only, not spot market or API liveness.
+const MARKET_HOURS_TEXT={"en":["Usually open · gold futures","Usually closed · gold futures","Based on CME Globex regular hours (New York time). Holidays or exceptional schedules may differ. This does not confirm live quote availability."],"ar":["مفتوح عادةً · عقود الذهب","مغلق عادةً · عقود الذهب","وفق ساعات CME Globex المعتادة بتوقيت نيويورك. قد تختلف العطلات والمواعيد الاستثنائية. لا يؤكد المؤشر توفر سعر مباشر."],"hi":["आमतौर पर खुला · गोल्ड फ्यूचर्स","आमतौर पर बंद · गोल्ड फ्यूचर्स","न्यूयॉर्क समय के अनुसार CME Globex के सामान्य घंटे। छुट्टियों में समय बदल सकता है। यह लाइव भाव की पुष्टि नहीं है।"],"bn":["সাধারণত খোলা · স্বর্ণ ফিউচার","সাধারণত বন্ধ · স্বর্ণ ফিউচার","নিউ ইয়র্ক সময় অনুযায়ী CME Globex-এর নিয়মিত সময়। ছুটিতে ভিন্ন হতে পারে। এটি লাইভ দামের নিশ্চয়তা নয়।"],"ur":["عموماً کھلا · سونے کے فیوچرز","عموماً بند · سونے کے فیوچرز","نیویارک وقت کے مطابق CME Globex کے معمول کے اوقات۔ تعطیلات میں فرق ہوسکتا ہے۔ یہ لائیو قیمت کی تصدیق نہیں۔"],"es":["Normalmente abierto · futuros de oro","Normalmente cerrado · futuros de oro","Horario habitual de CME Globex en Nueva York. Puede variar en festivos; no confirma una cotización en directo."],"fr":["Habituellement ouvert · contrats or","Habituellement fermé · contrats or","Horaires habituels de CME Globex, heure de New York. Jours fériés variables ; ce statut ne confirme pas un cours en direct."],"de":["Üblicherweise geöffnet · Gold-Futures","Üblicherweise geschlossen · Gold-Futures","Reguläre CME-Globex-Zeiten nach New Yorker Uhr. An Feiertagen abweichend; kein Nachweis für Live-Kurse."],"pt":["Normalmente aberto · futuros de ouro","Normalmente fechado · futuros de ouro","Horários habituais da CME Globex, hora de Nova York. Podem variar em feriados; não garante cotação ao vivo."],"tr":["Genellikle açık · altın vadeli işlemleri","Genellikle kapalı · altın vadeli işlemleri","New York saatine göre CME Globex normal saatleri. Tatillerde değişebilir; canlı fiyat teyidi değildir."],"id":["Biasanya buka · kontrak berjangka emas","Biasanya tutup · kontrak berjangka emas","Jam reguler CME Globex waktu New York. Libur dapat berbeda; bukan konfirmasi harga langsung."],"zh":["通常开市 · 黄金期货","通常休市 · 黄金期货","按纽约时间的 CME Globex 常规时段估计；假日可能不同，不代表实时行情已更新。"],"ja":["通常取引中 · 金先物","通常休場 · 金先物","ニューヨーク時間のCME Globex通常取引時間に基づく推定。祝日は異なり、リアルタイム価格の証明ではありません。"],"ru":["Обычно открыт · фьючерсы на золото","Обычно закрыт · фьючерсы на золото","Обычные часы CME Globex по Нью-Йорку. Праздники могут отличаться; это не подтверждение живой котировки."]};
+function typicalGoldFuturesOpen(date=new Date()){
+ const parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',weekday:'short',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(date);
+ const get=k=>parts.find(p=>p.type===k)?.value;
+ const day=get('weekday');const hour=Number(get('hour'));
+ if(day==='Sat')return false;
+ if(day==='Sun')return hour>=18;
+ if(day==='Fri')return hour<17;
+ return hour<17||hour>=18;
+}
+function updateMarketHours(){
+ const words=MARKET_HOURS_TEXT[language]||MARKET_HOURS_TEXT.en;
+ const isOpen=typicalGoldFuturesOpen();
+ const badge=el('marketHoursBadge');
+ badge.className='market-hours '+(isOpen?'open':'closed');
+ el('marketHoursText').textContent=words[isOpen?0:1];
+ el('marketHoursNote').textContent=words[2];
+}
+updateMarketHours();
+setInterval(updateMarketHours,60000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)updateMarketHours();});
 el('buyBtn').addEventListener('click',()=>trade('BUY'));el('sellBtn').addEventListener('click',()=>trade('SELL'));
 if(client){client.auth.onAuthStateChange((event)=>{if(event==='SIGNED_OUT')displaySignedOut();});renderSession().catch(e=>notice(readableError(e),'bad'));}
 </script>
