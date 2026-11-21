@@ -9,7 +9,6 @@
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://millionfilters.com/">
 <title>Gold Price Today by Gram &amp; Ounce in 70 Markets | GOLD GLOBE</title>
-
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GOLD GLOBE">
 <meta property="og:title" content="Gold Prices Today in 70 Markets | GOLD GLOBE">
@@ -18,18 +17,14 @@
 <meta property="og:image" content="https://millionfilters.com/gold-globe-share.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://millionfilters.com/gold-globe-share.jpg">
 <meta name="twitter:title" content="Gold Price Today | GOLD GLOBE">
 <meta name="twitter:description" content="Gold spot reference values for 70 markets, five purities and ten weights.">
-
 <link rel="preload" as="image" href="gold-globe-hero.webp">
-
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","name":"GOLD GLOBE","url":"https://millionfilters.com/","description":"Gold spot reference prices by weight, purity and currency across 70 markets.","inLanguage":"en"}
 </script>
-
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5RWJ4Q8L8X"></script>
 <script>
@@ -38,560 +33,90 @@ function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());
 gtag('config','G-5RWJ4Q8L8X');
 </script>
-
 <style>
-:root{
-  --gold:#eec775;
-  --ivory:#fff0c7;
-  --muted:#b8a684;
-  --mint:#b8efab;
-  --line:rgba(236,184,83,.28);
-}
+:root{--gold:#eec775;--ivory:#fff0c7;--muted:#b8a684;--mint:#b8efab;--line:rgba(236,184,83,.28)}
 *{box-sizing:border-box}
 html{min-height:100%;background:#090908}
-body{
-  margin:0;
-  min-height:100vh;
-  color:var(--ivory);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-  background:#090908;
-  text-align:center;
-}
-main{
-  width:min(100%,540px);
-  min-height:100vh;
-  margin:auto;
-  position:relative;
-  overflow:hidden;
-  background:linear-gradient(180deg,#080706 0,#120d07 38%,#0c0b09 80%,#080908 100%);
-  box-shadow:0 0 100px #0009;
-}
-.stage{
-  position:relative;
-  isolation:isolate;
-  padding-bottom:22px;
-  overflow:hidden;
-  background:radial-gradient(ellipse 85% 25% at 50% 54%,#67400e66,transparent 75%);
-}
-.stage:before{
-  content:"";
-  position:absolute;
-  z-index:-1;
-  inset:0 0 auto;
-  height:min(178vw,920px);
-  background:url('gold-globe-hero.webp') center top/100% auto no-repeat;
-  -webkit-mask-image:linear-gradient(#000 0%,#000 73%,transparent 100%);
-  mask-image:linear-gradient(#000 0%,#000 73%,transparent 100%);
-  pointer-events:none;
-}
-.hero-space{
-  height:clamp(430px,125vw,685px);
-  position:relative;
-}
-.hero-space:after{
-  content:"";
-  position:absolute;
-  bottom:-2px;
-  left:0;
-  right:0;
-  height:120px;
-  background:linear-gradient(transparent,#100c08);
-  pointer-events:none;
-}
-.stage-caption{
-  position:relative;
-  color:#efce89;
-  letter-spacing:.27em;
-  font-size:10px;
-  margin:-15px 0 15px;
-  text-shadow:0 1px 5px #000;
-  z-index:2;
-}
-.gold-content{
-  position:relative;
-  z-index:2;
-  margin:0 13px;
-  padding:9px 12px 19px;
-  border:1px solid var(--line);
-  border-radius:23px;
-  background:linear-gradient(160deg,rgba(27,19,11,.92),rgba(10,11,10,.95) 65%);
-  box-shadow:0 13px 40px #0007,inset 0 1px 0 #ffda8c30;
-}
-.bar-wrap{
-  position:relative;
-  max-width:445px;
-  margin:0 auto 2px;
-  animation:float-bar 5.8s ease-in-out infinite;
-  filter:drop-shadow(0 12px 19px #000a);
-}
-.bar-wrap img{
-  width:100%;
-  height:auto;
-  display:block;
-}
-.engrave{
-  position:absolute;
-  left:50%;
-  top:46%;
-  transform:translate(-50%,-50%);
-  width:47%;
-  color:#73410e;
-  text-shadow:0 1px #ffebae9c,0 -1px #5b310655;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  pointer-events:none;
-  white-space:nowrap;
-}
-.engrave span:first-child{
-  font:800 clamp(9px,2vw,13px) Georgia,serif;
-  letter-spacing:.1em;
-}
-.engrave strong{
-  font:900 clamp(25px,7vw,44px) Georgia,serif;
-  line-height:1.18;
-}
-.engrave span:last-child{
-  font-weight:850;
-  font-size:clamp(8px,2vw,11px);
-}
-@keyframes float-bar{
-  0%,100%{transform:translateY(2px) rotate(-.35deg)}
-  50%{transform:translateY(-7px) rotate(.35deg)}
-}
-
-.label{
-  color:var(--gold);
-  font-size:10px;
-  letter-spacing:.2em;
-  font-weight:800;
-  margin:3px 0 8px;
-}
-.price{
-  font-size:clamp(32px,8.5vw,52px);
-  font-weight:900;
-  line-height:1.14;
-  overflow-wrap:anywhere;
-  font-variant-numeric:tabular-nums;
-  color:#fff2cb;
-  text-shadow:0 0 22px #e8a64625;
-}
-.unit{
-  color:#dfc99b;
-  font-size:12px;
-  letter-spacing:.05em;
-  margin-top:9px;
-}
-.status{
-  color:#a99d89;
-  font-size:11px;
-  min-height:18px;
-  line-height:1.6;
-  margin-top:9px;
-}
-.selector-heading{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin:18px 3px 10px;
-  color:#d5b87c;
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:.17em;
-  text-align:center;
-}
-.selector-heading:before,
-.selector-heading:after{
-  content:"";
-  height:1px;
-  flex:1;
-  background:linear-gradient(90deg,transparent,#b98e4977,transparent);
-}
-.selector-heading-karats{
-  color:#ccb08a;
-}
-.selector-heading-karats:before,
-.selector-heading-karats:after{
-  background:linear-gradient(90deg,transparent,#8f715077,transparent);
-}
-
-.countries,.karats,.weights{
-  display:grid;
-  min-width:0;
-}
-.countries{
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:6px;
-}
-.weights{
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:6px;
-}
-.karats{
-  grid-template-columns:repeat(5,minmax(0,1fr));
-  gap:6px;
-  margin-top:2px;
-}
-
-.countries button,.karats button,.weights button{
-  position:relative;
-  isolation:isolate;
-  overflow:hidden;
-  min-width:0;
-  appearance:none;
-  -webkit-appearance:none;
-  cursor:pointer;
-  touch-action:manipulation;
-  color:#f2d7a1;
-  border:1px solid #b9985e70;
-  background:linear-gradient(145deg,#4b3925 0%,#2a2118 40%,#151411 100%);
-  box-shadow:inset 0 1px 0 #fff0bd20,0 3px 8px #0005;
-  transition:background .2s,border-color .2s,transform .15s,box-shadow .2s;
-}
-.countries button:after,.karats button:after,.weights button:after{
-  content:"";
-  position:absolute;
-  inset:1px;
-  border:1px solid #f2cf7e12;
-  border-radius:inherit;
-  pointer-events:none;
-}
-
-.countries button{
-  min-height:43px;
-  border-radius:10px;
-  padding:6px 2px;
-  font-size:clamp(9px,2.7vw,12px);
-  font-weight:800;
-  line-height:1.15;
-}
-.countries .flag{
-  font-size:14px;
-  vertical-align:middle;
-  margin-right:2px;
-}
-.countries small{
-  display:block;
-  font-size:9px;
-  font-weight:700;
-  color:#bcaa8d;
-  margin-top:3px;
-}
-
-.weights button{
-  min-height:48px;
-  border-radius:11px;
-  padding:6px 2px;
-  font-size:14px;
-  font-weight:850;
-}
-.weights button small{
-  display:block;
-  font-size:8px;
-  font-weight:600;
-  letter-spacing:.025em;
-  color:#bcaa8d;
-  margin-top:3px;
-}
-.weights button.featured{
-  grid-column:auto;
-  min-height:48px;
-  border-radius:11px;
-}
-.weights button.featured .weight-main{
-  font-size:14px;
-  letter-spacing:0;
-}
-
-.karats button{
-  min-height:42px;
-  border-radius:10px;
-  padding:5px 1px;
-  font-size:13px;
-  font-weight:900;
-  color:#eed8b6;
-  border:1px solid #8b6d4f;
-  background:linear-gradient(145deg,#5a4633 0%,#3e2f23 45%,#211914 100%);
-  box-shadow:inset 0 1px 0 #fff0bd14,0 3px 8px #0004;
-}
-.karats button span{
-  display:block;
-  font-size:9px;
-  letter-spacing:.02em;
-  font-weight:600;
-  color:#c6b299;
-  margin-top:2px;
-}
-
-.countries button.active,
-.weights button.active{
-  color:#493009;
-  border-color:#fff0b2;
-  background:linear-gradient(145deg,#fff4c8 0%,#f0ce83 40%,#d5a64d 80%,#b7802f 100%);
-  box-shadow:0 3px 13px #dcab4d30,inset 0 1px 0 #fff9d5;
-}
-.countries button.active small,
-.weights button.active small{
-  color:#684719;
-}
-.karats button.active{
-  color:#3d2612;
-  border-color:#e9c699;
-  background:linear-gradient(145deg,#f5e1bf 0%,#dfbc85 45%,#b88652 100%);
-  box-shadow:0 3px 13px #b9864a33,inset 0 1px 0 #fff1d3;
-}
-.karats button.active span{
-  color:#67442a;
-}
-
-.countries button:active,
-.weights button:active,
-.karats button:active{
-  transform:scale(.97);
-}
-button:focus-visible{
-  outline:3px solid #f6d989;
-  outline-offset:3px;
-}
-
-.fineness{
-  color:#a99a7d;
-  font-size:10px;
-  margin:10px 0 0;
-  line-height:1.6;
-}
-.fx-note{
-  color:#bbaa88;
-  font-size:10px;
-  line-height:1.5;
-  margin:9px 0 0;
-}
-
-.share{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:9px;
-  margin:17px 0 3px;
-  width:100%;
-  min-height:49px;
-  border:1px solid #e6ffdd;
-  border-radius:13px;
-  background:linear-gradient(130deg,#ddfad4,#b9efae 58%,#98d890);
-  color:#173a24;
-  box-shadow:0 5px 18px #94dc8a28,inset 0 2px 3px #fff8;
-  font-size:15px;
-  font-weight:900;
-  letter-spacing:.05em;
-  cursor:pointer;
-}
+body{margin:0;min-height:100vh;color:var(--ivory);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:#090908;text-align:center}
+main{width:min(100%,540px);min-height:100vh;margin:auto;position:relative;overflow:hidden;background:linear-gradient(180deg,#080706 0,#120d07 38%,#0c0b09 80%,#080908 100%);box-shadow:0 0 100px #0009}
+.stage{position:relative;isolation:isolate;padding-bottom:22px;overflow:hidden;background:radial-gradient(ellipse 85% 25% at 50% 54%,#67400e66,transparent 75%)}
+.stage:before{content:"";position:absolute;z-index:-1;inset:0 0 auto;height:min(178vw,920px);background:url('gold-globe-hero.webp') center top/100% auto no-repeat;-webkit-mask-image:linear-gradient(#000 0%,#000 73%,transparent 100%);mask-image:linear-gradient(#000 0%,#000 73%,transparent 100%);pointer-events:none}
+.hero-space{height:clamp(430px,125vw,685px);position:relative}
+.hero-space:after{content:"";position:absolute;bottom:-2px;left:0;right:0;height:120px;background:linear-gradient(transparent,#100c08);pointer-events:none}
+.stage-caption{position:relative;color:#efce89;letter-spacing:.27em;font-size:10px;margin:-15px 0 15px;text-shadow:0 1px 5px #000;z-index:2}
+.gold-content{position:relative;z-index:2;margin:0 13px;padding:9px 12px 19px;border:1px solid var(--line);border-radius:23px;background:linear-gradient(160deg,rgba(27,19,11,.92),rgba(10,11,10,.95) 65%);box-shadow:0 13px 40px #0007,inset 0 1px 0 #ffda8c30}
+.bar-wrap{position:relative;max-width:445px;margin:0 auto 2px;animation:float-bar 5.8s ease-in-out infinite;filter:drop-shadow(0 12px 19px #000a)}
+.bar-wrap img{width:100%;height:auto;display:block}
+.engrave{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:47%;color:#73410e;text-shadow:0 1px #ffebae9c,0 -1px #5b310655;display:flex;flex-direction:column;align-items:center;pointer-events:none;white-space:nowrap}
+.engrave span:first-child{font:800 clamp(9px,2vw,13px) Georgia,serif;letter-spacing:.1em}
+.engrave strong{font:900 clamp(25px,7vw,44px) Georgia,serif;line-height:1.18}
+.engrave span:last-child{font-weight:850;font-size:clamp(8px,2vw,11px)}
+@keyframes float-bar{0%,100%{transform:translateY(2px) rotate(-.35deg)}50%{transform:translateY(-7px) rotate(.35deg)}}
+.label{color:var(--gold);font-size:10px;letter-spacing:.2em;font-weight:800;margin:3px 0 8px}
+.price{font-size:clamp(32px,8.5vw,52px);font-weight:900;line-height:1.14;overflow-wrap:anywhere;font-variant-numeric:tabular-nums;color:#fff2cb;text-shadow:0 0 22px #e8a64625}
+.unit{color:#dfc99b;font-size:12px;letter-spacing:.05em;margin-top:9px}
+.status{color:#a99d89;font-size:11px;min-height:18px;line-height:1.6;margin-top:9px}
+.selector-heading{display:flex;align-items:center;gap:8px;margin:18px 3px 10px;color:#d5b87c;font-size:10px;font-weight:800;letter-spacing:.17em;text-align:center}
+.selector-heading:before,.selector-heading:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,#b98e4977,transparent)}
+.selector-heading-karats{color:#ccb08a}
+.selector-heading-karats:before,.selector-heading-karats:after{background:linear-gradient(90deg,transparent,#8f715077,transparent)}
+.countries,.karats,.weights{display:grid;min-width:0}
+.countries,.weights{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.karats{grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin-top:2px}
+.countries button,.karats button,.weights button{position:relative;isolation:isolate;overflow:hidden;min-width:0;appearance:none;-webkit-appearance:none;cursor:pointer;touch-action:manipulation;color:#f2d7a1;border:1px solid #b9985e70;background:linear-gradient(145deg,#4b3925 0%,#2a2118 40%,#151411 100%);box-shadow:inset 0 1px 0 #fff0bd20,0 3px 8px #0005;transition:background .2s,border-color .2s,transform .15s,box-shadow .2s}
+.countries button:after,.karats button:after,.weights button:after{content:"";position:absolute;inset:1px;border:1px solid #f2cf7e12;border-radius:inherit;pointer-events:none}
+.countries button{min-height:43px;border-radius:10px;padding:6px 2px;font-size:clamp(9px,2.7vw,12px);font-weight:800;line-height:1.15}
+.countries .flag{font-size:14px;vertical-align:middle;margin-right:2px}
+.countries small{display:block;font-size:9px;font-weight:700;color:#bcaa8d;margin-top:3px}
+.weights button{min-height:48px;border-radius:11px;padding:6px 2px;font-size:14px;font-weight:850}
+.weights button small{display:block;font-size:8px;font-weight:600;letter-spacing:.025em;color:#bcaa8d;margin-top:3px}
+.weights button.featured{grid-column:auto;min-height:48px;border-radius:11px}
+.weights button.featured .weight-main{font-size:14px;letter-spacing:0}
+.karats button{min-height:42px;border-radius:10px;padding:5px 1px;font-size:13px;font-weight:900;color:#eed8b6;border:1px solid #8b6d4f;background:linear-gradient(145deg,#5a4633 0%,#3e2f23 45%,#211914 100%);box-shadow:inset 0 1px 0 #fff0bd14,0 3px 8px #0004}
+.karats button span{display:block;font-size:9px;letter-spacing:.02em;font-weight:600;color:#c6b299;margin-top:2px}
+.countries button.active,.weights button.active{color:#493009;border-color:#fff0b2;background:linear-gradient(145deg,#fff4c8 0%,#f0ce83 40%,#d5a64d 80%,#b7802f 100%);box-shadow:0 3px 13px #dcab4d30,inset 0 1px 0 #fff9d5}
+.countries button.active small,.weights button.active small{color:#684719}
+.karats button.active{color:#3d2612;border-color:#e9c699;background:linear-gradient(145deg,#f5e1bf 0%,#dfbc85 45%,#b88652 100%);box-shadow:0 3px 13px #b9864a33,inset 0 1px 0 #fff1d3}
+.karats button.active span{color:#67442a}
+.countries button:active,.weights button:active,.karats button:active{transform:scale(.97)}
+button:focus-visible{outline:3px solid #f6d989;outline-offset:3px}
+.fineness{color:#a99a7d;font-size:10px;margin:10px 0 0;line-height:1.6}
+.fx-note{color:#bbaa88;font-size:10px;line-height:1.5;margin:9px 0 0}
+.share{display:flex;align-items:center;justify-content:center;gap:9px;margin:17px 0 3px;width:100%;min-height:49px;border:1px solid #e6ffdd;border-radius:13px;background:linear-gradient(130deg,#ddfad4,#b9efae 58%,#98d890);color:#173a24;box-shadow:0 5px 18px #94dc8a28,inset 0 2px 3px #fff8;font-size:15px;font-weight:900;letter-spacing:.05em;cursor:pointer}
 .share:active{transform:scale(.99)}
-.share svg{
-  width:19px;
-  height:19px;
-  fill:none;
-  stroke:currentColor;
-  stroke-width:2;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-
-.contact{
-  margin:25px 20px 0;
-  padding:20px 0 7px;
-  border-top:1px solid var(--line);
-}
-.contact .heading{
-  color:#d7b66d;
-  font-size:10px;
-  letter-spacing:.12em;
-  font-weight:800;
-}
-.contact .phone{
-  display:block;
-  color:#f4e1b4;
-  font-size:17px;
-  letter-spacing:.03em;
-  font-weight:700;
-  margin-top:10px;
-  pointer-events:none;
-  user-select:none;
-  -webkit-user-select:none;
-}
-.contact .brand{
-  display:block;
-  margin-top:5px;
-  color:#baa782;
-  font-size:11px;
-  letter-spacing:.18em;
-  font-weight:700;
-}
-
-footer{
-  padding:13px 18px 37px;
-  color:#a49a87;
-  font-size:10px;
-  line-height:1.9;
-}
-
-.live-indicator{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  margin-top:12px;
-  padding:7px 14px;
-  border:1px solid #366c3a;
-  border-radius:999px;
-  background:#102618;
-  color:#8ff0a0;
-  font-size:10px;
-  font-weight:900;
-  letter-spacing:.13em;
-}
-.live-dot{
-  position:relative;
-  display:inline-block;
-  width:9px;
-  height:9px;
-  flex:none;
-  border-radius:50%;
-  background:#27ea78;
-  box-shadow:0 0 7px #2dec72;
-}
-.live-indicator.fresh .live-dot:before{
-  content:"";
-  position:absolute;
-  inset:-6px;
-  border-radius:50%;
-  border:1px solid #3bea88;
-  animation:live-pulse 2.3s ease-out infinite;
-}
-.live-indicator.stale{
-  color:#f4d38d;
-  border-color:#776038;
-  background:#302414;
-}
-.live-indicator.stale .live-dot{
-  background:#f5b845;
-  box-shadow:0 0 7px #f5b845;
-}
-.live-indicator.offline{
-  color:#c4b6a1;
-  border-color:#65584a;
-  background:#211a15;
-}
-.live-indicator.offline .live-dot{
-  background:#a59a89;
-  box-shadow:none;
-}
-@keyframes live-pulse{
-  0%{transform:scale(.6);opacity:.85}
-  100%{transform:scale(1.8);opacity:0}
-}
-
-.all-countries-toggle{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:9px;
-  width:100%;
-  min-height:44px;
-  margin:9px 0 0;
-  padding:8px;
-  border-radius:11px;
-  border:1px solid #edd294;
-  background:linear-gradient(135deg,#433016,#a8792f 45%,#4a331b);
-  color:#fff0c7;
-  font-size:11px;
-  font-weight:900;
-  letter-spacing:.05em;
-  cursor:pointer;
-}
-.country-panel{
-  margin-top:10px;
-  padding:10px;
-  border:1px solid #876a39;
-  border-radius:14px;
-  background:#17130f;
-}
+.share svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+/* New button: same width as share, brighter green */
+.virtual-gold-link{display:flex;align-items:center;justify-content:center;min-height:49px;width:100%;margin:9px 0 4px;padding:10px 12px;border:1px solid #69eea1;border-radius:13px;background:linear-gradient(130deg,#28d879,#12af5a 58%,#098644);box-shadow:0 5px 18px #08a64a33,inset 0 1px 2px #ffffff60;color:#fff;font-size:15px;font-weight:900;text-decoration:none;letter-spacing:.02em}
+.virtual-gold-link:focus-visible{outline:3px solid #f6d989;outline-offset:3px}
+.virtual-gold-link:active{transform:scale(.99)}
+.contact{margin:25px 20px 0;padding:20px 0 7px;border-top:1px solid var(--line)}
+.contact .heading{color:#d7b66d;font-size:10px;letter-spacing:.12em;font-weight:800}
+.contact .phone{display:block;color:#f4e1b4;font-size:17px;letter-spacing:.03em;font-weight:700;margin-top:10px;pointer-events:none;user-select:none;-webkit-user-select:none}
+.contact .brand{display:block;margin-top:5px;color:#baa782;font-size:11px;letter-spacing:.18em;font-weight:700}
+footer{padding:13px 18px 37px;color:#a49a87;font-size:10px;line-height:1.9}
+.live-indicator{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;padding:7px 14px;border:1px solid #366c3a;border-radius:999px;background:#102618;color:#8ff0a0;font-size:10px;font-weight:900;letter-spacing:.13em}
+.live-dot{position:relative;display:inline-block;width:9px;height:9px;flex:none;border-radius:50%;background:#27ea78;box-shadow:0 0 7px #2dec72}
+.live-indicator.fresh .live-dot:before{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid #3bea88;animation:live-pulse 2.3s ease-out infinite}
+.live-indicator.stale{color:#f4d38d;border-color:#776038;background:#302414}
+.live-indicator.stale .live-dot{background:#f5b845;box-shadow:0 0 7px #f5b845}
+.live-indicator.offline{color:#c4b6a1;border-color:#65584a;background:#211a15}
+.live-indicator.offline .live-dot{background:#a59a89;box-shadow:none}
+@keyframes live-pulse{0%{transform:scale(.6);opacity:.85}100%{transform:scale(1.8);opacity:0}}
+.all-countries-toggle{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;min-height:44px;margin:9px 0 0;padding:8px;border-radius:11px;border:1px solid #edd294;background:linear-gradient(135deg,#433016,#a8792f 45%,#4a331b);color:#fff0c7;font-size:11px;font-weight:900;letter-spacing:.05em;cursor:pointer}
+.country-panel{margin-top:10px;padding:10px;border:1px solid #876a39;border-radius:14px;background:#17130f}
 .country-panel[hidden]{display:none}
-.search-label{
-  display:block;
-  text-align:left;
-  font-size:10px;
-  letter-spacing:.13em;
-  color:#d7bb82;
-  margin:0 0 7px 3px;
-}
-#countrySearch{
-  width:100%;
-  min-height:42px;
-  margin-bottom:10px;
-  border:1px solid #85673c;
-  border-radius:11px;
-  padding:0 12px;
-  background:#0e0d0b;
-  color:#fff0ca;
-  font-size:15px;
-  outline:none;
-}
+.search-label{display:block;text-align:left;font-size:10px;letter-spacing:.13em;color:#d7bb82;margin:0 0 7px 3px}
+#countrySearch{width:100%;min-height:42px;margin-bottom:10px;border:1px solid #85673c;border-radius:11px;padding:0 12px;background:#0e0d0b;color:#fff0ca;font-size:15px;outline:none}
 #countrySearch:focus{border-color:#efc66c}
-.countries-extra{
-  max-height:360px;
-  overflow-y:auto;
-  overscroll-behavior:contain;
-  padding:3px;
-}
-.result-count{
-  font-size:10px;
-  color:#bdaa83;
-  margin-top:9px;
-}
-
-.seo-heading{
-  font-size:12px;
-  font-weight:750;
-  letter-spacing:.15em;
-  color:#f5d999;
-  margin:2px 14px 13px;
-}
-.seo-summary{
-  padding:0 22px 7px;
-  color:#afa18b;
-  font-size:11px;
-  line-height:1.8;
-}
-.seo-summary h2{
-  color:#d6ba81;
-  font-size:12px;
-  font-weight:800;
-  letter-spacing:.04em;
-  margin:8px 0;
-}
-.seo-summary p{
-  margin:6px 0 13px;
-}
-
-@media(max-width:390px){
-  .hero-space{height:120vw;min-height:420px}
-  .stage-caption{margin-top:-10px}
-  .gold-content{margin:0 9px;padding:8px 9px 17px}
-  .weights button{font-size:12px;min-height:46px}
-  .weights button.featured .weight-main{font-size:12px}
-  .karats button{font-size:12px}
-  .countries button{font-size:10px}
-}
-@media(min-width:540px){
-  .hero-space{height:685px}
-}
-@media(prefers-reduced-motion:reduce){
-  .bar-wrap,
-  .live-indicator.fresh .live-dot:before{animation:none}
-  .weights button,
-  .karats button,
-  .countries button{transition:none}
-}
+.countries-extra{max-height:360px;overflow-y:auto;overscroll-behavior:contain;padding:3px}
+.result-count{font-size:10px;color:#bdaa83;margin-top:9px}
+.seo-heading{font-size:12px;font-weight:750;letter-spacing:.15em;color:#f5d999;margin:2px 14px 13px}
+.seo-summary{padding:0 22px 7px;color:#afa18b;font-size:11px;line-height:1.8}
+.seo-summary h2{color:#d6ba81;font-size:12px;font-weight:800;letter-spacing:.04em;margin:8px 0}
+.seo-summary p{margin:6px 0 13px}
+@media(max-width:390px){.hero-space{height:120vw;min-height:420px}.stage-caption{margin-top:-10px}.gold-content{margin:0 9px;padding:8px 9px 17px}.weights button{font-size:12px;min-height:46px}.weights button.featured .weight-main{font-size:12px}.karats button{font-size:12px}.countries button{font-size:10px}}
+@media(min-width:540px){.hero-space{height:685px}}
+@media(prefers-reduced-motion:reduce){.bar-wrap,.live-indicator.fresh .live-dot:before{animation:none}.weights button,.karats button,.countries button{transition:none}}
 </style>
 </head>
 <body>
@@ -600,76 +125,44 @@ footer{
   <div class="hero-space" role="img" aria-label="Golden globe necklace on dark background"></div>
   <h1 class="seo-heading">GOLD GLOBE · GOLD PRICE TODAY</h1>
   <div class="stage-caption">✦ WORLD GOLD · SIGNATURE ✦</div>
-
   <div class="gold-content">
     <div class="bar-wrap">
       <img src="gold-bar-clean.webp" width="980" height="460" alt="Fine gold bullion bar" decoding="async" onerror="this.onerror=null;this.src='gold-bar-fallback.svg'">
-      <div class="engrave" aria-hidden="true">
-        <span>GOLD GLOBE</span>
-        <strong id="barWeight">1 oz</strong>
-        <span id="barKarat">999.9 · 24</span>
-      </div>
+      <div class="engrave" aria-hidden="true"><span>GOLD GLOBE</span><strong id="barWeight">1 oz</strong><span id="barKarat">999.9 · 24</span></div>
     </div>
-
     <div class="label">GLOBAL GOLD SPOT REFERENCE</div>
     <div class="price" id="price" aria-live="polite">—</div>
     <div class="unit" id="unit">USD / TROY OUNCE · 24</div>
-
-    <div class="live-indicator" id="liveIndicator" role="status">
-      <span class="live-dot" aria-hidden="true"></span>
-      <span id="liveLabel">CONNECTING</span>
-    </div>
-
+    <div class="live-indicator" id="liveIndicator" role="status"><span class="live-dot" aria-hidden="true"></span><span id="liveLabel">CONNECTING</span></div>
     <div class="status" id="status" aria-live="polite">Loading latest gold price…</div>
-
     <div class="selector-heading" id="weights-heading">SELECT WEIGHT</div>
     <div class="weights" id="weights" role="group" aria-labelledby="weights-heading"></div>
-
     <div class="selector-heading selector-heading-karats" id="karats-heading">GOLD PURITY</div>
     <div class="karats" id="karats" role="group" aria-labelledby="karats-heading"></div>
-
     <p class="fineness" id="calculationNote">24 reference · pure-gold metal value</p>
-
     <button class="share" id="share" type="button" aria-label="Share the selected gold price">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <circle cx="18" cy="5" r="3"/>
-        <circle cx="6" cy="12" r="3"/>
-        <circle cx="18" cy="19" r="3"/>
-        <path d="M8.7 10.6l6.6-4.2M8.7 13.4l6.6 4.2"/>
-      </svg>
-      SHARE GOLD
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.7 10.6l6.6-4.2M8.7 13.4l6.6 4.2"/></svg>
+      <span id="shareLabel">SHARE GOLD</span>
     </button>
-
+    <a class="virtual-gold-link" id="virtualGoldLink" href="virtual.html"><span id="virtualGoldLabel">BUY VIRTUAL GOLD</span></a>
     <div class="selector-heading" id="markets-heading">WORLD GOLD PRICES · SELECT MARKET</div>
     <div class="countries" id="countries" role="group" aria-labelledby="markets-heading"></div>
-
-    <button class="all-countries-toggle" type="button" id="allCountriesToggle" aria-expanded="false" aria-controls="countryPanel">
-      🌍 ALL COUNTRIES — 70 <span aria-hidden="true">⌄</span>
-    </button>
-
+    <button class="all-countries-toggle" type="button" id="allCountriesToggle" aria-expanded="false" aria-controls="countryPanel">🌍 ALL COUNTRIES — 70 <span aria-hidden="true">⌄</span></button>
     <div class="country-panel" id="countryPanel" hidden>
       <label class="search-label" for="countrySearch">SEARCH COUNTRY</label>
       <input id="countrySearch" type="search" placeholder="Country or currency…" autocomplete="off" spellcheck="false">
       <div class="countries countries-extra" id="countryResults" role="group" aria-label="All countries"></div>
       <div class="result-count" id="countryCount"></div>
     </div>
-
     <p class="fx-note" id="fxNote">Original global spot price in USD</p>
   </div>
-
   <div class="seo-summary">
     <h2>Gold price per gram and troy ounce</h2>
     <p>View indicative gold spot values for 24, 22, 21, 18 and 14 purity levels. Select a weight and a market to estimate values in USD, Saudi riyals (SAR), Indian rupees (INR), euros (EUR), British pounds (GBP) and other currencies across 70 markets.</p>
     <p>Gold spot values and foreign-exchange conversions are reference estimates, not local jewellery-shop prices. They exclude making charges, taxes and dealer premiums.</p>
   </div>
-
-  <div class="contact">
-    <div class="heading">CONTACT &amp; ADVERTISING · WHATSAPP</div>
-    <span class="phone" translate="no">+966 55 398 9766</span>
-    <span class="brand">F&amp;G</span>
-  </div>
+  <div class="contact"><div class="heading">CONTACT &amp; ADVERTISING · WHATSAPP</div><span class="phone" translate="no">+966 55 398 9766</span><span class="brand">F&amp;G</span></div>
 </section>
-
 <footer>
   Indicative global spot metal value only · Converted using reference exchange rates<br>
   Not local retail prices · No labour, tax, premiums or seller margins<br>
@@ -678,12 +171,31 @@ footer{
   GOLD GLOBE · Signature visual concept
 </footer>
 </main>
-
 <script>
 'use strict';
-
+/* Localize only the two requested buttons; all other site content is unchanged. */
+(function(){
+ const labels={
+   ar:['مشاركة الذهب','شراء الذهب الافتراضي'],
+   en:['SHARE GOLD','BUY VIRTUAL GOLD'],
+   hi:['सोना शेयर करें','वर्चुअल सोना खरीदें'],
+   bn:['সোনা শেয়ার করুন','ভার্চুয়াল সোনা কিনুন'],
+   ur:['سونا شیئر کریں','ورچوئل سونا خریدیں'],
+   fr:["PARTAGER L'OR","ACHETER DE L’OR VIRTUEL"],
+   es:['COMPARTIR ORO','COMPRAR ORO VIRTUAL']
+ };
+ const langs=(navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||'en']);
+ const lang=langs.map(x=>String(x).toLowerCase().split('-')[0]).find(x=>labels[x])||'en';
+ const share=document.getElementById('share');
+ const virtual=document.getElementById('virtualGoldLink');
+ document.getElementById('shareLabel').textContent=labels[lang][0];
+ document.getElementById('virtualGoldLabel').textContent=labels[lang][1];
+ share.lang=virtual.lang=lang;
+ share.dir=virtual.dir=['ar','ur'].includes(lang)?'rtl':'ltr';
+ share.setAttribute('aria-label',labels[lang][0]);
+ virtual.setAttribute('aria-label',labels[lang][1]);
+})();
 const OUNCE=31.1034768;
-
 const weights=[
   {label:'Ounce',grams:OUNCE,detail:'TROY OUNCE',engrave:'1 oz',featured:true},
   {label:'1 kg',grams:1000,detail:'1000 GRAMS'},
@@ -696,9 +208,7 @@ const weights=[
   {label:'5 g',grams:5,detail:'GRAMS'},
   {label:'1 g',grams:1,detail:'GRAM'}
 ];
-
 const karats=[24,22,21,18,14];
-
 const markets=[
 ['United States','🇺🇸','USD','USA'],
 ['Saudi Arabia','🇸🇦','SAR'],
@@ -771,7 +281,6 @@ const markets=[
 ['Ukraine','🇺🇦','UAH'],
 ['Kazakhstan','🇰🇿','KZT']
 ].map(([name,flag,code,short],i)=>({id:String(i+1),name,flag,code,...(short?{short}:{})}));
-
 let spot=null;
 let spotDate=null;
 let fxRates={USD:1};
@@ -782,26 +291,16 @@ let selectedMarket=markets[0];
 let goldError=false;
 let fxError=false;
 let updating=false;
-
 const el=id=>document.getElementById(id);
-
 function money(n,code){
   return new Intl.NumberFormat('en-US',{
-    style:'currency',
-    currency:code,
-    currencyDisplay:'code',
-    minimumFractionDigits:2,
-    maximumFractionDigits:2
+    style:'currency',currency:code,currencyDisplay:'code',minimumFractionDigits:2,maximumFractionDigits:2
   }).format(n);
 }
-
 function value(){
   const rate=selectedMarket.code==='USD'?1:fxRates[selectedMarket.code];
-  return spot===null||!Number.isFinite(rate)
-    ? null
-    : spot*(selectedWeight.grams/OUNCE)*(selectedKarat/24)*rate;
+  return spot===null||!Number.isFinite(rate)?null:spot*(selectedWeight.grams/OUNCE)*(selectedKarat/24)*rate;
 }
-
 function updateLive(){
   const age=spotDate?Date.now()-spotDate.getTime():Infinity;
   const fresh=spot!==null&&!goldError&&age>=-300000&&age<=15*60*1000;
@@ -809,189 +308,94 @@ function updateLive(){
   box.className='live-indicator '+(fresh?'fresh':spot!==null?'stale':'offline');
   el('liveLabel').textContent=fresh?'LIVE GOLD · ACTIVE':spot!==null?'LAST AVAILABLE PRICE':'WAITING FOR PRICE';
 }
-
 function statusText(){
   if(spot===null) return 'Price unavailable · Retrying automatically';
-  const dt=spotDate
-    ? spotDate.toLocaleString('en-GB',{dateStyle:'medium',timeStyle:'short',timeZone:'UTC'})+' UTC'
-    : 'time not provided';
+  const dt=spotDate?spotDate.toLocaleString('en-GB',{dateStyle:'medium',timeStyle:'short',timeZone:'UTC'})+' UTC':'time not provided';
   return (goldError?'Last known gold price':'Gold updated')+': '+dt+(selectedMarket.code!=='USD'&&fxError?' · FX last available':'');
 }
-
 function makeMarketButton(m){
-  const b=document.createElement('button');
-  b.type='button';
-  b.dataset.marketId=m.id;
-
+  const b=document.createElement('button');b.type='button';b.dataset.marketId=m.id;
   const top=document.createElement('span');
-  const flag=document.createElement('span');
-  flag.className='flag';
-  flag.textContent=m.flag;
+  const flag=document.createElement('span');flag.className='flag';flag.textContent=m.flag;
   top.append(flag,document.createTextNode(m.short||m.name));
-
-  const small=document.createElement('small');
-  small.textContent=m.code;
-
+  const small=document.createElement('small');small.textContent=m.code;
   b.append(top,small);
-
   b.addEventListener('click',()=>{
-    selectedMarket=m;
-    render();
+    selectedMarket=m;render();
     if(Number(m.id)>9){
-      el('allCountriesToggle').replaceChildren(
-        document.createTextNode('🌍 '+m.flag+' '+m.name+' · ALL COUNTRIES — 70 ')
-      );
-      const s=document.createElement('span');
-      s.setAttribute('aria-hidden','true');
-      s.textContent='⌄';
+      el('allCountriesToggle').replaceChildren(document.createTextNode('🌍 '+m.flag+' '+m.name+' · ALL COUNTRIES — 70 '));
+      const s=document.createElement('span');s.setAttribute('aria-hidden','true');s.textContent='⌄';
       el('allCountriesToggle').append(s);
     }
   });
-
   return b;
 }
-
-for(const m of markets.slice(0,9)){
-  el('countries').appendChild(makeMarketButton(m));
-}
-
+for(const m of markets.slice(0,9)){el('countries').appendChild(makeMarketButton(m));}
 function drawCountryResults(){
   const q=el('countrySearch').value.trim().toLocaleLowerCase();
   const list=markets.filter(m=>!q||(m.name+' '+m.code+' '+(m.short||'')).toLocaleLowerCase().includes(q));
-  const root=el('countryResults');
-  root.replaceChildren(...list.map(makeMarketButton));
-  el('countryCount').textContent=list.length+' / '+markets.length+' countries';
-  syncCountryButtons();
+  const root=el('countryResults');root.replaceChildren(...list.map(makeMarketButton));
+  el('countryCount').textContent=list.length+' / '+markets.length+' countries';syncCountryButtons();
 }
-
 el('allCountriesToggle').addEventListener('click',()=>{
   const open=el('countryPanel').hidden;
   el('countryPanel').hidden=!open;
   el('allCountriesToggle').setAttribute('aria-expanded',String(open));
-  if(open){
-    drawCountryResults();
-    el('countrySearch').focus();
-  }
+  if(open){drawCountryResults();el('countrySearch').focus();}
 });
-
 el('countrySearch').addEventListener('input',drawCountryResults);
-
 function syncCountryButtons(){
   document.querySelectorAll('[data-market-id]').forEach(b=>{
     const active=b.dataset.marketId===selectedMarket.id;
-    b.classList.toggle('active',active);
-    b.setAttribute('aria-pressed',String(active));
+    b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));
   });
 }
-
 for(const k of karats){
-  const b=document.createElement('button');
-  b.type='button';
-  b.dataset.karat=String(k);
+  const b=document.createElement('button');b.type='button';b.dataset.karat=String(k);
   b.innerHTML=k+'<span>'+(k===24?'PURE':Math.round(k/24*100)+'%')+'</span>';
-  b.addEventListener('click',()=>{
-    selectedKarat=k;
-    render();
-  });
-  el('karats').appendChild(b);
+  b.addEventListener('click',()=>{selectedKarat=k;render();});el('karats').appendChild(b);
 }
-
 for(const w of weights){
-  const b=document.createElement('button');
-  b.type='button';
-  b.dataset.label=w.label;
+  const b=document.createElement('button');b.type='button';b.dataset.label=w.label;
   if(w.featured)b.classList.add('featured');
-
-  const top=document.createElement('span');
-  top.className='weight-main';
-  top.textContent=w.label;
-
-  const sub=document.createElement('small');
-  sub.textContent=w.detail;
-
-  b.append(top,sub);
-  b.addEventListener('click',()=>{
-    selectedWeight=w;
-    render();
-  });
-  el('weights').appendChild(b);
+  const top=document.createElement('span');top.className='weight-main';top.textContent=w.label;
+  const sub=document.createElement('small');sub.textContent=w.detail;
+  b.append(top,sub);b.addEventListener('click',()=>{selectedWeight=w;render();});el('weights').appendChild(b);
 }
-
 function render(){
   el('barWeight').textContent=selectedWeight.engrave||selectedWeight.label;
   el('barKarat').textContent=selectedKarat===24?'999.9 · 24':selectedKarat+' GOLD';
   el('unit').textContent=selectedMarket.code+' / '+(selectedWeight.label==='Ounce'?'TROY OUNCE':selectedWeight.label)+' · '+selectedKarat;
-
   const v=value();
   el('price').textContent=v===null?'—':money(v,selectedMarket.code);
-  el('status').textContent=statusText();
-  updateLive();
-
-  el('fxNote').textContent=
-    selectedMarket.code==='USD'
-      ? 'Original global spot price in USD'
-      : fxRates[selectedMarket.code]
-        ? 'Reference FX rate: 1 USD = '+fxRates[selectedMarket.code].toFixed(4)+' '+selectedMarket.code+(fxDate?' · FX '+fxDate:'')
-        : 'Exchange rate unavailable · waiting for FX feed';
-
-  el('calculationNote').textContent=
-    selectedKarat===24
-      ? '24 reference · pure-gold metal value'
-      : selectedKarat+' estimate · '+selectedKarat+'/24 of pure-gold spot value';
-
+  el('status').textContent=statusText();updateLive();
+  el('fxNote').textContent=selectedMarket.code==='USD'?'Original global spot price in USD':fxRates[selectedMarket.code]?'Reference FX rate: 1 USD = '+fxRates[selectedMarket.code].toFixed(4)+' '+selectedMarket.code+(fxDate?' · FX '+fxDate:''):'Exchange rate unavailable · waiting for FX feed';
+  el('calculationNote').textContent=selectedKarat===24?'24 reference · pure-gold metal value':selectedKarat+' estimate · '+selectedKarat+'/24 of pure-gold spot value';
   for(const [id,key,chosen] of [['weights','label',selectedWeight.label],['karats','karat',String(selectedKarat)]]){
     el(id).querySelectorAll('button').forEach(b=>{
-      const active=b.dataset[key]===chosen;
-      b.classList.toggle('active',active);
-      b.setAttribute('aria-pressed',String(active));
+      const active=b.dataset[key]===chosen;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));
     });
   }
-
   syncCountryButtons();
 }
-
-function savedRead(key){
-  try{return JSON.parse(localStorage.getItem(key)||'null')}
-  catch{return null}
-}
-function savedWrite(key,val){
-  try{localStorage.setItem(key,JSON.stringify(val))}
-  catch{}
-}
-
+function savedRead(key){try{return JSON.parse(localStorage.getItem(key)||'null')}catch{return null}}
+function savedWrite(key,val){try{localStorage.setItem(key,JSON.stringify(val))}catch{}}
 const oldGold=savedRead('gg.gold.v2');
-if(oldGold&&Number.isFinite(oldGold.price)&&oldGold.price>0){
-  spot=oldGold.price;
-  spotDate=oldGold.date?new Date(oldGold.date):null;
-  goldError=true;
-}
-
+if(oldGold&&Number.isFinite(oldGold.price)&&oldGold.price>0){spot=oldGold.price;spotDate=oldGold.date?new Date(oldGold.date):null;goldError=true;}
 const oldFx=savedRead('gg.fx.v3')||savedRead('gg.fx.v2');
-if(oldFx&&oldFx.rates&&typeof oldFx.rates==='object'){
-  fxRates={...oldFx.rates,USD:1};
-  fxDate=oldFx.date||null;
-  fxError=true;
-}
-
+if(oldFx&&oldFx.rates&&typeof oldFx.rates==='object'){fxRates={...oldFx.rates,USD:1};fxDate=oldFx.date||null;fxError=true;}
 async function refreshGold(){
   try{
     const r=await fetch('https://api.gold-api.com/price/XAU',{cache:'no-store'});
-    if(!r.ok) throw Error('Gold feed unavailable');
-    const d=await r.json();
-    const p=Number(d.price);
-    if(!Number.isFinite(p)||p<=0) throw Error('Invalid gold price');
-
-    spot=p;
-    const date=d.updatedAt?new Date(d.updatedAt):null;
-    spotDate=date&&!Number.isNaN(date.getTime())?date:null;
-    goldError=false;
+    if(!r.ok)throw Error('Gold feed unavailable');
+    const d=await r.json();const p=Number(d.price);
+    if(!Number.isFinite(p)||p<=0)throw Error('Invalid gold price');
+    spot=p;const date=d.updatedAt?new Date(d.updatedAt):null;
+    spotDate=date&&!Number.isNaN(date.getTime())?date:null;goldError=false;
     savedWrite('gg.gold.v2',{price:p,date:spotDate?.toISOString()||null});
-  }catch{
-    goldError=true;
-  }
+  }catch{goldError=true;}
   render();
 }
-
 async function refreshFx(){
   try{
     const urls=[
@@ -999,72 +403,44 @@ async function refreshFx(){
       'https://latest.currency-api.pages.dev/v1/currencies/usd.min.json'
     ];
     let data=null;
-
     for(const url of urls){
       try{
         const r=await fetch(url,{cache:'no-store'});
-        if(!r.ok) throw Error('FX unavailable');
-        const d=await r.json();
-        if(!d||!d.usd) throw Error('Invalid FX data');
-        data=d;
-        break;
+        if(!r.ok)throw Error('FX unavailable');
+        const d=await r.json();if(!d||!d.usd)throw Error('Invalid FX data');
+        data=d;break;
       }catch{}
     }
-
-    if(!data) throw Error('All FX feeds unavailable');
-
+    if(!data)throw Error('All FX feeds unavailable');
     const next={USD:1};
     for(const [code,rate] of Object.entries(data.usd)){
-      const n=Number(rate);
-      if(Number.isFinite(n)&&n>0) next[code.toUpperCase()]=n;
+      const n=Number(rate);if(Number.isFinite(n)&&n>0)next[code.toUpperCase()]=n;
     }
-
-    if(Object.keys(next).length<70) throw Error('Incomplete FX data');
-
-    fxRates=next;
-    fxDate=data.date||null;
-    fxError=false;
+    if(Object.keys(next).length<70)throw Error('Incomplete FX data');
+    fxRates=next;fxDate=data.date||null;fxError=false;
     savedWrite('gg.fx.v3',{rates:next,date:fxDate});
-  }catch{
-    fxError=true;
-  }
+  }catch{fxError=true;}
   render();
 }
-
 let lastFxFetch=0;
-
 async function refreshFxIfNeeded(){
-  if(Date.now()-lastFxFetch<6*60*60*1000&&Object.keys(fxRates).length>=70) return;
-  lastFxFetch=Date.now();
-  await refreshFx();
+  if(Date.now()-lastFxFetch<6*60*60*1000&&Object.keys(fxRates).length>=70)return;
+  lastFxFetch=Date.now();await refreshFx();
 }
-
 async function refresh(){
-  if(updating) return;
-  updating=true;
-  await Promise.allSettled([refreshGold(),refreshFxIfNeeded()]);
-  updating=false;
+  if(updating)return;
+  updating=true;await Promise.allSettled([refreshGold(),refreshFxIfNeeded()]);updating=false;
 }
-
 el('share').addEventListener('click',async()=>{
   const url='https://millionfilters.com/';
   const v=value();
-  const msg=v===null
-    ? '✨ GOLD GLOBE\n\nWorld Gold Reference Prices'
-    : '✨ GOLD GLOBE\n\n🥇 '+selectedMarket.name+' · '+selectedWeight.label+' · '+selectedKarat+' — '+money(v,selectedMarket.code)+'\n\nIndicative spot metal value';
+  const msg=v===null?'✨ GOLD GLOBE\n\nWorld Gold Reference Prices':'✨ GOLD GLOBE\n\n🥇 '+selectedMarket.name+' · '+selectedWeight.label+' · '+selectedKarat+' — '+money(v,selectedMarket.code)+'\n\nIndicative spot metal value';
   try{
-    if(navigator.share){
-      await navigator.share({title:'GOLD GLOBE',text:msg,url});
-      return;
-    }
-  }catch(e){
-    if(e.name==='AbortError') return;
-  }
+    if(navigator.share){await navigator.share({title:'GOLD GLOBE',text:msg,url});return;}
+  }catch(e){if(e.name==='AbortError')return;}
   window.open('https://wa.me/?text='+encodeURIComponent(msg+'\n\n'+url),'_blank','noopener');
 });
-
-render();
-refresh();
+render();refresh();
 setInterval(()=>{if(!document.hidden)refresh()},60000);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh()});
 </script>
