@@ -30,6 +30,19 @@ button{border:0;border-radius:12px;font-size:15px;font-weight:700;padding:13px 1
 .market-hours{margin:11px 0 5px;padding:10px 12px;border:1px solid #6d6245;border-radius:12px;background:#28251b;text-align:start}.market-hours.open{border-color:#45794d;background:#172a1b}.market-hours.closed{border-color:#84673d;background:#302519}.market-line{display:flex;align-items:center;gap:8px;font-weight:800;font-size:13px}.market-dot{width:9px;height:9px;border-radius:50%;background:#e7bc73;flex:none}.market-hours.open .market-dot{background:#6cdd85;box-shadow:0 0 8px #48c86b77}.market-note{font-size:11px;line-height:1.6;color:#c3b8a3;margin-top:5px}
 [dir="rtl"] input[type="email"],[dir="rtl"] input[type="number"]{direction:ltr;text-align:right}[dir="rtl"] #portfolio{text-align:left}[dir="rtl"] .trade{text-align:right}
 @media(max-width:380px){.panel{padding:16px}.trade-head strong{font-size:12px}.pl-line{flex-wrap:wrap}}
+
+/* Separate rounds, controlled server-side restart */
+.round-panel{border-color:#78643b;background:linear-gradient(160deg,#24231b,#181a17)}
+.round-heading{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.round-num{display:inline-block;border:1px solid #9a824b;color:#f2d28f;border-radius:20px;padding:4px 11px;font-size:12px;font-weight:800}
+.round-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:13px}
+.round-stat{border:1px solid #494838;background:#131611;border-radius:12px;padding:12px;min-width:0}
+.round-stat span{display:block;color:#b8b4a4;font-size:11px}
+.round-stat strong{display:block;margin-top:6px;font-size:17px;overflow-wrap:anywhere;direction:ltr;unicode-bidi:isolate;text-align:start}
+.restart-section{margin-top:16px;border-top:1px solid #ffffff22;padding-top:15px}
+.restart-btn{display:block;width:100%;background:linear-gradient(130deg,#d7f3c3,#9fdc9a);color:#17331c;padding:15px}
+.restart-help{font-size:12px;line-height:1.65;color:#c9bea5;margin:10px 0 0}
+.round-warning{font-size:12px;color:#f6aaaa;margin-top:10px;overflow-wrap:anywhere}
 </style>
 </head>
 <body><main>
@@ -42,6 +55,19 @@ button{border:0;border-radius:12px;font-size:15px;font-weight:700;padding:13px 1
 <div class="muted tiny" data-t="cashLabel">Virtual cash balance</div><div class="balance" id="cash">—</div>
 <div class="row"><div><div class="muted tiny" data-t="goldLabel">Gold owned</div><div class="gold" style="font-size:24px;font-weight:700" id="gold">—</div></div><div><div class="muted tiny" data-t="portfolioLabel">Portfolio value</div><div style="font-size:22px;font-weight:650" id="portfolio">—</div></div></div>
 <div id="plCard" class="pl-card pending" aria-live="polite"><div class="pl-top"><span data-t="plTitle">Total profit / loss</span><span class="pl-mark" id="plMark">–</span></div><div class="pl-number" id="plAmount">—</div><div class="pl-percent" id="plPercent">—</div><div class="pl-breakdown"><div class="pl-line"><span data-t="realized">Realized from sales</span><strong id="plRealized">—</strong></div><div class="pl-line"><span data-t="unrealized">On gold still owned</span><strong id="plUnrealized">—</strong></div></div><div class="pl-foot" id="plFoot">—</div></div>
+</section>
+<section class="panel round-panel" id="roundPanel">
+ <div class="round-heading"><h2 class="sectionTitle" data-r="roundTitle">Trading rounds</h2><span class="round-num" id="roundNumber">#1</span></div>
+ <div class="round-stats">
+  <div class="round-stat"><span data-r="finishedRounds">Previous rounds</span><strong id="finishedRounds">0</strong></div>
+  <div class="round-stat"><span data-r="highestProfit">Highest recorded realized profit</span><strong id="highestProfit">—</strong></div>
+ </div>
+ <p class="trade-note" data-r="roundExplanation">Profit and history below refer to the current round only. Highest recorded profit is based on realized sales, not an intraday peak.</p>
+ <div class="restart-section hide" id="restartSection">
+  <button type="button" class="restart-btn" id="restartBtn" data-r="restart">START AGAIN · 10,000 virtual USD</button>
+  <p class="restart-help" data-r="restartHelp">Only when both virtual cash and gold are zero. Restart requires confirmation.</p>
+ </div>
+ <p class="round-warning hide" id="roundWarning"></p>
 </section>
 <section class="panel"><div class="row"><h2 class="sectionTitle" data-t="priceTitle">Gold reference price</h2><button type="button" class="secondary" id="refreshBtn" data-t="refresh" style="padding:7px 12px;font-size:12px">Refresh</button></div><p class="tiny" data-t="priceHelp">Last trade price; not a verified live quote.</p><div class="gold" id="lastPrice">—</div><div id="marketHoursBadge" class="market-hours" role="status"><div class="market-line"><span class="market-dot"></span><span id="marketHoursText">—</span></div><div class="market-note" id="marketHoursNote"></div></div><div class="quote-box"><div class="muted tiny" data-t="liveRef">Latest indicative price</div><div class="gold quote-value" id="indicativeSpot">—</div><div class="tiny muted" id="indicativeStamp">—</div><div class="tiny muted" data-t="quoteCaution">Execution uses protected server price</div><div class="tiny muted" data-t="autoQuote">Automatic update approximately every minute</div></div></section>
 <section class="panel"><h2 class="sectionTitle" data-t="tradeTitle">Virtual trade</h2><div class="row"><span class="muted tiny" data-t="buyHint">BUY = USD amount</span><span class="muted tiny" data-t="sellHint">SELL = grams</span></div><label for="buyAmount" data-t="buyLabel">Buy gold for USD</label><input id="buyAmount" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="100.00"><div class="btnrow"><button type="button" class="buy" id="buyBtn" data-t="buyBtn">BUY VIRTUAL GOLD</button></div><label for="sellAmount" data-t="sellLabel">Sell gold in grams</label><input id="sellAmount" type="number" inputmode="decimal" min="0.00000001" step="0.00000001" placeholder="0.10000000"><div class="btnrow"><button type="button" class="sell" id="sellBtn" data-t="sellBtn">SELL VIRTUAL GOLD</button></div><div id="notice" class="notice hide" role="status" aria-live="polite"></div><p class="tiny" data-t="tradeHelp">Each order requires confirmation. No real money or gold is traded.</p></section>
@@ -70,6 +96,23 @@ zh:{subtitle:'虚拟黄金 · 仅供练习',pill:'模拟资金',signinTitle:'登
 ja:{subtitle:'仮想ゴールド · 練習専用',pill:'仮想資金',signinTitle:'アカウントにログイン',signin:'ログイン',signout:'ログアウト',cashLabel:'仮想現金残高',goldLabel:'保有金',portfolioLabel:'ポートフォリオ総額',currency:'表示通貨',plTitle:'損益合計',realized:'売却による確定損益',unrealized:'保有金の評価損益',priceTitle:'金の参考価格',refresh:'更新',tradeTitle:'仮想取引',buyLabel:'USDで金を購入',sellLabel:'グラムで金を売却',buyBtn:'仮想ゴールドを購入',sellBtn:'仮想ゴールドを売却',historyTitle:'取引履歴',remove:'非表示',buy:'購入',sell:'売却'},
 ru:{subtitle:'Виртуальное золото · Только тренировка',pill:'ВИРТУАЛЬНЫЕ СРЕДСТВА',signinTitle:'Войдите в свой аккаунт',signin:'Войти',signout:'Выйти',cashLabel:'Виртуальный денежный баланс',goldLabel:'Количество золота',portfolioLabel:'Общая стоимость портфеля',currency:'Валюта отображения',plTitle:'Общая прибыль / убыток',realized:'Реализованная прибыль / убыток',unrealized:'Прибыль / убыток по оставшемуся золоту',priceTitle:'Справочная цена золота',refresh:'Обновить',tradeTitle:'Виртуальная торговля',buyLabel:'Купить золото за USD',sellLabel:'Продать золото в граммах',buyBtn:'КУПИТЬ ВИРТУАЛЬНОЕ ЗОЛОТО',sellBtn:'ПРОДАТЬ ВИРТУАЛЬНОЕ ЗОЛОТО',historyTitle:'История операций',remove:'Скрыть',buy:'ПОКУПКА',sell:'ПРОДАЖА'}
 };
+const R={
+ en:['Trading rounds','Previous rounds','Highest recorded realized profit','Profit and history refer to this round. Best result uses recorded realized sales only.','START AGAIN · 10,000 virtual USD','Available only when cash and gold are both zero.','Start a new round with 10,000 virtual USD? Previous trading history will remain saved.','Starting a new round…','A new round has started.','Restart unavailable: cash and gold must both equal zero.','Could not verify round history; restart is disabled.'],
+ ar:['جولات التداول','الجولات السابقة','أعلى ربح محقق مسجل','الأرباح والسجل لهذه الجولة فقط. أعلى ربح محسوب من عمليات البيع المسجلة، وليس أعلى قيمة لحظية.','فرصة جديدة · 10,000 دولار افتراضي','يتاح فقط عندما يكون النقد والذهب صفرًا تمامًا.','هل تؤكد بدء جولة جديدة برصيد 10,000 دولار افتراضي؟ سيُحفظ سجل الجولات السابقة.','جارٍ بدء جولة جديدة…','بدأت جولة جديدة بنجاح.','لا يمكن الإعادة حتى يصبح النقد والذهب صفرًا تمامًا.','تعذر التحقق من سجل الجولات؛ زر الإعادة معطل.'],
+ hi:['ट्रेडिंग राउंड','पिछले राउंड','सर्वोच्च दर्ज वास्तविक लाभ','वर्तमान राउंड का इतिहास और लाभ; शीर्ष लाभ केवल दर्ज बिक्री पर आधारित है।','फिर शुरू करें · 10,000 वर्चुअल USD','नकद और सोना दोनों शून्य होने पर ही उपलब्ध।','10,000 वर्चुअल USD के साथ नया राउंड शुरू करें? पुराना इतिहास सुरक्षित रहेगा।','नया राउंड शुरू हो रहा है…','नया राउंड शुरू हो गया।','नकद और सोना दोनों शून्य होने चाहिए।','राउंड सत्यापित नहीं हो सके।'],
+ bn:['ট্রেডিং রাউন্ড','আগের রাউন্ড','সর্বোচ্চ নথিভুক্ত অর্জিত লাভ','এই রাউন্ডের ইতিহাস ও লাভ; সর্বোচ্চ লাভ কেবল বিক্রয় হিসাব থেকে।','আবার শুরু · ১০,০০০ ভার্চুয়াল USD','নগদ ও সোনা দুটোই শূন্য হলে সম্ভব।','১০,০০০ ভার্চুয়াল USD দিয়ে নতুন রাউন্ড শুরু করবেন? পুরনো ইতিহাস থাকবে।','নতুন রাউন্ড শুরু হচ্ছে…','নতুন রাউন্ড শুরু হয়েছে।','নগদ ও সোনা দুটোই শূন্য হতে হবে।','রাউন্ড যাচাই করা যায়নি।'],
+ ur:['ٹریڈنگ راؤنڈ','پچھلے راؤنڈ','سب سے زیادہ درج شدہ حاصل شدہ منافع','صرف موجودہ راؤنڈ کی تاریخ اور منافع؛ بلند ترین منافع فروخت کے اندراجات سے ہے۔','دوبارہ شروع · 10,000 فرضی USD','نقدی اور سونا دونوں صفر ہونے پر دستیاب۔','10,000 فرضی USD سے نیا راؤنڈ شروع کریں؟ پرانی تاریخ محفوظ رہے گی۔','نیا راؤنڈ شروع ہو رہا ہے…','نیا راؤنڈ شروع ہوگیا۔','نقدی اور سونا دونوں صفر ہونے چاہئیں۔','راؤنڈ کی تصدیق نہیں ہوسکی۔'],
+ es:['Rondas de operaciones','Rondas anteriores','Mayor ganancia realizada registrada','Los resultados son de esta ronda. El máximo usa solo ventas registradas.','REINICIAR · 10.000 USD virtuales','Solo cuando efectivo y oro sean cero.','¿Iniciar otra ronda con 10.000 USD virtuales? Se guarda el historial.','Iniciando ronda…','Nueva ronda iniciada.','El efectivo y el oro deben ser cero.','No se pudieron verificar las rondas.'],
+ fr:['Sessions de trading','Sessions précédentes','Gain réalisé enregistré le plus élevé','Résultats de la session actuelle. Maximum fondé sur les ventes enregistrées.','RECOMMENCER · 10 000 USD virtuels','Disponible quand liquidités et or sont à zéro.','Recommencer avec 10 000 USD virtuels ? Historique conservé.','Nouvelle session…','Nouvelle session lancée.','Liquidités et or doivent être à zéro.','Vérification impossible.'],
+ tr:['İşlem turları','Önceki turlar','Kaydedilen en yüksek gerçekleşmiş kâr','Bu turun geçmişi ve kârı; en yüksek kâr kayıtlı satışlardan hesaplanır.','YENİDEN BAŞLA · 10.000 sanal USD','Nakit ve altın sıfır olunca kullanılabilir.','10.000 sanal USD ile yeni tur başlatılsın mı? Geçmiş saklanır.','Yeni tur başlıyor…','Yeni tur başladı.','Nakit ve altın sıfır olmalı.','Tur geçmişi doğrulanamadı.'],
+ id:['Putaran perdagangan','Putaran sebelumnya','Laba terealisasi tertinggi tercatat','Riwayat putaran ini. Rekor hanya dari penjualan yang tercatat.','MULAI LAGI · 10.000 USD virtual','Hanya jika uang dan emas sama-sama nol.','Mulai putaran baru dengan 10.000 USD virtual? Riwayat disimpan.','Memulai putaran…','Putaran baru dimulai.','Uang dan emas harus nol.','Riwayat putaran tidak dapat diperiksa.'],
+ pt:['Rodadas de negociação','Rodadas anteriores','Maior lucro realizado registrado','Lucro e histórico desta rodada. Melhor valor baseado apenas em vendas registradas.','RECOMEÇAR · 10.000 USD virtuais','Apenas quando dinheiro e ouro são zero.','Iniciar nova rodada com 10.000 USD virtuais? Histórico preservado.','Iniciando rodada…','Nova rodada iniciada.','Dinheiro e ouro precisam ser zero.','Não foi possível verificar rodadas.'],
+ de:['Handelsrunden','Frühere Runden','Höchster erfasster realisierter Gewinn','Ergebnis und Verlauf dieser Runde. Rekord nur aus erfassten Verkäufen.','NEU STARTEN · 10.000 virtuelle USD','Nur wenn Bargeld und Gold null sind.','Neue Runde mit 10.000 virtuellen USD starten? Verlauf bleibt erhalten.','Neue Runde startet…','Neue Runde gestartet.','Bargeld und Gold müssen null sein.','Runden konnten nicht geprüft werden.'],
+ zh:['交易轮次','以前的轮次','最高已记录已实现收益','仅显示本轮盈亏与记录。最高收益仅按已记录卖出计算。','重新开始 · 10,000 虚拟美元','仅在现金和黄金均为零时可用。','开始新一轮并获得 10,000 虚拟美元？历史会保留。','正在开始新轮次…','新轮次已开始。','现金与黄金必须均为零。','无法验证轮次记录。'],
+ ja:['取引ラウンド','過去のラウンド','記録された確定利益の最高値','損益と履歴はこの回のみ。最高値は記録された売却のみから算出。','再スタート · 仮想10,000 USD','現金と金が両方ゼロの場合のみ。','仮想10,000 USDで新しいラウンドを開始しますか？履歴は保持します。','新ラウンド開始中…','新ラウンドを開始しました。','現金と金の両方がゼロである必要があります。','履歴を確認できません。'],
+ ru:['Торговые раунды','Предыдущие раунды','Максимальная зафиксированная прибыль от продаж','Прибыль и история текущего раунда; максимум только по зарегистрированным продажам.','НАЧАТЬ СНОВА · 10 000 виртуальных USD','Только если деньги и золото равны нулю.','Начать новый раунд с 10 000 виртуальных USD? История сохранится.','Начинаем новый раунд…','Новый раунд начат.','Деньги и золото должны быть нулевыми.','Не удалось проверить историю раундов.']
+};
+const roundText=(index)=>(R[lang]||R.en)[index];
 const available=Object.keys(L);const clean=x=>String(x||'').toLowerCase().split('-')[0];let savedLang='';try{savedLang=localStorage.getItem('millionGoldLanguage')||'';}catch(_){}
 const requestedLang=clean(new URLSearchParams(location.search).get('lang'));
 const detected=(navigator.languages||[navigator.language||'en']).map(clean).find(x=>available.includes(x))||'en';
@@ -77,6 +120,7 @@ const lang=available.includes(requestedLang)?requestedLang:available.includes(sa
 const t=(key,vars={})=>{let s=L[lang]?.[key]||L.en[key]||key;for(const [k,v] of Object.entries(vars))s=s.replaceAll('{'+k+'}',String(v));return s;};
 document.documentElement.lang=lang;document.documentElement.dir=['ar','ur'].includes(lang)?'rtl':'ltr';document.title='MILLION GOLD | Wallet';
 for(const n of document.querySelectorAll('[data-t]'))n.textContent=t(n.dataset.t);
+for(const [i,k] of ['roundTitle','finishedRounds','highestProfit','roundExplanation','restart','restartHelp'].entries()){document.querySelectorAll('[data-r="'+k+'"]').forEach(n=>n.textContent=roundText(i));}
 el('languageChoice').value=lang;
 el('languageChoice').addEventListener('change',()=>{const v=el('languageChoice').value;try{localStorage.setItem('millionGoldLanguage',v);}catch(_){}const u=new URL(location.href);u.searchParams.set('lang',v);location.assign(u.href);});
 let currency='USD',rates={USD:1},fxError=false;
@@ -93,15 +137,16 @@ el('currencyChoice').addEventListener('change',()=>{currency=el('currencyChoice'
 function showNotice(msg,type=''){const n=el(el('app').classList.contains('hide')?'loginNotice':'notice');n.textContent=msg;n.className='notice '+type;}
 function readError(err){const m=err?.message||String(err);const map={'Insufficient cash':lang==='ar'?'الرصيد النقدي غير كافٍ':'Insufficient cash','Insufficient gold':lang==='ar'?'رصيد الذهب غير كافٍ':'Insufficient gold','Fresh gold price unavailable':lang==='ar'?'سعر الذهب غير متاح أو قديم':'Gold reference price unavailable or stale','Wallet not found':t('walletMissing'),'Request already processed':lang==='ar'?'الطلب منفذ مسبقًا':'Request already processed'};for(const [k,v] of Object.entries(map))if(m.includes(k))return v;return m;}
 let client=null,currentUser=null,busy=false,wallet=null,historyRows=[],fullLedger=null,ledgerIssue='',lastTradePrice=null;
+let currentRound=null,allRounds=[],roundsVerified=false,highestRecorded=null;
 let quote=null,quoteStamp=0,lastQuoteAttempt=0,quotePromise=null,dataRun=0;
 try{if(!window.supabase)throw Error('Supabase library unavailable');client=window.supabase.createClient(PROJECT_URL,PUBLISHABLE_KEY,{auth:{persistSession:true,autoRefreshToken:true}});}catch(e){showNotice(readError(e),'bad');}
-function setBusy(v){busy=v;for(const id of ['loginBtn','buyBtn','sellBtn','refreshBtn'])el(id).disabled=v;}
+function setBusy(v){busy=v;for(const id of ['loginBtn','buyBtn','sellBtn','refreshBtn','restartBtn'])el(id).disabled=v;}
 function signed(n){return (n>=.005?'+':n<=-.005?'−':'')+displayMoney(Math.abs(n));}
 function tone(n){return n>=.005?'#a7e5ba':n<=-.005?'#f6aaaa':'#efcd8a';}
 function hiddenKey(){return currentUser?'millionGoldHidden:'+currentUser.id:'';}
 function hiddenIds(){try{return new Set(JSON.parse(localStorage.getItem(hiddenKey())||'[]').map(String));}catch(_){return new Set();}}
 function hideTx(id){if(!currentUser||!confirm(t('confirmRemove')))return;const h=hiddenIds();h.add(String(id));try{localStorage.setItem(hiddenKey(),JSON.stringify([...h]));}catch(e){showNotice(readError(e),'bad');return;}renderHistory();showNotice(t('removed'),'ok');}
-function signOutView(){currentUser=null;wallet=null;fullLedger=null;historyRows=[];el('app').classList.add('hide');el('loginPanel').classList.remove('hide');el('password').value='';}
+function signOutView(){dataRun++;currentUser=null;wallet=null;fullLedger=null;historyRows=[];currentRound=null;allRounds=[];roundsVerified=false;highestRecorded=null;el('restartSection').classList.add('hide');el('app').classList.add('hide');el('loginPanel').classList.remove('hide');el('password').value='';}
 const QUOTE_MAX_AGE=24*3600000;
 async function fetchQuote(force=false){
  if(!force&&Date.now()-lastQuoteAttempt<60000)return quote;
@@ -111,23 +156,68 @@ async function fetchQuote(force=false){
   try{const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),12000);let res;try{res=await fetch('https://api.gold-api.com/price/XAU',{cache:'no-store',signal:controller.signal});}finally{clearTimeout(timer);}if(!res.ok)throw Error('Quote unavailable');const d=await res.json();const p=Number(d.price);const stamp=Date.parse(d.updatedAt||'');if(!Number.isFinite(p)||p<=0||!Number.isFinite(stamp)||stamp>Date.now()+300000||Date.now()-stamp>QUOTE_MAX_AGE)throw Error('Quote outdated');quote=p/31.1034768;quoteStamp=stamp;}catch(_){quote=null;quoteStamp=0;}return quote;
  })();try{return await quotePromise;}finally{quotePromise=null;}
 }
-async function loadLedger(uid){
- let all=[],page=0,hasCreatedAt=true;
- while(true){if(page>=100)throw Error('History exceeds supported limit');const start=page*500;
-  let res=await client.from('gold_transactions').select('id,trade_type,total_usd,gold_grams,created_at').eq('user_id',uid).order('created_at',{ascending:true}).order('id',{ascending:true}).range(start,start+499);
-  if(res.error&&page===0){hasCreatedAt=false;res=await client.from('gold_transactions').select('id,trade_type,total_usd,gold_grams').eq('user_id',uid).order('id',{ascending:true}).range(start,start+499);}
-  if(res.error)throw res.error;
-  const batch=res.data||[];
-  if(!hasCreatedAt&&batch.some(x=>!/^[0-9]+$/.test(String(x.id))))throw Error('Chronological transaction order unavailable');
-  all.push(...batch);if(batch.length<500)break;page++;
+function roundForTransaction(tx,rounds){
+ // The legacy first round has no server-side start timestamp. Reset always
+ // starts the next round at its own creation time, splitting history safely.
+ const time=Date.parse(tx.created_at||'');
+ if(!Number.isFinite(time))throw Error('Transaction timestamp missing');
+ let number=1;
+ for(const round of rounds){
+  if(round.round_number>=2&&time>=Date.parse(round.started_at))number=round.round_number;
  }
- let owned=0,cost=0,realized=0;const saleById=new Map();
- for(const x of all){const q=Number(x.gold_grams),usd=Number(x.total_usd);if(!Number.isFinite(q)||!Number.isFinite(usd)||q<=0||usd<0)throw Error('Invalid transaction in history');
+ return number;
+}
+function calculateLedger(rows){
+ let owned=0,cost=0,realized=0,peak=0;const saleById=new Map();
+ for(const x of rows){
+  const q=Number(x.gold_grams),usd=Number(x.total_usd);
+  if(!Number.isFinite(q)||!Number.isFinite(usd)||q<=0||usd<0)throw Error('Invalid transaction in history');
   if(x.trade_type==='BUY'){owned+=q;cost+=usd;}
-  else if(x.trade_type==='SELL'){if(q>owned+0.000002)throw Error('Sell amount exceeds holdings');const used=owned?cost*Math.min(q/owned,1):0;const gain=usd-used;realized+=gain;cost=Math.max(0,cost-used);owned=Math.max(0,owned-q);if(owned<1e-8){owned=0;cost=0;}saleById.set(String(x.id),gain);}
-  else throw Error('Invalid trade type');
+  else if(x.trade_type==='SELL'){
+   if(q>owned+0.000002)throw Error('Sell amount exceeds holdings');
+   const used=owned?cost*Math.min(q/owned,1):0;const gain=usd-used;
+   realized+=gain;peak=Math.max(peak,realized);cost=Math.max(0,cost-used);
+   owned=Math.max(0,owned-q);if(owned<1e-8){owned=0;cost=0;}
+   saleById.set(String(x.id),gain);
+  }else throw Error('Invalid trade type');
  }
- return {owned,cost,realized,saleById,count:all.length};
+ return {owned,cost,realized,peak,saleById,count:rows.length};
+}
+async function loadLedger(uid,rounds,activeNumber){
+ let all=[],page=0;
+ while(true){
+  if(page>=100)throw Error('History exceeds supported limit');
+  const start=page*500;
+  const res=await client.from('gold_transactions')
+   .select('id,trade_type,total_usd,gold_grams,created_at')
+   .eq('user_id',uid).order('created_at',{ascending:true})
+   .order('id',{ascending:true}).range(start,start+499);
+  if(res.error)throw res.error;
+  const batch=res.data||[];all.push(...batch);
+  if(batch.length<500)break;page++;
+ }
+ const segmented=new Map();
+ for(const tx of all){
+  const n=roundForTransaction(tx,rounds);
+  if(!segmented.has(n))segmented.set(n,[]);
+  segmented.get(n).push(tx);
+ }
+ const current=calculateLedger(segmented.get(activeNumber)||[]);
+ let highest=0;
+ for(const [n,rows] of segmented){
+  if(n>=activeNumber)continue;
+  highest=Math.max(highest,calculateLedger(rows).peak);
+ }
+ return {current,highest};
+}
+function renderRounds(){
+ el('roundNumber').textContent='#'+(currentRound?.round_number||1);
+ el('finishedRounds').textContent=roundsVerified?String(allRounds.filter(r=>r.ended_at).length):'—';
+ el('highestProfit').textContent=roundsVerified&&highestRecorded!==null?displayMoney(highestRecorded):'—';
+ const eligible=roundsVerified&&wallet&&wallet.cash===0&&wallet.gold===0;
+ el('restartSection').classList.toggle('hide',!eligible);
+ const warning=el('roundWarning');warning.classList.toggle('hide',roundsVerified);
+ warning.textContent=roundsVerified?'':roundText(10);
 }
 function ledgerReliable(){return wallet&&fullLedger&&Math.abs(fullLedger.owned-wallet.gold)<=Math.max(.000002,Math.abs(wallet.gold)*.000001);}
 function renderHistory(){const root=el('history');root.replaceChildren();const hidden=hiddenIds();const visible=historyRows.filter(x=>!hidden.has(String(x.id)));
@@ -137,21 +227,54 @@ function renderHistory(){const root=el('history');root.replaceChildren();const h
 }
 function renderPL(){const card=el('plCard'),amount=el('plAmount'),pct=el('plPercent'),mark=el('plMark'),real=el('plRealized'),unreal=el('plUnrealized');card.className='pl-card pending';amount.textContent='—';pct.textContent='—';mark.textContent='–';real.textContent='—';unreal.textContent='—';
  if(!wallet){el('plFoot').textContent=t('plLoading');return;}
- const reliable=ledgerReliable();if(reliable){real.textContent=signed(fullLedger.realized);real.style.color=tone(fullLedger.realized);}else real.style.color='';
- const priceOK=Number.isFinite(quote)&&quote>0&&quoteStamp&&Date.now()-quoteStamp<=QUOTE_MAX_AGE;
- if(!priceOK){el('portfolio').textContent='—';el('indicativeSpot').textContent='—';el('indicativeStamp').textContent=t('priceUnavailable');el('plFoot').textContent=(ledgerIssue?t('ledgerMissing')+' · ':'')+t('priceUnavailable');return;}
- const value=wallet.cash+wallet.gold*quote;el('portfolio').textContent=displayMoney(value);el('indicativeSpot').textContent=displayMoney(quote)+' / g';el('indicativeStamp').textContent=t('quoteTime')+': '+new Date(quoteStamp).toLocaleString(lang,{dateStyle:'short',timeStyle:'short'})+' · gold-api.com/XAU';
+ const reliable=roundsVerified&&ledgerReliable();if(reliable){real.textContent=signed(fullLedger.realized);real.style.color=tone(fullLedger.realized);}else real.style.color='';
+ const priceOK=(wallet.gold===0)||(Number.isFinite(quote)&&quote>0&&quoteStamp&&Date.now()-quoteStamp<=QUOTE_MAX_AGE);
+ if(!priceOK){el('portfolio').textContent=wallet.gold===0?displayMoney(wallet.cash):'—';el('indicativeSpot').textContent='—';el('indicativeStamp').textContent=t('priceUnavailable');el('plFoot').textContent=(ledgerIssue?t('ledgerMissing')+' · ':'')+t('priceUnavailable');return;}
+ const value=wallet.cash+(wallet.gold===0?0:wallet.gold*quote);el('portfolio').textContent=displayMoney(value);el('indicativeSpot').textContent=Number.isFinite(quote)?displayMoney(quote)+' / g':'—';el('indicativeStamp').textContent=quoteStamp?t('quoteTime')+': '+new Date(quoteStamp).toLocaleString(lang,{dateStyle:'short',timeStyle:'short'})+' · gold-api.com/XAU':t('priceUnavailable');
  const overall=value-10000;const rounded=Math.round(overall*100)/100;card.className='pl-card '+(rounded>.004?'gain':rounded<-.004?'loss':'even');mark.textContent=rounded>.004?'↑':rounded<-.004?'↓':'=';amount.textContent=signed(overall);pct.textContent=(rounded>.004?'+':rounded<-.004?'−':'')+(Math.abs(overall)/10000*100).toFixed(2)+'%';
- if(reliable){const pending=wallet.gold*quote-fullLedger.cost;unreal.textContent=signed(pending);unreal.style.color=tone(pending);}else unreal.style.color='';
- el('plFoot').textContent=(ledgerIssue?t('ledgerMissing'):!fullLedger?t('plLoading'):!reliable?t('ledgerMismatch'):t('plFoot'))+' · '+t('quoteTime')+': '+new Date(quoteStamp).toLocaleString(lang,{dateStyle:'short',timeStyle:'short'});
+ if(reliable){const pending=(wallet.gold===0?0:wallet.gold*quote)-fullLedger.cost;unreal.textContent=signed(pending);unreal.style.color=tone(pending);}else unreal.style.color='';
+ el('plFoot').textContent=(ledgerIssue?t('ledgerMissing'):!fullLedger?t('plLoading'):!reliable?t('ledgerMismatch'):t('plFoot'))+(quoteStamp?' · '+t('quoteTime')+': '+new Date(quoteStamp).toLocaleString(lang,{dateStyle:'short',timeStyle:'short'}):'');
 }
-function renderAll(){if(!wallet)return;el('cash').textContent=displayMoney(wallet.cash);el('gold').textContent=grams(wallet.gold)+' g';el('lastPrice').textContent=Number.isFinite(lastTradePrice)&&lastTradePrice>0?displayMoney(lastTradePrice)+' / g ('+(lang==='ar'?'آخر عملية':'last trade')+')':'—';renderPL();renderHistory();}
-async function refreshData(forceQuote=false){if(!client||!currentUser)return;const uid=currentUser.id,run=++dataRun;
- const [w,tx]=await Promise.all([client.from('gold_wallets').select('cash_balance,gold_grams').eq('user_id',uid).maybeSingle(),client.from('gold_transactions').select('id,trade_type,total_usd,gold_grams,price_per_gram_usd').eq('user_id',uid).order('id',{ascending:false}).limit(100)]);
- if(w.error)throw w.error;if(tx.error)throw tx.error;if(!w.data)throw Error(t('walletMissing'));if(!currentUser||currentUser.id!==uid||run!==dataRun)return;
- wallet={cash:Number(w.data.cash_balance),gold:Number(w.data.gold_grams)};historyRows=tx.data||[];lastTradePrice=historyRows.length?Number(historyRows[0].price_per_gram_usd):null;fullLedger=null;ledgerIssue='';renderAll();
- const [ledgerResult]=await Promise.allSettled([loadLedger(uid),fetchQuote(forceQuote)]);if(!currentUser||currentUser.id!==uid||run!==dataRun)return;
- if(ledgerResult.status==='fulfilled')fullLedger=ledgerResult.value;else{ledgerIssue=String(ledgerResult.reason?.message||'Ledger error');console.warn('MILLION GOLD history:',ledgerIssue);}
+function renderAll(){renderRounds();if(!wallet)return;el('cash').textContent=displayMoney(wallet.cash);el('gold').textContent=grams(wallet.gold)+' g';el('lastPrice').textContent=Number.isFinite(lastTradePrice)&&lastTradePrice>0?displayMoney(lastTradePrice)+' / g ('+(lang==='ar'?'آخر عملية':'last trade')+')':'—';renderPL();renderHistory();}
+async function refreshData(forceQuote=false){
+ if(!client||!currentUser)return;
+ const uid=currentUser.id,run=++dataRun;
+ const [w,rr]=await Promise.all([
+  client.from('gold_wallets').select('cash_balance,gold_grams').eq('user_id',uid).maybeSingle(),
+  client.from('gold_game_rounds').select('round_number,started_at,ended_at,highest_profit_usd').eq('user_id',uid).order('round_number',{ascending:true})
+ ]);
+ if(w.error)throw w.error;if(!w.data)throw Error(t('walletMissing'));
+ if(!currentUser||currentUser.id!==uid||run!==dataRun)return;
+ wallet={cash:Number(w.data.cash_balance),gold:Number(w.data.gold_grams)};
+ // With no round rows, every legacy trade belongs to original round #1.
+ roundsVerified=!rr.error;
+ allRounds=rr.error?[]:rr.data||[];
+ currentRound=allRounds.length?allRounds[allRounds.length-1]:{round_number:1,started_at:null,ended_at:null};
+ highestRecorded=null;fullLedger=null;ledgerIssue='';historyRows=[];
+ if(rr.error){ledgerIssue=String(rr.error.message||'Round history unavailable');renderAll();return;}
+ const query=client.from('gold_transactions')
+  .select('id,trade_type,total_usd,gold_grams,price_per_gram_usd,created_at')
+  .eq('user_id',uid);
+ // The start timestamp for the first round was added only at its end;
+ // later rounds have a reliable creation timestamp.
+ if(currentRound.round_number>=2)query.gte('created_at',currentRound.started_at);
+ const tx=await query.order('created_at',{ascending:false}).order('id',{ascending:false}).limit(100);
+ if(tx.error)throw tx.error;
+ if(!currentUser||currentUser.id!==uid||run!==dataRun)return;
+ historyRows=tx.data||[];
+ lastTradePrice=historyRows.length?Number(historyRows[0].price_per_gram_usd):null;
+ renderAll();
+ const [ledgerResult]=await Promise.allSettled([
+  loadLedger(uid,allRounds,currentRound.round_number),fetchQuote(forceQuote)
+ ]);
+ if(!currentUser||currentUser.id!==uid||run!==dataRun)return;
+ if(ledgerResult.status==='fulfilled'){
+  fullLedger=ledgerResult.value.current;
+  highestRecorded=ledgerResult.value.highest;
+ }else{
+  ledgerIssue=String(ledgerResult.reason?.message||'Ledger error');
+  console.warn('MILLION GOLD history:',ledgerIssue);
+ }
  renderAll();
 }
 async function renderSession(){if(!client)return;const {data,error}=await client.auth.getUser();if(error||!data.user){signOutView();return;}currentUser=data.user;el('loginPanel').classList.add('hide');el('app').classList.remove('hide');el('userLabel').textContent=currentUser.email||'Wallet';await refreshData();}
@@ -161,6 +284,22 @@ el('refreshBtn').addEventListener('click',async()=>{if(busy)return;setBusy(true)
 async function trade(side){if(!client||busy||!currentUser)return;const inp=el(side==='BUY'?'buyAmount':'sellAmount');const raw=inp.value.trim(),number=Number(raw);const valid=Number.isFinite(number)&&number>0&&(side==='BUY'?/^\d+(?:\.\d{1,2})?$/.test(raw)&&number>=.01:/^\d+(?:\.\d{1,8})?$/.test(raw));if(!valid){showNotice(t(side==='BUY'?'invalidBuy':'invalidSell'),'bad');return;}
  if(!window.crypto?.randomUUID){showNotice('Secure HTTPS connection required','bad');return;}const desc=side==='BUY'?dollars(number):grams(number)+' g';if(!confirm(t(side==='BUY'?'confirmBuy':'confirmSell',{amount:desc})))return;
  setBusy(true);showNotice(t('submitting',{side:t(side==='BUY'?'buy':'sell')}));try{const {data,error}=await client.rpc('execute_gold_trade',{p_side:side,p_amount:number,p_request_id:crypto.randomUUID()});if(error)throw error;if(!data?.success)throw Error('Server did not confirm the trade');lastQuoteAttempt=0;await refreshData(true);inp.value='';showNotice(t('completed',{side:t(side==='BUY'?'buy':'sell'),usd:dollars(data.usd),grams:grams(data.grams)}),'ok');}catch(e){showNotice(t('tradeFailed')+': '+readError(e),'bad');}finally{setBusy(false);}}
+el('restartBtn').addEventListener('click',async()=>{
+ if(!client||busy||!currentUser||!roundsVerified||!wallet)return;
+ if(wallet.cash!==0||wallet.gold!==0){showNotice(roundText(9),'bad');return;}
+ if(!confirm(roundText(6)))return;
+ setBusy(true);showNotice(roundText(7));
+ try{
+  const {data,error}=await client.rpc('start_gold_again');
+  if(error)throw error;
+  if(!data?.success)throw Error('Server did not confirm the new round');
+  // Do not delete past transactions: server snapshots close the old round.
+  await refreshData(true);
+  el('buyAmount').value='';el('sellAmount').value='';
+  showNotice(roundText(8),'ok');
+ }catch(e){showNotice(readError(e),'bad');}
+ finally{setBusy(false);}
+});
 el('buyBtn').addEventListener('click',()=>trade('BUY'));el('sellBtn').addEventListener('click',()=>trade('SELL'));
 function typicalGoldFuturesOpen(){const parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',weekday:'short',hour:'2-digit',hourCycle:'h23'}).formatToParts(new Date());const day=parts.find(x=>x.type==='weekday')?.value;const hour=Number(parts.find(x=>x.type==='hour')?.value);if(day==='Sat')return false;if(day==='Sun')return hour>=18;if(day==='Fri')return hour<17;return hour<17||hour>=18;}
 function updateMarketHours(){const open=typicalGoldFuturesOpen();el('marketHoursBadge').className='market-hours '+(open?'open':'closed');el('marketHoursText').textContent=t(open?'open':'closed');el('marketHoursNote').textContent=t('hoursNote');}
