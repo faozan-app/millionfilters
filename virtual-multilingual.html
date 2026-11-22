@@ -32,13 +32,21 @@
 .market-hours .market-dot{width:9px;height:9px;border-radius:50%;background:#e7bc73;flex:none}
 .market-hours.open .market-dot{background:#6cdd85;box-shadow:0 0 8px #48c86b77}
 .market-hours .market-note{font-size:11px;line-height:1.6;color:#c3b8a3;margin-top:5px}
+
+.currency-switch{display:flex;align-items:center;gap:12px;margin:14px 0 4px;padding:10px 12px;border:1px solid #554a30;border-radius:13px;background:#21231d}
+.currency-switch label{margin:0;flex:1;font-size:13px}.currency-switch select{min-width:125px;max-width:58%;padding:9px;border-radius:9px;border:1px solid #85734d;background:#11140f;color:#f7e6bb;font:inherit}
+.currency-note{font-size:11px;color:#b9b3a3;margin:5px 0 15px;line-height:1.65}
+.trade-head{display:flex;align-items:center;justify-content:space-between;gap:10px}.remove-trade{flex:none;border:1px solid #8e5f5f;background:#301e1e;color:#ffbcbc;font-size:12px;padding:8px 10px;border-radius:9px}
+.trade-detail{font-size:12px;color:#bab9ab;overflow-wrap:anywhere}.trade-note{margin-top:9px;font-size:11px;line-height:1.65;color:#bdb4a2}
+#notice{margin-top:13px;margin-bottom:6px}#notice:empty{display:none}
+@media(max-width:380px){.balance{font-size:30px}.trade-head strong{font-size:12px}}
 </style>
 </head>
 <body><main>
 <div class="top"><div><h1>MILLION GOLD</h1><p data-i18n="subtitle">Virtual gold · Practice only</p></div><span class="pill" data-i18n="pill">SIMULATED FUNDS</span></div>
 <div class="language-switch"><label for="languageChoice" id="languageLabel">🌐 Language / اللغة</label><select id="languageChoice" aria-label="Language / اللغة"><option value="ar">العربية</option><option value="en">English</option><option value="hi">हिन्दी</option><option value="bn">বাংলা</option><option value="ur">اردو</option><option value="es">Español</option><option value="fr">Français</option><option value="tr">Türkçe</option><option value="id">Bahasa Indonesia</option><option value="pt">Português</option><option value="de">Deutsch</option><option value="zh">中文</option><option value="ja">日本語</option><option value="ru">Русский</option></select></div>
 <section class="panel" id="loginPanel"><h2 class="sectionTitle" data-i18n="signinTitle">Sign in to your existing account</h2><p class="tiny" data-i18n="signinHelp">Use your existing account. Never share your password.</p><form id="loginForm"><label for="email" data-i18n="email">Email</label><input id="email" type="email" autocomplete="username" required><label for="password" data-i18n="password">Password</label><input id="password" type="password" autocomplete="current-password" required><div class="btnrow"><button type="submit" class="primary" id="loginBtn" data-i18n="signin">Sign in</button></div></form></section>
-<section id="app" class="hide"><section class="panel"><div class="row"><span class="muted tiny" id="userLabel">Wallet</span><button class="secondary" id="logoutBtn" data-i18n="signout" type="button" style="padding:7px 12px;font-size:12px">Sign out</button></div><div class="muted tiny" data-i18n="cashLabel" style="margin-top:17px">Virtual cash balance</div><div class="balance" id="cash">—</div><div class="row"><div><div class="muted tiny" data-i18n="goldLabel">Gold owned</div><div class="gold" style="font-size:24px;font-weight:700" id="gold">—</div></div><div style="text-align:right"><div class="muted tiny" data-i18n="portfolioLabel">Portfolio value (USD)</div><div style="font-size:22px;font-weight:650" id="portfolio">—</div></div></div>
+<section id="app" class="hide"><section class="panel"><div class="row"><span class="muted tiny" id="userLabel">Wallet</span><button class="secondary" id="logoutBtn" data-i18n="signout" type="button" style="padding:7px 12px;font-size:12px">Sign out</button></div><div class="currency-switch"><label for="currencyChoice" id="currencyLabel">Display currency / عملة العرض</label><select id="currencyChoice" aria-label="Display currency"><option value="USD">USD · $</option><option value="SAR">SAR · ر.س</option><option value="AED">AED · د.إ</option><option value="EUR">EUR · €</option><option value="GBP">GBP · £</option><option value="INR">INR · ₹</option><option value="KWD">KWD · د.ك</option><option value="QAR">QAR · ر.ق</option><option value="BHD">BHD · د.ب</option><option value="OMR">OMR · ر.ع</option><option value="EGP">EGP · ج.م</option><option value="BDT">BDT · ৳</option><option value="PKR">PKR · ₨</option><option value="CNY">CNY · ¥</option><option value="JPY">JPY · ¥</option><option value="CAD">CAD · $</option><option value="AUD">AUD · $</option></select></div><div class="currency-note" id="currencyNote"></div><div class="muted tiny" data-i18n="cashLabel" style="margin-top:17px">Virtual cash balance</div><div class="balance" id="cash">—</div><div class="row"><div><div class="muted tiny" data-i18n="goldLabel">Gold owned</div><div class="gold" style="font-size:24px;font-weight:700" id="gold">—</div></div><div style="text-align:right"><div class="muted tiny" data-i18n="portfolioLabel">Portfolio value (USD)</div><div style="font-size:22px;font-weight:650" id="portfolio">—</div></div></div>
 <div id="plCard" class="pl-card pending" aria-live="polite">
   <div class="pl-top"><span data-i18n="plTitle">Indicative profit / loss</span><span class="pl-mark" id="plMark">–</span></div>
   <div class="pl-number" id="plAmount">—</div>
@@ -51,9 +59,9 @@
   <div id="marketHoursNote" class="market-note">Schedule estimate; not a live exchange status.</div>
 </div>
 <div class="quote-box"><div class="muted tiny" data-i18n="liveRef">Latest indicative price</div><div class="gold quote-value" id="indicativeSpot">—</div><div class="tiny muted" id="indicativeStamp">—</div><div class="tiny muted" data-i18n="quoteCaution">Public quote; execution uses the protected server price</div><div class="tiny muted" data-i18n="autoQuote">Automatic refresh approximately every minute</div></div></section>
-<section class="panel"><h2 class="sectionTitle" data-i18n="tradeTitle">Virtual trade</h2><div class="row"><span class="muted tiny" data-i18n="buyHint">BUY = USD amount</span><span class="muted tiny" data-i18n="sellHint">SELL = grams</span></div><label for="buyAmount" data-i18n="buyLabel">Buy gold for USD</label><input id="buyAmount" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="100.00"><div class="btnrow"><button type="button" class="buy" id="buyBtn" data-i18n="buyBtn">BUY VIRTUAL GOLD</button></div><label for="sellAmount" data-i18n="sellLabel">Sell gold in grams</label><input id="sellAmount" type="number" inputmode="decimal" min="0.00000001" step="0.00000001" placeholder="0.10000000"><div class="btnrow"><button type="button" class="sell" id="sellBtn" data-i18n="sellBtn">SELL VIRTUAL GOLD</button></div><p class="tiny" data-i18n="tradeHelp">Each order requires confirmation. No real money or gold is traded.</p></section>
-<section class="panel"><h2 class="sectionTitle" data-i18n="historyTitle">Transaction history</h2><div id="history" class="tiny muted">—</div></section></section>
-<div id="notice" class="notice hide" role="status" aria-live="polite"></div><small data-i18n="footer">Independent test page • No real funds, no physical gold • GOLD GLOBE</small>
+<section class="panel"><h2 class="sectionTitle" data-i18n="tradeTitle">Virtual trade</h2><div class="row"><span class="muted tiny" data-i18n="buyHint">BUY = USD amount</span><span class="muted tiny" data-i18n="sellHint">SELL = grams</span></div><label for="buyAmount" data-i18n="buyLabel">Buy gold for USD</label><input id="buyAmount" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="100.00"><div class="btnrow"><button type="button" class="buy" id="buyBtn" data-i18n="buyBtn">BUY VIRTUAL GOLD</button></div><label for="sellAmount" data-i18n="sellLabel">Sell gold in grams</label><input id="sellAmount" type="number" inputmode="decimal" min="0.00000001" step="0.00000001" placeholder="0.10000000"><div class="btnrow"><button type="button" class="sell" id="sellBtn" data-i18n="sellBtn">SELL VIRTUAL GOLD</button></div><div id="notice" class="notice hide" role="status" aria-live="polite"></div><p class="tiny" data-i18n="tradeHelp">Each order requires confirmation. No real money or gold is traded.</p></section>
+<section class="panel"><h2 class="sectionTitle" data-i18n="historyTitle">Transaction history</h2><p class="trade-note" id="historyNote"></p><div id="history" class="tiny muted">—</div></section></section>
+<div id="loginNotice" class="notice hide" role="status" aria-live="polite"></div><small data-i18n="footer">Independent test page • No real funds, no physical gold • GOLD GLOBE</small>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -101,8 +109,27 @@ languageChoice.addEventListener('change',()=>{
  location.assign(url.href);
 });
 const el=id=>document.getElementById(id);
-const notice=(message,type='')=>{const n=el('notice');n.textContent=message;n.className='notice '+type;};
+const notice=(message,type='')=>{const n=el(document.getElementById('app').classList.contains('hide')?'loginNotice':'notice');n.textContent=message;n.className='notice '+type;};
 const money=n=>Number(n).toLocaleString(navigator.language||'en-US',{minimumFractionDigits:2,maximumFractionDigits:2,useGrouping:true})+' USD';
+const UI_STRINGS={
+ ar:{currency:'عملة العرض',currencyNote:'التحويل للعرض فقط · تنفيذ البيع والشراء بالدولار الافتراضي',fxMissing:'تعذر تحديث أسعار العملات؛ الأرقام بالدولار حتى عودة الاتصال.',hide:'حذف',confirmHide:'إزالة هذه العملية من السجل المعروض؟ لا تتغير الأرصدة.',historyNote:'الحذف يخفي العملية على هذا الجهاز فقط؛ لا يلغي الصفقة ولا يغير الرصيد.',hidden:'أزيلت العملية من العرض.',noTrades:'لا توجد عمليات ظاهرة.'},
+ en:{currency:'Display currency',currencyNote:'Display conversion only · trades execute in virtual USD',fxMissing:'FX unavailable; showing USD amounts.',hide:'Remove',confirmHide:'Hide this transaction from the displayed history? Balances do not change.',historyNote:'Remove hides a transaction on this device only; it does not undo trades or change balances.',hidden:'Removed from display.',noTrades:'No visible transactions.'}
+};
+const uiText=k=>(UI_STRINGS[language]||UI_STRINGS.en)[k]||UI_STRINGS.en[k];
+let displayCurrency='USD',displayRates={USD:1},currencyReady=false;
+try{const c=localStorage.getItem('millionGoldCurrency');if(document.querySelector('#currencyChoice option[value="'+c+'"]'))displayCurrency=c;}catch(_){}
+const fmtUSD=n=>money(n);
+const displayMoney=n=>{const rate=displayRates[displayCurrency];const code=Number.isFinite(rate)&&rate>0?displayCurrency:'USD';const amt=Number(n)*(code==='USD'?1:rate);return new Intl.NumberFormat('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}).format(amt)+' '+code;};
+const currencyChoice=el('currencyChoice');currencyChoice.value=displayCurrency;
+function currencyLabels(){el('currencyLabel').textContent=uiText('currency');el('currencyNote').textContent=(!displayRates[displayCurrency]&&displayCurrency!=='USD')?uiText('fxMissing'):uiText('currencyNote');el('historyNote').textContent=uiText('historyNote');}
+currencyChoice.addEventListener('change',()=>{displayCurrency=currencyChoice.value;try{localStorage.setItem('millionGoldCurrency',displayCurrency)}catch(_){}currencyLabels();if(currentUser)void refreshData().catch(e=>notice(readableError(e),'bad'));});
+async function fetchDisplayRates(){try{for(const url of ['https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.min.json','https://latest.currency-api.pages.dev/v1/currencies/usd.min.json']){try{const r=await fetch(url);if(!r.ok)continue;const d=await r.json();if(!d.usd)continue;const x={USD:1};for(const [k,v] of Object.entries(d.usd)){if(Number.isFinite(Number(v))&&Number(v)>0)x[k.toUpperCase()]=Number(v);}if(Object.keys(x).length<40)continue;displayRates=x;currencyReady=true;try{localStorage.setItem('millionGoldFxCache',JSON.stringify({rates:x,date:Date.now()}));}catch(_){}break;}catch(_){}}}finally{currencyLabels();if(currentUser)void refreshData().catch(()=>{});}}
+try{const c=JSON.parse(localStorage.getItem('millionGoldFxCache')||'null');if(c?.rates&&Date.now()-c.date<7*86400000)displayRates={...c.rates,USD:1};}catch(_){}
+currencyLabels();void fetchDisplayRates();
+const hiddenKey=()=>currentUser?'millionGoldHidden:'+currentUser.id:'';
+function hiddenTransactions(){try{return new Set(JSON.parse(localStorage.getItem(hiddenKey())||'[]').map(String));}catch(_){return new Set();}}
+function hideTransaction(id){if(!currentUser||!confirm(uiText('confirmHide')))return;const hidden=hiddenTransactions();hidden.add(String(id));try{localStorage.setItem(hiddenKey(),JSON.stringify([...hidden]));}catch(_){notice(uiText('historyNote'),'bad');return;}el('history').querySelectorAll('[data-transaction-id]').forEach(node=>{if(node.dataset.transactionId===String(id))node.remove();});if(!el('history').children.length)el('history').textContent=uiText('noTrades');notice(uiText('hidden'),'ok');}
+
 const grams=n=>Number(n).toFixed(8);
 const readableError=e=>{const m=e?.message||String(e);const map={'Login required':'errorLoginRequired','Invalid trade type':'errorInvalidType','Request ID required':'errorRequestId','Invalid amount':'errorInvalidAmount','Wallet not found':'errorNoWallet','Fresh gold price unavailable':'errorStale','Invalid USD amount':'errorUsd','Insufficient cash':'errorCash','Insufficient gold':'errorGold','Amount too small':'errorSmall','Too many decimals':'errorDecimals'};for(const [k,key] of Object.entries(map))if(m.includes(k))return t(key);if(m.includes('Request already processed'))return t('errorDuplicate');return language==='en'?m:t('unknownError');};
 let client;let busy=false;let currentUser=null;let latestPrice=null;
@@ -162,15 +189,15 @@ async function renderIndicativePL(cash,gold,force=false){
    el('portfolio').textContent='—';return;
  }
  const valuation=cash+gold*ref;
- el('portfolio').textContent=money(valuation);
+ el('portfolio').textContent=displayMoney(valuation);
  const pl=valuation-STARTING_VIRTUAL_CASH;
  const rounded=Math.round(pl*100)/100;
  const sign=rounded>0?'+':rounded<0?'−':'';
  card.className='pl-card '+(rounded>0?'gain':rounded<0?'loss':'even');
  mark.textContent=rounded>0?'↑':rounded<0?'↓':'=';
- amount.textContent=sign+money(Math.abs(rounded));
+ amount.textContent=sign+displayMoney(Math.abs(rounded));
  percent.textContent=sign+(Math.abs(pl)/STARTING_VIRTUAL_CASH*100).toFixed(2)+'%';
- el('indicativeSpot').textContent=money(ref)+' / g';
+ el('indicativeSpot').textContent=displayMoney(ref)+' / g';
  el('indicativeStamp').textContent=t('quoteTime')+': '+quoteTime()+' · gold-api.com/XAU';
  foot.textContent=t('plFoot')+' · '+t('quoteTime')+': '+quoteTime();
 }
@@ -178,8 +205,32 @@ async function refreshIndicativeOnly(force=false){
  if(!client||!currentUser||busy||!walletSnapshot)return;
  await renderIndicativePL(walletSnapshot.cash,walletSnapshot.gold,force);
 }
-async function refreshData(){if(!client||!currentUser)return;const [w,txs]=await Promise.all([client.from('gold_wallets').select('cash_balance,gold_grams').eq('user_id',currentUser.id).maybeSingle(),client.from('gold_transactions').select('id,trade_type,total_usd,gold_grams,price_per_gram_usd').eq('user_id',currentUser.id).order('id',{ascending:false}).limit(12)]);if(w.error)throw w.error;if(txs.error)throw txs.error;if(!w.data)throw Error('Wallet not found');let price=latestPrice;if(txs.data?.length){price=Number(txs.data[0].price_per_gram_usd);latestPrice=price;}el('cash').textContent=money(w.data.cash_balance);el('gold').textContent=grams(w.data.gold_grams)+' g';el('portfolio').textContent=price?money(Number(w.data.cash_balance)+Number(w.data.gold_grams)*price):money(w.data.cash_balance)+t('plusGold');el('lastPrice').textContent=price?money(price)+' / g ('+t('lastTrade')+')':t('firstPrice');
-walletSnapshot={cash:Number(w.data.cash_balance),gold:Number(w.data.gold_grams)};await renderIndicativePL(walletSnapshot.cash,walletSnapshot.gold);el('history').replaceChildren();if(!txs.data?.length){el('history').textContent=t('noTrades');return;}for(const tx of txs.data){const div=document.createElement('div');div.className='trade';const strong=document.createElement('strong');strong.textContent=t(tx.trade_type==='BUY'?'buy':'sell')+' · '+money(tx.total_usd);const detail=document.createElement('div');detail.textContent=grams(tx.gold_grams)+' g · '+money(tx.price_per_gram_usd)+'/g';div.append(strong,detail);el('history').append(div);}}
+async function refreshData(){
+ if(!client||!currentUser)return;
+ const [w,txs]=await Promise.all([
+ client.from('gold_wallets').select('cash_balance,gold_grams').eq('user_id',currentUser.id).maybeSingle(),
+ client.from('gold_transactions').select('id,trade_type,total_usd,gold_grams,price_per_gram_usd').eq('user_id',currentUser.id).order('id',{ascending:false}).limit(100)
+ ]);
+ if(w.error)throw w.error;if(txs.error)throw txs.error;if(!w.data)throw Error('Wallet not found');
+ let price=latestPrice;if(txs.data?.length){price=Number(txs.data[0].price_per_gram_usd);latestPrice=price;}
+ el('cash').textContent=displayMoney(w.data.cash_balance);
+ el('gold').textContent=grams(w.data.gold_grams)+' g';
+ el('portfolio').textContent=price?displayMoney(Number(w.data.cash_balance)+Number(w.data.gold_grams)*price):displayMoney(w.data.cash_balance)+t('plusGold');
+ el('lastPrice').textContent=price?displayMoney(price)+' / g ('+t('lastTrade')+')':t('firstPrice');
+ walletSnapshot={cash:Number(w.data.cash_balance),gold:Number(w.data.gold_grams)};
+ await renderIndicativePL(walletSnapshot.cash,walletSnapshot.gold);
+ const root=el('history');root.replaceChildren();const hidden=hiddenTransactions();
+ const visible=(txs.data||[]).filter(tx=>!hidden.has(String(tx.id)));
+ if(!visible.length){root.textContent=uiText('noTrades');return;}
+ for(const tx of visible){
+  const div=document.createElement('div');div.className='trade';div.dataset.transactionId=String(tx.id);
+  const head=document.createElement('div');head.className='trade-head';
+  const strong=document.createElement('strong');strong.textContent=t(tx.trade_type==='BUY'?'buy':'sell')+' · '+displayMoney(tx.total_usd);
+  const remove=document.createElement('button');remove.className='remove-trade';remove.type='button';remove.textContent=uiText('hide');remove.setAttribute('aria-label',uiText('hide'));remove.addEventListener('click',()=>hideTransaction(tx.id));
+  head.append(strong,remove);const detail=document.createElement('div');detail.className='trade-detail';detail.textContent=grams(tx.gold_grams)+' g · '+displayMoney(tx.price_per_gram_usd)+'/g';
+  div.append(head,detail);root.append(div);
+ }
+}
 el('loginForm').addEventListener('submit',async ev=>{ev.preventDefault();if(!client)return;setBusy(true);notice(t('signingIn'));try{const {error}=await client.auth.signInWithPassword({email:el('email').value.trim(),password:el('password').value});if(error)throw error;el('password').value='';await renderSession();notice(t('signedIn'),'ok');}catch(e){notice(t('signInFailed')+': '+readableError(e),'bad');}finally{setBusy(false);}});
 el('logoutBtn').addEventListener('click',async()=>{if(!client)return;const {error}=await client.auth.signOut();if(error)notice(readableError(error),'bad');else{displaySignedOut();notice(t('signedOut'),'ok');}});
 el('refreshBtn').addEventListener('click',async()=>{setBusy(true);try{indicativeCheckedAt=0;await refreshData();notice(t('refreshed'),'ok');}catch(e){notice(readableError(e),'bad');}finally{setBusy(false);}});
