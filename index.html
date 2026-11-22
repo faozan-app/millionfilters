@@ -323,22 +323,52 @@ function isGoldMarketOpen(){
   if(day==='Fri')return minutes<17*60;
   return minutes<17*60||minutes>=18*60;
 }
+/* Translate only the market indicator to the visitor's device language. */
+const marketStatusTranslations={
+  en:['MARKET CLOSED','LIVE · MARKET OPEN','PRICE UPDATE PENDING','WAITING FOR PRICE'],
+  ar:['السوق مغلق','مباشر · السوق مفتوح','بانتظار تحديث السعر','بانتظار السعر'],
+  hi:['बाज़ार बंद है','लाइव · बाज़ार खुला है','मूल्य अपडेट की प्रतीक्षा','मूल्य की प्रतीक्षा'],
+  bn:['বাজার বন্ধ','লাইভ · বাজার খোলা','দাম আপডেটের অপেক্ষায়','দামের অপেক্ষায়'],
+  ur:['مارکیٹ بند ہے','لائیو · مارکیٹ کھلی ہے','قیمت کی تازہ کاری کا انتظار','قیمت کا انتظار'],
+  fr:['MARCHÉ FERMÉ','EN DIRECT · MARCHÉ OUVERT','MISE À JOUR DU PRIX EN ATTENTE','EN ATTENTE DU PRIX'],
+  es:['MERCADO CERRADO','EN DIRECTO · MERCADO ABIERTO','ESPERANDO ACTUALIZACIÓN DEL PRECIO','ESPERANDO PRECIO'],
+  de:['MARKT GESCHLOSSEN','LIVE · MARKT GEÖFFNET','PREISAKTUALISIERUNG AUSSTEHEND','WARTE AUF PREIS'],
+  pt:['MERCADO FECHADO','AO VIVO · MERCADO ABERTO','AGUARDANDO ATUALIZAÇÃO DO PREÇO','AGUARDANDO PREÇO'],
+  tr:['PİYASA KAPALI','CANLI · PİYASA AÇIK','FİYAT GÜNCELLEMESİ BEKLENİYOR','FİYAT BEKLENİYOR'],
+  id:['PASAR TUTUP','LANGSUNG · PASAR BUKA','MENUNGGU PEMBARUAN HARGA','MENUNGGU HARGA'],
+  ms:['PASARAN DITUTUP','LANGSUNG · PASARAN DIBUKA','MENUNGGU KEMAS KINI HARGA','MENUNGGU HARGA'],
+  zh:['市场已休市','实时 · 市场开放','等待价格更新','等待报价'],
+  ja:['市場は休場中','ライブ · 市場は取引中','価格更新待ち','価格待ち'],
+  ko:['시장 마감','실시간 · 시장 개장','가격 업데이트 대기 중','가격 대기 중'],
+  ru:['РЫНОК ЗАКРЫТ','ОНЛАЙН · РЫНОК ОТКРЫТ','ОЖИДАНИЕ ОБНОВЛЕНИЯ ЦЕНЫ','ОЖИДАНИЕ ЦЕНЫ'],
+  it:['MERCATO CHIUSO','IN DIRETTA · MERCATO APERTO','IN ATTESA DI AGGIORNAMENTO PREZZO','IN ATTESA DEL PREZZO']
+};
+function marketStatusLanguage(){
+  const langs=navigator.languages?.length?navigator.languages:[navigator.language||'en'];
+  return langs.map(x=>String(x).toLowerCase().split('-')[0])
+    .find(x=>Object.hasOwn(marketStatusTranslations,x))||'en';
+}
 function updateLive(){
   const age=spotDate?Date.now()-spotDate.getTime():Infinity;
   const fresh=spot!==null&&!goldError&&age>=-300000&&age<=15*60*1000;
   const box=el('liveIndicator');
+  const label=el('liveLabel');
+  const lang=marketStatusLanguage();
+  const words=marketStatusTranslations[lang];
+  label.lang=lang;
+  label.dir=['ar','ur'].includes(lang)?'rtl':'ltr';
   if(!isGoldMarketOpen()){
     box.className='live-indicator closed';
-    el('liveLabel').textContent='MARKET CLOSED';
+    label.textContent=words[0];
   }else if(fresh){
     box.className='live-indicator fresh';
-    el('liveLabel').textContent='LIVE · MARKET OPEN';
+    label.textContent=words[1];
   }else if(spot!==null){
     box.className='live-indicator stale';
-    el('liveLabel').textContent='PRICE UPDATE PENDING';
+    label.textContent=words[2];
   }else{
     box.className='live-indicator offline';
-    el('liveLabel').textContent='WAITING FOR PRICE';
+    label.textContent=words[3];
   }
 }
 function statusText(){
